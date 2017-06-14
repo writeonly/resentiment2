@@ -1,12 +1,23 @@
 
-
+buildscript {
+    ext.kotlin_version = '1.0.0'
+    ext.scala_version = '2.11.8'
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+    }
+}
 
 apply plugin: 'java'
-//apply plugin: 'kotlin'
+apply plugin: 'kotlin'
 apply plugin: 'scala'
 apply plugin: 'eclipse'
 apply plugin: 'idea'
-apply plugin: 'application'
+//apply plugin: 'application'
+
+defaultTasks 'run'
 
 
 sourceCompatibility = 1.7
@@ -23,8 +34,7 @@ repositories {
 }
 
 dependencies {
-    compile group: 'commons-collections', name: 'commons-collections', version: '3.2.2'
-    testCompile group: 'junit', name: 'junit', version: '4.+'
+    compile "org.scala-lang:scala-library:$scala_version"
 }
 
 test {
@@ -39,10 +49,14 @@ uploadArchives {
     }
 }
 
+task wrapper(type: Wrapper) {
+    gradleVersion = "2.7"
+}
+
 subprojects {
     apply plugin: 'java'
     apply plugin: 'eclipse-wtp'
-    //apply plugin: 'kotlin'
+    apply plugin: 'kotlin'
     apply plugin: 'scala'
     apply plugin: 'eclipse'
     apply plugin: 'idea'
@@ -52,6 +66,8 @@ subprojects {
     }
 
     dependencies {
+        compile "org.scala-lang:scala-library:$scala_version"
+        testCompile group: 'org.scalamock', name: 'scalamock-scalatest-support_2.11', version: '3.6.0'
         testCompile 'junit:junit:4.12'
     }
 
