@@ -1,9 +1,5 @@
 rootProject.name = 'resentment'
 
-include 'slv:teakettle'
-include 'slv:unikorn'
+include 'teapot'
+include 'unikorn'
 
-include 'dsl:basm'
-include 'dsl:blockbasic'
-include 'dsl:blockforth'
-include 'dsl:blocklisp'
