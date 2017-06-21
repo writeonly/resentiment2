@@ -1,4 +1,4 @@
-package io.github.writeonly.resentiment.teapot.core
+package io.github.writeonly.resentiment.teapot.engine2
 
 trait Instructions {
   def ld(operand :Symbol) : Unit

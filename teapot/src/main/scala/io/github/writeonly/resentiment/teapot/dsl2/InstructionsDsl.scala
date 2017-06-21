@@ -1,6 +1,6 @@
-package io.github.writeonly.resentiment.teapot.dsl
+package io.github.writeonly.resentiment.teapot.dsl2
 
-import io.github.writeonly.resentiment.teapot.core.Instructions
+import io.github.writeonly.resentiment.teapot.engine2.Instructions
 
 class InstructionsDsl(engine : Instructions) {
   def ld(operand :Symbol) = {engine.ld(operand); this}

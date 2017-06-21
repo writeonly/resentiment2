@@ -1,9 +1,9 @@
 package io.github.writeonly.resentment.teapot
 
-import io.github.writeonly.resentiment.teapot.core.InstructionsFake
-import io.github.writeonly.resentiment.teapot.dsl.InstructionsDsl
+import io.github.writeonly.resentiment.teapot.dsl2.InstructionsDsl
+import io.github.writeonly.resentiment.teapot.engine2.InstructionsFake
 
-class InstructionsSpec extends GrayScalarSpec  {
+class InstructionsDslOperandSpec extends GrayScalarSpec  {
 
   describe("A Streamer") {
 
