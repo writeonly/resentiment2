@@ -8,7 +8,7 @@ class LabelInstruction(label : Symbol, operand : Symbol) extends ControlInstruct
 
 }
 
-class jmp(label : Symbol, operand : Symbol) extends LabelInstruction(label, operand) {
+class jmp(label : Symbol, operand : Symbol) extends  {
 
 }
 
