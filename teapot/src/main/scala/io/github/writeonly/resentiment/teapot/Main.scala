@@ -1,6 +1,6 @@
 package io.github.writeonly.resentiment.teapot
 
-import io.github.writeonly.resentiment.teapot.compilers.Calculator
+import io.github.writeonly.resentiment.teapot.phases.generators.Calculator
 
 object Main extends App {
   val calc = new Calculator

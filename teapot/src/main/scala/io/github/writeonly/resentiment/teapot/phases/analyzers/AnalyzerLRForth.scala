@@ -1,9 +1,9 @@
-package io.github.writeonly.resentiment.teapot.parsers
+package io.github.writeonly.resentiment.teapot.phases.analyzers
 
 import io.github.writeonly.resentiment.teapot.command._
 
 
-class BlockParserLRForth extends BlockParserLR {
+class AnalyzerLRForth extends AnalyzerLR {
 
   lazy val instruction : PackratParser[Command] = store
 
@@ -35,5 +35,5 @@ class BlockParserLRForth extends BlockParserLR {
   lazy val  symbol :PackratParser[Symbol] = "'" ~> ident ^^ { Symbol(_)}
 
 
-  def apply(text : String) = parseAll(instruction, text)
+  override def parse(text : String) = parseAll(instruction, text)
 }

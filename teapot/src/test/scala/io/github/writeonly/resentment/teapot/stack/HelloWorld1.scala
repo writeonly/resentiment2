@@ -1,7 +1,7 @@
 package io.github.writeonly.resentment.teapot.stack
 
-import io.github.writeonly.resentiment.teapot.compilers.Interpreter
-import io.github.writeonly.resentiment.teapot.parsers.BlockParserLLAsm
+import io.github.writeonly.resentiment.teapot.phases.analyzers.AnalyzerLLAsm
+import io.github.writeonly.resentiment.teapot.phases.generators.Interpreter
 import io.github.writeonly.resentment.teapot.BlackSpec
 
 class HelloWorld1 extends BlackSpec {
@@ -12,20 +12,21 @@ CH 'e' OUT
 CH 'l' OUT OUT
 CH 'o' OUT
 """
-  val parser = new BlockParserLLAsm
+  val expected = "Hello"
+  val parser = new AnalyzerLLAsm
 
   feature("Parser") {
 
-    scenario("Apply one exclamation") {
-      Given("converter FileJson2Yaml")
+    scenario("HelloWorld1") {
+      Given("interpreter")
       val interpreter = new Interpreter
 
-      When("should produce null when consume null")
+      When("parse and interprete code")
       val parsed = parser(code)
-      interpreter(parsed.get)
+      interpreter(parsed)
 
-      Then("0 == result")
-      assertResult("Hello") {
+      Then("expected => " + expected )
+      assertResult(expected) {
         interpreter.out.toString()
       }
     }

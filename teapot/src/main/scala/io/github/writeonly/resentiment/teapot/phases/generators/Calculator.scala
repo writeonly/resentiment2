@@ -1,7 +1,7 @@
-package io.github.writeonly.resentiment.teapot.compilers
+package io.github.writeonly.resentiment.teapot.phases.generators
 
 import io.github.writeonly.resentiment.teapot.command._
-import io.github.writeonly.resentiment.teapot.parsers.BlockParserLRBasic
+import io.github.writeonly.resentiment.teapot.phases.analyzers.AnalyzerLRBasic
 
 class Calculator {
   def resolve(terminal: Command): BigDecimal = terminal match {
@@ -15,6 +15,6 @@ class Calculator {
 
 
 
-  def parse(text: String) = new BlockParserLRBasic().apply(text).get
+  def parse(text: String) = new AnalyzerLRBasic().apply(text)
   def evaluate(text: String): BigDecimal = resolve(parse(text))
 }

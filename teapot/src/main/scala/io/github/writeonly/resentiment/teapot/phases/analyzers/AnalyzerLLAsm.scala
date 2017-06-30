@@ -1,10 +1,10 @@
-package io.github.writeonly.resentiment.teapot.parsers
+package io.github.writeonly.resentiment.teapot.phases.analyzers
 
 import io.github.writeonly.resentiment.teapot.command._
 
-class BlockParserLLAsm extends BlockParserLL {
+class AnalyzerLLAsm extends AnalyzerLL {
 
-  def apply(text : String) = parseAll(instruction_list, text)
+  override def parse(text : String) : ParseResult[Command] = parseAll(instruction_list, text)
   def instruction_list :Parser[Command] = instruction
   def instruction :Parser[Command] = block_operation | jump_operation
   def block_operation :Parser[BlockOperation] =
@@ -45,7 +45,9 @@ class BlockParserLLAsm extends BlockParserLL {
 
   def bigDecimal :Parser[BigDecimal] = decimalNumber ^^ { BigDecimal(_)}
   def bigInt :Parser[BigInt] = wholeNumber ^^ { BigInt(_)}
-  def char :Parser[Char] = "'" ~> "\\w" ~"'" ^^ { _._1.charAt(0)}
+//  def char :Parser[Char] = "'" ~> "\\w" ~"'" ^^ { _._1.charAt(0)}
+//  def char :Parser[Char] = "'" ~> """\w""" ~"'" ^^ { _._1.charAt(0)}
+  def char :Parser[Char] = "'" ~> """[a-zA-Z]""" ~"'" ^^ { _._1.charAt(0)}
   def symbol :Parser[Symbol] = "'" ~> ident ^^ { Symbol(_)}
 
 

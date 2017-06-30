@@ -1,9 +1,9 @@
-package io.github.writeonly.resentiment.teapot.parsers
+package io.github.writeonly.resentiment.teapot.phases.analyzers
 
 
 import io.github.writeonly.resentiment.teapot.command._
 
-class BlockParserLRBasic extends BlockParserLR {
+class AnalyzerLRBasic extends AnalyzerLR {
   lazy val expression: PackratParser[Command] =
     (expression <~ "+") ~ expr1 ^^ { case lhs ~ rhs => BinaryOperation("+", lhs, rhs) } |
       (expression <~ "-") ~ expr1 ^^ { case lhs ~ rhs => BinaryOperation("-", lhs, rhs) } |
@@ -22,5 +22,5 @@ class BlockParserLRBasic extends BlockParserLR {
     "(" ~> expression <~ ")" |
       floatingPointNumber ^^ { x => LoadDecinal(BigDecimal(x)) }
 
-  def apply(text: String) = parseAll(expression, text)
+  override def parse(text: String) = parseAll(expression, text)
 }
