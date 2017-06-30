@@ -1,3 +1,9 @@
+
+
+
+
+apply plugin: "com.github.maiflai.scalatest"
+
 dependencies {
     compile "org.scala-lang:scala-library:$scala_version"
     compile "org.scala-lang.modules:scala-parser-combinators_2.11:1.0.6"
