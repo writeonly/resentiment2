@@ -8,13 +8,14 @@ class BlockParserLLAsm extends BlockParserLL {
   def instruction_list :Parser[Command] = instruction
   def instruction :Parser[Command] = block_operation | jump_operation
   def block_operation :Parser[BlockOperation] =
-    store_operation|load_operation| load_constans_operation| unary_operation | binary_operation
+    store_operation|load_operation| load_char_operation|load_integer_operation| unary_operation | binary_operation
 
   def label :Parser[Symbol] = symbol
 
   def store_operation :Parser[Store] = "ST" ~> symbol ^^ {Store(null, _)}
   def load_operation :Parser[LoadVariable] = "LD" ~> symbol ^^ {LoadVariable(_)}
-  def load_constans_operation :Parser[LoadInteger] = "BT" ~> bigInt ^^ {LoadInteger(_)}
+  def load_char_operation :Parser[LoadChar] = "CH" ~> char ^^ {LoadChar(_)}
+  def load_integer_operation :Parser[LoadInteger] = "BT" ~> bigInt ^^ {LoadInteger(_)}
 
   def unary_operation :Parser[UnaryOperation] = unary_operator ^^ {UnaryOperation(_, null) }
   def binary_operation :Parser[BinaryOperation] = binary_operator ~ '(' ~ block_instruction_list ~ ')' ^^ {
@@ -42,9 +43,10 @@ class BlockParserLLAsm extends BlockParserLL {
 
 
 
-  def bigDecimal :Parser[BigDecimal]=  decimalNumber ^^ { BigDecimal(_)}
-  def bigInt :Parser[BigInt]=  wholeNumber ^^ { BigInt(_)}
-  def symbol :Parser[Symbol]= "'" ~> ident ^^ { Symbol(_)}
+  def bigDecimal :Parser[BigDecimal] = decimalNumber ^^ { BigDecimal(_)}
+  def bigInt :Parser[BigInt] = wholeNumber ^^ { BigInt(_)}
+  def char :Parser[Char] = "'" ~> "\\w" ~"'" ^^ { _._1.charAt(0)}
+  def symbol :Parser[Symbol] = "'" ~> ident ^^ { Symbol(_)}
 
 
 

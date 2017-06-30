@@ -9,6 +9,7 @@ abstract class BlockOperation extends Operation
 
 case class Store(operand:Command, symbol:Symbol) extends BlockOperation
 case class LoadVariable(symbol:Symbol) extends BlockOperation
+case class LoadChar(constant: Char) extends BlockOperation
 case class LoadInteger(constant: BigInt) extends BlockOperation
 case class LoadDecinal(constant:BigDecimal) extends BlockOperation
 
@@ -28,8 +29,5 @@ case class CallOperator(operation:String) extends Command
 case class ReturnOperator(operation:String) extends Command
 
 
-
-
-case class Instruction() extends Command
 
 
