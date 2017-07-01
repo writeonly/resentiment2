@@ -31,14 +31,12 @@ class AnalyzerLLAsm extends AnalyzerLL {
 
 
 
-  def unary_operator :Parser[String] = "(NOT)|(NEG)|(IN)|(OUT)".r ^^ { a=>a}
+  def unary_operator :Parser[String] = "(NOT)|(NEG)|(IN)|(OUT)".r ^^ {a=>a}
   def binary_operator :Parser[String] = binary_operator_byte | binary_operator_bit
   def binary_operator_byte :Parser[String]= "(ADD)|(SUB)|(MUL)|(DIV)|(MOD)".r ^^ {a=>a}
   def binary_operator_bit :Parser[String]= "(AND)|(OR)|(XOR)|(XAND)|(LE)|(LS)|(EQ)|(NE)".r ^^ {a=>a}
 
 
-//  def assign_operator = variable_name':='
-  //def assign_out_operator = ['NOT'] variable_name'=>'
   def call_operator :Parser[String]= "(CALCN)|(CALC)|(CAL)".r
   def return_operator :Parser[String]= "(RETCN)|(RETC)|(RET)".r
   def jump_operator :Parser[String]= "(JMPCN)|(JMPC)|(JMP)".r

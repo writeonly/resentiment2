@@ -9,19 +9,34 @@ class Interpreter extends Generator {
   var a = 0
   val out = new StringBuilder
 
-  override def apply(code: Command): String = {eval(code); out.toString()}
+  val partial = new PartialFunction[Command, Unit] {
+    override def isDefinedAt(x: Command): Boolean = x != null
+    override def apply(v1: Command): Unit = eval(v1)
+  }
 
-  def eval(terminal: Command) = terminal match {
+  override def apply(code: Command): String = {
+    eval(code)
+    out.toString()
+  }
+
+  private def eval(terminal: Command):Unit = terminal match {
+    case PairInstruction(left, right) => {
+      if (left!= null)  partial(left)
+      if (right!= null) partial(right)
+    }
     case Store(x, symbol) => m.put(symbol, a)
     case LoadChar(c) => a = c.toInt
     case UnaryOperation("OUT", x) => out.append(a.toChar)
-    case LoadDecinal(x) => x
-    case x:PairInstruction => x
+    case UnaryOperation("NOT", x) => out.append(a.toChar)
+    case UnaryOperation("NEG", x) => out.append(a.toChar)
+    case LoadDecinal(x) => a = x.bigDecimal.toBigInteger.intValue()
 //    case BinaryOperation("ADD", x1, x2) => (apply(x1) + apply(x2))
 //    case BinaryOperation("SUB", x1, x2) => (apply(x1) - apply(x2))
 //    case BinaryOperation("MUL", x1, x2) => (apply(x1) * apply(x2))
 //    case BinaryOperation("DIV", x1, x2) => (apply(x1) / apply(x2))
 //    case BinaryOperation("MOD", x1, x2) => (apply(x1) / apply(x2))
   }
+
+
 
 }

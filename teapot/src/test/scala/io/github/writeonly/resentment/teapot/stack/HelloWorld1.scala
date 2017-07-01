@@ -1,5 +1,6 @@
 package io.github.writeonly.resentment.teapot.stack
 
+import io.github.writeonly.resentiment.teapot.glue.Phaser
 import io.github.writeonly.resentiment.teapot.phases.analyzers.AnalyzerLLAsm
 import io.github.writeonly.resentiment.teapot.phases.generators.Interpreter
 import io.github.writeonly.resentment.teapot.BlackSpec
@@ -17,17 +18,18 @@ CH 'o' OUT
 
   feature("Parser") {
 
-    scenario("HelloWorld1") {
+    ignore("HelloWorld1") {
       Given("interpreter")
       val interpreter = new Interpreter
+      val parser = new AnalyzerLLAsm
+      val compiler = new Phaser(parser, interpreter)
 
       When("parse and interprete code")
-      val parsed = parser(code)
-      interpreter(parsed)
+      val out = compiler.apply(code)
 
       Then("expected => " + expected )
       assertResult(expected) {
-        interpreter.out.toString()
+        out
       }
     }
 
