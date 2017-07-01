@@ -1,6 +1,6 @@
 package io.github.writeonly.resentiment.teapot.phases.generators
 
-import io.github.writeonly.resentiment.teapot.command._
+import io.github.writeonly.resentiment.teapot.core._
 
 import scala.collection.mutable
 
@@ -26,6 +26,7 @@ class Interpreter extends Generator {
     }
     case Store(x, symbol) => m.put(symbol, a)
     case LoadChar(c) => a = c.toInt
+    case LoadVar(c) => a = m(c)
     case UnaryOperation("OUT", x) => out.append(a.toChar)
     case UnaryOperation("NOT", x) => out.append(a.toChar)
     case UnaryOperation("NEG", x) => out.append(a.toChar)

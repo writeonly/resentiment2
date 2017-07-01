@@ -1,4 +1,4 @@
-package io.github.writeonly.resentiment.teapot.command
+package io.github.writeonly.resentiment.teapot.core
 
 abstract class Command
 case class Word(bytes: Array[Byte]) extends Command
@@ -8,9 +8,9 @@ abstract class Operation extends Command
 abstract class BlockOperation extends Operation
 
 case class Store(operand:Command, symbol:Symbol) extends BlockOperation
-case class LoadVariable(symbol:Symbol) extends BlockOperation
+case class LoadVar(symbol:Symbol) extends BlockOperation
 case class LoadChar(constant: Char) extends BlockOperation
-case class LoadInteger(constant: BigInt) extends BlockOperation
+case class LoadInt(constant: BigInt) extends BlockOperation
 case class LoadDecinal(constant:BigDecimal) extends BlockOperation
 
 

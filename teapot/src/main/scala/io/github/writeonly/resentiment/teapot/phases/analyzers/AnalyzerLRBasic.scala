@@ -1,7 +1,7 @@
 package io.github.writeonly.resentiment.teapot.phases.analyzers
 
 
-import io.github.writeonly.resentiment.teapot.command._
+import io.github.writeonly.resentiment.teapot.core._
 
 class AnalyzerLRBasic extends AnalyzerLR {
   lazy val expression: PackratParser[Command] =

@@ -1,6 +1,6 @@
 package io.github.writeonly.resentiment.teapot.phases.analyzers
 
-import io.github.writeonly.resentiment.teapot.command._
+import io.github.writeonly.resentiment.teapot.core._
 
 class AnalyzerLLAsm extends AnalyzerLL {
 
@@ -10,14 +10,14 @@ class AnalyzerLLAsm extends AnalyzerLL {
       | instruction ^^ {PairInstruction(_, null)})
   def instruction :Parser[Command] = block_operation //| jump_operation
   def block_operation :Parser[BlockOperation] =
-    store_operation|load_operation| load_char_operation|load_integer_operation| unary_operation | binary_operation
+    store_operation|load_var_operation| load_char_operation|load_int_operation| unary_operation | binary_operation
 
   def label :Parser[Symbol] = symbol
 
   def store_operation :Parser[Store] = "ST" ~> symbol ^^ {Store(null, _)}
-  def load_operation :Parser[LoadVariable] = "LD" ~> symbol ^^ {LoadVariable(_)}
-  def load_char_operation :Parser[LoadChar] = "CH" ~> char ^^ {LoadChar(_)}
-  def load_integer_operation :Parser[LoadInteger] = "BT" ~> bigInt ^^ {LoadInteger(_)}
+  def load_var_operation :Parser[LoadVar] = Operators.load_var_operator  ~> symbol ^^ {LoadVar(_)}
+  def load_char_operation :Parser[LoadChar] = Operators.load_char_operator ~> char ^^ {LoadChar(_)}
+  def load_int_operation :Parser[LoadInt] = Operators.load_int_operator ~> bigInt ^^ {LoadInt(_)}
 
   def unary_operation :Parser[UnaryOperation] = unary_operator ^^ {UnaryOperation(_, null) }
   def binary_operation :Parser[BinaryOperation] = binary_operator ~ '(' ~ block_instruction_list ~ ')' ^^ {

@@ -1,6 +1,6 @@
 package io.github.writeonly.resentiment.teapot.phases.analyzers
 
-import io.github.writeonly.resentiment.teapot.command._
+import io.github.writeonly.resentiment.teapot.core._
 
 
 class AnalyzerLRForth extends AnalyzerLR {
@@ -12,7 +12,7 @@ class AnalyzerLRForth extends AnalyzerLR {
   lazy val block_operation :PackratParser[Command] =  bt |load| unary_operation | binary_operation
 
 
-  lazy val load :PackratParser[LoadVariable] = "LD" ~> symbol ^^  { i => LoadVariable(i)}
+  lazy val load :PackratParser[LoadVar] = "LD" ~> symbol ^^  { i => LoadVar(i)}
 
   lazy val bt :PackratParser[Word] = "BT" ~> bigInt ^^  { i => Word(Array[Byte](i.bigInteger.byteValue()))}
 

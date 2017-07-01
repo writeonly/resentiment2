@@ -10,17 +10,17 @@ class OutSpec extends GrayScalarSpec {
     val compiler = () => new Phaser(new AnalyzerLLAsm, new Interpreter)
 
     it("CH -> OUT") {
-      val code = "CH 'A' OUT"
+      val code = "LDC 'A' OUT"
       compiler()(code) should equal ("A")
     }
 
     it("Hello char") {
       val code =
         """
-CH 'H' OUT
-CH 'e' OUT
-CH 'l' OUT OUT
-CH 'o' OUT
+LDC 'H' OUT
+LDC 'e' OUT
+LDC 'l' OUT OUT
+LDC 'o' OUT
 """
       compiler()(code) should equal ("Hello")
     }
@@ -28,15 +28,15 @@ CH 'o' OUT
     ignore("Hello variable") {
       val code =
         """
-CH 'H' VBT 'H
-CH 'e' VBT 'e
-CH 'l' VBT 'l
-CH 'o' VBT 'o
+LDC 'H' VBT 'H
+LDC 'e' VBT 'e
+LDC 'l' VBT 'l
+LDC 'o' VBT 'o
 
-LD 'H OUT
-LD 'e OUT
-LD 'l OUT OUT
-LD 'l OUT
+LDV 'H OUT
+LDV 'e OUT
+LDV 'l OUT OUT
+LDV 'o OUT
 """
       compiler()(code) should equal ("Hello")
     }
