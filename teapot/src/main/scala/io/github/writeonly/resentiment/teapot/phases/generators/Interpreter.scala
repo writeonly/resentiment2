@@ -16,6 +16,7 @@ class Interpreter extends Generator {
     case LoadChar(c) => a = c.toInt
     case UnaryOperation("OUT", x) => out.append(a.toChar)
     case LoadDecinal(x) => x
+    case x:PairInstruction => x
 //    case BinaryOperation("ADD", x1, x2) => (apply(x1) + apply(x2))
 //    case BinaryOperation("SUB", x1, x2) => (apply(x1) - apply(x2))
 //    case BinaryOperation("MUL", x1, x2) => (apply(x1) * apply(x2))

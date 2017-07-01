@@ -20,6 +20,7 @@ case class BinaryOperation(operator: String, left: Command, right: Command) exte
 
 case class JumpOperation(operator:String, label: Symbol) extends Operation
 
+case class PairInstruction(left: Command, right: Command) extends Operation
 
 
 case class UnaryOperator(operator: String, left: Command) extends Command

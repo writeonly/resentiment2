@@ -5,8 +5,10 @@ import io.github.writeonly.resentiment.teapot.command._
 class AnalyzerLLAsm extends AnalyzerLL {
 
   override def parse(text : String) : ParseResult[Command] = parseAll(instruction_list, text)
-  def instruction_list :Parser[Command] = instruction
-  def instruction :Parser[Command] = block_operation | jump_operation
+  def instruction_list :Parser[PairInstruction] = (
+    instruction ~ instruction_list ^^ { p => PairInstruction(p._1, p._2)}
+      | instruction ^^ {PairInstruction(_, null)})
+  def instruction :Parser[Command] = block_operation //| jump_operation
   def block_operation :Parser[BlockOperation] =
     store_operation|load_operation| load_char_operation|load_integer_operation| unary_operation | binary_operation
 
@@ -29,25 +31,25 @@ class AnalyzerLLAsm extends AnalyzerLL {
 
 
 
-  def unary_operator :Parser[String] = "(NOT)|(NEG)|(IN)|(OUT)" ^^ { a=>a}
+  def unary_operator :Parser[String] = "(NOT)|(NEG)|(IN)|(OUT)".r ^^ { a=>a}
   def binary_operator :Parser[String] = binary_operator_byte | binary_operator_bit
-  def binary_operator_byte :Parser[String]= "(ADD)|(SUB)|(MUL)|(DIV)|(MOD)" ^^ {a=>a}
-  def binary_operator_bit :Parser[String]= "(AND)|(OR)|(XOR)|(XAND)|(LE)|(LS)|(EQ)|(NE)" ^^ {a=>a}
+  def binary_operator_byte :Parser[String]= "(ADD)|(SUB)|(MUL)|(DIV)|(MOD)".r ^^ {a=>a}
+  def binary_operator_bit :Parser[String]= "(AND)|(OR)|(XOR)|(XAND)|(LE)|(LS)|(EQ)|(NE)".r ^^ {a=>a}
 
 
 //  def assign_operator = variable_name':='
   //def assign_out_operator = ['NOT'] variable_name'=>'
-  def call_operator :Parser[String]= "(CALCN)|(CALC)|(CAL)"
-  def return_operator :Parser[String]= "(RETCN)|(RETC)|(RET)"
-  def jump_operator :Parser[String]= "(JMPCN)|(JMPC)|(JMP)"
+  def call_operator :Parser[String]= "(CALCN)|(CALC)|(CAL)".r
+  def return_operator :Parser[String]= "(RETCN)|(RETC)|(RET)".r
+  def jump_operator :Parser[String]= "(JMPCN)|(JMPC)|(JMP)".r
 
 
 
   def bigDecimal :Parser[BigDecimal] = decimalNumber ^^ { BigDecimal(_)}
   def bigInt :Parser[BigInt] = wholeNumber ^^ { BigInt(_)}
-//  def char :Parser[Char] = "'" ~> "\\w" ~"'" ^^ { _._1.charAt(0)}
+  def char :Parser[Char] = "'" ~> "\\w".r ~"'" ^^ { _._1.charAt(0)}
 //  def char :Parser[Char] = "'" ~> """\w""" ~"'" ^^ { _._1.charAt(0)}
-  def char :Parser[Char] = "'" ~> """[a-zA-Z]""" ~"'" ^^ { _._1.charAt(0)}
+//  def char :Parser[Char] = "'" ~> """[a-zA-Z]""".r ~"'" ^^ { _._1.charAt(0)}
   def symbol :Parser[Symbol] = "'" ~> ident ^^ { Symbol(_)}
 
 
