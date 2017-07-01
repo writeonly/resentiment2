@@ -7,6 +7,7 @@ abstract class Operation extends Command
 
 abstract class BlockOperation extends Operation
 
+case class Var(operand:Command, symbol:Symbol) extends BlockOperation
 case class Store(operand:Command, symbol:Symbol) extends BlockOperation
 case class LoadVar(symbol:Symbol) extends BlockOperation
 case class LoadChar(constant: Char) extends BlockOperation

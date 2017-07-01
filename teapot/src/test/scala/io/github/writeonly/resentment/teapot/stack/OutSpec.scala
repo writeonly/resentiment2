@@ -25,13 +25,13 @@ LDC 'o' OUT
       compiler()(code) should equal ("Hello")
     }
 
-    ignore("Hello variable") {
+    it("Hello variable") {
       val code =
         """
-LDC 'H' VBT 'H
-LDC 'e' VBT 'e
-LDC 'l' VBT 'l
-LDC 'o' VBT 'o
+LDC 'H' VAR 'H
+LDC 'e' VAR 'e
+LDC 'l' VAR 'l
+LDC 'o' VAR 'o
 
 LDV 'H OUT
 LDV 'e OUT
@@ -41,6 +41,21 @@ LDV 'o OUT
       compiler()(code) should equal ("Hello")
     }
 
+    ignore("Hello variable") {
+      val code =
+        """
+LDC 'H' VAR 'H
+LDC 'e' VAR 'e
+LDC 'l' VAR 'l
+LDC 'o' VAR 'o
+
+LDV 'H OUT
+LDV 'e OUT
+LDV 'l OUT OUT
+LDV 'o OUT
+"""
+      compiler()(code) should equal ("Hello")
+    }
 
   }
 }

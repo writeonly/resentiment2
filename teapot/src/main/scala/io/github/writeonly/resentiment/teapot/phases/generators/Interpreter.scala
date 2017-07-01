@@ -24,6 +24,7 @@ class Interpreter extends Generator {
       if (left!= null)  partial(left)
       if (right!= null) partial(right)
     }
+    case Var(x, symbol) => m.put(symbol, a)
     case Store(x, symbol) => m.put(symbol, a)
     case LoadChar(c) => a = c.toInt
     case LoadVar(c) => a = m(c)
