@@ -10,13 +10,14 @@ class AnalyzerLLAsm extends AnalyzerLL {
       | instruction ^^ {PairInstruction(_, null)})
   def instruction :Parser[Command] = block_operation //| jump_operation
   def block_operation :Parser[BlockOperation] =
-    var_operation| store_operation|load_var_operation| load_char_operation|load_int_operation| unary_operation | binary_operation
+    var_operation|  store_operation|load_var_operation| load_str_operation | load_char_operation|load_int_operation| unary_operation | binary_operation
 
   def label :Parser[Symbol] = symbol
 
   def var_operation :Parser[Var] = "VAR" ~> symbol ^^ {Var(null, _)}
   def store_operation :Parser[Store] = "ST" ~> symbol ^^ {Store(null, _)}
   def load_var_operation :Parser[LoadVar] = Operators.load_var_operator  ~> symbol ^^ {LoadVar(_)}
+  def load_str_operation :Parser[LoadStr] = Operators.load_str_operator ~> stringLiteral ^^ {LoadStr(_)}
   def load_char_operation :Parser[LoadChar] = Operators.load_char_operator ~> char ^^ {LoadChar(_)}
   def load_int_operation :Parser[LoadInt] = Operators.load_int_operator ~> bigInt ^^ {LoadInt(_)}
 
@@ -50,6 +51,7 @@ class AnalyzerLLAsm extends AnalyzerLL {
 //  def char :Parser[Char] = "'" ~> """\w""" ~"'" ^^ { _._1.charAt(0)}
 //  def char :Parser[Char] = "'" ~> """[a-zA-Z]""".r ~"'" ^^ { _._1.charAt(0)}
   def symbol :Parser[Symbol] = "'" ~> ident ^^ { Symbol(_)}
+
 
 
 

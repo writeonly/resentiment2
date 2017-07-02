@@ -5,7 +5,7 @@ import io.github.writeonly.resentiment.teapot.phases.analyzers.AnalyzerLLAsm
 import io.github.writeonly.resentiment.teapot.phases.generators.Interpreter
 import io.github.writeonly.resentment.teapot.GrayScalarSpec
 
-class OutSpec extends GrayScalarSpec {
+class InterpreterSpec extends GrayScalarSpec {
   describe("A Streamer") {
     val compiler = () => new Phaser(new AnalyzerLLAsm, new Interpreter)
 
@@ -26,22 +26,6 @@ LDC 'o' OUT
     }
 
     it("Hello variable") {
-      val code =
-        """
-LDC 'H' VAR 'H
-LDC 'e' VAR 'e
-LDC 'l' VAR 'l
-LDC 'o' VAR 'o
-
-LDV 'H OUT
-LDV 'e OUT
-LDV 'l OUT OUT
-LDV 'o OUT
-"""
-      compiler()(code) should equal ("Hello")
-    }
-
-    ignore("Hello variable") {
       val code =
         """
 LDC 'H' VAR 'H
