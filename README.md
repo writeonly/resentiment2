@@ -3,3 +3,4 @@
 https://codecov.io/gh/writeonly/resentiment
 
 # resentiment
+# Kore'n'Korn
