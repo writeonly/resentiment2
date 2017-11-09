@@ -1,0 +1,11 @@
+apply plugin: 'scala'
+
+apply plugin: "com.github.maiflai.scalatest"
+
+dependencies {
+    compile "org.scala-lang:scala-library:$scala_version"
+    compile "org.scala-lang.modules:scala-parser-combinators_2.11:1.0.6"
+
+    testCompile 'org.scalatest:scalatest_2.11:3.0.1'
+    testRuntime 'org.pegdown:pegdown:1.4.2'
+}

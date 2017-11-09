@@ -58,7 +58,7 @@ LDV 'o OUT
       compiler()(code) should equal ("Hello")
     }
 
-    ignore("Hello string") {
+    it("Hello string") {
       val code =
         """
 LDS "Hello" VAR 'H
