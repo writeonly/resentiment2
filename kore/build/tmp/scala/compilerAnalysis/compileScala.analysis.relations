@@ -1,0 +1,26 @@
+products:
+   src/main/scala/io/github/writeonly/resentment/kore/Kore.scala -> build/classes/main/io/github/writeonly/resentment/kore/Kore.class
+   src/main/scala/io/github/writeonly/resentment/kore/KoreFake.scala -> build/classes/main/io/github/writeonly/resentment/kore/KoreFake.class
+   src/main/scala/io/github/writeonly/resentment/kore/PopKore.scala -> build/classes/main/io/github/writeonly/resentment/kore/PopKore.class
+   src/main/scala/io/github/writeonly/resentment/kore/UniKore.scala -> build/classes/main/io/github/writeonly/resentment/kore/UniKore.class
+   src/main/scala/io/github/writeonly/resentment/kore/UniKoreIO.scala -> build/classes/main/io/github/writeonly/resentment/kore/UniKoreIO.class
+binary dependencies:
+   src/main/scala/io/github/writeonly/resentment/kore/Kore.scala -> /usr/lib/jvm/java-8-openjdk-amd64/jre/lib/rt.jar
+   src/main/scala/io/github/writeonly/resentment/kore/KoreFake.scala -> /home/enkime/.gradle/caches/modules-2/files-2.1/org.scala-lang/scala-library/2.11.8/ddd5a8bced249bedd86fb4578a39b9fb71480573/scala-library-2.11.8.jar
+   src/main/scala/io/github/writeonly/resentment/kore/KoreFake.scala -> /usr/lib/jvm/java-8-openjdk-amd64/jre/lib/rt.jar
+   src/main/scala/io/github/writeonly/resentment/kore/PopKore.scala -> /home/enkime/.gradle/caches/modules-2/files-2.1/org.scala-lang/scala-library/2.11.8/ddd5a8bced249bedd86fb4578a39b9fb71480573/scala-library-2.11.8.jar
+   src/main/scala/io/github/writeonly/resentment/kore/PopKore.scala -> /usr/lib/jvm/java-8-openjdk-amd64/jre/lib/rt.jar
+   src/main/scala/io/github/writeonly/resentment/kore/UniKore.scala -> /usr/lib/jvm/java-8-openjdk-amd64/jre/lib/rt.jar
+   src/main/scala/io/github/writeonly/resentment/kore/UniKoreIO.scala -> /home/enkime/.gradle/caches/modules-2/files-2.1/org.scala-lang/scala-library/2.11.8/ddd5a8bced249bedd86fb4578a39b9fb71480573/scala-library-2.11.8.jar
+   src/main/scala/io/github/writeonly/resentment/kore/UniKoreIO.scala -> /usr/lib/jvm/java-8-openjdk-amd64/jre/lib/rt.jar
+source dependencies:
+   src/main/scala/io/github/writeonly/resentment/kore/Kore.scala -> src/main/scala/io/github/writeonly/resentment/kore/PopKore.scala
+   src/main/scala/io/github/writeonly/resentment/kore/Kore.scala -> src/main/scala/io/github/writeonly/resentment/kore/UniKoreIO.scala
+   src/main/scala/io/github/writeonly/resentment/kore/KoreFake.scala -> src/main/scala/io/github/writeonly/resentment/kore/Kore.scala
+external dependencies:
+class names:
+   src/main/scala/io/github/writeonly/resentment/kore/Kore.scala -> io.github.writeonly.resentment.kore.Kore
+   src/main/scala/io/github/writeonly/resentment/kore/KoreFake.scala -> io.github.writeonly.resentment.kore.KoreFake
+   src/main/scala/io/github/writeonly/resentment/kore/PopKore.scala -> io.github.writeonly.resentment.kore.PopKore
+   src/main/scala/io/github/writeonly/resentment/kore/UniKore.scala -> io.github.writeonly.resentment.kore.UniKore
+   src/main/scala/io/github/writeonly/resentment/kore/UniKoreIO.scala -> io.github.writeonly.resentment.kore.UniKoreIO
