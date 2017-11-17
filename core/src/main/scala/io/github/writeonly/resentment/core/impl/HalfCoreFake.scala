@@ -1,13 +1,19 @@
-package io.github.writeonly.resentment.core
+package io.github.writeonly.resentment.core.impl
+
+import io.github.writeonly.resentment.core.api.HalfCore
 
 import scala.collection.mutable
 
-class SoftCoreFake extends SoftCore {
+class HalfCoreFake extends HalfCore {
   val m : mutable.Map[Int, Int] = new mutable.HashMap[Int, Int]()
 
   val s : mutable.Map[String, Int] = new mutable.HashMap[String, Int]()
 
-  override def ust(s: String): Unit = ???
+  override def uld(s: Symbol): Unit = ???
+
+  override def uld(c: BigInt): Unit = ???
+
+  override def ust(s: Symbol): Unit = ???
 
   override def uld(s: String): Unit = ???
 
@@ -22,4 +28,5 @@ class SoftCoreFake extends SoftCore {
   override def pdiv(): Unit = ???
 
   override def pmod(): Unit = ???
+
 }

@@ -1,10 +1,10 @@
 package io.github.writeonly.resentment.corn.dsl
 
-import io.github.writeonly.resentment.core.{SoftCore, SoftCoreFake}
+import io.github.writeonly.resentment.core.impl.HalfCoreFake
 
 import scala.collection.mutable
 
-class CornFake extends Corn(new SoftCoreFake()) {
+class CornFake extends Corn(new HalfCoreFake()) {
 
   val m = new mutable.HashMap[Int, Int]()
   val s = new mutable.HashMap[Symbol, Int]()
