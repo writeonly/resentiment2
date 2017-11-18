@@ -11,14 +11,12 @@ class UniCoreFake extends UniCore {
 
   private var a = 0
 
-  private def get(operand: Symbol):Int = m.get(operand).getOrElse(0)
+  private def get(o: Symbol):Int = m.get(o).getOrElse(0)
 
 
   private def toInt(o : Boolean) = if (o) 1 else 0
   private def toBoolean(o: Int) = o != 0
   private def set(o : Boolean) = a = toInt(o)
-
-
 
   override def ust(o: Symbol): Unit = m(o) = a
 
@@ -41,23 +39,23 @@ class UniCoreFake extends UniCore {
   override def umod(o: Symbol): Unit = umod(get(o))
   override def umod(o: Int): Unit = a %= o
 
-  override def ueq(o: Symbol): Unit = ???
-  override def ueq(o: Int): Unit = ???
-  override def une(o: Symbol): Unit = ???
-  override def une(o: Int): Unit = ???
+  override def uand(o :Symbol) : Unit = uand(get(o))
+  override def uand(o :Int) : Unit = set(toBoolean(a) & toBoolean(o))
+  override def uor(o :Symbol) : Unit = uor(get(o))
+  override def uor(o :Int) : Unit = set(toBoolean(a) | toBoolean(o))
+
+  override def ueq(o :Symbol) : Unit = ueq(get(o))
+  override def ueq(o :Int) : Unit = set(a == o)
+  override def une(o :Symbol) : Unit = une(get(o))
+  override def une(o :Int) : Unit = set(a != o)
   
-  override def uand(o: Symbol): Unit = ???
-  override def uand(o: Int): Unit = set(toBoolean(a) & toBoolean(o))
-  override def uor(o: Symbol): Unit = ???
-  override def uor(o: Int): Unit = ???
+  override def ult(o :Symbol) : Unit = ult(get(o))
+  override def ult(o :Int) : Unit = set(a < o)
+  override def ugt(o :Symbol) : Unit = ugt(get(o))
+  override def ugt(o :Int) : Unit = set(a > o)
 
-  override def ult(o: Symbol): Unit = ???
-  override def ult(o: Int): Unit = ???
-  override def ugt(o: Symbol): Unit = ???
-  override def ugt(o: Int): Unit = ???
-
-  override def ule(o: Symbol): Unit = ???
-  override def ule(o: Int): Unit = ???
-  override def uge(o: Symbol): Unit = ???
-  override def uge(o: Int): Unit = ???
+  override def ule(o :Symbol) : Unit = ule(get(o))
+  override def ule(o :Int) : Unit = set(a <= o)
+  override def uge(o :Symbol) : Unit = uge(get(o))
+  override def uge(o :Int) : Unit = set(a >= o)
 }
