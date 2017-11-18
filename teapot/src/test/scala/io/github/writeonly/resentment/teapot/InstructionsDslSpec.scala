@@ -9,7 +9,7 @@ class InstructionsDslSpec extends GrayScalarSpec  {
 
     ignore("when convertFile file with empty name") {
       val engine = new UniCoreFake
-      new InstructionsDsl(engine) ld 's st 's
+      new InstructionsDsl(engine) uld 's ust 's
     }
   }
 
