@@ -1,8 +1,8 @@
 package io.github.writeonly.resentiment.teapot.dsl2
 
-import io.github.writeonly.resentiment.teapot.engine2.Instructions
+import io.github.writeonly.resentment.core.api.UniCore
 
-class InstructionsDsl(engine : Instructions) {
+class InstructionsDsl(engine : UniCore) {
   def ld(operand :Symbol) = {engine.uld(operand); this}
   def ld(operand :Int) = {engine.uld(operand); this}
   def st(operand :Symbol) = {engine.ust(operand); this}

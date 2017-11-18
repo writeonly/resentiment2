@@ -1,8 +1,10 @@
 package io.github.writeonly.resentiment.teapot.engine2
 
+import io.github.writeonly.resentment.core.api.UniCore
+
 import scala.collection.mutable
 
-class InstructionsFake extends Instructions {
+class InstructionsFake extends UniCore {
 
   val m = new mutable.HashMap[Symbol, Int]()
 
