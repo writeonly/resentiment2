@@ -1,4 +1,4 @@
-package io.github.writeonly.resentiment.teapot.dsl2
+package io.github.writeonly.resentment.corn.dsl
 
 import io.github.writeonly.resentment.core.api.UniCore
 
