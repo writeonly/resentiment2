@@ -7,11 +7,11 @@ import io.github.writeonly.resentment.core.api.UniCore
 import scala.collection.mutable
 
 class UniCoreFake extends UniCore {
-  private val m : mutable.Map[Symbol, Int] = new mutable.HashMap[Symbol, Int]()
+  protected val m : mutable.Map[Symbol, Int] = new mutable.HashMap[Symbol, Int]()
 
   private var a = 0
 
-  private def get(o: Symbol):Int = m.get(o).getOrElse(0)
+  protected def get(o: Symbol):Int = m.get(o).getOrElse(0)
 
 
   private def toInt(o : Boolean) = if (o) 1 else 0
