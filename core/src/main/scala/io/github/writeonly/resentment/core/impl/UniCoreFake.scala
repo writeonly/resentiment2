@@ -6,7 +6,7 @@ import io.github.writeonly.resentment.core.api.UniCore
 
 import scala.collection.mutable
 
-class UniCoreFake extends UniCore {
+class UniCoreFake extends UniCore[Unit] {
   protected val m : mutable.Map[Symbol, Int] = new mutable.HashMap[Symbol, Int]()
 
   private var a = 0

@@ -1,5 +1,5 @@
 package io.github.writeonly.resentment.core.set
 
-trait UniCoreComputer extends UniCoreCalculator with UniCoreControl {
+trait UniCoreComputer[C] extends UniCoreCalculator[C] with UniCoreControl[C] {
 
 }

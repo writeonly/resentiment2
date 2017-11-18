@@ -2,7 +2,7 @@ package io.github.writeonly.resentment.corn.dsl
 
 import io.github.writeonly.resentment.core.api.HalfCore
 
-class Corn(core : HalfCore) extends PopCorn[Corn] with UniCorn[Corn] {
+class Corn(core : HalfCore[Unit]) extends PopCorn[Corn] with UniCorn[Corn] {
   override def ppop: Corn = ???
 
   override def ppush: Corn = ???

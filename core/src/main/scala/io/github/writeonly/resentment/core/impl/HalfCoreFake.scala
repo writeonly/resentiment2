@@ -4,7 +4,7 @@ import io.github.writeonly.resentment.core.api.HalfCore
 
 import scala.collection.mutable
 
-class HalfCoreFake extends HalfCore {
+class HalfCoreFake extends HalfCore[Unit] {
   val m : mutable.Map[Int, Int] = new mutable.HashMap[Int, Int]()
 
   val s : mutable.Map[String, Int] = new mutable.HashMap[String, Int]()

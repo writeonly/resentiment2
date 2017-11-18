@@ -2,7 +2,7 @@ package io.github.writeonly.resentment.corn.dsl
 
 import io.github.writeonly.resentment.core.api.UniCore
 
-class InstructionsDsl(engine : UniCore) {
+class InstructionsDsl(engine : UniCore[Unit]) {
   def ld(operand :Symbol) = {engine.uld(operand); this}
   def ld(operand :Int) = {engine.uld(operand); this}
   def st(operand :Symbol) = {engine.ust(operand); this}

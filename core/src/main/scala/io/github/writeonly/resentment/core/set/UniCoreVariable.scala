@@ -1,9 +1,9 @@
 package io.github.writeonly.resentment.core.set
 
-trait UniCoreVariable {
-  def ust(s :Symbol)
-  def uld(s :Symbol)
-  def uld(c :Int)
+trait UniCoreVariable[C] {
+  def ust(s :Symbol) : C
+  def uld(s :Symbol) : C
+  def uld(c :Int) : C
 //  def uld(c :BigInt)
 //  def uld(c :String)
 }
