@@ -3,5 +3,4 @@ rootProject.name = 'resentment'
 include 'core'
 include 'corn'
 include 'teapot'
-include 'unikorn'
 

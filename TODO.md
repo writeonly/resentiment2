@@ -1,9 +1,9 @@
 * https://github.com/codecov/example-gradle
 
 # Invisible Pink Unicorn
-* PopKorn - 0 argument assembler
-* UniKorn - 1 argument assembler
-* KornFlakes - Hight Level language
+* PopCorn - 0 argument assembler
+* UniCorn - 1 argument assembler
+* CornFlakes - Hight Level language
 * dc
   * http://manpages.ubuntu.com/manpages/trusty/pl/man1/dc.1.html
   * https://en.wikipedia.org/wiki/Dc_(computer_program)
