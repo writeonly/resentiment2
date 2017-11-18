@@ -11,11 +11,7 @@ class HalfCoreFake extends HalfCore {
 
   override def uld(s: Symbol): Unit = ???
 
-  override def uld(c: BigInt): Unit = ???
-
   override def ust(s: Symbol): Unit = ???
-
-  override def uld(s: String): Unit = ???
 
   override def uld(c: Int): Unit = ???
 

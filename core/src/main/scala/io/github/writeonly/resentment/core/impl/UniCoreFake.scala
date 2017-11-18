@@ -24,9 +24,8 @@ class UniCoreFake extends UniCore {
 
   override def uld(c: Int): Unit = a = c
 
-  override def uld(c: BigInt): Unit = a = c.intValue()
-
-  override def uld(c: String): Unit = uld(new BigInt(new BigInteger(c)))
+//  override def uld(c: BigInt): Unit = a = c.intValue()
+//  override def uld(c: String): Unit = uld(new BigInt(new BigInteger(c)))
 
   override def uadd(o: Symbol): Unit = uadd(get(o))
   override def uadd(o: Int): Unit = a += o
@@ -58,4 +57,8 @@ class UniCoreFake extends UniCore {
   override def ule(o :Int) : Unit = set(a <= o)
   override def uge(o :Symbol) : Unit = uge(get(o))
   override def uge(o :Int) : Unit = set(a >= o)
+
+  override def pneg(): Unit = a = -a
+  override def pnot(): Unit = set(!toBoolean(a))
+
 }

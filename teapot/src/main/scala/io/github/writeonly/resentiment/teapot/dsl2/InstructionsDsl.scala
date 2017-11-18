@@ -18,7 +18,7 @@ class InstructionsDsl(engine : Instructions) {
   def div(operand :Symbol) = {engine.udiv(operand); this}
   def div(operand :Int) = {engine.udiv(operand); this}
   def mod(operand :Symbol) = {engine.umod(operand); this}
-  def mod(operand :Int) = {engine.mod(operand); this}
+  def mod(operand :Int) = {engine.umod(operand); this}
 
 
 }

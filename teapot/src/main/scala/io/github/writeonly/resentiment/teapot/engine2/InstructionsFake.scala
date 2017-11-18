@@ -29,8 +29,8 @@ class InstructionsFake extends Instructions {
   override def umul(operand :Int) : Unit = a *= operand
   override def udiv(operand :Symbol) : Unit = udiv(get(operand))
   override def udiv(operand :Int) : Unit = a /= operand
-  override def umod(operand :Symbol) : Unit = mod(get(operand))
-  override def mod(operand :Int) : Unit = a %= operand
+  override def umod(operand :Symbol) : Unit = umod(get(operand))
+  override def umod(operand :Int) : Unit = a %= operand
 
   override def uand(operand :Symbol) : Unit = uand(get(operand))
   override def uand(operand :Int) : Unit = set(toBoolean(a) & toBoolean(operand))
