@@ -2,8 +2,8 @@ language: java
 jdk:
   - oraclejdk8
 script:
-  - ./gradlew check
-  - ./gradlew codeCoverageReport
+  - gradle check
+  - gradle codeCoverageReport
 dist: trusty
 sudo: false
 after_success:
