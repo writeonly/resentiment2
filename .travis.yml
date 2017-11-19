@@ -1,6 +1,11 @@
 language: java
 jdk:
   - oraclejdk8
+before_script:
+  - chmod +x gradlew
+script:
+  - ./gradlew check
+  - ./gradlew codeCoverageReport
 dist: trusty
 sudo: false
 after_success:
