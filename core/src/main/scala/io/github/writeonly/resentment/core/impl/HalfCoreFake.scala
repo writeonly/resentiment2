@@ -25,4 +25,23 @@ class HalfCoreFake extends HalfCore[Unit] {
 
   override def pmod(): Unit = ???
 
+  override def ppop() = ???
+
+  override def ppush() = ???
+
+  override def peq() = ???
+
+  override def pne() = ???
+
+  override def plt() = ???
+
+  override def ple() = ???
+
+  override def pgt() = ???
+
+  override def pge() = ???
+
+  override def pand() = ???
+
+  override def por() = ???
 }

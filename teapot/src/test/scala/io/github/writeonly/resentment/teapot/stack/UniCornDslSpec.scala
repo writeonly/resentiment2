@@ -4,7 +4,7 @@ import io.github.writeonly.resentiment.teapot.stack.InstructionsDsl
 import io.github.writeonly.resentiment.teapot.stack.InstructionsFake
 import io.github.writeonly.resentment.teapot.GrayScalarSpec
 
-class InstructionsDslSpec extends GrayScalarSpec  {
+class UniCornDslSpec extends GrayScalarSpec  {
 
   describe("A Streamer") {
 
