@@ -2,23 +2,56 @@ package io.github.writeonly.resentment.corn.dsl
 
 import io.github.writeonly.resentment.core.api.UniCore
 
-class InstructionsDsl(engine : UniCore[Unit]) /*extends UniCore[InstructionsDsl] */{
-  def uld(operand :Symbol) = {engine.uld(operand); this}
-  def uld(operand :Int) = {engine.uld(operand); this}
-  def ust(operand :Symbol) = {engine.ust(operand); this}
+class InstructionsDsl(core : UniCore[Unit]) extends UniCore[InstructionsDsl] {
+  override def uld(o :Symbol) = {core.uld(o); this}
+  override def uld(o :Int) = {core.uld(o); this}
+  override def ust(o :Symbol) = {core.ust(o); this}
 
-  def uadd(operand :Symbol) = {engine.uadd(operand); this}
-  def uadd(operand :Int) = {engine.uadd(operand); this}
-  def usub(operand :Symbol) = {engine.usub(operand); this}
-  def usub(operand :Int) = {engine.usub(operand); this}
-  def uneg() = {engine.pneg(); this}
+  override def uadd(o :Symbol) = {core.uadd(o); this}
+  override def uadd(o :Int) = {core.uadd(o); this}
+  override def usub(o :Symbol) = {core.usub(o); this}
+  override def usub(o :Int) = {core.usub(o); this}
+  override  def pneg() = {core.pneg(); this}
 
-  def umul(operand :Symbol) = {engine.umul(operand); this}
-  def umul(operand :Int) = {engine.umul(operand); this}
-  def udiv(operand :Symbol) = {engine.udiv(operand); this}
-  def udiv(operand :Int) = {engine.udiv(operand); this}
-  def umod(operand :Symbol) = {engine.umod(operand); this}
-  def umod(operand :Int) = {engine.umod(operand); this}
+  override def umul(o :Symbol) = {core.umul(o); this}
+  override def umul(o :Int) = {core.umul(o); this}
+  override def udiv(o :Symbol) = {core.udiv(o); this}
+  override def udiv(o :Int) = {core.udiv(o); this}
+  override def umod(o :Symbol) = {core.umod(o); this}
+  override def umod(o :Int) = {core.umod(o); this}
 
+  override def ueq(o: Symbol) = ???
+
+  override def ueq(o: Int) = ???
+
+  override def une(o: Symbol) = ???
+
+  override def une(o: Int) = ???
+
+  override def uand(o: Symbol) = ???
+
+  override def uand(o: Int) = ???
+
+  override def uor(o: Symbol) = ???
+
+  override def uor(o: Int) = ???
+
+  override def ult(o: Symbol) = ???
+
+  override def ult(o: Int) = ???
+
+  override def ugt(o: Symbol) = ???
+
+  override def ugt(o: Int) = ???
+
+  override def ule(o: Symbol) = ???
+
+  override def ule(o: Int) = ???
+
+  override def uge(o: Symbol) = ???
+
+  override def uge(o: Int) = ???
+
+  override def pnot() = ???
 
 }
