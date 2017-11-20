@@ -60,5 +60,6 @@ class UniCoreFake extends UniCore[Unit] {
 
   override def pneg(): Unit = a = -a
   override def pnot(): Unit = set(!toBoolean(a))
+  override def png1() = ???
 
 }

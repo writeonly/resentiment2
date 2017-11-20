@@ -10,8 +10,8 @@ class UniCornDslSpec extends GrayScalarSpec  {
 
     ignore("when convertFile file with empty name") {
       val engine = new InstructionsFake
-      new InstructionsDsl(engine) ld 's st 's
-      new InstructionsDsl(engine) ld 's ld 's st 's
+      new InstructionsDsl(engine) uld 's ust 's
+      new InstructionsDsl(engine) uld 's uld 's ust 's
     }
   }
 

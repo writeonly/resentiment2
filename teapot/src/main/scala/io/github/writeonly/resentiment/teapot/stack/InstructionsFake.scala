@@ -1,8 +1,11 @@
 package io.github.writeonly.resentiment.teapot.stack
 
+import io.github.writeonly.resentment.core.api.StackCore
+
 import scala.collection.mutable
 
-class InstructionsFake extends Instructions {
+class InstructionsFake extends StackCore[Unit] {
+
 
   val m = new mutable.MutableList[Byte]
 
@@ -28,45 +31,47 @@ class InstructionsFake extends Instructions {
 
   def c(b:Integer) =  b != 0
 
-
-  override def ld(operand: Symbol): Unit = ld(m(b(operand)))
-
-  override def ld(operand: Byte): Unit = m(p) = operand
-
-  override def ld(operand: Int): Unit = ld(operand.asInstanceOf[Byte])
-
-  override def ld(operand: Long): Unit = ld(operand.asInstanceOf[Int])
+  override def uld(c: Int) = ???
 
 
-  override def st(operand: Symbol): Unit = m(b(operand)) = m(p)
+  override def uld(operand: Symbol): Unit = uld(m(b(operand)))
 
-  override def push: Unit = p +=1
+  override def ust(operand: Symbol): Unit = m(b(operand)) = m(p)
 
-  override def add: Unit = i((t1, t0) => t1 + t0)
+  override def ppush: Unit = p +=1
 
-  override def sub: Unit = i((t1, t0) => t1 - t0)
+  override def ppop() = ???
 
-  override def neg: Unit = i(t0 => -t0)
+  override def padd: Unit = i((t1, t0) => t1 + t0)
 
-  override def ng1: Unit = ???
+  override def psub: Unit = i((t1, t0) => t1 - t0)
 
-  override def mul: Unit = i((t1, t0) => t1 * t0)
+  override def pneg: Unit = i(t0 => -t0)
 
-  override def div: Unit = i((t1, t0) => t1 / t0)
+  override def png1: Unit = ???
 
-  override def mod: Unit = i((t1, t0) => t1 % t0)
+  override def pmul: Unit = i((t1, t0) => t1 * t0)
 
-  override def and: Unit = b((t1,t0) => c(t1 & t0))
+  override def pdiv: Unit = i((t1, t0) => t1 / t0)
 
-  override def or: Unit = b((t1,t0) => c(t1 | t0))
+  override def pmod: Unit = i((t1, t0) => t1 % t0)
 
-  override def not: Unit = ???
+  override def pand: Unit = b((t1, t0) => c(t1 & t0))
 
-  override def eq: Unit = b((t1,t0) => (t1 == t0))
+  override def por: Unit = b((t1, t0) => c(t1 | t0))
 
-  override def nq: Unit = b((t1,t0) => (t1 != t0))
+  override def pnot: Unit = ???
 
-  override def ls: Unit = b((t1,t0) => (t1 < t0))
+  override def peq: Unit = b((t1, t0) => (t1 == t0))
 
-  override def le: Unit = b((t1,t0) => (t1 <= t0))
+  override def pne: Unit = b((t1, t0) => (t1 != t0))
+
+  override def plt: Unit = b((t1, t0) => (t1 < t0))
+
+  override def ple: Unit = b((t1, t0) => (t1 <= t0))
+
+  override def pgt: Unit = b((t1, t0) => (t1 < t0))
+
+  override def pge: Unit = b((t1, t0) => (t1 <= t0))
+
 }

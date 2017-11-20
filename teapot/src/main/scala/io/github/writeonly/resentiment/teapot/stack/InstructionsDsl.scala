@@ -1,18 +1,40 @@
 package io.github.writeonly.resentiment.teapot.stack
 
-class InstructionsDsl(engine : Instructions) {
-  def ld(operand :Int) = {engine.ld(operand); this}
-  def ld(operand :Symbol) = {engine.ld(operand); this}
-  def st(operand :Symbol) = {engine.st(operand); this}
-  def push = {engine.push; this}
+import io.github.writeonly.resentment.core.api.StackCore
 
-  def add = {engine.add; this}
-  def sub = {engine.sub; this}
-  def neg = {engine.neg; this}
+class InstructionsDsl(core : StackCore[Unit]) extends StackCore[InstructionsDsl] {
+  def uld(operand :Int) = {core.uld(operand); this}
+  def uld(operand :Symbol) = {core.uld(operand); this}
+  def ust(operand :Symbol) = {core.ust(operand); this}
+  def ppush = {core.ppush; this}
 
-  def mul = {engine.mul; this}
-  def div = {engine.div; this}
-  def mod = {engine.mod; this}
+  def padd = {core.padd; this}
+  def psub = {core.psub; this}
+  def pneg = {core.pneg; this}
 
+  def pmul = {core.pmul; this}
+  def pdiv = {core.pdiv; this}
+  def pmod = {core.pmod; this}
 
+  override def ppop() = ???
+
+  override def peq() = ???
+
+  override def pne() = ???
+
+  override def plt() = ???
+
+  override def ple() = ???
+
+  override def pgt() = ???
+
+  override def pge() = ???
+
+  override def pand() = ???
+
+  override def por() = ???
+
+  override def pnot() = ???
+
+  override def png1() = ???
 }
