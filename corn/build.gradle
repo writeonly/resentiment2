@@ -1,5 +1,4 @@
 apply plugin: 'scala'
-apply plugin: 'kotlin'
 apply plugin: "jacoco"
 
 apply plugin: "com.github.maiflai.scalatest"
@@ -14,7 +13,6 @@ dependencies {
     compile "org.jetbrains.kotlin:kotlin-stdlib-jre8:$kotlin_version"
 }
 buildscript {
-    ext.kotlin_version = '1.1.51'
     repositories {
         mavenCentral()
     }
@@ -25,20 +23,10 @@ buildscript {
 repositories {
     mavenCentral()
 }
-compileKotlin {
-    kotlinOptions {
-        jvmTarget = "1.8"
-    }
-}
-compileTestKotlin {
-    kotlinOptions {
-        jvmTarget = "1.8"
-    }
-}
 
 jacocoTestReport {
     reports {
-        xml.enabled false
+        xml.enabled true
         csv.enabled false
         html.destination file("${buildDir}/jacocoHtml")
     }
