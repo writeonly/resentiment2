@@ -15,28 +15,9 @@ buildscript {
     }
 }
 
-apply plugin: 'kotlin'
 apply plugin: "jacoco"
 
 version = '1.0'
-jar {
-    manifest {
-        attributes 'Implementation-Title': 'Gradle Quickstart',
-                'Implementation-Version': version
-    }
-}
-
-test {
-    systemProperties 'property': 'value'
-}
-
-uploadArchives {
-    repositories {
-        flatDir {
-            dirs 'repos'
-        }
-    }
-}
 
 task wrapper(type: Wrapper) {
     gradleVersion = "2.7"
@@ -45,15 +26,6 @@ task wrapper(type: Wrapper) {
 jacoco {
     toolVersion = "0.7.6.201602180812"
     reportsDir = file("$buildDir/customJacocoReportDir")
-}
-
-
-test {
-    jacoco {
-        append = false
-        destinationFile = file("$buildDir/jacoco/jacocoTest.exec")
-//        classDumpFile = file("$buildDir/jacoco/classpathdumps")
-    }
 }
 
 subprojects {
