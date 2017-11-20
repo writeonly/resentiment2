@@ -4,7 +4,7 @@ import io.github.writeonly.resentment.core.api.StackCore
 
 import scala.collection.mutable
 
-class InstructionsFake extends StackCore[Unit] {
+class StackCoreFake extends StackCore[Unit] {
 
 
   val m = new mutable.MutableList[Byte]

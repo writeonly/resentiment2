@@ -2,7 +2,7 @@ package io.github.writeonly.resentment.corn.dsl
 
 import io.github.writeonly.resentment.core.api.StackCore
 
-class InstructionsDsl(core : StackCore[Unit]) extends StackCore[InstructionsDsl] {
+class StackCornDsl(core : StackCore[Unit]) extends StackCore[StackCornDsl] {
   def uld(operand :Int) = {core.uld(operand); this}
   def uld(operand :Symbol) = {core.uld(operand); this}
   def ust(operand :Symbol) = {core.ust(operand); this}
