@@ -1,4 +1,4 @@
-package io.github.writeonly.resentiment.teapot.stack
+package io.github.writeonly.resentment.corn.dsl
 
 import io.github.writeonly.resentment.core.api.StackCore
 
