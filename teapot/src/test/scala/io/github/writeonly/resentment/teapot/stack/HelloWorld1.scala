@@ -1,8 +1,8 @@
 package io.github.writeonly.resentment.teapot.stack
 
-import io.github.writeonly.resentiment.teapot.glue.Phaser
 import io.github.writeonly.resentiment.teapot.phases.analyzers.AnalyzerLLAsm
-import io.github.writeonly.resentiment.teapot.phases.generators.Interpreter
+import io.github.writeonly.resentment.corn.phrases.Phaser
+import io.github.writeonly.resentment.corn.phrases.generators.Interpreter
 import io.github.writeonly.resentment.teapot.BlackSpec
 
 class HelloWorld1 extends BlackSpec {

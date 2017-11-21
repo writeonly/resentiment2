@@ -2,6 +2,7 @@ package io.github.writeonly.resentiment.teapot.phases.generators
 
 import io.github.writeonly.resentiment.teapot.core._
 import io.github.writeonly.resentiment.teapot.phases.analyzers.AnalyzerLRBasic
+import io.github.writeonly.resentment.corn.command._
 
 class Calculator {
   def resolve(terminal: Command): BigDecimal = terminal match {

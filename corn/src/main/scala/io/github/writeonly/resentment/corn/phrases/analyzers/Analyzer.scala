@@ -1,6 +1,6 @@
-package io.github.writeonly.resentiment.teapot.phases.analyzers
+package io.github.writeonly.resentment.corn.phrases.analyzers
 
-import io.github.writeonly.resentiment.teapot.core.Command
+import io.github.writeonly.resentment.corn.command.Command
 
 import scala.util.parsing.combinator.{JavaTokenParsers, PackratParsers, Parsers}
 

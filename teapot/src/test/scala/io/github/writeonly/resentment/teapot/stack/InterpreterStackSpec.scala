@@ -1,8 +1,8 @@
 package io.github.writeonly.resentment.teapot.stack
 
-import io.github.writeonly.resentiment.teapot.glue.Phaser
 import io.github.writeonly.resentiment.teapot.phases.analyzers.AnalyzerLLAsm
-import io.github.writeonly.resentiment.teapot.phases.generators.InterpreterStack
+import io.github.writeonly.resentment.corn.phrases.Phaser
+import io.github.writeonly.resentment.corn.phrases.generators.InterpreterStack
 import io.github.writeonly.resentment.teapot.GrayScalarSpec
 
 class InterpreterStackSpec extends GrayScalarSpec {

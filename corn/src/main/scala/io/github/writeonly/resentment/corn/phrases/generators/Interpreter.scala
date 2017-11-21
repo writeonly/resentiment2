@@ -1,33 +1,33 @@
-package io.github.writeonly.resentiment.teapot.phases.generators
+package io.github.writeonly.resentment.corn.phrases.generators
 
-import io.github.writeonly.resentiment.teapot.core._
+import io.github.writeonly.resentment.corn.command._
 
 import scala.collection.mutable
 
-class InterpreterStack extends Interpreter {
+class Interpreter extends Generator {
+  val b = new mutable.HashMap[Symbol, Int]()
+  var a = 0
+  val o = new StringBuilder
 
-  val m = new mutable.HashMap[Int, Int]()
+  val partial = new PartialFunction[Command, Unit] {
+    override def isDefinedAt(x: Command): Boolean = x != null
+    override def apply(v1: Command): Unit = eval(v1)
+  }
 
-  var p = 0
+  override def apply(code: Command): String = {
+    eval(code)
+    o.toString()
+  }
 
-  def get(symbol: Symbol) = b.get(symbol).get
-
-  def put(symbol:Symbol) = m.put(get(symbol), a)
-
-  override def eval(terminal: Command):Unit = terminal match {
+  def eval(terminal: Command):Unit = terminal match {
     case PairInstruction(left, right) => {
-      if (left!= null) partial(left)
+      if (left!= null)  partial(left)
       if (right!= null) partial(right)
     }
-    case Var(x, symbol) => {
-      b.put(symbol, p)
-      p += 1
-      put(symbol)
-    }
-    case Store(x, symbol) => put(symbol)
-    case LoadVar(symbol) => a =  m.get(get(symbol)).get
+    case Var(x, symbol) => b.put(symbol, a)
+    case Store(x, symbol) => b.put(symbol, a)
+    case LoadVar(c) => a = b(c)
     case LoadChar(c) => a = c.toInt
-    case LoadStr(c) => a = c.toInt
     case UnaryOperation("OUT", x) => o.append(a.toChar)
     case UnaryOperation("NOT", x) => o.append(a.toChar)
     case UnaryOperation("NEG", x) => o.append(a.toChar)

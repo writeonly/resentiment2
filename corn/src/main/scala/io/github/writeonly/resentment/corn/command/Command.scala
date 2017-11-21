@@ -1,4 +1,4 @@
-package io.github.writeonly.resentiment.teapot.core
+package io.github.writeonly.resentment.corn.command
 
 abstract class Command
 case class Word(bytes: Array[Byte]) extends Command
