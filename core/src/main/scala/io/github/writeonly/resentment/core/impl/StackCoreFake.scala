@@ -74,4 +74,7 @@ class StackCoreFake extends StackCore[Unit] {
 
   override def pge: Unit = b((t1, t0) => (t1 <= t0))
 
+  override def in() = ???
+
+  override def out() = ???
 }

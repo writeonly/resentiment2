@@ -7,6 +7,9 @@ class UniCornDsl(core : UniCore[Unit]) extends UniCore[UniCornDsl] {
   override def uld(o :Int) = {core.uld(o); this}
   override def ust(o :Symbol) = {core.ust(o); this}
 
+  override def in() = ???
+  override def out() = ???
+
   override def pneg() = {core.pneg(); this}
   override def pnot() = {core.pneg(); this}
   override def png1() = ???

@@ -8,6 +8,9 @@ class StackCornDsl(core : StackCore[Unit]) extends StackCore[StackCornDsl] {
   def ust(operand :Symbol) = {core.ust(operand); this}
   def ppush = {core.ppush; this}
 
+  override def in() = ???
+  override def out() = ???
+
   def padd = {core.padd; this}
   def psub = {core.psub; this}
   def pneg = {core.pneg; this}
@@ -37,4 +40,5 @@ class StackCornDsl(core : StackCore[Unit]) extends StackCore[StackCornDsl] {
   override def pnot() = ???
 
   override def png1() = ???
+
 }

@@ -44,4 +44,14 @@ class HalfCoreFake extends HalfCore[Unit] {
   override def pand() = ???
 
   override def por() = ???
+
+  override def in() = ???
+
+  override def out() = ???
+
+  override def pnot() = ???
+
+  override def pneg() = ???
+
+  override def png1() = ???
 }
