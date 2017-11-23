@@ -14,16 +14,18 @@ class InterpreterStack extends Interpreter {
 
   def put(symbol:Symbol) = m.put(get(symbol), a)
 
+  def uvar(o: Symbol) = {
+    b.put(o, p)
+    p += 1
+    put(o)
+  }
+
   override def eval(terminal: Command):Unit = terminal match {
     case PairInstruction(left, right) => {
       if (left!= null) partial(left)
       if (right!= null) partial(right)
     }
-    case Var(x, symbol) => {
-      b.put(symbol, p)
-      p += 1
-      put(symbol)
-    }
+    case Var(x, symbol) => uvar(symbol)
     case Store(x, symbol) => put(symbol)
     case LoadVar(symbol) => a =  m.get(get(symbol)).get
     case LoadChar(c) => a = c.toInt

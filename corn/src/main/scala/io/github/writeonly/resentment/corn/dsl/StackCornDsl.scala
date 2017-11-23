@@ -3,13 +3,14 @@ package io.github.writeonly.resentment.corn.dsl
 import io.github.writeonly.resentment.core.api.StackCore
 
 class StackCornDsl(core : StackCore[Unit]) extends StackCore[StackCornDsl] {
-  def uld(operand :Int) = {core.uld(operand); this}
-  def uld(operand :Symbol) = {core.uld(operand); this}
+  def uvar(operand :Symbol) = {core.uvar(operand); this}
   def ust(operand :Symbol) = {core.ust(operand); this}
+  def uld(operand :Symbol) = {core.uld(operand); this}
+  def uld(operand :Int) = {core.uld(operand); this}
   def ppush = {core.ppush; this}
 
-  override def in() = ???
-  override def out() = ???
+  override def pin() = ???
+  override def pout() = ???
 
   def padd = {core.padd; this}
   def psub = {core.psub; this}

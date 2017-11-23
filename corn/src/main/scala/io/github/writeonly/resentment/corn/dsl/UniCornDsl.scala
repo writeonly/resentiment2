@@ -3,12 +3,13 @@ package io.github.writeonly.resentment.corn.dsl
 import io.github.writeonly.resentment.core.api.UniCore
 
 class UniCornDsl(core : UniCore[Unit]) extends UniCore[UniCornDsl] {
+  override def uvar(o :Symbol) = {core.uvar(o); this}
+  override def ust(o :Symbol) = {core.ust(o); this}
   override def uld(o :Symbol) = {core.uld(o); this}
   override def uld(o :Int) = {core.uld(o); this}
-  override def ust(o :Symbol) = {core.ust(o); this}
 
-  override def in() = ???
-  override def out() = ???
+  override def pin() = ???
+  override def pout() = ???
 
   override def pneg() = {core.pneg(); this}
   override def pnot() = {core.pneg(); this}

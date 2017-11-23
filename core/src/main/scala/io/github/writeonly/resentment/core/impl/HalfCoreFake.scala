@@ -9,11 +9,15 @@ class HalfCoreFake extends HalfCore[Unit] {
 
   val s : mutable.Map[String, Int] = new mutable.HashMap[String, Int]()
 
-  override def uld(s: Symbol): Unit = ???
-
+  override def uvar(s: Symbol) = ???
   override def ust(s: Symbol): Unit = ???
 
+  override def uld(s: Symbol): Unit = ???
   override def uld(c: Int): Unit = ???
+
+  override def pin() = ???
+  override def pout() = ???
+
 
   override def padd(): Unit = ???
 
@@ -45,13 +49,10 @@ class HalfCoreFake extends HalfCore[Unit] {
 
   override def por() = ???
 
-  override def in() = ???
-
-  override def out() = ???
-
   override def pnot() = ???
 
   override def pneg() = ???
 
   override def png1() = ???
+
 }

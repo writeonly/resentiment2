@@ -18,13 +18,19 @@ class UniCoreFake extends UniCore[Unit] {
   private def toBoolean(o: Int) = o != 0
   private def set(o : Boolean) = a = toInt(o)
 
+  override def uvar(o: Symbol) = ust(o)
   override def ust(o: Symbol): Unit = m(o) = a
 
   override def uld(o: Symbol): Unit = a = get(o)
 
   override def uld(c: Int): Unit = a = c
 
-//  override def uld(c: BigInt): Unit = a = c.intValue()
+  override def pin() = ???
+  override def pout() = ???
+
+
+
+  //  override def uld(c: BigInt): Unit = a = c.intValue()
 //  override def uld(c: String): Unit = uld(new BigInt(new BigInteger(c)))
 
   override def uadd(o: Symbol): Unit = uadd(get(o))
@@ -62,7 +68,4 @@ class UniCoreFake extends UniCore[Unit] {
   override def pnot(): Unit = set(!toBoolean(a))
   override def png1() = ???
 
-  override def in() = ???
-
-  override def out() = ???
 }
