@@ -1,11 +1,11 @@
 package io.github.writeonly.resentment.core.impl
 
 import io.github.writeonly.resentment.core.api.StackCore
+import io.github.writeonly.resentment.core.pipe.StreamIO
 
 import scala.collection.mutable
 
-class StackCoreFake extends StackCore[Unit] {
-
+class StackCoreFake(val io : StreamIO) extends StackCore[Unit] {
 
   val m = new mutable.MutableList[Byte]
 
@@ -13,25 +13,28 @@ class StackCoreFake extends StackCore[Unit] {
 
   var p = 0
 
-  def i(l :(Byte,Byte) => Int):Unit = {
-    m(p-1) = l(m(p-1), m(p)).asInstanceOf[Byte]
-    m(p) = 0;
-    p -= 1
+  def popi(f :(Byte,Byte) => Int):Unit = {
+    m(p-1) = f(m(p-1), top).asInstanceOf[Byte]
+    pop
   }
 
-  def b(l :(Byte,Byte) => Boolean):Unit = {
-    m(p-1) = c(l(m(p-1), m(p)))
+  def popb(f :(Byte,Byte) => Boolean):Unit = {
+    m(p-1) = toInt(f(m(p-1), top))
+    pop
+  }
+
+  def pop = {
     m(p) = 0
     p -= 1
   }
 
-  def i(l :(Byte) => Int):Unit = m(p) = l(m(p)).asInstanceOf[Byte]
+  def top(l :(Byte) => Int):Unit = m(p) = l(m(p)).asInstanceOf[Byte]
 
-  def c(b:Boolean) = (if (b) 1 else 0).asInstanceOf[Byte]
+  def toInt(b:Boolean) = (if (b) 1 else 0).asInstanceOf[Byte]
 
-  def c(b:Integer) =  b != 0
+  def toBoolean(b:Integer):Boolean =  b != 0
 
-
+  def top: Byte = m(p)
 
   override def uvar(o: Symbol) = ust(o)
   override def ust(o: Symbol): Unit = m(b(o)) = m(p)
@@ -41,42 +44,42 @@ class StackCoreFake extends StackCore[Unit] {
   override def uld(o: String) = ???
 
   override def pin() = ???
-  override def pout() = ???
+  override def pout() = {io.out.write(top); pop}
 
   override def ppush: Unit = p +=1
 
   override def ppop() = ???
 
-  override def padd: Unit = i((t1, t0) => t1 + t0)
+  override def padd: Unit = popi((t1, t0) => t1 + t0)
 
-  override def psub: Unit = i((t1, t0) => t1 - t0)
+  override def psub: Unit = popi((t1, t0) => t1 - t0)
 
-  override def pneg: Unit = i(t0 => -t0)
+  override def pneg: Unit = top(t0 => -t0)
 
   override def png1: Unit = ???
 
-  override def pmul: Unit = i((t1, t0) => t1 * t0)
+  override def pmul: Unit = popi((t1, t0) => t1 * t0)
 
-  override def pdiv: Unit = i((t1, t0) => t1 / t0)
+  override def pdiv: Unit = popi((t1, t0) => t1 / t0)
 
-  override def pmod: Unit = i((t1, t0) => t1 % t0)
+  override def pmod: Unit = popi((t1, t0) => t1 % t0)
 
-  override def pand: Unit = b((t1, t0) => c(t1 & t0))
+  override def pand: Unit = popb((t1, t0) => toBoolean(t1 & t0))
 
-  override def por: Unit = b((t1, t0) => c(t1 | t0))
+  override def por: Unit = popb((t1, t0) => toBoolean(t1 | t0))
 
   override def pnot: Unit = ???
 
-  override def peq: Unit = b((t1, t0) => (t1 == t0))
+  override def peq: Unit = popb((t1, t0) => (t1 == t0))
 
-  override def pne: Unit = b((t1, t0) => (t1 != t0))
+  override def pne: Unit = popb((t1, t0) => (t1 != t0))
 
-  override def plt: Unit = b((t1, t0) => (t1 < t0))
+  override def plt: Unit = popb((t1, t0) => (t1 < t0))
 
-  override def ple: Unit = b((t1, t0) => (t1 <= t0))
+  override def ple: Unit = popb((t1, t0) => (t1 <= t0))
 
-  override def pgt: Unit = b((t1, t0) => (t1 < t0))
+  override def pgt: Unit = popb((t1, t0) => (t1 < t0))
 
-  override def pge: Unit = b((t1, t0) => (t1 <= t0))
+  override def pge: Unit = popb((t1, t0) => (t1 <= t0))
 
 }

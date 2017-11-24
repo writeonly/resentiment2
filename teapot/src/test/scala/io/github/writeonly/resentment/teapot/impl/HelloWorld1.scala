@@ -1,4 +1,4 @@
-package io.github.writeonly.resentment.teapot.stack
+package io.github.writeonly.resentment.teapot.impl
 
 import io.github.writeonly.resentiment.teapot.phases.analyzers.AnalyzerLLAsm
 import io.github.writeonly.resentment.core.impl.UniCoreFake

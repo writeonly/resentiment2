@@ -1,4 +1,4 @@
-package io.github.writeonly.resentment.teapot.stack
+package io.github.writeonly.resentment.teapot.impl
 
 import java.io.ByteArrayOutputStream
 
