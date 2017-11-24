@@ -1,13 +1,6 @@
 package io.github.writeonly.resentment.corn.core
 
-import io.github.writeonly.resentment.core.set.CommonCore
-
-import scala.collection.mutable
-
-class CoreUni extends CommonCore[Unit] {
-  val b = new mutable.HashMap[Symbol, Int]()
-  var a = 0
-  val out = new StringBuilder
+class CoreUni extends Core {
 
   override def uvar(o:Symbol) = b.put(o, a)
   override def ust(o:Symbol) = b.put(o, a)

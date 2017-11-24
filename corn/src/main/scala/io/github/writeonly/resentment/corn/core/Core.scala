@@ -2,6 +2,15 @@ package io.github.writeonly.resentment.corn.core
 
 import io.github.writeonly.resentment.core.set.CommonCore
 
-trait Core extends CommonCore[Unit] {
+import scala.collection.mutable
+
+abstract class Core extends CommonCore[Unit] {
+  val b = new mutable.HashMap[Symbol, Int]()
+  var a = 0
+  val out = new StringBuilder
+
+  def uld(o:Char)
+  def uld(o:String)
+  def uld(o:BigDecimal)
 
 }

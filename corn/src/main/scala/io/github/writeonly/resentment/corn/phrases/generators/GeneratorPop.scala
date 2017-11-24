@@ -2,31 +2,9 @@ package io.github.writeonly.resentment.corn.phrases.generators
 
 import io.github.writeonly.resentment.corn.command._
 
-import scala.collection.mutable
+import io.github.writeonly.resentment.corn.core.Core
 
-class GeneratorPop extends Generator {
-  val b = new mutable.HashMap[Symbol, Int]()
-  var a = 0
-  val out = new StringBuilder
-
-  val m = new mutable.HashMap[Int, Int]()
-  var p = 0
-
-  def get(symbol: Symbol) = b.get(symbol).get
-
-  def uvar(o: Symbol) = {
-    b.put(o, p)
-    p += 1
-    ust(o)
-  }
-
-  def ust(symbol:Symbol) = m.put(get(symbol), a)
-
-  def uld(o:Symbol) = a =  m.get(get(o)).get
-  def uld(o:Char) = a = o.toInt
-  def uld(o:String) = a =  o.toInt
-  def uld(o:BigDecimal) = a = o.bigDecimal.toBigInteger.intValue()
-  def pout() = out.append(a.toChar)
+class GeneratorPop(val e : Core) extends Generator {
 
   val partial = new PartialFunction[Command, Unit] {
     override def isDefinedAt(x: Command): Boolean = x != null
@@ -35,7 +13,7 @@ class GeneratorPop extends Generator {
 
   override def apply(code: Command): String = {
     eval(code)
-    out.toString()
+    e.out.toString()
   }
 
   def eval(terminal: Command):Unit = terminal match {
@@ -43,14 +21,14 @@ class GeneratorPop extends Generator {
       if (left!= null) partial(left)
       if (right!= null) partial(right)
     }
-    case Var(_, symbol) => uvar(symbol)
-    case Store(_, symbol) => ust(symbol)
-    case LoadVar(c) => uld(c)
-    case LoadChar(c) => uld(c)
-    case LoadDecinal(c) => uld(c)
-    case UnaryOperation("OUT", _) => pout()
-    case UnaryOperation("NOT", _) => pout()
-    case UnaryOperation("NEG", _) => pout()
+    case Var(_, symbol) => e.uvar(symbol)
+    case Store(_, symbol) => e.ust(symbol)
+    case LoadVar(c) => e.uld(c)
+    case LoadChar(c) => e.uld(c)
+    case LoadDecinal(c) => e.uld(c)
+    case UnaryOperation("OUT", _) => e.pout()
+    case UnaryOperation("NOT", _) => e.pout()
+    case UnaryOperation("NEG", _) => e.pout()
 //    case BinaryOperation("ADD", x1, x2) => (apply(x1) + apply(x2))
 //    case BinaryOperation("SUB", x1, x2) => (apply(x1) - apply(x2))
 //    case BinaryOperation("MUL", x1, x2) => (apply(x1) * apply(x2))

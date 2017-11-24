@@ -1,13 +1,15 @@
 package io.github.writeonly.resentment.teapot.stack
 
 import io.github.writeonly.resentiment.teapot.phases.analyzers.AnalyzerLLAsm
+import io.github.writeonly.resentment.corn.core.CorePop
 import io.github.writeonly.resentment.corn.phrases.Phaser
 import io.github.writeonly.resentment.corn.phrases.generators.GeneratorPop
 import io.github.writeonly.resentment.teapot.GrayScalarSpec
 
 class GeneratorPopSpec extends GrayScalarSpec {
   describe(classOf[GeneratorPop].toString) {
-    val compiler = () => new Phaser(new AnalyzerLLAsm, new GeneratorPop)
+
+    val compiler = () => new Phaser(new AnalyzerLLAsm, new GeneratorPop(new CorePop))
 
     it("CH -> OUT") {
       val code = "LDC 'A' OUT"
@@ -35,10 +37,11 @@ LDV 'H OUT
       val c = compiler()
       c(code)
       val i = c.backEnd.asInstanceOf[GeneratorPop]
-      i.m should equal (Map(0 -> 'H'.toInt))
-      i.b should equal (Map('H -> 0))
-      i.p should equal (1)
-      i.a should equal ('H'.toInt)
+      val e = i.e.asInstanceOf[CorePop]
+      e.m should equal (Map(0 -> 'H'.toInt))
+      e.b should equal (Map('H -> 0))
+      e.p should equal (1)
+      e.a should equal ('H'.toInt)
       compiler()(code) should equal ("H")
     }
 

@@ -1,13 +1,8 @@
 package io.github.writeonly.resentment.corn.core
 
-import io.github.writeonly.resentment.core.set.CommonCore
-
 import scala.collection.mutable
 
-class CorePop extends CommonCore[Unit] {
-  val b = new mutable.HashMap[Symbol, Int]()
-  var a = 0
-  val out = new StringBuilder
+class CorePop extends Core {
 
   val m = new mutable.HashMap[Int, Int]()
   var p = 0
