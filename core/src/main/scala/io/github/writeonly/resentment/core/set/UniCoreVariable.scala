@@ -5,6 +5,6 @@ trait UniCoreVariable[C] {
   def ust(o :Symbol) : C
   def uld(o :Symbol) : C
   def uld(o :Int) : C
-//  def uld(c :BigInt)
-//  def uld(c :String)
+  def uld(o :Char) : C
+  def uld(o :String) : C
 }

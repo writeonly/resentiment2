@@ -7,6 +7,8 @@ class StackCornDsl(core : StackCore[Unit]) extends StackCore[StackCornDsl] {
   def ust(operand :Symbol) = {core.ust(operand); this}
   def uld(operand :Symbol) = {core.uld(operand); this}
   def uld(operand :Int) = {core.uld(operand); this}
+  override def uld(o: Char) = ???
+  override def uld(o: String) = ???
   def ppush = {core.ppush; this}
 
   override def pin() = ???

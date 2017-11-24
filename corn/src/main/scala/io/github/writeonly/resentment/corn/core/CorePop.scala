@@ -20,7 +20,6 @@ class CorePop extends Core {
   override def uld(o: Int) = ???
   def uld(o:Char) = a = o.toInt
   def uld(o:String) = a =  o.toInt
-  def uld(o:BigDecimal) = a = o.bigDecimal.toBigInteger.intValue()
 
   override def pout() = out.append(a.toChar)
   override def pin() = ???

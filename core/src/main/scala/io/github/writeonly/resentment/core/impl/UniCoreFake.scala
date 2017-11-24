@@ -24,11 +24,11 @@ class UniCoreFake extends UniCore[Unit] {
   override def uld(o: Symbol): Unit = a = get(o)
 
   override def uld(c: Int): Unit = a = c
+  override def uld(o: Char) = ???
+  override def uld(o: String) = ???
 
   override def pin() = ???
   override def pout() = ???
-
-
 
   //  override def uld(c: BigInt): Unit = a = c.intValue()
 //  override def uld(c: String): Unit = uld(new BigInt(new BigInteger(c)))

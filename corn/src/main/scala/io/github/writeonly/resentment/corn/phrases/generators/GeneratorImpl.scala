@@ -24,7 +24,6 @@ class GeneratorImpl(val e : Core) extends Generator {
     case Store(_, symbol) => e.ust(symbol)
     case LoadVar(c) => e.uld(c)
     case LoadChar(c) => e.uld(c)
-    case LoadDecinal(c) => e.uld(c)
     case UnaryOperation("OUT", _) => e.pout()
     case UnaryOperation("NOT", _) => e.pout()
     case UnaryOperation("NEG", _) => e.pout()

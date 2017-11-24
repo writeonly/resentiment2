@@ -37,6 +37,8 @@ class StackCoreFake extends StackCore[Unit] {
   override def ust(o: Symbol): Unit = m(b(o)) = m(p)
   override def uld(o: Symbol): Unit = uld(m(b(o)))
   override def uld(c: Int) = ???
+  override def uld(o: Char) = ???
+  override def uld(o: String) = ???
 
   override def pin() = ???
   override def pout() = ???

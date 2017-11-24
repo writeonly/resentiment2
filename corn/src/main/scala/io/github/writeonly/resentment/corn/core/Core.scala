@@ -11,6 +11,4 @@ abstract class Core extends CommonCore[Unit] {
 
   def uld(o:Char)
   def uld(o:String)
-  def uld(o:BigDecimal)
-
 }

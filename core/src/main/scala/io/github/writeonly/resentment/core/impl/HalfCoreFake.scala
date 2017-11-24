@@ -14,6 +14,8 @@ class HalfCoreFake extends HalfCore[Unit] {
 
   override def uld(s: Symbol): Unit = ???
   override def uld(c: Int): Unit = ???
+  override def uld(o: Char) = ???
+  override def uld(o: String) = ???
 
   override def pin() = ???
   override def pout() = ???
