@@ -1,7 +1,5 @@
 package io.github.writeonly.resentment.core.impl
 
-import java.math.BigInteger
-
 import io.github.writeonly.resentment.core.api.UniCore
 import io.github.writeonly.resentment.core.pipe.StreamIO
 
@@ -14,7 +12,6 @@ class UniCoreFake(val io : StreamIO) extends UniCore[Unit] {
 
   protected def get(o: Symbol):Int = m.get(o).getOrElse(0)
 
-
   private def toInt(o : Boolean) = if (o) 1 else 0
   private def toBoolean(o: Int) = o != 0
   private def set(o : Boolean) = a = toInt(o)
@@ -25,14 +22,11 @@ class UniCoreFake(val io : StreamIO) extends UniCore[Unit] {
   override def uld(o: Symbol): Unit = a = get(o)
 
   override def uld(c: Int): Unit = a = c
-  override def uld(o: Char) = ???
-  override def uld(o: String) = ???
+  override def uld(o: Char) = a = o
+  override def uld(o: String) = a = o.toInt
 
   override def pin() = a = io.in.read()
   override def pout() = io.out.write(a)
-
-  //  override def uld(c: BigInt): Unit = a = c.intValue()
-//  override def uld(c: String): Unit = uld(new BigInt(new BigInteger(c)))
 
   override def uadd(o: Symbol): Unit = uadd(get(o))
   override def uadd(o: Int): Unit = a += o

@@ -1,15 +1,15 @@
 package io.github.writeonly.resentment.teapot.stack
 
 import io.github.writeonly.resentiment.teapot.phases.analyzers.AnalyzerLLAsm
-import io.github.writeonly.resentment.core.impl.CommonCoreUniFake
+import io.github.writeonly.resentment.core.impl.UniCoreFake
 import io.github.writeonly.resentment.core.pipe.StreamIO
 import io.github.writeonly.resentment.corn.phrases.Phaser
 import io.github.writeonly.resentment.corn.phrases.generators.GeneratorImpl
 import io.github.writeonly.resentment.teapot.GrayScalarSpec
 
 class CommonCoreUniFakeSpec extends GrayScalarSpec {
-  describe(classOf[CommonCoreUniFake].toString) {
-    val compiler = (io:StreamIO) => new Phaser(new AnalyzerLLAsm, new GeneratorImpl(new CommonCoreUniFake(io)))
+  describe(classOf[UniCoreFake].toString) {
+    val compiler = (io:StreamIO) => new Phaser(new AnalyzerLLAsm, new GeneratorImpl(new UniCoreFake(io)))
 
     it("CH -> OUT") {
       val code = "LDC 'A' OUT"
