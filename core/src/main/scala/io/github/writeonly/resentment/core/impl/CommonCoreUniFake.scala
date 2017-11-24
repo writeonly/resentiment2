@@ -1,6 +1,6 @@
-package io.github.writeonly.resentment.corn.core
+package io.github.writeonly.resentment.core.impl
 
-class CoreUni extends Core {
+class CommonCoreUniFake extends CommonCoreFake {
 
   override def uvar(o:Symbol) = b.put(o, a)
   override def ust(o:Symbol) = b.put(o, a)

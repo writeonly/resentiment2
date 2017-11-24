@@ -1,8 +1,8 @@
-package io.github.writeonly.resentment.corn.core
+package io.github.writeonly.resentment.core.impl
 
 import scala.collection.mutable
 
-class CorePop extends Core {
+class CommonCorePopFake extends CommonCoreFake {
 
   val m = new mutable.HashMap[Int, Int]()
   var p = 0

@@ -1,9 +1,9 @@
 package io.github.writeonly.resentment.corn.phrases.generators
 
+import io.github.writeonly.resentment.core.impl.CommonCoreFake
 import io.github.writeonly.resentment.corn.command._
-import io.github.writeonly.resentment.corn.core.Core
 
-class GeneratorImpl(val e : Core) extends Generator {
+class GeneratorImpl(val e : CommonCoreFake) extends Generator {
 
   val partial = new PartialFunction[Command, Unit] {
     override def isDefinedAt(x: Command): Boolean = x != null
