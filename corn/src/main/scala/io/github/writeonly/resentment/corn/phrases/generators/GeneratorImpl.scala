@@ -1,10 +1,9 @@
 package io.github.writeonly.resentment.corn.phrases.generators
 
 import io.github.writeonly.resentment.corn.command._
-
 import io.github.writeonly.resentment.corn.core.Core
 
-class GeneratorPop(val e : Core) extends Generator {
+class GeneratorImpl(val e : Core) extends Generator {
 
   val partial = new PartialFunction[Command, Unit] {
     override def isDefinedAt(x: Command): Boolean = x != null
@@ -18,7 +17,7 @@ class GeneratorPop(val e : Core) extends Generator {
 
   def eval(terminal: Command):Unit = terminal match {
     case PairInstruction(left, right) => {
-      if (left!= null) partial(left)
+      if (left!= null)  partial(left)
       if (right!= null) partial(right)
     }
     case Var(_, symbol) => e.uvar(symbol)
