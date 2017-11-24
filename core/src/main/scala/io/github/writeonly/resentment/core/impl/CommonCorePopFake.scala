@@ -1,8 +1,10 @@
 package io.github.writeonly.resentment.core.impl
 
+import io.github.writeonly.resentment.core.pipe.StreamIO
+
 import scala.collection.mutable
 
-class CommonCorePopFake extends CommonCoreFake {
+class CommonCorePopFake(io : StreamIO) extends CommonCoreFake(io) {
 
   val m = new mutable.HashMap[Int, Int]()
   var p = 0
@@ -21,7 +23,7 @@ class CommonCorePopFake extends CommonCoreFake {
   def uld(o:Char) = a = o.toInt
   def uld(o:String) = a =  o.toInt
 
-  override def pout() = out.append(a.toChar)
+  override def pout() = io.out.write(a)
   override def pin() = ???
 
   override def pnot() = ???

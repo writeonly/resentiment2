@@ -2,17 +2,20 @@ package io.github.writeonly.resentment.teapot.stack
 
 import io.github.writeonly.resentiment.teapot.phases.analyzers.AnalyzerLLAsm
 import io.github.writeonly.resentment.core.impl.CommonCoreUniFake
+import io.github.writeonly.resentment.core.pipe.StreamIO
 import io.github.writeonly.resentment.corn.phrases.Phaser
 import io.github.writeonly.resentment.corn.phrases.generators.GeneratorImpl
 import io.github.writeonly.resentment.teapot.GrayScalarSpec
 
 class CommonCoreUniFakeSpec extends GrayScalarSpec {
   describe(classOf[CommonCoreUniFake].toString) {
-    val compiler = () => new Phaser(new AnalyzerLLAsm, new GeneratorImpl(new CommonCoreUniFake))
+    val compiler = (io:StreamIO) => new Phaser(new AnalyzerLLAsm, new GeneratorImpl(new CommonCoreUniFake(io)))
 
     it("CH -> OUT") {
       val code = "LDC 'A' OUT"
-      compiler()(code) should equal ("A")
+      val io = StreamIO.byteArray("")
+      compiler(io)(code)
+      StreamIO.byteArray(io) should equal ("A")
     }
 
     it("Hello char") {
@@ -23,7 +26,9 @@ LDC 'e' OUT
 LDC 'l' OUT OUT
 LDC 'o' OUT
 """
-      compiler()(code) should equal ("Hello")
+      val io = StreamIO.byteArray("")
+      compiler(io)(code)
+      StreamIO.byteArray(io) should equal ("Hello")
     }
 
     it("Hello variable") {
@@ -39,7 +44,9 @@ LDV 'e OUT
 LDV 'l OUT OUT
 LDV 'o OUT
 """
-      compiler()(code) should equal ("Hello")
+      val io = StreamIO.byteArray("")
+      compiler(io)(code)
+      StreamIO.byteArray(io) should equal ("Hello")
     }
 
   }

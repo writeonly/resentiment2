@@ -3,10 +3,11 @@ package io.github.writeonly.resentment.core.impl
 import java.math.BigInteger
 
 import io.github.writeonly.resentment.core.api.UniCore
+import io.github.writeonly.resentment.core.pipe.StreamIO
 
 import scala.collection.mutable
 
-class UniCoreFake extends UniCore[Unit] {
+class UniCoreFake(val io : StreamIO) extends UniCore[Unit] {
   protected val m : mutable.Map[Symbol, Int] = new mutable.HashMap[Symbol, Int]()
 
   private var a = 0
@@ -27,8 +28,8 @@ class UniCoreFake extends UniCore[Unit] {
   override def uld(o: Char) = ???
   override def uld(o: String) = ???
 
-  override def pin() = ???
-  override def pout() = ???
+  override def pin() = a = io.in.read()
+  override def pout() = io.out.write(a)
 
   //  override def uld(c: BigInt): Unit = a = c.intValue()
 //  override def uld(c: String): Unit = uld(new BigInt(new BigInteger(c)))

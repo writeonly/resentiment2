@@ -6,6 +6,6 @@ import io.github.writeonly.resentment.corn.phrases.optimizers.Optimizer
 
 class Phaser(val frondEnd:Analyzer, val backEnd:Generator, val middleEnd: Optimizer = new Optimizer()) {
 
-  def apply(code:String):String = backEnd(middleEnd(frondEnd(code)))
+  def apply(code:String):Unit = backEnd(middleEnd(frondEnd(code)))
 
 }

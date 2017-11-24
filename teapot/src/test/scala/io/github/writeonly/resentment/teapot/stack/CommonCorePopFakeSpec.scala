@@ -1,18 +1,23 @@
 package io.github.writeonly.resentment.teapot.stack
 
+import java.io.ByteArrayOutputStream
+
 import io.github.writeonly.resentiment.teapot.phases.analyzers.AnalyzerLLAsm
 import io.github.writeonly.resentment.core.impl.CommonCorePopFake
+import io.github.writeonly.resentment.core.pipe.StreamIO
 import io.github.writeonly.resentment.corn.phrases.Phaser
 import io.github.writeonly.resentment.corn.phrases.generators.GeneratorImpl
 import io.github.writeonly.resentment.teapot.GrayScalarSpec
 
 class CommonCorePopFakeSpec extends GrayScalarSpec {
   describe(classOf[CommonCorePopFake].toString) {
-    val compiler = () => new Phaser(new AnalyzerLLAsm, new GeneratorImpl(new CommonCorePopFake))
+    val compiler = (io: StreamIO) => new Phaser(new AnalyzerLLAsm, new GeneratorImpl(new CommonCorePopFake(io)))
 
     it("CH -> OUT") {
       val code = "LDC 'A' OUT"
-      compiler()(code) should equal ("A")
+      val io = StreamIO.byteArray("")
+      compiler(io)(code)
+      StreamIO.byteArray(io) should equal ("A")
     }
 
     it("Hello char") {
@@ -23,7 +28,9 @@ LDC 'e' OUT
 LDC 'l' OUT OUT
 LDC 'o' OUT
 """
-      compiler()(code) should equal ("Hello")
+      val io = StreamIO.byteArray("")
+      compiler(io)(code)
+      StreamIO.byteArray(io) should equal ("Hello")
     }
 
     it("H variable") {
@@ -33,7 +40,8 @@ LDC 'H' VAR 'H
 LDV 'H OUT
 """
 //      compiler().frondEnd(code) should equal ("H")
-      val c = compiler()
+      val io = StreamIO.byteArray("")
+      val c = compiler(io)
       c(code)
       val i = c.backEnd.asInstanceOf[GeneratorImpl]
       val e = i.e.asInstanceOf[CommonCorePopFake]
@@ -41,7 +49,7 @@ LDV 'H OUT
       e.b should equal (Map('H -> 0))
       e.p should equal (1)
       e.a should equal ('H'.toInt)
-      compiler()(code) should equal ("H")
+      StreamIO.byteArray(io) should equal ("H")
     }
 
     it("Hello variable") {
@@ -57,7 +65,9 @@ LDV 'e OUT
 LDV 'l OUT OUT
 LDV 'o OUT
 """
-      compiler()(code) should equal ("Hello")
+      val io = StreamIO.byteArray("")
+      compiler(io)(code)
+      StreamIO.byteArray(io) should equal ("Hello")
     }
 
     ignore("Hello string") {
@@ -67,7 +77,9 @@ LDS "Hello" VAR 'H
 
 LDV 'H OUT
 """
-      compiler()(code) should equal ("H")
+      val io = StreamIO.byteArray("")
+      compiler(io)(code)
+      StreamIO.byteArray(io) should equal ("H")
     }
 
   }

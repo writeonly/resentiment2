@@ -10,10 +10,7 @@ class GeneratorImpl(val e : CommonCoreFake) extends Generator {
     override def apply(v1: Command): Unit = eval(v1)
   }
 
-  override def apply(code: Command): String = {
-    eval(code)
-    e.out.toString()
-  }
+  override def apply(code: Command) = eval(code)
 
   def eval(terminal: Command):Unit = terminal match {
     case PairInstruction(left, right) => {
