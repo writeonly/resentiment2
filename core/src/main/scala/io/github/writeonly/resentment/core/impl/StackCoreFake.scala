@@ -7,46 +7,54 @@ import scala.collection.mutable
 
 class StackCoreFake(val io : StreamIO) extends StackCore[Unit] {
 
-  val m = new mutable.MutableList[Byte]
+  val stack = new mutable.HashMap[Int, Byte]()
 
-  val b = new mutable.HashMap[Symbol, Int]
+  var pointer = 0
 
-  var p = 0
+  val symbols = new mutable.HashMap[Symbol, Int]
+
+  var r = 0
 
   def popi(f :(Byte,Byte) => Int):Unit = {
-    m(p-1) = f(m(p-1), top).asInstanceOf[Byte]
+    stack(pointer-1) = f(stack(pointer-1), top).asInstanceOf[Byte]
     pop
   }
 
   def popb(f :(Byte,Byte) => Boolean):Unit = {
-    m(p-1) = toInt(f(m(p-1), top))
+    stack(pointer-1) = toInt(f(stack(pointer-1), top))
     pop
   }
 
   def pop = {
-    m(p) = 0
-    p -= 1
+    stack(pointer) = 0
+    pointer -= 1
   }
 
-  def top(l :(Byte) => Int):Unit = m(p) = l(m(p)).asInstanceOf[Byte]
+  def top: Byte = stack(pointer)
+
+  def top(l :(Byte) => Int):Unit = stack(pointer) = l(top).asInstanceOf[Byte]
 
   def toInt(b:Boolean) = (if (b) 1 else 0).asInstanceOf[Byte]
 
   def toBoolean(b:Integer):Boolean =  b != 0
 
-  def top: Byte = m(p)
+  override def uvar(o: Symbol) = {
+    symbols.put(o, r)
+    r += 1
+    ppush
+//    ust(o)
+  }
 
-  override def uvar(o: Symbol) = ust(o)
-  override def ust(o: Symbol): Unit = m(b(o)) = m(p)
-  override def uld(o: Symbol): Unit = uld(m(b(o)))
-  override def uld(c: Int) = ???
-  override def uld(o: Char) = ???
-  override def uld(o: String) = ???
+  override def ust(o: Symbol): Unit = stack(symbols(o)) = top
+  override def uld(o: Symbol): Unit = uld(stack(symbols(o)))
+  override def uld(o: Int) = stack(pointer) = o.toByte
+  override def uld(o: Char) = uld(o.toInt)
+  override def uld(o: String) = uld(o.toInt)
 
   override def pin() = ???
-  override def pout() = {io.out.write(top); pop}
+  override def pout() = io.out.write(top)
 
-  override def ppush: Unit = p +=1
+  override def ppush: Unit = pointer +=1
 
   override def ppop() = ???
 

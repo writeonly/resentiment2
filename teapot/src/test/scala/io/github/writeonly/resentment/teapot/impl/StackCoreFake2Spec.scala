@@ -1,17 +1,15 @@
 package io.github.writeonly.resentment.teapot.impl
 
-import java.io.ByteArrayOutputStream
-
 import io.github.writeonly.resentiment.teapot.phases.analyzers.AnalyzerLLAsm
-import io.github.writeonly.resentment.core.impl.CommonCorePopFake
+import io.github.writeonly.resentment.core.impl.{UniCore2Fake, StackCoreFake}
 import io.github.writeonly.resentment.core.pipe.StreamIO
 import io.github.writeonly.resentment.corn.phrases.Phaser
 import io.github.writeonly.resentment.corn.phrases.generators.GeneratorImpl
 import io.github.writeonly.resentment.teapot.GrayScalarSpec
 
-class CommonCorePopFakeSpec extends GrayScalarSpec {
-  describe(classOf[CommonCorePopFake].toString) {
-    val compiler = (io: StreamIO) => new Phaser(new AnalyzerLLAsm, new GeneratorImpl(new CommonCorePopFake(io)))
+class StackCoreFake2Spec extends GrayScalarSpec {
+  describe(classOf[StackCoreFake].toString) {
+    val compiler = (io: StreamIO) => new Phaser(new AnalyzerLLAsm, new GeneratorImpl(new StackCoreFake(io)))
 
     it("CH -> OUT") {
       val code = "LDC 'A' OUT"
@@ -43,13 +41,36 @@ LDV 'H OUT
       val io = StreamIO.byteArray("")
       val c = compiler(io)
       c(code)
-      val i = c.backEnd.asInstanceOf[GeneratorImpl]
-      val e = i.e.asInstanceOf[CommonCorePopFake]
-      e.m should equal (Map(0 -> 'H'.toInt))
-      e.b should equal (Map('H -> 0))
-      e.p should equal (1)
-      e.a should equal ('H'.toInt)
+//      val i = c.backEnd.asInstanceOf[GeneratorImpl]
+//      val e = i.e.asInstanceOf[StackCoreFake]
+//      e.stack should equal (Map(0 -> 'H'.toInt))
+//      e.symbols should equal (Map('H -> 0))
+//      e.r should equal (1)
+//      e.a should equal ('H'.toInt)
       StreamIO.byteArray(io) should equal ("H")
+    }
+
+
+    it("He variable") {
+      val code =
+        """
+LDC 'H' VAR 'H
+LDC 'e' VAR 'e
+
+LDV 'H OUT
+LDV 'e OUT
+
+
+"""
+      val io = StreamIO.byteArray("")
+      val c = compiler(io)
+      c(code)
+//      val i = c.backEnd.asInstanceOf[GeneratorImpl]
+//      val e = i.e.asInstanceOf[StackCoreFake]
+//      e.symbols should equal (Map('e -> 1, 'H -> 0))
+//      e.stack should equal (Map(0 -> 'H'.toInt))
+//      e.r should equal (1)
+      StreamIO.byteArray(io) should equal ("He")
     }
 
     it("Hello variable") {
@@ -66,7 +87,13 @@ LDV 'l OUT OUT
 LDV 'o OUT
 """
       val io = StreamIO.byteArray("")
-      compiler(io)(code)
+      val c = compiler(io)
+      c(code)
+//      val i = c.backEnd.asInstanceOf[GeneratorImpl]
+//      val e = i.e.asInstanceOf[StackCoreFake]
+//      e.stack should equal (Map(0 -> 'H'.toInt))
+//      e.symbols should equal (Map('H -> 0))
+//      e.r should equal (1)
       StreamIO.byteArray(io) should equal ("Hello")
     }
 

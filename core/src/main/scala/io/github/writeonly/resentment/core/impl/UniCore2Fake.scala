@@ -4,7 +4,7 @@ import io.github.writeonly.resentment.core.pipe.StreamIO
 
 import scala.collection.mutable
 
-class CommonCorePopFake(io : StreamIO) extends CommonCoreFake(io) {
+class UniCore2Fake(io : StreamIO) extends CommonCoreFake(io) {
 
   val m = new mutable.HashMap[Int, Int]()
   var p = 0
@@ -17,7 +17,7 @@ class CommonCorePopFake(io : StreamIO) extends CommonCoreFake(io) {
     ust(o)
   }
 
-  override def ust(symbol:Symbol) = m.put(get(symbol), a)
+  override def ust(o:Symbol) = m.put(get(o), a)
   override def uld(o:Symbol) = a =  m.get(get(o)).get
   override def uld(o: Int) = ???
   def uld(o:Char) = a = o.toInt
