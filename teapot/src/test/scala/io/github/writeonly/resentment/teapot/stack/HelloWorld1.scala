@@ -2,7 +2,7 @@ package io.github.writeonly.resentment.teapot.stack
 
 import io.github.writeonly.resentiment.teapot.phases.analyzers.AnalyzerLLAsm
 import io.github.writeonly.resentment.corn.phrases.Phaser
-import io.github.writeonly.resentment.corn.phrases.generators.Interpreter
+import io.github.writeonly.resentment.corn.phrases.generators.GeneratorUni
 import io.github.writeonly.resentment.teapot.BlackSpec
 
 class HelloWorld1 extends BlackSpec {
@@ -20,7 +20,7 @@ CH 'o' OUT
 
     ignore("HelloWorld1") {
       Given("interpreter")
-      val interpreter = new Interpreter
+      val interpreter = new GeneratorUni
       val parser = new AnalyzerLLAsm
       val compiler = new Phaser(parser, interpreter)
 

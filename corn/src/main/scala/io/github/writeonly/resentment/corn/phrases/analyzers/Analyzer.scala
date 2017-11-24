@@ -14,6 +14,3 @@ trait Analyzer extends Parsers {
   }
 }
 
-trait AnalyzerLL extends Analyzer with JavaTokenParsers {}
-
-trait AnalyzerLR extends AnalyzerLL with PackratParsers {}

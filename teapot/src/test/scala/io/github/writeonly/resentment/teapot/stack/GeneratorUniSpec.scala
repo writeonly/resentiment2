@@ -2,12 +2,12 @@ package io.github.writeonly.resentment.teapot.stack
 
 import io.github.writeonly.resentiment.teapot.phases.analyzers.AnalyzerLLAsm
 import io.github.writeonly.resentment.corn.phrases.Phaser
-import io.github.writeonly.resentment.corn.phrases.generators.Interpreter
+import io.github.writeonly.resentment.corn.phrases.generators.GeneratorUni
 import io.github.writeonly.resentment.teapot.GrayScalarSpec
 
-class InterpreterSpec extends GrayScalarSpec {
+class GeneratorUniSpec extends GrayScalarSpec {
   describe("A Streamer") {
-    val compiler = () => new Phaser(new AnalyzerLLAsm, new Interpreter)
+    val compiler = () => new Phaser(new AnalyzerLLAsm, new GeneratorUni)
 
     it("CH -> OUT") {
       val code = "LDC 'A' OUT"

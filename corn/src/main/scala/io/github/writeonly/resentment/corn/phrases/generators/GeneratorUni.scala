@@ -4,7 +4,7 @@ import io.github.writeonly.resentment.corn.command._
 
 import scala.collection.mutable
 
-class Interpreter extends Generator {
+class GeneratorUni extends Generator {
   val b = new mutable.HashMap[Symbol, Int]()
   var a = 0
   val out = new StringBuilder

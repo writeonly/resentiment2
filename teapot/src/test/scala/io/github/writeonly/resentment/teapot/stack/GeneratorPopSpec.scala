@@ -2,12 +2,12 @@ package io.github.writeonly.resentment.teapot.stack
 
 import io.github.writeonly.resentiment.teapot.phases.analyzers.AnalyzerLLAsm
 import io.github.writeonly.resentment.corn.phrases.Phaser
-import io.github.writeonly.resentment.corn.phrases.generators.InterpreterStack
+import io.github.writeonly.resentment.corn.phrases.generators.GeneratorPop
 import io.github.writeonly.resentment.teapot.GrayScalarSpec
 
-class InterpreterStackSpec extends GrayScalarSpec {
-  describe(classOf[InterpreterStack].toString) {
-    val compiler = () => new Phaser(new AnalyzerLLAsm, new InterpreterStack)
+class GeneratorPopSpec extends GrayScalarSpec {
+  describe(classOf[GeneratorPop].toString) {
+    val compiler = () => new Phaser(new AnalyzerLLAsm, new GeneratorPop)
 
     it("CH -> OUT") {
       val code = "LDC 'A' OUT"
@@ -34,7 +34,7 @@ LDV 'H OUT
 //      compiler().frondEnd(code) should equal ("H")
       val c = compiler()
       c(code)
-      val i = c.backEnd.asInstanceOf[InterpreterStack]
+      val i = c.backEnd.asInstanceOf[GeneratorPop]
       i.m should equal (Map(0 -> 'H'.toInt))
       i.b should equal (Map('H -> 0))
       i.p should equal (1)
