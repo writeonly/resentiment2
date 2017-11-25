@@ -19,19 +19,22 @@ apply plugin: "jacoco"
 
 version = '1.0'
 
-task wrapper(type: Wrapper) {
-    gradleVersion = "2.7"
-}
-
-jacoco {
-    toolVersion = "0.7.6.201602180812"
-    reportsDir = file("$buildDir/customJacocoReportDir")
-}
 
 subprojects {
     apply plugin: 'scala'
+    apply plugin: 'maven'
+    apply plugin: 'jacoco'
+
+    sourceCompatibility = 1.8
+    targetCompatibility = 1.8
 
     repositories {
+        mavenLocal()
+        mavenCentral()
+        jcenter()
+
+        maven { url "http://repo1.maven.org/maven2/" }
+
         mavenCentral()
         maven {
             url "https://oss.sonatype.org/content/repositories/releases"
@@ -52,23 +55,6 @@ subprojects {
     }
 }
 
-allprojects {
-    apply plugin: 'scala'
-    apply plugin: 'maven'
-    apply plugin: 'jacoco'
-
-    sourceCompatibility = 1.8
-    targetCompatibility = 1.8
-
-    repositories {
-        mavenLocal()
-        mavenCentral()
-        jcenter()
-
-        maven { url "http://repo1.maven.org/maven2/" }
-    }
-}
-
 task codeCoverageReport(type: JacocoReport) {
     executionData fileTree(project.rootDir.absolutePath).include("**/build/jacoco/*.exec")
 
@@ -86,4 +72,13 @@ task codeCoverageReport(type: JacocoReport) {
 
 codeCoverageReport.dependsOn {
     subprojects*.test
+}
+
+task wrapper(type: Wrapper) {
+    gradleVersion = "2.7"
+}
+
+jacoco {
+    toolVersion = "0.7.6.201602180812"
+    reportsDir = file("$buildDir/customJacocoReportDir")
 }
