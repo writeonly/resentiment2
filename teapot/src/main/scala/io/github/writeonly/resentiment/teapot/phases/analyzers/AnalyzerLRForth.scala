@@ -7,7 +7,7 @@ class AnalyzerLRForth extends AnalyzerLR {
 
   lazy val instruction : PackratParser[Command] = store
 
-  lazy val store :PackratParser[Store] = block_operation ~ "ST" ~ symbol ^^ { a => Store(a._1._1, a._2)}
+  lazy val store :PackratParser[Store] = block_operation ~ "ust" ~ symbol ^^ { a => Store(a._1._1, a._2)}
 
   lazy val block_operation :PackratParser[Command] =  bt |load| unary_operation | binary_operation
 
@@ -20,7 +20,7 @@ class AnalyzerLRForth extends AnalyzerLR {
     a => UnaryOperation(a._2, a._1)
   }
 
-  lazy val unary_operator : PackratParser[String] = "(NOT)|(IN)|(OUT)" ^^ {a=>a}
+  lazy val unary_operator : PackratParser[String] = "(pnot)|(pin)|(pout)" ^^ {a=>a}
 
   lazy val binary_operation : PackratParser[BinaryOperation] = block_operation ~ block_operation ~ binary_operator ^^ {
     a => BinaryOperation(a._2, a._1._1, a._1._2)

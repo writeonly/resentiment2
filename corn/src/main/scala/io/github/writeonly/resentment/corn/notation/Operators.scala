@@ -1,11 +1,15 @@
 package io.github.writeonly.resentment.corn.notation
 
 object Operators {
-  val store_operator = "ST"
-  val load_operator = "LD"
-  val load_var_operator = "LDV"
-  val load_int_operator = "LDI"
-  val load_str_operator = "LDS"
-  val load_char_operator = "LDC"
-  val load_string_operator = "LDC"
+  val var_operator = "uvar"
+  val store_operator = "ust"
+  val load_var_operator = "uldv"
+  val load_int_operator = "uldi"
+  val load_str_operator = "ulds"
+  val load_char_operator = "uldc"
+
+  val unary_operator = "(pin)|(pout)|(pnot)|(pneg)|(png1)"
+  val binary_operator_byte = "(ADD)|(SUB)|(MUL)|(DIV)|(MOD)"
+  val binary_operator_bit = "(AND)|(OR)|(XOR)|(XAND)|(EQ)|(NE)|(LE)|(LT)|(GE)|(GT)|"
+
 }

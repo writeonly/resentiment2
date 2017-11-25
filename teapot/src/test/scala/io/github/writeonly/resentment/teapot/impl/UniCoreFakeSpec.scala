@@ -11,8 +11,8 @@ class UniCoreFakeSpec extends GrayScalarSpec {
   describe(classOf[UniCoreFake].toString) {
     val compiler = (io:StreamIO) => new Compilator(new AnalyzerLLAsm, new GeneratorImpl(new UniCoreFake(io)))
 
-    it("CH -> OUT") {
-      val code = "LDC 'A' OUT"
+    it("CH -> pout") {
+      val code = "uldc 'A' pout"
       val io = StreamIO.byteArray("")
       compiler(io)(code)
       StreamIO.byteArray(io) should equal ("A")
@@ -21,10 +21,10 @@ class UniCoreFakeSpec extends GrayScalarSpec {
     it("Hello char") {
       val code =
         """
-LDC 'H' OUT
-LDC 'e' OUT
-LDC 'l' OUT OUT
-LDC 'o' OUT
+uldc 'H' pout
+uldc 'e' pout
+uldc 'l' pout pout
+uldc 'o' pout
 """
       val io = StreamIO.byteArray("")
       compiler(io)(code)
@@ -34,15 +34,15 @@ LDC 'o' OUT
     it("Hello variable") {
       val code =
         """
-LDC 'H' VAR 'H
-LDC 'e' VAR 'e
-LDC 'l' VAR 'l
-LDC 'o' VAR 'o
+uldc 'H' uvar 'H
+uldc 'e' uvar 'e
+uldc 'l' uvar 'l
+uldc 'o' uvar 'o
 
-LDV 'H OUT
-LDV 'e OUT
-LDV 'l OUT OUT
-LDV 'o OUT
+uldv 'H pout
+uldv 'e pout
+uldv 'l pout pout
+uldv 'o pout
 """
       val io = StreamIO.byteArray("")
       compiler(io)(code)

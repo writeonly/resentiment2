@@ -14,8 +14,8 @@ class AnalyzerLLAsm extends AnalyzerLL {
 
   def label :Parser[Symbol] = symbol
 
-  def var_operation :Parser[Var] = "VAR" ~> symbol ^^ {Var(null, _)}
-  def store_operation :Parser[Store] = "ST" ~> symbol ^^ {Store(null, _)}
+  def var_operation :Parser[Var] = Operators.var_operator ~> symbol ^^ {Var(null, _)}
+  def store_operation :Parser[Store] = Operators.store_operator ~> symbol ^^ {Store(null, _)}
   def load_var_operation :Parser[LoadVar] = Operators.load_var_operator  ~> symbol ^^ {LoadVar(_)}
   def load_str_operation :Parser[LoadStr] = Operators.load_str_operator ~> stringLiteral ^^ {LoadStr(_)}
   def load_char_operation :Parser[LoadChar] = Operators.load_char_operator ~> char ^^ {LoadChar(_)}
@@ -31,12 +31,10 @@ class AnalyzerLLAsm extends AnalyzerLL {
 
   def jump_operation :Parser[JumpOperation] = jump_operator ~ label ^^ {a => JumpOperation(a._1, a._2)}
 
-
-
-  def unary_operator :Parser[String] = "(NOT)|(NEG)|(IN)|(OUT)".r ^^ {a=>a}
+  def unary_operator :Parser[String] = Operators.unary_operator.r ^^ {a=>a}
   def binary_operator :Parser[String] = binary_operator_byte | binary_operator_bit
-  def binary_operator_byte :Parser[String]= "(ADD)|(SUB)|(MUL)|(DIV)|(MOD)".r ^^ {a=>a}
-  def binary_operator_bit :Parser[String]= "(AND)|(OR)|(XOR)|(XAND)|(LE)|(LS)|(EQ)|(NE)".r ^^ {a=>a}
+  def binary_operator_byte :Parser[String]= Operators.binary_operator_byte.r ^^ {a=>a}
+  def binary_operator_bit :Parser[String]= Operators.binary_operator_bit.r ^^ {a=>a}
 
 
   def call_operator :Parser[String]= "(CALCN)|(CALC)|(CAL)".r
