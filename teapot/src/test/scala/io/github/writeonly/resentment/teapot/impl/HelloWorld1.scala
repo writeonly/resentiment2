@@ -1,10 +1,10 @@
 package io.github.writeonly.resentment.teapot.impl
 
-import io.github.writeonly.resentiment.teapot.phases.analyzers.AnalyzerLLAsm
 import io.github.writeonly.resentment.core.impl.UniCoreFake
 import io.github.writeonly.resentment.core.pipe.StreamIO
-import io.github.writeonly.resentment.corn.phrases.Phaser
-import io.github.writeonly.resentment.corn.phrases.generators.GeneratorImpl
+import io.github.writeonly.resentment.corn.compilator.Compilator
+import io.github.writeonly.resentment.corn.compilator.analyzers.AnalyzerLLAsm
+import io.github.writeonly.resentment.corn.compilator.generators.GeneratorImpl
 import io.github.writeonly.resentment.teapot.BlackSpec
 
 class HelloWorld1 extends BlackSpec {
@@ -25,7 +25,7 @@ CH 'o' OUT
       val io = StreamIO.byteArray("")
       val interpreter = new GeneratorImpl(new UniCoreFake(io))
       val parser = new AnalyzerLLAsm
-      val compiler = new Phaser(parser, interpreter)
+      val compiler = new Compilator(parser, interpreter)
 
       When("parse and interprete code")
       val out = compiler.apply(code)

@@ -1,8 +1,6 @@
-package io.github.writeonly.resentiment.teapot.phases.analyzers
+package io.github.writeonly.resentment.corn.compilator.analyzers
 
-import io.github.writeonly.resentiment.teapot.core._
-import io.github.writeonly.resentment.corn.command._
-import io.github.writeonly.resentment.corn.phrases.analyzers.AnalyzerLL
+import io.github.writeonly.resentment.corn.notation._
 
 class AnalyzerLLAsm extends AnalyzerLL {
 

@@ -1,8 +1,8 @@
-package io.github.writeonly.resentment.corn.phrases.generators
+package io.github.writeonly.resentment.corn.compilator.generators
 
 import io.github.writeonly.resentment.core.impl.CommonCoreFake
 import io.github.writeonly.resentment.core.set.CommonCore
-import io.github.writeonly.resentment.corn.command._
+import io.github.writeonly.resentment.corn.notation._
 
 class GeneratorImpl(val e : CommonCore[Unit]) extends Generator {
 

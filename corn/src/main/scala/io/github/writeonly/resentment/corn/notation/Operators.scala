@@ -1,4 +1,4 @@
-package io.github.writeonly.resentiment.teapot.core
+package io.github.writeonly.resentment.corn.notation
 
 object Operators {
   val store_operator = "ST"

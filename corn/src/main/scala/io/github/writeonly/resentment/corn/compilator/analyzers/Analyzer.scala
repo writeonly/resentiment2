@@ -1,6 +1,6 @@
-package io.github.writeonly.resentment.corn.phrases.analyzers
+package io.github.writeonly.resentment.corn.compilator.analyzers
 
-import io.github.writeonly.resentment.corn.command.Command
+import io.github.writeonly.resentment.corn.notation.Command
 
 import scala.util.parsing.combinator.{JavaTokenParsers, PackratParsers, Parsers}
 

@@ -1,4 +1,4 @@
-package io.github.writeonly.resentment.corn.phrases.analyzers
+package io.github.writeonly.resentment.corn.compilator.analyzers
 
 import scala.util.parsing.combinator.PackratParsers
 
