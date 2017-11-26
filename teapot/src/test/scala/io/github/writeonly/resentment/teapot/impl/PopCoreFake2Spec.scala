@@ -1,15 +1,15 @@
 package io.github.writeonly.resentment.teapot.impl
 
-import io.github.writeonly.resentment.core.impl.{StackCoreFake, UniCore2Fake}
+import io.github.writeonly.resentment.core.impl.{PopCoreFake, UniCoreStackFake}
 import io.github.writeonly.resentment.core.pipe.StreamIO
 import io.github.writeonly.resentment.corn.compilator.Compilator
 import io.github.writeonly.resentment.corn.compilator.analyzers.AnalyzerLLAsm
 import io.github.writeonly.resentment.corn.compilator.generators.GeneratorImpl
 import io.github.writeonly.resentment.teapot.GrayScalarSpec
 
-class StackCoreFake2Spec extends GrayScalarSpec {
-  describe(classOf[StackCoreFake].toString) {
-    val compiler = (io: StreamIO) => new Compilator(new AnalyzerLLAsm, new GeneratorImpl(new StackCoreFake(io)))
+class PopCoreFake2Spec extends GrayScalarSpec {
+  describe(classOf[PopCoreFake].toString) {
+    val compiler = (io: StreamIO) => new Compilator(new AnalyzerLLAsm, new GeneratorImpl(new PopCoreFake(io)))
 
     it("CH -> pout") {
       val code = "uldc 'A' pout"

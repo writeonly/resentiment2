@@ -1,15 +1,15 @@
 package io.github.writeonly.resentment.teapot.impl
 
-import io.github.writeonly.resentment.core.impl.UniCore2Fake
+import io.github.writeonly.resentment.core.impl.UniCoreStackFake
 import io.github.writeonly.resentment.core.pipe.StreamIO
 import io.github.writeonly.resentment.corn.compilator.Compilator
 import io.github.writeonly.resentment.corn.compilator.analyzers.AnalyzerLLAsm
 import io.github.writeonly.resentment.corn.compilator.generators.GeneratorImpl
 import io.github.writeonly.resentment.teapot.GrayScalarSpec
 
-class UniCore2FakeSpec extends GrayScalarSpec {
-  describe(classOf[UniCore2Fake].toString) {
-    val compiler = (io: StreamIO) => new Compilator(new AnalyzerLLAsm, new GeneratorImpl(new UniCore2Fake(io)))
+class UniCoreStackFakeSpec extends GrayScalarSpec {
+  describe(classOf[UniCoreStackFake].toString) {
+    val compiler = (io: StreamIO) => new Compilator(new AnalyzerLLAsm, new GeneratorImpl(new UniCoreStackFake(io)))
 
     it("CH -> pout") {
       val code = "uldc 'A' pout"
@@ -42,7 +42,7 @@ uldv 'H pout
       val c = compiler(io)
       c(code)
       val i = c.backEnd.asInstanceOf[GeneratorImpl]
-      val e = i.e.asInstanceOf[UniCore2Fake]
+      val e = i.e.asInstanceOf[UniCoreStackFake]
       e.stack should equal (Map(0 -> 'H'.toInt))
       e.symbols should equal (Map('H -> 0))
       e.topPointer should equal (1)

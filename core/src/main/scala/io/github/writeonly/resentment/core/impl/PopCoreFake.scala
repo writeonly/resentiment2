@@ -1,9 +1,9 @@
 package io.github.writeonly.resentment.core.impl
 
-import io.github.writeonly.resentment.core.api.StackCore
+import io.github.writeonly.resentment.core.api.PopCore
 import io.github.writeonly.resentment.core.pipe.StreamIO
 
-class StackCoreFake(val io : StreamIO) extends Fake with StackCore[Unit] {
+class PopCoreFake(val io : StreamIO) extends Fake with PopCore[Unit] {
 
   def popi(f :(Byte,Byte) => Int):Unit = {
     stack(topPointer-1) = f(stack(topPointer-1), top).asInstanceOf[Byte]

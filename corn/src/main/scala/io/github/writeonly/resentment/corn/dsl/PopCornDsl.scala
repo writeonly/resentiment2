@@ -1,8 +1,8 @@
 package io.github.writeonly.resentment.corn.dsl
 
-import io.github.writeonly.resentment.core.api.StackCore
+import io.github.writeonly.resentment.core.api.PopCore
 
-class StackCornDsl(core : StackCore[Unit]) extends StackCore[StackCornDsl] {
+class PopCornDsl(core : PopCore[Unit]) extends PopCore[PopCornDsl] {
   def uvar(operand :Symbol) = {core.uvar(operand); this}
   def ust(operand :Symbol) = {core.ust(operand); this}
   def uld(operand :Symbol) = {core.uld(operand); this}
