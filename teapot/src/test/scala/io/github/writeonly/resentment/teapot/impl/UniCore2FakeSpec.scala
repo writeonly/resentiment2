@@ -43,10 +43,10 @@ uldv 'H pout
       c(code)
       val i = c.backEnd.asInstanceOf[GeneratorImpl]
       val e = i.e.asInstanceOf[UniCore2Fake]
-      e.m should equal (Map(0 -> 'H'.toInt))
-      e.b should equal (Map('H -> 0))
-      e.p should equal (1)
-      e.a should equal ('H'.toInt)
+      e.stack should equal (Map(0 -> 'H'.toInt))
+      e.symbols should equal (Map('H -> 0))
+      e.topPointer should equal (1)
+      e.accumulator should equal ('H'.toInt)
       StreamIO.byteArray(io) should equal ("H")
     }
 

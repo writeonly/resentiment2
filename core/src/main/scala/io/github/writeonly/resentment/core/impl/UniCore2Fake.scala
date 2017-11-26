@@ -1,29 +1,23 @@
 package io.github.writeonly.resentment.core.impl
 
 import io.github.writeonly.resentment.core.pipe.StreamIO
+import io.github.writeonly.resentment.core.set.CommonCore
 
-import scala.collection.mutable
-
-class UniCore2Fake(io : StreamIO) extends CommonCoreFake(io) {
-
-  val m = new mutable.HashMap[Int, Int]()
-  var p = 0
-
-  def get(symbol: Symbol) = b.get(symbol).get
-
+class UniCore2Fake(val io : StreamIO) extends Fake with CommonCore[Unit]  {
+  
   override def uvar(o: Symbol) = {
-    b.put(o, p)
-    p += 1
+    symbols.put(o, topPointer)
+    topPointer += 1
     ust(o)
   }
 
-  override def ust(o:Symbol) = m.put(get(o), a)
-  override def uld(o:Symbol) = a =  m.get(get(o)).get
+  override def ust(o:Symbol) = stack(get(o)) =  accumulator.asInstanceOf[Byte]
+  override def uld(o:Symbol) = accumulator =  stack.get(get(o)).get
   override def uld(o: Int) = ???
-  def uld(o:Char) = a = o.toInt
-  def uld(o:String) = a =  o.toInt
+  def uld(o:Char) = accumulator = o.toInt
+  def uld(o:String) = accumulator =  o.toInt
 
-  override def pout() = io.out.write(a)
+  override def pout() = io.out.write(accumulator)
   override def pin() = ???
 
   override def pnot() = ???

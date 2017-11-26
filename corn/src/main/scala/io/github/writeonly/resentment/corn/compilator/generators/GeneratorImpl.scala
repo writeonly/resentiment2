@@ -1,6 +1,5 @@
 package io.github.writeonly.resentment.corn.compilator.generators
 
-import io.github.writeonly.resentment.core.impl.CommonCoreFake
 import io.github.writeonly.resentment.core.set.CommonCore
 import io.github.writeonly.resentment.corn.notation._
 
