@@ -31,3 +31,4 @@ Diagram
 * https://github.com/sirthias/parboiled2
 * https://github.com/lihaoyi/fastparse
 * https://github.com/djspiewak/gll-combinators
+* https://github.com/tpolecat/atto
