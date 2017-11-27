@@ -25,3 +25,8 @@ Diagram
 * Left eye - FAT IO
 * Right meatball - Code memory
 * Left meatball - RAM
+
+# Parsers
+* https://github.com/scala/scala-parser-combinators
+* https://github.com/sirthias/parboiled2
+* https://github.com/lihaoyi/fastparse
