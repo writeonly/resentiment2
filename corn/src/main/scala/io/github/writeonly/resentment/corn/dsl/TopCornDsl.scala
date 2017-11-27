@@ -1,54 +1,37 @@
 package io.github.writeonly.resentment.corn.dsl
 
-import io.github.writeonly.resentment.core.api.TopCore
-import io.github.writeonly.resentment.core.set.TopCoreExpression
+import io.github.writeonly.resentment.core.api.{PopCore, TopCore}
+import io.github.writeonly.resentment.core.set.{TopCoreExpression, UniCoreLoad}
 
-class TopCornDsl extends TopCore[TopCornDsl] {
-  override def uvar(o: Symbol) = ???
+class TopCornDsl(core: PopCore[Unit]) extends TopCore[TopCornDsl] {
+  override def uvar(o :Symbol) = {core.uvar(o); this}
+  override def ust(o :Symbol) = {core.ust(o); this}
+  override def uld(o :Symbol) = {core.uld(o); this}
+  override def uld(o :Int) = {core.uld(o); this}
+  override def uld(o: Char) = {core.uld(o); this}
+  override def uld(o: String) = {core.uld(o); this}
 
-  override def ust(o: Symbol) = ???
+  override def pin() = {core.pin(); this}
+  override def pout() = {core.pout(); this}
 
-  override def uld(o: Symbol) = ???
+  override def pneg() = {core.pneg(); this}
+  override def pnot() = {core.pnot(); this}
+  override def png1() = {core.png1(); this}
 
-  override def uld(o: Int) = ???
+  override def uadd(o: Load => TopCoreExpression) = {core.ppush(); o(this); core.padd(); this}
+  override def usub(o: Load => TopCoreExpression) = {core.ppush(); o(this); core.psub(); this}
+  override def umul(o: Load => TopCoreExpression) = {core.ppush(); o(this); core.pmul(); this}
+  override def udiv(o: Load => TopCoreExpression) = {core.ppush(); o(this); core.pdiv(); this}
+  override def umod(o: Load => TopCoreExpression) = {core.ppush(); o(this); core.pmod(); this}
 
-  override def uld(o: Char) = ???
+  override def ueq(o: Load => TopCoreExpression) = {core.ppush(); o(this); core.peq(); this}
+  override def une(o: Load => TopCoreExpression) = {core.ppush(); o(this); core.pne(); this}
+  override def uand(o: Load => TopCoreExpression) = {core.ppush(); o(this); core.pand(); this}
+  override def uor(o: Load => TopCoreExpression) = {core.ppush(); o(this); core.por(); this}
 
-  override def uld(o: String) = ???
+  override def ult(o: Load => TopCoreExpression) = {core.ppush(); o(this); core.plt(); this}
+  override def ugt(o: Load => TopCoreExpression) = {core.ppush(); o(this); core.pgt(); this}
+  override def ule(o: Load => TopCoreExpression) = {core.ppush(); o(this); core.ple(); this}
+  override def uge(o: Load => TopCoreExpression) = {core.ppush(); o(this); core.pge(); this}
 
-  override def pnot() = ???
-
-  override def pneg() = ???
-
-  override def png1() = ???
-
-  override def uadd(o: TopCoreExpression => TopCoreExpression) = ???
-
-  override def usub(o: TopCoreExpression => TopCoreExpression) = ???
-
-  override def umul(o: TopCoreExpression => TopCoreExpression) = ???
-
-  override def udiv(o: TopCoreExpression => TopCoreExpression) = ???
-
-  override def umod(o: TopCoreExpression => TopCoreExpression) = ???
-
-  override def ueq(o: TopCoreExpression => TopCoreExpression) = ???
-
-  override def une(o: TopCoreExpression => TopCoreExpression) = ???
-
-  override def uand(o: TopCoreExpression => TopCoreExpression) = ???
-
-  override def uor(o: TopCoreExpression => TopCoreExpression) = ???
-
-  override def ult(o: TopCoreExpression => TopCoreExpression) = ???
-
-  override def ugt(o: TopCoreExpression => TopCoreExpression) = ???
-
-  override def ule(o: TopCoreExpression => TopCoreExpression) = ???
-
-  override def uge(o: TopCoreExpression => TopCoreExpression) = ???
-
-  override def pin() = ???
-
-  override def pout() = ???
 }

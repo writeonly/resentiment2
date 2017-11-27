@@ -11,8 +11,8 @@ class UniCoreStackFake(val io : StreamIO) extends Fake with UniCore[Unit] {
     ust(o)
   }
 
-  override def ust(o:Symbol) = stack(get(o)) =  accumulator.asInstanceOf[Byte]
-  override def uld(o:Symbol) = accumulator =  stack.get(get(o)).get
+  override def ust(o:Symbol) = stack(pointer(o)) =  accumulator.asInstanceOf[Byte]
+  override def uld(o:Symbol) = accumulator =  stack.get(pointer(o)).get
   override def uld(o: Int) = ???
   def uld(o:Char) = accumulator = o.toInt
   def uld(o:String) = accumulator =  o.toInt

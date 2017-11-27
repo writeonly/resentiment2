@@ -1,7 +1,7 @@
-package io.github.writeonly.resentment.core.api
+package io.github.writeonly.resentment.corn.dsl
 
-class MySpecification {
-  class MySpecification extends org.specs2.mutable.Specification {
+class TSpecification {
+  class TSpecification extends org.specs2.mutable.Specification {
     "this is my specification" >> {
       "where example 1 must be true" >> {
         1 must_== 1

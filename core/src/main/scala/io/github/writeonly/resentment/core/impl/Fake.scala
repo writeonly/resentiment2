@@ -9,5 +9,7 @@ class Fake {
   var topPointer = 0
   var basePointer = 0
 
-  def get(symbol: Symbol) = symbols.get(symbol).get
+  def pointer(symbol: Symbol) = symbols(symbol)
+
+  def value(symbol:Symbol) = stack(symbols(symbol))
 }

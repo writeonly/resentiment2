@@ -3,8 +3,6 @@ package io.github.writeonly.resentment.core.impl
 import io.github.writeonly.resentment.core.api.TopCore
 import io.github.writeonly.resentment.core.set.TopCoreExpression
 
-import scala.collection.mutable
-
 class TopCoreFake extends Fake with TopCore[Unit] {
 
   override def uvar(s: Symbol) = ???
@@ -23,29 +21,29 @@ class TopCoreFake extends Fake with TopCore[Unit] {
   override def pneg() = ???
   override def png1() = ???
 
-  override def uadd(o: TopCoreExpression => TopCoreExpression) = ???
+  override def uadd(o: Load => TopCoreExpression) = ???
 
-  override def usub(o: TopCoreExpression => TopCoreExpression) = ???
+  override def usub(o: Load => TopCoreExpression) = ???
 
-  override def umul(o: TopCoreExpression => TopCoreExpression) = ???
+  override def umul(o: Load => TopCoreExpression) = ???
 
-  override def udiv(o: TopCoreExpression => TopCoreExpression) = ???
+  override def udiv(o: Load => TopCoreExpression) = ???
 
-  override def umod(o: TopCoreExpression => TopCoreExpression) = ???
+  override def umod(o: Load => TopCoreExpression) = ???
 
-  override def ueq(o: TopCoreExpression => TopCoreExpression) = ???
+  override def ueq(o: Load => TopCoreExpression) = ???
 
-  override def une(o: TopCoreExpression => TopCoreExpression) = ???
+  override def une(o: Load => TopCoreExpression) = ???
 
-  override def uand(o: TopCoreExpression => TopCoreExpression) = ???
+  override def uand(o: Load => TopCoreExpression) = ???
 
-  override def uor(o: TopCoreExpression => TopCoreExpression) = ???
+  override def uor(o: Load => TopCoreExpression) = ???
 
-  override def ult(o: TopCoreExpression => TopCoreExpression) = ???
+  override def ult(o: Load => TopCoreExpression) = ???
 
-  override def ugt(o: TopCoreExpression => TopCoreExpression) = ???
+  override def ugt(o: Load => TopCoreExpression) = ???
 
-  override def ule(o: TopCoreExpression => TopCoreExpression) = ???
+  override def ule(o: Load => TopCoreExpression) = ???
 
-  override def uge(o: TopCoreExpression => TopCoreExpression) = ???
+  override def uge(o: Load => TopCoreExpression) = ???
 }
