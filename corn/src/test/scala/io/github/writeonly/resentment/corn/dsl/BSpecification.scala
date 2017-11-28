@@ -1,7 +1,10 @@
 import io.github.writeonly.resentment.core.impl.PopCoreFake
 import io.github.writeonly.resentment.core.pipe.StreamIO
 import io.github.writeonly.resentment.corn.dsl.TopCornDsl
+import org.junit.runner.RunWith
+import org.specs2.runner.JUnitRunner
 
+@RunWith(classOf[JUnitRunner])
 class BSpecification extends org.specs2.Specification { def is = s2"""
 
  this is my specification
@@ -21,7 +24,7 @@ class BSpecification extends org.specs2.Specification { def is = s2"""
       .uld('a).uadd(_.uld('b))
       .uvar('c)
     core.value('c)
-  } must_== 3
+  } must_== 6
 
 
 }

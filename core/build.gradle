@@ -29,6 +29,7 @@ repositories {
 
 // setup dependencies
 dependencies {
+    compile "org.scala-lang:scala-library:$scala_version"
     testCompile 'org.jetbrains.spek:spek-api:1.1.5'
     testRuntime 'org.jetbrains.spek:spek-junit-platform-engine:1.1.5'
     compile group: 'org.scala-lang', name: 'scala-library', version: '2.11.8'
