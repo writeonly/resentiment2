@@ -1,39 +1,8 @@
-// setup the plugin
-buildscript {
-    ext.kotlin_version = '1.1.51'
-    dependencies {
-        classpath 'org.junit.platform:junit-platform-gradle-plugin:1.0.0'
-        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
-    }
-    repositories {
-        mavenCentral()
-    }
-}
-
-apply plugin: 'org.junit.platform.gradle.plugin'
 apply plugin: 'scala'
 apply plugin: "jacoco"
 
-junitPlatform {
-    filters {
-        engines {
-            include 'spek'
-        }
-    }
-}
-
-repositories {
-    maven { url "http://dl.bintray.com/jetbrains/spek" }
-    mavenCentral()
-}
-
-// setup dependencies
 dependencies {
     compile "org.scala-lang:scala-library:$scala_version"
-    testCompile 'org.jetbrains.spek:spek-api:1.1.5'
-    testRuntime 'org.jetbrains.spek:spek-junit-platform-engine:1.1.5'
-    compile group: 'org.scala-lang', name: 'scala-library', version: '2.11.8'
-
 }
 
 jacocoTestReport {

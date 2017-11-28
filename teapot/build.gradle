@@ -1,19 +1,9 @@
-apply plugin: "com.github.maiflai.scalatest"
 apply plugin: "jacoco"
 
 dependencies {
     compile project (":corn")
-    testCompile 'org.scalatest:scalatest_2.11:3.0.1'
-    testRuntime 'org.pegdown:pegdown:1.4.2'
 }
-buildscript {
-    repositories {
-        mavenCentral()
-    }
-}
-repositories {
-    mavenCentral()
-}
+
 
 jacocoTestReport {
     reports {

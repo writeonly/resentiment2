@@ -1,26 +1,13 @@
 apply plugin: 'scala'
 apply plugin: "jacoco"
 
-apply plugin: "com.github.maiflai.scalatest"
+//apply plugin: "com.github.maiflai.scalatest"
 
 dependencies {
     compile project (":core")
 
     compile "org.scala-lang.modules:scala-parser-combinators_2.11:1.0.6"
 
-
-    compile "org.jetbrains.kotlin:kotlin-stdlib-jre8:$kotlin_version"
-}
-buildscript {
-    repositories {
-        mavenCentral()
-    }
-    dependencies {
-        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
-    }
-}
-repositories {
-    mavenCentral()
 }
 
 jacocoTestReport {
