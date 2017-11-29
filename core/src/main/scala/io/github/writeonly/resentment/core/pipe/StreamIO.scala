@@ -2,7 +2,12 @@ package io.github.writeonly.resentment.core.pipe
 
 import java.io.{ByteArrayInputStream, ByteArrayOutputStream, InputStream, OutputStream}
 
-case class StreamIO(in: InputStream, out: OutputStream)
+case class StreamIO(in: InputStream, out: OutputStream) {
+  def apply (f : StreamIO => Unit): StreamIO = {
+    f(this);
+    this;
+  }
+}
 
 object StreamIO {
   def byteArray(in: Array[Byte]) : StreamIO = StreamIO(new ByteArrayInputStream(in), new ByteArrayOutputStream())

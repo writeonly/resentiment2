@@ -2,7 +2,7 @@ package io.github.writeonly.resentment.corn.compilator.analyzers
 
 import io.github.writeonly.resentment.corn.notation._
 
-class AnalyzerLLAsm extends AnalyzerLL {
+class AnalyzerLLInvisibleUniCorn extends AnalyzerLL {
 
   override def parse(text : String) : ParseResult[Command] = parseAll(instruction_list, text)
   def instruction_list :Parser[PairInstruction] = (
