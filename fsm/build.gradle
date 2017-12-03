@@ -1,0 +1,14 @@
+apply plugin: 'scala'
+apply plugin: "jacoco"
+
+dependencies {
+    compile "org.scala-lang:scala-library:$scala_version"
+}
+
+jacocoTestReport {
+    reports {
+        xml.enabled false
+        csv.enabled false
+        html.destination file("${buildDir}/jacocoHtml")
+    }
+}
