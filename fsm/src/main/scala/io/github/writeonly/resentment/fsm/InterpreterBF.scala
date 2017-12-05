@@ -4,21 +4,21 @@ import java.io.{Reader}
 
 import scala.collection.mutable
 
-class InterpreterBF(code : Array[Byte]) {
+class InterpreterBF(streamIO: StreamIO, code : Array[Byte]) {
   var counter = 0
   var head = 0
   val tape = new mutable.HashMap[Int,Int]()
   val jumpTable = InterpreterBF.createJumpTable(code)
 
   def apply(i:Byte) = i match {
-    case '+' => 
-    case '-' =>
-    case '>' =>
-    case '<' =>
-    case '[' =>
-    case ']' =>
-    case ',' =>
-    case '.' =>
+    case '+' => tape(head) += 1
+    case '-' => tape(head) -= 1
+    case '>' => head += 1
+    case '<' => head -= 1
+    case '[' => if (tape(head) == 0) counter = jumpTable(counter)
+    case ']' => counter = jumpTable(counter)
+    case ',' => tape(head) = streamIO.in.read()
+    case '.' => streamIO.out.write(tape(head))
   }
 
 }
@@ -41,7 +41,7 @@ object InterpreterBF {
     result.toMap
   }
 
-  def apply(code :String):Unit = new InterpreterBF(code.getBytes)
+  def apply(streamIO: StreamIO, code :String):Unit = new InterpreterBF(streamIO, code.getBytes)
 
   def apply(reader : Reader):Unit = {
 

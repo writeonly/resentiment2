@@ -1,7 +1,7 @@
 package io.github.writeonly.resentment.core.impl
 
 import io.github.writeonly.resentment.core.api.PopCore
-import io.github.writeonly.resentment.core.pipe.StreamIO
+import io.github.writeonly.resentment.fsm.StreamIO
 
 class PopCoreFake(val io : StreamIO) extends Fake[PopCoreFake] with PopCore[Unit] {
 

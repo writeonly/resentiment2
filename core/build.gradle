@@ -2,6 +2,7 @@ apply plugin: 'scala'
 apply plugin: "jacoco"
 
 dependencies {
+    compile project (":fsm")
     compile "org.scala-lang:scala-library:$scala_version"
 }
 

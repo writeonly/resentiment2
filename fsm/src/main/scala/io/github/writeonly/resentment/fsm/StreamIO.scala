@@ -1,4 +1,4 @@
-package io.github.writeonly.resentment.core.pipe
+package io.github.writeonly.resentment.fsm
 
 import java.io.{ByteArrayInputStream, ByteArrayOutputStream, InputStream, OutputStream}
 
