@@ -6,9 +6,17 @@ import scala.collection.mutable
 
 class InterpreterBF(streamIO: StreamIO, code : Array[Byte]) {
   var counter = 0
+  var length = code.length
   var head = 0
   val tape = new mutable.HashMap[Int,Int]()
   val jumpTable = InterpreterBF.createJumpTable(code)
+
+  def apply(): Unit = {
+    while (counter != length) {
+      apply(code(counter))
+      counter += 1
+    }
+  }
 
   def apply(i:Byte) = i match {
     case '+' => tape(head) += 1
@@ -19,6 +27,7 @@ class InterpreterBF(streamIO: StreamIO, code : Array[Byte]) {
     case ']' => counter = jumpTable(counter)
     case ',' => tape(head) = streamIO.in.read()
     case '.' => streamIO.out.write(tape(head))
+    case _ =>
   }
 
 }
