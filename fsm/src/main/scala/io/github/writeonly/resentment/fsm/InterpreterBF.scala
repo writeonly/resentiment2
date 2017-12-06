@@ -5,17 +5,23 @@ import java.io.{Reader}
 import scala.collection.mutable
 
 class InterpreterBF(streamIO: StreamIO, code : Array[Byte]) {
+
+  def this(streamIO:StreamIO, code:String) = this(streamIO, code.getBytes)
+
   var counter = 0
   var length = code.length
   var head = 0
-  val tape = new mutable.HashMap[Int,Int]()
+  val tape = new mutable.HashMap[Int,Int]() {
+    override def apply(k : Int) : Int = get(k).getOrElse(0)
+  }
   val jumpTable = InterpreterBF.createJumpTable(code)
 
-  def apply(): Unit = {
+  def apply(): InterpreterBF = {
     while (counter != length) {
       apply(code(counter))
       counter += 1
     }
+    this
   }
 
   def apply(i:Byte) = i match {
