@@ -102,21 +102,23 @@ class ComplexCoreBFSpec extends org.specs2.mutable.Specification
       tape(3) must_== 3
     }
 
-    "cconst(3,1) cneg(1)" >> {
-      val core = new ComplexCoreBF(System.out)
-      val out = core.cconst(3,1)() + core.cneg(1)()
-//      out must_== ""
-//      val tape = new InterpreterBF(StreamIO.byteArray(), out)().tape
-//      tape(1) must_== -3
-    }
-
-    "cconst(3,1) cnot(1)" >> {
-      val core = new ComplexCoreBF(System.out)
-      val out = core.cconst(3,1)() + core.cnot(1)()
-//      out must_== ""
-//      val tape = new InterpreterBF(StreamIO.byteArray(), out)().tape
-//      tape(1) must_== -4
-    }
+//    "cconst(3,1) cneg(1)" >> {
+//      val core = new ComplexCoreBF(System.out)
+//      val out = core.cconst(3,1)() + core.cneg(1)()
+//      out
+////      out must_== ""
+////      val tape = new InterpreterBF(StreamIO.byteArray(), out)().tape
+////      tape(1) must_== -3
+//    }
+//
+//    "cconst(3,1) cnot(1)" >> {
+//      val core = new ComplexCoreBF(System.out)
+//      val out = core.cconst(3,1)() + core.cnot(1)()
+//      out
+////      out must_== ""
+////      val tape = new InterpreterBF(StreamIO.byteArray(), out)().tape
+////      tape(1) must_== -4
+//    }
 
 
   }
