@@ -4,7 +4,7 @@ import java.io.{Reader}
 
 import scala.collection.mutable
 
-class InterpreterBF(streamIO: StreamIO, code : Array[Byte]) {
+class InterpreterBF(val streamIO: StreamIO, code : Array[Byte]) {
 
   def this(streamIO:StreamIO, code:String) = this(streamIO, code.getBytes)
 
@@ -30,7 +30,7 @@ class InterpreterBF(streamIO: StreamIO, code : Array[Byte]) {
     case '>' => head += 1
     case '<' => head -= 1
     case '[' => if (tape(head) == 0) counter = jumpTable(counter)
-    case ']' => counter = jumpTable(counter)
+    case ']' => counter = jumpTable(counter) -1
     case ',' => tape(head) = streamIO.in.read()
     case '.' => streamIO.out.write(tape(head))
     case _ =>

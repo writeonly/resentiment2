@@ -20,7 +20,7 @@ class InterpreterBFSpec extends org.specs2.mutable.Specification {
     }
     "where code hello world" >> {
       val helloWorld = "++++++++[>++++[>++>+++>+++>+<<<<-]>+>+>->>+[<]<-]>>.>---.+++++++..+++.>>.<-.<.+++.------.--------.>>+.>++."
-//      new InterpreterBF(StreamIO.byteArray(), helloWorld)() must_== "Hello world"
+      new InterpreterBF(StreamIO.byteArray(), helloWorld)().streamIO.toString must_== "Hello World!\n"
     }
   }
 }
