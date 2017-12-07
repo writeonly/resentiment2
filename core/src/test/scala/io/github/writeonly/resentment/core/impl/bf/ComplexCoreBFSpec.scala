@@ -20,15 +20,53 @@ class ComplexCoreBFSpec extends org.specs2.mutable.Specification  {
       val out = new ComplexCoreBF(System.out).cmv(0,1)()
       out must_== ">[-]<[>+<<+>-]<[>+<-]"
     }
-    "cconst(1,1)" >> {
-      val out = new ComplexCoreBF(System.out).cconst(1,1)()
-      out must_== ">[-]+"
-      new InterpreterBF(StreamIO.byteArray(), out)().tape(1) must_== 1
+    "cconst(2,1)" >> {
+      val out = new ComplexCoreBF(System.out).cconst(1,2)()
+      out must_== ">>[-]+"
+      new InterpreterBF(StreamIO.byteArray(), out)().tape(2) must_== 1
     }
     "cconst(2,1)" >> {
       val out = new ComplexCoreBF(System.out).cconst(2,1)()
       out must_== ">[-]++"
       new InterpreterBF(StreamIO.byteArray(), out)().tape(1) must_== 2
+    }
+    "cconst(2,1) cmv(1,2)" >> {
+      val core = new ComplexCoreBF(System.out)
+      val out = core.cconst(2,1)() + core.cmv(1,2)()
+      out must_== ">[-]++>[-]<[>+<<<+>>-]<<[>>+<<-]"
+      val tape = new InterpreterBF(StreamIO.byteArray(), out)().tape
+      tape(0) must_== 0
+      tape(1) must_== 2
+      tape(2) must_== 2
+    }
+    "cconst(2,0) cconst(3,1) cadd(0,1)" >> {
+      val core = new ComplexCoreBF(System.out)
+      val out = core.cconst(2,0)() + core.cconst(3,1)() + core.cadd(0,1)()
+      val tape = new InterpreterBF(StreamIO.byteArray(), out)().tape
+      tape(0) must_== 2
+      tape(1) must_== 5
+    }
+    "cconst(2,0) cconst(3,1) csub(0,1)" >> {
+      val core = new ComplexCoreBF(System.out)
+      val out = core.cconst(2,0)() + core.cconst(3,1)() + core.csub(0,1)()
+      val tape = new InterpreterBF(StreamIO.byteArray(), out)().tape
+      tape(0) must_== 2
+      tape(1) must_== 1
+    }
+    "cconst(3,0) cconst(2,1) csub(0,1)" >> {
+      val core = new ComplexCoreBF(System.out)
+      val out = core.cconst(3,0)() + core.cconst(2,1)() + core.csub(0,1)()
+      val tape = new InterpreterBF(StreamIO.byteArray(), out)().tape
+      tape(0) must_== 3
+      tape(1) must_== -1
+    }
+    "cconst(2,0) cconst(3,1) cmul(0,1)" >> {
+      val core = new ComplexCoreBF(System.out)
+      val out = core.cconst(2,0)() + core.cconst(3,1)() + core.cmul(0,1)()
+      val tape = new InterpreterBF(StreamIO.byteArray(), out)().tape
+//      out must_== ""
+      tape(0) must_== 2
+      tape(1) must_== 6
     }
   }
 }

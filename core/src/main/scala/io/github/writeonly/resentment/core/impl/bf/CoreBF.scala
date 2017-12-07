@@ -38,10 +38,14 @@ class CoreBF(print : PrintStream) {
   def join(s:String*) = s.mkString("")
 
   def add1(s:Int, d1 :Int) : FString = rw(s, "-", r(d1, "+"))
+  def sub1(s:Int, d1 :Int) : FString = rw(s, "-", r(d1, "-"))
 
   def add(s: Int = 0, d : Int = 1) = rw(s, "-", r(d, "+"))
 
   def sub(s: Int = 0, d : Int = 1) = rw(s, "-", r(d, "-"))
   def add2(s:Int, d1 :Int, d2:Int) : FString = rw(s, "-", r(d1, "+"), r(d2, "+"))
+  def sub2(s:Int, d1 :Int, d2:Int) : FString = rw(s, "-", r(d1, "-"), r(d2, "+"))
+
+
 
 }
