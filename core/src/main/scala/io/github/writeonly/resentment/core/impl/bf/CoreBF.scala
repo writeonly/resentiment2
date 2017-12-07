@@ -7,9 +7,6 @@ class CoreBF(print : PrintStream) {
 
   var head = 0
 
-  def append(code : String) = print.append(v(code))
-
-
   def v(code:String) = {
     require(count(code, '[') ==  count(code, ']') && count(code, '<') ==  count(code, '>'))
     code
