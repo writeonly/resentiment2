@@ -97,5 +97,15 @@ class ComplexCoreBFSpec extends org.specs2.mutable.Specification
 //            out must_== ""
       tape(0) must_== 9
     }
+
+    "cconst(3,1) cconst(1,3) cswap(1,3)" >> {
+      val core = new ComplexCoreBF(System.out)
+      val out = core.cconst(3,1)() + core.cconst(1,3)() + core.cswap(1,3)()
+      val tape = new InterpreterBF(StreamIO.byteArray(), out)().tape
+      //            out must_== ""
+      tape(1) must_== 1
+      tape(3) must_== 3
+    }
+
   }
 }
