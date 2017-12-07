@@ -17,15 +17,19 @@ class CoreBF(print : PrintStream) {
 
   def count(code:String, c : Char) = code.count(_ == c)
 
-  def r(i:Int, s:String) : FString = () => {
+  def r(i:Int, s:String, n:Int) : FString = () => {
     val shift = i - head
     head = i
-    if (0 <= shift) ">" * shift + s else "<" * (-shift) + s
+    if (0 <= shift) ">" * shift + s else "<" * (-shift) + s * n
   }
+
+  def r(i:Int, s:String) : FString = r(i, s, 1)
 
   def r(i:Int) : FString = r(i, "")
 
-  def rw(w:Int, in:String, out:String, seq : FString*):FString = () => join(r(w)(),"[", mk(seq:_*)(),r(w, in)(),"]", out)
+  def rw(w:Int, in:String, out:String, n:Int, seq : FString*):FString = () => join(r(w)(),"[", mk(seq:_*)(),r(w, in)(),"]", out * n)
+
+  def rw(w:Int, in:String, out:String, seq : FString*):FString = rw(w, in, out, 1, seq:_*)
 
   def rw(w:Int, in:String, seq : FString*):FString = rw(w, in, "", seq :_*)
 
