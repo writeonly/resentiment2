@@ -3,9 +3,12 @@ package io.github.writeonly.resentment.core.impl.bf
 import io.github.writeonly.resentment.fsm.{InterpreterBF, StreamIO}
 import org.junit.runner.RunWith
 import org.specs2.runner.JUnitRunner
+import org.specs2.specification.AroundTimeout
 
 @RunWith(classOf[JUnitRunner])
-class ComplexCoreBFSpec extends org.specs2.mutable.Specification  {
+class ComplexCoreBFSpec extends org.specs2.mutable.Specification
+  with AroundTimeout
+  {
   "this is my specification" >> {
 
     "clear 0" >> {
@@ -20,7 +23,7 @@ class ComplexCoreBFSpec extends org.specs2.mutable.Specification  {
       val out = new ComplexCoreBF(System.out).cmv(0,1)()
       out must_== ">[-]<[>+<<+>-]<[>+<-]"
     }
-    "cconst(2,1)" >> {
+    "cconst(1,2)" >> {
       val out = new ComplexCoreBF(System.out).cconst(1,2)()
       out must_== ">>[-]+"
       new InterpreterBF(StreamIO.byteArray(), out)().tape(2) must_== 1
@@ -29,6 +32,11 @@ class ComplexCoreBFSpec extends org.specs2.mutable.Specification  {
       val out = new ComplexCoreBF(System.out).cconst(2,1)()
       out must_== ">[-]++"
       new InterpreterBF(StreamIO.byteArray(), out)().tape(1) must_== 2
+    }
+    "cconst(-2,1)" >> {
+      val out = new ComplexCoreBF(System.out).cconst(-2,1)()
+      out must_== ">[-]--"
+      new InterpreterBF(StreamIO.byteArray(), out)().tape(1) must_== -2
     }
     "cconst(2,1) cmv(1,2)" >> {
       val core = new ComplexCoreBF(System.out)
@@ -59,6 +67,20 @@ class ComplexCoreBFSpec extends org.specs2.mutable.Specification  {
       val tape = new InterpreterBF(StreamIO.byteArray(), out)().tape
       tape(0) must_== 3
       tape(1) must_== -1
+    }
+    "cconst(2,0) csub(0,0)" >> {
+      val core = new ComplexCoreBF(System.out)
+      val out = core.cconst(2,0)() + core.csub(0,0)()
+//      out must_== ""
+      val tape = new InterpreterBF(StreamIO.byteArray(), out)().tape
+      tape(0) must_== 0
+    }
+    "cconst(3,0) csub(0,0)" >> {
+      val core = new ComplexCoreBF(System.out)
+      val out = core.cconst(3,0)() + core.csub(0,0)()
+//      out must_== ""
+      val tape = new InterpreterBF(StreamIO.byteArray(), out)().tape
+      tape(0) must_== 0
     }
     "cconst(2,0) cconst(3,1) cmul(0,1)" >> {
       val core = new ComplexCoreBF(System.out)
