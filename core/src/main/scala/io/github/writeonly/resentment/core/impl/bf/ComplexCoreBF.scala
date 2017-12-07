@@ -23,4 +23,9 @@ class ComplexCoreBF(print:PrintStream) extends CoreBF(print) {
   def cpow(s:Int, d:Int) : FString = mk(add1(d,-1))
 
   def cswap(d1:Int, d2:Int) : FString = mk(add1(d1, -1), add1(d2, d1), add1(-1, d2))
+
+  def cneg(d:Int) :FString = mk(sub1(d, -1), add1(-1, d))
+
+  def cnot(d:Int) :FString = mk(id(-1, d), cneg(d))
+
 }
