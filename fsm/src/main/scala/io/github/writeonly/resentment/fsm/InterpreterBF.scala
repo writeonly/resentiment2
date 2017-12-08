@@ -13,7 +13,9 @@ class InterpreterBF(val streamIO: StreamIO, code : Array[Byte]) {
   var head = 0
   val tape = new mutable.HashMap[Int,Int]() {
     override def apply(k : Int) : Int = get(k).getOrElse(0)
+    def s(k: Int) : Int =  if (apply(k) <= 128) apply(k) else apply(k) - 256
   }
+
   val jumpTable = InterpreterBF.createJumpTable(code)
 
   def apply(): InterpreterBF = {
@@ -25,8 +27,8 @@ class InterpreterBF(val streamIO: StreamIO, code : Array[Byte]) {
   }
 
   def apply(i:Byte) = i match {
-    case '+' => tape(head) += 1
-    case '-' => tape(head) -= 1
+    case '+' => tape(head) = (tape(head) + 1) % 256
+    case '-' => tape(head) = (tape(head) + 255) % 256
     case '>' => head += 1
     case '<' => head -= 1
     case '[' => if (tape(head) == 0) counter = jumpTable(counter)

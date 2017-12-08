@@ -36,7 +36,7 @@ class ComplexCoreBFSpec extends org.specs2.mutable.Specification
     "cconst(-2,1)" >> {
       val out = new ComplexCoreBF(System.out).cconst(-2,1)()
       out must_== ">[-]--"
-      new InterpreterBF(StreamIO.byteArray(), out)().tape(1) must_== -2
+      new InterpreterBF(StreamIO.byteArray(), out)().tape.s(1) must_== -2
     }
     "cconst(2,1) cmv(1,2)" >> {
       val core = new ComplexCoreBF(System.out)
@@ -66,7 +66,7 @@ class ComplexCoreBFSpec extends org.specs2.mutable.Specification
       val out = core.cconst(3,0)() + core.cconst(2,1)() + core.csub(0,1)()
       val tape = new InterpreterBF(StreamIO.byteArray(), out)().tape
       tape(0) must_== 3
-      tape(1) must_== -1
+      tape.s(1) must_== -1
     }
     "cconst(2,0) csub(0,0)" >> {
       val core = new ComplexCoreBF(System.out)
