@@ -44,8 +44,12 @@ class CoreBF(print : PrintStream) {
 
   def id(s:Int, d :Int) : FString = r(d, id(s), s.abs)
 
-  def add1(s:Int, d1 :Int) : FString = rw(s, "-", r(d1, "+"))
+  def add1(s:Int, d1 :Int, out :String) : FString = rw(s, "-", out, r(d1, "+"))
+  def add1(s:Int, d1 :Int) : FString = add1(s,d1,"")
+  def add01(s:Int, d1 :Int) : FString = rw(s, "[-]", r(d1, "+"))
+
   def sub1(s:Int, d1 :Int) : FString = rw(s, "-", r(d1, "-"))
+  def sub01(s:Int, d1 :Int) : FString = rw(s, "[-]", r(d1, "-"))
 
   def add2(s:Int, d1 :Int, d2:Int) : FString = rw(s, "-", r(d1, "+"), r(d2, "+"))
   def sub2(s:Int, d1 :Int, d2:Int) : FString = rw(s, "-", r(d1, "-"), r(d2, "+"))

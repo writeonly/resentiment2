@@ -115,6 +115,40 @@ class ComplexCoreBFSpec extends org.specs2.mutable.Specification
       val tape = new InterpreterBF(StreamIO.byteArray(), out)().tape
       tape.s(1) must_== -2
     }
-    
+
+    "cconst(2,0) cconst(3,1) ceq(0,1)" >> {
+      val core = new ComplexCoreBF(System.out)
+      val out = core.cconst(2,0)() + core.cconst(3,1)() + core.ceq(0,1)()
+      val tape = new InterpreterBF(StreamIO.byteArray(), out)().tape
+      tape(0) must_== 2
+      tape(1) must_== 0
+    }
+
+    "cconst(2,0) cconst(2,1) ceq(0,1)" >> {
+      val core = new ComplexCoreBF(System.out)
+      val out = core.cconst(2,0)() + core.cconst(2,1)() + core.ceq(0,1)()
+      val tape = new InterpreterBF(StreamIO.byteArray(), out)().tape
+      tape(0) must_== 2
+      tape(1) must_== 1
+    }
+
+    "cconst(2,0) cconst(3,1) cne(0,1)" >> {
+      val core = new ComplexCoreBF(System.out)
+      val out = core.cconst(2,0)() + core.cconst(3,1)() + core.cne(0,1)()
+      val tape = new InterpreterBF(StreamIO.byteArray(), out)().tape
+      tape(0) must_== 2
+      tape(1) must_== 1
+    }
+
+    "cconst(2,0) cconst(2,1) cne(0,1)" >> {
+      val core = new ComplexCoreBF(System.out)
+      val out = core.cconst(2,0)() + core.cconst(2,1)() + core.cne(0,1)()
+      val tape = new InterpreterBF(StreamIO.byteArray(), out)().tape
+      tape(0) must_== 2
+      tape(1) must_== 0
+    }
+
+
+
   }
 }
