@@ -9,17 +9,17 @@ class JumpTableCreator(code:Array[Byte], result :mutable.HashMap[Int,Int], stack
 
 
   def apply() :Map[Int, Int] = {
-    for((x,i) <- code.view.zipWithIndex) apply(result, stack, i, x)
+    for((x,i) <- code.view.zipWithIndex) apply(i, x)
     result.toMap
   }
 
-  private def apply(result :mutable.HashMap[Int,Int], stack :mutable.Stack[Int], i :Int, x :Byte) = x match {
+  private def apply(i :Int, x :Byte) = x match {
     case '[' => stack.push(i)
-    case ']' => pop(result, stack, i)
+    case ']' => pop(i)
     case _ =>
   }
 
-  private def pop(result :mutable.HashMap[Int,Int], stack :mutable.Stack[Int], i:Int): Unit = {
+  private def pop(i:Int): Unit = {
     val j = stack.pop()
     result(i) = j
     result(j) = i
