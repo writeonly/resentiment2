@@ -16,7 +16,7 @@ class InterpreterBF(val streamIO: StreamIO, code : Array[Byte]) {
     def s(k: Int) : Int =  if (apply(k) <= 128) apply(k) else apply(k) - 256
   }
 
-  val jumpTable = InterpreterBF.createJumpTable(code)
+  val jumpTable = new JumpTableCreator(code)()
 
   def apply(): InterpreterBF = {
     while (counter != length) {
@@ -41,25 +41,6 @@ class InterpreterBF(val streamIO: StreamIO, code : Array[Byte]) {
 }
 
 object InterpreterBF {
-  def createJumpTable(code:Array[Byte]): Map[Int,Int] = {
-    val result = new mutable.HashMap[Int,Int]()
-    val stack = new mutable.Stack[Int]()
-    for((x,i) <- code.view.zipWithIndex) apply(result, stack, i, x)
-    result.toMap
-  }
-
-  def apply(result :mutable.HashMap[Int,Int], stack :mutable.Stack[Int], i :Int, x :Byte) = x match {
-    case '[' => stack.push(i)
-    case ']' => pop(result, stack, i)
-    case _ =>
-  }
-
-  def pop(result :mutable.HashMap[Int,Int], stack :mutable.Stack[Int], i:Int): Unit = {
-    val j = stack.pop()
-    result(i) = j
-    result(j) = i
-  }
-
   def apply(streamIO: StreamIO, code :String):Unit = new InterpreterBF(streamIO, code.getBytes)
 
   def apply(reader : Reader):Unit = {
