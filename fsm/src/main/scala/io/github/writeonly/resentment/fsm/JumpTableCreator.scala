@@ -1,5 +1,7 @@
 package io.github.writeonly.resentment.fsm
 
+import com.google.common.base.MoreObjects
+
 import scala.collection.mutable
 import scala.util.{Failure, Success, Try}
 
@@ -12,7 +14,7 @@ case class JumpTableCreator(code:Array[Byte], result :mutable.HashMap[Int,Int], 
     for((x,i) <- code.view.zipWithIndex) {
       Try(apply(i, x)) match {
         case Success(_) =>
-        case Failure(e) => throw new IllegalStateException(toString, e)
+        case Failure(e) => throw new IllegalStateException(toString(i), e)
       }
     }
     result.toMap
@@ -28,5 +30,14 @@ case class JumpTableCreator(code:Array[Byte], result :mutable.HashMap[Int,Int], 
     val j = stack.pop()
     result(i) = j
     result(j) = i
+  }
+
+  def toString(counter:Int) :String = {
+    return MoreObjects.toStringHelper(this)
+      .add("code", new String(code))
+      .add("counter", counter)
+      .add("result", result)
+      .add("stack", stack)
+      .toString
   }
 }
