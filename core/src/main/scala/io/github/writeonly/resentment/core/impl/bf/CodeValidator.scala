@@ -2,7 +2,7 @@ package io.github.writeonly.resentment.core.impl.bf
 
 trait CodeValidator extends Function[String, String] {
   override def apply(code: String) = {
-    require(valid(code))
+    require(valid(code), code)
     code
   }
   def valid(code: String) : Boolean

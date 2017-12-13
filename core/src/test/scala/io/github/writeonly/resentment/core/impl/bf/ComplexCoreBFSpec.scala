@@ -11,6 +11,37 @@ class ComplexCoreBFSpec extends org.specs2.mutable.Specification
   {
   "this is my specification" >> {
 
+    "greater equals 1" >> {
+      val out = new ComplexCoreBF(System.out).ge1(0)()
+      out must_== "<<[<-]<[>>>-<[-]<<-<]>+>"
+    }
+
+    "greater equals 2" >> {
+      val out = new ComplexCoreBF(System.out).ge2(0)()
+      out must_== "<<-[<-]<[>>>-<[-]+<<-<]>+>"
+    }
+
+    "greater equals 3" >> {
+      val out = new ComplexCoreBF(System.out).ge3(0)()
+      out must_== "<[<-[<-]<[>>>-<[-]+<<-<]>+>>-]"
+    }
+
+    "greater that 1" >> {
+      val out = new ComplexCoreBF(System.out).gt1(0)()
+      out must_== "<<[<-]<[>>>+<[-]<<-<]>+>"
+    }
+
+    "greater that 2" >> {
+      val out = new ComplexCoreBF(System.out).gt2(0)()
+      out must_== "<<-[<-]<[>>>+<[-]+<<-<]>+>"
+    }
+
+    "greater that 3" >> {
+      val out = new ComplexCoreBF(System.out).gt3(0)()
+      out must_== "<[<-[<-]<[>>>+<[-]+<<-<]>+>>-]"
+    }
+
+
     "clear 0" >> {
       val out = new ComplexCoreBF(System.out).cclr(0)()
       out must_== "[-]"
@@ -149,6 +180,53 @@ class ComplexCoreBFSpec extends org.specs2.mutable.Specification
     }
 
 
+    "cconst(2,0) cconst(3,1) cge(0,1)" >> {
+      val core = new ComplexCoreBF(System.out)
+      val out = core.cconst(2,0)() + core.cconst(3,1)() + core.cge(0,1)()
+      val tape = new InterpreterBF(StreamIO.byteArray(), out)().tape
+      tape(0) must_== 2
+      tape(1) must_== 0
+    }
+
+    "cconst(2,0) cconst(2,1) cge(0,1)" >> {
+      val core = new ComplexCoreBF(System.out)
+      val out = core.cconst(2,0)() + core.cconst(2,1)() + core.cge(0,1)()
+      val tape = new InterpreterBF(StreamIO.byteArray(), out)().tape
+      tape(0) must_== 2
+      tape(1) must_== 0
+    }
+
+    "cconst(3,0) cconst(2,1) cge(0,1)" >> {
+      val core = new ComplexCoreBF(System.out)
+      val out = core.cconst(3,0)() + core.cconst(2,1)() + core.cge(0,1)()
+      val tape = new InterpreterBF(StreamIO.byteArray(), out)().tape
+      tape(0) must_== 3
+      tape(1) must_== 1
+    }
+
+    "cconst(2,0) cconst(3,1) cgt(0,1)" >> {
+      val core = new ComplexCoreBF(System.out)
+      val out = core.cconst(2,0)() + core.cconst(3,1)() + core.cgt(0,1)()
+      val tape = new InterpreterBF(StreamIO.byteArray(), out)().tape
+      tape(0) must_== 2
+      tape(1) must_== 0
+    }
+
+    "cconst(2,0) cconst(2,1) cgt(0,1)" >> {
+      val core = new ComplexCoreBF(System.out)
+      val out = core.cconst(2,0)() + core.cconst(2,1)() + core.cgt(0,1)()
+      val tape = new InterpreterBF(StreamIO.byteArray(), out)().tape
+      tape(0) must_== 2
+      tape(1) must_== 1
+    }
+
+    "cconst(3,0) cconst(2,1) cgt(0,1)" >> {
+      val core = new ComplexCoreBF(System.out)
+      val out = core.cconst(3,0)() + core.cconst(2,1)() + core.cgt(0,1)()
+      val tape = new InterpreterBF(StreamIO.byteArray(), out)().tape
+      tape(0) must_== 3
+      tape(1) must_== 1
+    }
 
   }
 }
