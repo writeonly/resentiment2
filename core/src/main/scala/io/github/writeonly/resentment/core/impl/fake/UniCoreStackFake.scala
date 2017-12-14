@@ -1,9 +1,9 @@
-package io.github.writeonly.resentment.core.impl
+package io.github.writeonly.resentment.core.impl.fake
 
 import io.github.writeonly.resentment.core.api.UniCore
 import io.github.writeonly.resentment.fsm.StreamIO
 
-class UniCoreStackFake(val io : StreamIO) extends Fake with UniCore[Unit] {
+class UniCoreStackFake(val io: StreamIO) extends Fake with UniCore[Unit] {
 
   override def uvar(o: Symbol) = {
     symbols.put(o, topPointer)
@@ -11,17 +11,24 @@ class UniCoreStackFake(val io : StreamIO) extends Fake with UniCore[Unit] {
     ust(o)
   }
 
-  override def ust(o:Symbol) = stack(pointer(o)) =  accumulator.asInstanceOf[Byte]
-  override def uld(o:Symbol) = accumulator =  stack.get(pointer(o)).get
+  override def ust(o: Symbol) = stack(pointer(o)) = accumulator.asInstanceOf[Byte]
+
+  override def uld(o: Symbol) = accumulator = stack.get(pointer(o)).get
+
   override def uld(o: Int) = ???
-  def uld(o:Char) = accumulator = o.toInt
-  def uld(o:String) = accumulator =  o.toInt
+
+  def uld(o: Char) = accumulator = o.toInt
+
+  def uld(o: String) = accumulator = o.toInt
 
   override def pout() = io.out.write(accumulator)
+
   override def pin() = ???
 
   override def pnot() = ???
+
   override def pneg() = ???
+
   override def png1() = ???
 
   override def uadd(o: Int) = ???

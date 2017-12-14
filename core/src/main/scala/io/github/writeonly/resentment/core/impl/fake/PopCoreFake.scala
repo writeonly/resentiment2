@@ -1,17 +1,17 @@
-package io.github.writeonly.resentment.core.impl
+package io.github.writeonly.resentment.core.impl.fake
 
 import io.github.writeonly.resentment.core.api.PopCore
 import io.github.writeonly.resentment.fsm.StreamIO
 
-class PopCoreFake(val io : StreamIO) extends Fake[PopCoreFake] with PopCore[Unit] {
+class PopCoreFake(val io: StreamIO) extends Fake[PopCoreFake] with PopCore[Unit] {
 
-  def popi(f :(Byte,Byte) => Int):Unit = {
-    stack(topPointer-1) = f(stack(topPointer-1), top).asInstanceOf[Byte]
+  def popi(f: (Byte, Byte) => Int): Unit = {
+    stack(topPointer - 1) = f(stack(topPointer - 1), top).asInstanceOf[Byte]
     pop
   }
 
-  def popb(f :(Byte,Byte) => Boolean):Unit = {
-    stack(topPointer-1) = toInt(f(stack(topPointer-1), top))
+  def popb(f: (Byte, Byte) => Boolean): Unit = {
+    stack(topPointer - 1) = toInt(f(stack(topPointer - 1), top))
     pop
   }
 
@@ -22,29 +22,34 @@ class PopCoreFake(val io : StreamIO) extends Fake[PopCoreFake] with PopCore[Unit
 
   def top: Byte = stack(topPointer)
 
-  def top(l :(Byte) => Int):Unit = stack(topPointer) = l(top).asInstanceOf[Byte]
+  def top(l: (Byte) => Int): Unit = stack(topPointer) = l(top).asInstanceOf[Byte]
 
-  def toInt(b:Boolean) = (if (b) 1 else 0).asInstanceOf[Byte]
+  def toInt(b: Boolean) = (if (b) 1 else 0).asInstanceOf[Byte]
 
-  def toBoolean(b:Integer):Boolean =  b != 0
+  def toBoolean(b: Integer): Boolean = b != 0
 
   override def uvar(o: Symbol) = {
     symbols.put(o, basePointer)
     basePointer += 1
     ppush
-//    ust(o)
+    //    ust(o)
   }
 
   override def ust(o: Symbol): Unit = stack(symbols(o)) = top
+
   override def uld(o: Symbol): Unit = uld(stack(symbols(o)))
+
   override def uld(o: Int) = stack(topPointer) = o.toByte
+
   override def uld(o: Char) = uld(o.toInt)
+
   override def uld(o: String) = uld(o.toInt)
 
   override def pin() = ???
+
   override def pout() = io.out.write(top)
 
-  override def ppush: Unit = topPointer +=1
+  override def ppush: Unit = topPointer += 1
 
   override def ppop() = ???
 

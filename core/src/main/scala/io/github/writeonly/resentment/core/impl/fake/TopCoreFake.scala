@@ -1,4 +1,4 @@
-package io.github.writeonly.resentment.core.impl
+package io.github.writeonly.resentment.core.impl.fake
 
 import io.github.writeonly.resentment.core.api.TopCore
 import io.github.writeonly.resentment.core.set.TopCoreExpression
@@ -6,19 +6,26 @@ import io.github.writeonly.resentment.core.set.TopCoreExpression
 class TopCoreFake extends Fake with TopCore[Unit] {
 
   override def uvar(s: Symbol) = ???
+
   override def ust(s: Symbol): Unit = ???
 
   override def uld(s: Symbol): Unit = ???
+
   override def uld(c: Int): Unit = ???
+
   override def uld(o: Char) = ???
+
   override def uld(o: String) = ???
 
   override def pin() = ???
+
   override def pout() = ???
 
 
   override def pnot() = ???
+
   override def pneg() = ???
+
   override def png1() = ???
 
   override def uadd(o: Load => TopCoreExpression) = ???

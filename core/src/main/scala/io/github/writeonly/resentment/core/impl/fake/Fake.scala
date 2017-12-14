@@ -1,8 +1,8 @@
-package io.github.writeonly.resentment.core.impl
+package io.github.writeonly.resentment.core.impl.fake
 
 import scala.collection.mutable
 
-class Fake[T<:Fake[_]] {
+class Fake[T <: Fake[_]] {
   val symbols = new mutable.HashMap[Symbol, Int]
   var accumulator = 0
   val stack = new mutable.HashMap[Int, Byte]()
@@ -11,9 +11,9 @@ class Fake[T<:Fake[_]] {
 
   def pointer(symbol: Symbol) = symbols(symbol)
 
-  def value(symbol:Symbol) = stack(symbols(symbol))
+  def value(symbol: Symbol) = stack(symbols(symbol))
 
-  def apply(f : T => Unit) : T = {
+  def apply(f: T => Unit): T = {
     f(asInstanceOf[T])
     asInstanceOf[T]
   }
