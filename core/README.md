@@ -20,6 +20,7 @@
 * pExpression
 * ladder
 ## Prop Tests
+https://www.programcreek.com/scala/org.specs2.ScalaCheck
 * move
 * byte
 * bool
