@@ -19,3 +19,7 @@
 * uCompter
 * pExpression
 * ladder
+## Prop Tests
+* move
+* byte
+* bool
