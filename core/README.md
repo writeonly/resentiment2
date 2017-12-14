@@ -21,6 +21,7 @@
 * ladder
 ## Prop Tests
 https://www.programcreek.com/scala/org.specs2.ScalaCheck
+https://www.codesd.com/item/how-to-use-specs2-with-scalacheck-to-automate-the-string-arguments-test.html
 * move
 * byte
 * bool
