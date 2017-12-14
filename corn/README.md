@@ -1,5 +1,8 @@
 # Invisible Pink Unicorn
-* InvisibleUniCorn - 1 argument assembler
+* ConCorn - Complex Assembler, inspired AVR Assembler https://ea.elportal.pl/asm_avr_jezyk.html
+* RedCorn - Reduce Assembler, inspired ARM Asembler 
+* MinCorn - Minimal Assembler 
+* UniCorn - Uni argument Assembler inspired InstructionList
 * PinkPopCorn - Hight Level language
 * SeaCorn - implementation of C
 * dc
