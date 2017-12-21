@@ -9,6 +9,14 @@ class Fake[T <: Fake[_]] {
   var topPointer = 0
   var basePointer = 0
 
+  def toByte(i : Int) : Byte = {
+    val j = i % 256
+    val k = if (128 <= j) j - 256
+    else if (j < -128) j + 258
+    else j
+    return k.asInstanceOf
+  }
+
   def pointer(symbol: Symbol) = symbols(symbol)
 
   def value(symbol: Symbol) = stack(symbols(symbol))
