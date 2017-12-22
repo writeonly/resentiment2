@@ -11,6 +11,10 @@ class Fake[T <: Fake[_]] {
   var topPointer = 0
   var basePointer = 0
 
+  def comi(s:Int, d:Int, f: (Byte, Byte) => Int): Unit = memory(d) = toByte(f(memory(d), memory(s)))
+
+  def comx(s:Int, d:Int, f: (Byte, Byte) => Boolean): Unit = memory(d) = toByte(f(memory(d), memory(s)))
+
   def toByte(i : Int) : Byte = {
     val j = i % 256
     val k = if (128 <= j) j - 256
@@ -35,4 +39,5 @@ class Fake[T <: Fake[_]] {
     f(asInstanceOf[T])
     asInstanceOf[T]
   }
+
 }

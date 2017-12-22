@@ -1,8 +1,8 @@
 package io.github.writeonly.resentment.core.impl.bf
 
-import java.io.PrintStream
+import io.github.writeonly.resentment.core.impl.common.FString
 
-class CoreBF(print : PrintStream) {
+class CoreBF {
 
   var head = 0
 

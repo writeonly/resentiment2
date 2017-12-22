@@ -4,25 +4,21 @@ import io.github.writeonly.resentment.core.api.ComplexCore
 
 class ComplexCoreFake extends Fake with ComplexCore[Unit] {
 
-  def funi(s:Int, d:Int, f: (Byte, Byte) => Int): Unit = memory(d) = toByte(f(memory(d), memory(s)))
-
-  def funx(s:Int, d:Int, f: (Byte, Byte) => Boolean): Unit = memory(d) = toByte(f(memory(d), memory(s)))
-
   override def cconst(s: Int, d: Int) = memory(d) = s.asInstanceOf[Byte]
 
   override def cclr(d: Int) = memory(d) = 0
 
   override def cmv(s: Int, d: Int) = memory(d) = memory(s)
 
-  override def cadd(s: Int, d: Int) = funi(s, d, _ + _)
+  override def cadd(s: Int, d: Int) = comi(s, d, _ + _)
 
-  override def csub(s: Int, d: Int) = funi(s, d, _ - _)
+  override def csub(s: Int, d: Int) = comi(s, d, _ - _)
 
-  override def cmul(s: Int, d: Int) = funi(s, d, _ * _)
+  override def cmul(s: Int, d: Int) = comi(s, d, _ * _)
 
-  override def cdiv(s: Int, d: Int) = funi(s, d, _ / _)
+  override def cdiv(s: Int, d: Int) = comi(s, d, _ / _)
 
-  override def cpow(s: Int, d: Int) = funi(s, d, _ % _)
+  override def cpow(s: Int, d: Int) = comi(s, d, _ % _)
 
   override def cswap(d1: Int, d2: Int) = {
     val tmp  = memory(d1)
@@ -34,11 +30,11 @@ class ComplexCoreFake extends Fake with ComplexCore[Unit] {
 
   override def cnot(d: Int) = memory(d) = toByte(!toBoolean(memory(d)))
 
-  override def ceq(s: Int, d: Int) = funx(s, d, _ == _)
+  override def ceq(s: Int, d: Int) = comx(s, d, _ == _)
 
-  override def cne(s: Int, d: Int) = funx(s, d, _ != _)
+  override def cne(s: Int, d: Int) = comx(s, d, _ != _)
 
-  override def cge(s: Int, d: Int) = funx(s, d, _ <= _)
+  override def cge(s: Int, d: Int) = comx(s, d, _ <= _)
 
-  override def cgt(s: Int, d: Int) = funx(s, d, _ < _)
+  override def cgt(s: Int, d: Int) = comx(s, d, _ < _)
 }

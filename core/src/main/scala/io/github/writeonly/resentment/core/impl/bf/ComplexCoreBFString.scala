@@ -3,8 +3,9 @@ package io.github.writeonly.resentment.core.impl.bf
 import java.io.PrintStream
 
 import io.github.writeonly.resentment.core.api.ComplexCore
+import io.github.writeonly.resentment.core.impl.common.FString
 
-class ComplexCoreBF(print: PrintStream) extends CoreBF(print) with ComplexCore[FString] {
+class ComplexCoreBFString(print: PrintStream) extends CoreBF with ComplexCore[FString] {
 
   def cmv(s: Int, d: Int): FString = mk(cclr(d), add2(s, d, -1), add1(-1, s))
 
