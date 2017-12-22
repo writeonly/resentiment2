@@ -1,8 +1,10 @@
 package io.github.writeonly.resentment.core.impl.common
 
-import java.lang.{ StringBuilder => JavaStringBuilder }
+import java.lang.{StringBuilder => JavaStringBuilder}
 
-class Teapot()  {
+import io.github.writeonly.resentment.api.FInterpreter
+
+class Teapot(f : FInterpreter)  {
   val appendable = new JavaStringBuilder
-  def apply() = ???
+  def apply() = f(appendable.toString.getBytes)()
 }

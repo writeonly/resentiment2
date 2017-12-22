@@ -2,9 +2,7 @@ package io.github.writeonly.resentment.fsm
 
 import java.io.Reader
 
-import io.github.writeonly.resentment.api.{Interpreter, StreamIO}
-
-import scala.collection.mutable
+import io.github.writeonly.resentment.api.{HashMap0Int, Interpreter, StreamIO}
 
 class InterpreterBF(val streamIO: StreamIO, code : Array[Byte]) extends Interpreter {
 
@@ -13,14 +11,11 @@ class InterpreterBF(val streamIO: StreamIO, code : Array[Byte]) extends Interpre
   var counter = 0
   var length = code.length
   var head = 0
-  val memory = new mutable.HashMap[Int,Int]() {
-    override def apply(k : Int) : Int = get(k).getOrElse(0)
-    def s(k: Int) : Int =  if (apply(k) <= 128) apply(k) else apply(k) - 256
-  }
+  val memory = new HashMap0Int()
 
   val jumpTable = new JumpTableCreator(code)()
 
-  def apply(): InterpreterBF = {
+  override def apply(): this.type = {
     while (counter != length) {
       apply(code(counter))
       counter += 1
@@ -43,7 +38,7 @@ class InterpreterBF(val streamIO: StreamIO, code : Array[Byte]) extends Interpre
 }
 
 object InterpreterBF {
-  def apply(streamIO: StreamIO, code :String):Unit = new InterpreterBF(streamIO, code.getBytes)
+  def apply(streamIO: StreamIO, code :String):Unit = new InterpreterBF(streamIO, code)
 
   def apply(reader : Reader):Unit = {
 
