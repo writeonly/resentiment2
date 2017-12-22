@@ -1,10 +1,12 @@
 package io.github.writeonly.resentment.fsm
 
-import java.io.{Reader}
+import java.io.Reader
+
+import io.github.writeonly.resentment.api.{Interpreter, StreamIO}
 
 import scala.collection.mutable
 
-class InterpreterBF(val streamIO: StreamIO, code : Array[Byte]) {
+class InterpreterBF(val streamIO: StreamIO, code : Array[Byte]) extends Interpreter {
 
   def this(streamIO:StreamIO, code:String) = this(streamIO, code.getBytes)
 

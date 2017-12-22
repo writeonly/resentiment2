@@ -2,8 +2,7 @@ apply plugin: 'scala'
 apply plugin: "jacoco"
 
 dependencies {
-    compile "org.scala-lang:scala-library:$scala_version"
-    compile group: 'com.google.guava', name: 'guava', version: '23.5-jre'
+    compile project (":api")
 }
 
 jacocoTestReport {

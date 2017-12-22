@@ -1,5 +1,6 @@
 rootProject.name = 'resentment'
 
+include 'api'
 include 'fsm'
 include 'core'
 include 'corn'
