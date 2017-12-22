@@ -6,27 +6,23 @@ import io.github.writeonly.resentment.fsm.StreamIO
 class PopCoreFake(val io: StreamIO) extends Fake[PopCoreFake] with PopCore[Unit] {
 
   def popi(f: (Byte, Byte) => Int): Unit = {
-    stack(topPointer - 1) = f(stack(topPointer - 1), top).asInstanceOf[Byte]
+    memory(topPointer - 1) = f(memory(topPointer - 1), top).asInstanceOf[Byte]
     pop
   }
 
   def popb(f: (Byte, Byte) => Boolean): Unit = {
-    stack(topPointer - 1) = toInt(f(stack(topPointer - 1), top))
+    memory(topPointer - 1) = toByte(f(memory(topPointer - 1), top))
     pop
   }
 
   def pop = {
-    stack(topPointer) = 0
+    memory(topPointer) = 0
     topPointer -= 1
   }
 
-  def top: Byte = stack(topPointer)
+  def top: Byte = memory(topPointer)
 
-  def top(l: (Byte) => Int): Unit = stack(topPointer) = l(top).asInstanceOf[Byte]
-
-  def toInt(b: Boolean) = (if (b) 1 else 0).asInstanceOf[Byte]
-
-  def toBoolean(b: Integer): Boolean = b != 0
+  def top(l: (Byte) => Int): Unit = memory(topPointer) = l(top).asInstanceOf[Byte]
 
   override def uvar(o: Symbol) = {
     symbols.put(o, basePointer)
@@ -35,11 +31,11 @@ class PopCoreFake(val io: StreamIO) extends Fake[PopCoreFake] with PopCore[Unit]
     //    ust(o)
   }
 
-  override def ust(o: Symbol): Unit = stack(symbols(o)) = top
+  override def ust(o: Symbol): Unit = memory(symbols(o)) = top
 
-  override def uld(o: Symbol): Unit = uld(stack(symbols(o)))
+  override def uld(o: Symbol): Unit = uld(memory(symbols(o)))
 
-  override def uld(o: Int) = stack(topPointer) = o.toByte
+  override def uld(o: Int) = memory(topPointer) = o.toByte
 
   override def uld(o: Char) = uld(o.toInt)
 

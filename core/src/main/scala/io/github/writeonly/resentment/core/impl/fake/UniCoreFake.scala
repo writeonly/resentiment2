@@ -5,10 +5,6 @@ import io.github.writeonly.resentment.fsm.StreamIO
 
 class UniCoreFake(val io: StreamIO) extends Fake with UniCore[Unit] {
 
-  private def toInt(o: Boolean) = if (o) 1 else 0
-
-  private def toBoolean(o: Int) = o != 0
-
   private def set(o: Boolean) = accumulator = toInt(o)
 
   override def uvar(o: Symbol) = ust(o)

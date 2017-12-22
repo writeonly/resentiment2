@@ -4,37 +4,41 @@ import io.github.writeonly.resentment.core.api.ComplexCore
 
 class ComplexCoreFake extends Fake with ComplexCore[Unit] {
 
-  override def cconst(s: Int, d: Int) = stack(d) = s.asInstanceOf
+  def funi(s:Int, d:Int, f: (Byte, Byte) => Int): Unit = memory(d) = toByte(f(memory(d), memory(s)))
 
-  override def cclr(d: Int) = stack(d) = 0
+  def funx(s:Int, d:Int, f: (Byte, Byte) => Boolean): Unit = memory(d) = toByte(f(memory(d), memory(s)))
 
-  override def cmv(s: Int, d: Int) = stack(d) = stack(s)
+  override def cconst(s: Int, d: Int) = memory(d) = s.asInstanceOf[Byte]
 
-  override def cadd(s: Int, d: Int) = stack(d) = toByte(stack(d) + stack(s))
+  override def cclr(d: Int) = memory(d) = 0
 
-  override def csub(s: Int, d: Int) = stack(d) = toByte(stack(d) - stack(s))
+  override def cmv(s: Int, d: Int) = memory(d) = memory(s)
 
-  override def cmul(s: Int, d: Int) = stack(d) = toByte(stack(d) * stack(s))
+  override def cadd(s: Int, d: Int) = funi(s, d, _ + _)
 
-  override def cdiv(s: Int, d: Int) = stack(d) = toByte(stack(d) / stack(s))
+  override def csub(s: Int, d: Int) = funi(s, d, _ - _)
 
-  override def cpow(s: Int, d: Int) = stack(d) = toByte(stack(d) % stack(s))
+  override def cmul(s: Int, d: Int) = funi(s, d, _ * _)
+
+  override def cdiv(s: Int, d: Int) = funi(s, d, _ / _)
+
+  override def cpow(s: Int, d: Int) = funi(s, d, _ % _)
 
   override def cswap(d1: Int, d2: Int) = {
-    val tmp  = stack(d1)
-    stack(d1) = stack(d2)
-    stack(d2) = tmp
+    val tmp  = memory(d1)
+    memory(d1) = memory(d2)
+    memory(d2) = tmp
   }
 
-  override def cneg(d: Int) = stack(d) = (-stack(d)).asInstanceOf
+  override def cneg(d: Int) = memory(d) = toByte(-memory(d))
 
-  override def cnot(d: Int) = ???
+  override def cnot(d: Int) = memory(d) = toByte(!toBoolean(memory(d)))
 
-  override def ceq(s: Int, d: Int) = ???
+  override def ceq(s: Int, d: Int) = funx(s, d, _ == _)
 
-  override def cne(s: Int, d: Int) = ???
+  override def cne(s: Int, d: Int) = funx(s, d, _ != _)
 
-  override def cge(s: Int, d: Int) = ???
+  override def cge(s: Int, d: Int) = funx(s, d, _ <= _)
 
-  override def cgt(s: Int, d: Int) = ???
+  override def cgt(s: Int, d: Int) = funx(s, d, _ < _)
 }
