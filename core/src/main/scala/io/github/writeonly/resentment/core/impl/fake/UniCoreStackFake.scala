@@ -13,7 +13,7 @@ class UniCoreStackFake(val io: StreamIO) extends Fake with UniCore[Unit] {
 
   override def ust(o: Symbol) = memory(pointer(o)) = accumulator.asInstanceOf[Byte]
 
-  override def uld(o: Symbol) = accumulator = memory.get(pointer(o)).get
+  override def uld(o: Symbol) = accumulator = memory(pointer(o))
 
   override def uld(o: Int) = ???
 

@@ -1,13 +1,13 @@
 package io.github.writeonly.resentment.core.impl.fake
 
-import io.github.writeonly.resentment.api.HashMap0Byte
+import io.github.writeonly.resentment.api.{Memory}
 
 import scala.collection.mutable
 
 class Fake[T <: Fake[_]] {
   val symbols = new mutable.HashMap[Symbol, Int]
   var accumulator = 0
-  val memory = new HashMap0Byte()
+  val memory = new Memory()
   var topPointer = 0
   var basePointer = 0
 
