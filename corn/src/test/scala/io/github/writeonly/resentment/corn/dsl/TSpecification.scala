@@ -5,6 +5,7 @@ import org.specs2.runner.JUnitRunner
 
 @RunWith(classOf[JUnitRunner])
 class TSpecification {
+
   class TSpecification extends org.specs2.mutable.Specification {
     "this is my specification" >> {
       "where example 1 must be true" >> {
@@ -15,4 +16,5 @@ class TSpecification {
       }
     }
   }
+
 }

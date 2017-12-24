@@ -5,9 +5,12 @@ trait CodeValidator extends Function[String, String] {
     require(valid(code), code)
     code
   }
-  def valid(code: String) : Boolean
-  def count(code:String, c : Char) = code.count(_ == c)
-  def pair(code:String, l:Char, r:Char) = count(code, l) ==  count(code, r)
+
+  def valid(code: String): Boolean
+
+  def count(code: String, c: Char) = code.count(_ == c)
+
+  def pair(code: String, l: Char, r: Char) = count(code, l) == count(code, r)
 
 }
 

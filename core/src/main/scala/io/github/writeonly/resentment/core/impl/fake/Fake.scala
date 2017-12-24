@@ -1,6 +1,6 @@
 package io.github.writeonly.resentment.core.impl.fake
 
-import io.github.writeonly.resentment.api.{Interpreter, Memory}
+import io.github.writeonly.resentment.api.Interpreter
 
 import scala.collection.mutable
 
@@ -10,9 +10,9 @@ class Fake[T <: Fake[_]] extends Interpreter {
   var topPointer = 0
   var basePointer = 0
 
-  def comi(s:Int, d:Int, f: (Byte, Byte) => Int): Unit = memory(d) = f(memory(d), memory(s))
+  def comi(s: Int, d: Int, f: (Byte, Byte) => Int): Unit = memory(d) = f(memory(d), memory(s))
 
-  def comx(s:Int, d:Int, f: (Byte, Byte) => Boolean): Unit = memory(d) = f(memory(d), memory(s))
+  def comx(s: Int, d: Int, f: (Byte, Byte) => Boolean): Unit = memory(d) = f(memory(d), memory(s))
 
   def pointer(symbol: Symbol) = symbols(symbol)
 

@@ -1,8 +1,11 @@
 package io.github.writeonly.resentment.core.set
 
 trait UniCoreLoad[C] {
-  def uld(o :Symbol) : C
-  def uld(o :Int) : C
-  def uld(o :Char) : C
-  def uld(o :String) : C
+  def uld(o: Symbol): C
+
+  def uld(o: Int): C
+
+  def uld(o: Char): C
+
+  def uld(o: String): C
 }

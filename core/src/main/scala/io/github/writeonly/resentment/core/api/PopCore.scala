@@ -4,5 +4,5 @@ import io.github.writeonly.resentment.core.set._
 
 trait PopCore[C]
   extends CommonCore[C]
-  with UniCoreVariable[C]
-  with PopCoreExpression[C]
+    with UniCoreVariable[C]
+    with PopCoreExpression[C]
