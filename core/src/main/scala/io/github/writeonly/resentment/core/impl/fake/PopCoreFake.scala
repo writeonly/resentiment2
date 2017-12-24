@@ -1,6 +1,6 @@
 package io.github.writeonly.resentment.core.impl.fake
 
-import io.github.writeonly.resentment.api.StreamIO
+import io.github.writeonly.resentment.api.{Memory, StreamIO}
 import io.github.writeonly.resentment.core.api.PopCore
 
 class PopCoreFake(val io: StreamIO) extends Fake[PopCoreFake] with PopCore[Unit] {
@@ -11,7 +11,7 @@ class PopCoreFake(val io: StreamIO) extends Fake[PopCoreFake] with PopCore[Unit]
   }
 
   def popb(f: (Byte, Byte) => Boolean): Unit = {
-    memory(topPointer - 1) = toByte(f(memory(topPointer - 1), top))
+    memory(topPointer - 1) = f(memory(topPointer - 1), top)
     pop
   }
 
@@ -63,9 +63,9 @@ class PopCoreFake(val io: StreamIO) extends Fake[PopCoreFake] with PopCore[Unit]
 
   override def pmod: Unit = popi((t1, t0) => t1 % t0)
 
-  override def pand: Unit = popb((t1, t0) => toBoolean(t1 & t0))
+  override def pand: Unit = popb((t1, t0) => Memory.toBoolean(t1 & t0))
 
-  override def por: Unit = popb((t1, t0) => toBoolean(t1 | t0))
+  override def por: Unit = popb((t1, t0) => Memory.toBoolean(t1 | t0))
 
   override def pnot: Unit = ???
 

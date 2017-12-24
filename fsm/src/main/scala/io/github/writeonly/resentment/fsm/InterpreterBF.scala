@@ -2,7 +2,7 @@ package io.github.writeonly.resentment.fsm
 
 import java.io.Reader
 
-import io.github.writeonly.resentment.api.{Memory, Interpreter, StreamIO}
+import io.github.writeonly.resentment.api.{Interpreter, StreamIO}
 
 class InterpreterBF(val streamIO: StreamIO, code : Array[Byte]) extends Interpreter {
 
@@ -11,7 +11,6 @@ class InterpreterBF(val streamIO: StreamIO, code : Array[Byte]) extends Interpre
   var counter = 0
   val length = code.length
   var head = 0
-  val memory = new Memory()
 
   val jumpTable = new JumpTableCreator(code)()
 

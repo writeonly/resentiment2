@@ -1,5 +1,6 @@
 package io.github.writeonly.resentment.core.impl.fake
 
+import io.github.writeonly.resentment.api.Memory
 import io.github.writeonly.resentment.core.api.ComplexCore
 
 class ComplexCoreFake extends Fake with ComplexCore[Unit] {
@@ -26,9 +27,9 @@ class ComplexCoreFake extends Fake with ComplexCore[Unit] {
     memory(d2) = tmp
   }
 
-  override def cneg(d: Int) = memory(d) = toByte(-memory(d))
+  override def cneg(d: Int) = memory(d) = -memory(d)
 
-  override def cnot(d: Int) = memory(d) = toByte(!toBoolean(memory(d)))
+  override def cnot(d: Int) = memory(d) = !Memory.toBoolean(memory(d))
 
   override def ceq(s: Int, d: Int) = comx(s, d, _ == _)
 

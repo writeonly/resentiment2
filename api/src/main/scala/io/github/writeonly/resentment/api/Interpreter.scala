@@ -1,5 +1,6 @@
 package io.github.writeonly.resentment.api
 
-trait Interpreter {
+abstract class Interpreter {
+  val memory = new Memory()
   def apply() : this.type
 }

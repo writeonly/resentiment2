@@ -13,6 +13,10 @@ object Memory {
   def toByte(b: Boolean) = toInt(b).asInstanceOf[Byte]
 
   def toInt(o: Boolean) = if (o) 1 else 0
+
+  def toBoolean(b:Byte) = b != 0
+
+  def toBoolean(b:Int) = b != 0
 }
 
 class Memory  {

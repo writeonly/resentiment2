@@ -1,11 +1,11 @@
 package io.github.writeonly.resentment.core.impl.fake
 
-import io.github.writeonly.resentment.api.StreamIO
+import io.github.writeonly.resentment.api.{Memory, StreamIO}
 import io.github.writeonly.resentment.core.api.UniCore
 
 class UniCoreFake(val io: StreamIO) extends Fake with UniCore[Unit] {
 
-  private def set(o: Boolean) = accumulator = toInt(o)
+  private def set(o: Boolean) = accumulator = Memory.toInt(o)
 
   override def uvar(o: Symbol) = ust(o)
 
@@ -45,11 +45,11 @@ class UniCoreFake(val io: StreamIO) extends Fake with UniCore[Unit] {
 
   override def uand(o: Symbol): Unit = uand(pointer(o))
 
-  override def uand(o: Int): Unit = set(toBoolean(accumulator) & toBoolean(o))
+  override def uand(o: Int): Unit = set(Memory.toBoolean(accumulator) & Memory.toBoolean(o))
 
   override def uor(o: Symbol): Unit = uor(pointer(o))
 
-  override def uor(o: Int): Unit = set(toBoolean(accumulator) | toBoolean(o))
+  override def uor(o: Int): Unit = set(Memory.toBoolean(accumulator) | Memory.toBoolean(o))
 
   override def ueq(o: Symbol): Unit = ueq(pointer(o))
 
@@ -77,7 +77,7 @@ class UniCoreFake(val io: StreamIO) extends Fake with UniCore[Unit] {
 
   override def pneg(): Unit = accumulator = -accumulator
 
-  override def pnot(): Unit = set(!toBoolean(accumulator))
+  override def pnot(): Unit = set(!Memory.toBoolean(accumulator))
 
   override def png1() = ???
 
