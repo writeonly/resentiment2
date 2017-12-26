@@ -1,8 +1,8 @@
 rootProject.name = 'resentment'
 
-include 'api'
-include 'fsm'
-include 'core'
-include 'corn'
+include 'fsm:api'
+include 'fsm:impl'
+include 'ipu:core'
+include 'ipu:corn'
 include 'teapot'
 

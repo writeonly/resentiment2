@@ -2,7 +2,7 @@ apply plugin: 'scala'
 apply plugin: "jacoco"
 
 dependencies {
-    compile project (":api")
+    compile project (":fsm:api")
 }
 
 jacocoTestReport {
