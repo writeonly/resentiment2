@@ -5,7 +5,7 @@ trait ComplexCore[F] {
 
   def cconst(s: Int, d: Int): F
 
-  def cmv(s: Int, d: Int): F
+  def cmov(s: Int, d: Int): F
 
   def cadd(s: Int, d: Int): F
 

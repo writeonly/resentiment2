@@ -9,7 +9,7 @@ class ComplexCoreFake extends Fake with ComplexCore[Unit] {
 
   override def cconst(s: Int, d: Int): Unit = memory(d) = s.asInstanceOf[Byte]
 
-  override def cmv(s: Int, d: Int): Unit = memory(d) = memory(s)
+  override def cmov(s: Int, d: Int): Unit = memory(d) = memory(s)
 
   override def cadd(s: Int, d: Int): Unit = comi(s, d, _ + _)
 

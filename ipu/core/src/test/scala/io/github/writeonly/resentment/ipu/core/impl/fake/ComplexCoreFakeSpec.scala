@@ -27,7 +27,7 @@ class ComplexCoreFakeSpec extends org.specs2.mutable.Specification
     "cconst(2,1) cmv(1,2)" >> {
       val core = new ComplexCoreFake
       core.cconst(2, 1)
-      core.cmv(1, 2)
+      core.cmov(1, 2)
       val tape = core.memory
       tape(0) must_== 0
       tape(1) must_== 2

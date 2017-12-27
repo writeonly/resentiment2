@@ -51,7 +51,7 @@ class ComplexCoreBFStringSpec extends org.specs2.mutable.Specification
       out must_== ">[-]"
     }
     "where example 1 must be true" >> {
-      val out = new ComplexCoreBFString().cmv(0, 1)()
+      val out = new ComplexCoreBFString().cmov(0, 1)()
       out must_== ">[-]<[>+<<+>-]<[>+<-]"
     }
     "cconst(1,2)" >> {
@@ -71,7 +71,7 @@ class ComplexCoreBFStringSpec extends org.specs2.mutable.Specification
     }
     "cconst(2,1) cmv(1,2)" >> {
       val core = new ComplexCoreBFString()
-      val out = core.cconst(2, 1)() + core.cmv(1, 2)()
+      val out = core.cconst(2, 1)() + core.cmov(1, 2)()
       out must_== ">[-]++>[-]<[>+<<<+>>-]<<[>>+<<-]"
       val tape = new InterpreterBF(StreamIO.byteArray(), out)().memory
       tape(0) must_== 0

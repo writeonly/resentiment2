@@ -10,7 +10,7 @@ class ComplexCoreAppendable(core: ComplexCore[FString], appendable: Appendable) 
 
   override def cconst(s: Int, d: Int): Unit = append(core.cconst(s, d))
 
-  override def cmv(s: Int, d: Int): Unit = append(core.cmv(s, d))
+  override def cmov(s: Int, d: Int): Unit = append(core.cmov(s, d))
 
   override def cadd(s: Int, d: Int): Unit = append(core.cadd(s, d))
 

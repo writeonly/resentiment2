@@ -30,7 +30,7 @@ class ComplexCoreBufferedBFSpec extends org.specs2.mutable.Specification
     "cconst(2,1) cmv(1,2)" >> {
       val core = new ComplexCoreBufferedBF
       core.cconst(2, 1)
-      core.cmv(1, 2)
+      core.cmov(1, 2)
       val tape = core.apply().memory
       tape(0) must_== 0
       tape(1) must_== 2
