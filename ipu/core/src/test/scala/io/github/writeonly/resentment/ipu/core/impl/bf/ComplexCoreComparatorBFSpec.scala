@@ -13,8 +13,8 @@ class ComplexCoreComparatorBFSpec extends org.specs2.mutable.Specification with 
     def asResult(u: =>Unit): Result = { u; Success() }
   }
 
-  val value = Gen.choose(0, 256)
-  val address = Gen.choose(0, 256)
+  private val value = Gen.choose(0, 256)
+  private val address = Gen.choose(0, 256)
 
   "this is a specific property" >> {
 
@@ -33,30 +33,30 @@ class ComplexCoreComparatorBFSpec extends org.specs2.mutable.Specification with 
 //      }
 //    }.setGens(value, address, address)
 
-//    "cconst cadd" >> prop { (v: Int, d1: Int, d2 : Int) =>
-//      val comparator = new ComplexCoreComparatorBF
-//      comparator { c =>
-//        c.cconst(v, d1)
-//        c.cadd(d1, d2)
-//      }
-//    }.setGens(value, address, address)
+    "cconst cadd" >> prop { (v: Int, d1: Int, d2 : Int) =>
+      val comparator = new ComplexCoreComparatorBF
+      comparator { c =>
+        c.cconst(v, d1)
+        c.cadd(d1, d2)
+      }
+    }.setGens(value, address, address)
 
-//    "cconst csub" >> prop { (v: Int, d1: Int, d2 : Int) =>
-//      val comparator = new ComplexCoreComparatorBF
-//      comparator { c =>
-//        c.cconst(v, d1)
-//        c.csub(d1, d2)
-//      }
-//    }.setGens(value, address, address)
+    "cconst csub" >> prop { (v: Int, d1: Int, d2 : Int) =>
+      val comparator = new ComplexCoreComparatorBF
+      comparator { c =>
+        c.cconst(v, d1)
+        c.csub(d1, d2)
+      }
+    }.setGens(value, address, address)
 
-//    "cconst cmul" >> prop { (v: Int, d1: Int, d2 : Int) =>
-//      val comparator = new ComplexCoreComparatorBF
-//      comparator { c =>
-//        c.cconst(v, d1)
-//        c.cmul(d1, d2)
-//      }
-//    }.setGens(value, address, address)
-//
+    "cconst cmul" >> prop { (v: Int, d1: Int, d2 : Int) =>
+      val comparator = new ComplexCoreComparatorBF
+      comparator { c =>
+        c.cconst(v, d1)
+        c.cmul(d1, d2)
+      }
+    }.setGens(value, address, address)
+
 //    "cconst cdiv" >> prop { (v: Int, d1: Int, d2 : Int) =>
 //      val comparator = new ComplexCoreComparatorBF
 //      comparator { c =>
@@ -81,35 +81,35 @@ class ComplexCoreComparatorBFSpec extends org.specs2.mutable.Specification with 
 //      }
 //    }.setGens(value, address)
 
-//    "cconst ceq" >> prop { (v: Int, d1: Int, d2 : Int) =>
+    "cconst ceq" >> prop { (v: Int, d1: Int, d2 : Int) =>
+      val comparator = new ComplexCoreComparatorBF
+      comparator { c =>
+        c.cconst(v, d1)
+        c.ceq(d1, d2)
+      }
+    }.setGens(value, address, address)
+
+    "cconst cne" >> prop { (v: Int, d1: Int, d2 : Int) =>
+      val comparator = new ComplexCoreComparatorBF
+      comparator { c =>
+        c.cconst(v, d1)
+        c.cne(d1, d2)
+      }
+    }.setGens(value, address, address)
+
+//    "cconst cle" >> prop { (v: Int, d1: Int, d2 : Int) =>
 //      val comparator = new ComplexCoreComparatorBF
 //      comparator { c =>
 //        c.cconst(v, d1)
-//        c.ceq(d1, d2)
+//        c.cle(d1, d2)
 //      }
 //    }.setGens(value, address, address)
 //
-//    "cconst cne" >> prop { (v: Int, d1: Int, d2 : Int) =>
+//    "cconst clt" >> prop { (v: Int, d1: Int, d2 : Int) =>
 //      val comparator = new ComplexCoreComparatorBF
 //      comparator { c =>
 //        c.cconst(v, d1)
-//        c.cne(d1, d2)
-//      }
-//    }.setGens(value, address, address)
-//
-//    "cconst cge" >> prop { (v: Int, d1: Int, d2 : Int) =>
-//      val comparator = new ComplexCoreComparatorBF
-//      comparator { c =>
-//        c.cconst(v, d1)
-//        c.cge(d1, d2)
-//      }
-//    }.setGens(value, address, address)
-//
-//    "cconst cgt" >> prop { (v: Int, d1: Int, d2 : Int) =>
-//      val comparator = new ComplexCoreComparatorBF
-//      comparator { c =>
-//        c.cconst(v, d1)
-//        c.cgt(d1, d2)
+//        c.clt(d1, d2)
 //      }
 //    }.setGens(value, address, address)
 
