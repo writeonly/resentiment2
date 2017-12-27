@@ -1,19 +1,18 @@
 package io.github.writeonly.resentment.ipu.core.impl.fake
 
 import io.github.writeonly.resentment.ipu.core.api.ComplexCore
-import io.github.writeonly.resentment.ipu.core.impl.common.ComplexCoreTeapot
+import io.github.writeonly.resentment.ipu.core.impl.common.ComplexCoreBuffered
 
-class ComplexCoreComparator (wrapper: ComplexCoreTeapot, fake: ComplexCoreFake) {
+class ComplexCoreComparator (buffered: ComplexCoreBuffered, fake: ComplexCoreFake) {
   def apply (f: ComplexCore[Unit] => Unit) = {
-    f(wrapper)
+    f(buffered)
     f(fake)
-    val interpreter = wrapper.apply()
-    val aMemory = interpreter.memory
-    val eMemory = fake.memory
-    eMemory.map.foreach(entry => {
-      val requirement = aMemory.map(entry._1)  == entry._2
+    val interpreter = buffered.apply()
+    val actual = interpreter.memory
+    val expected = fake.memory
+    expected.map.foreach(entry => {
+      val requirement = actual.map(entry._1)  == entry._2
       require (requirement)
     })
-
   }
 }

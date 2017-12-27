@@ -3,9 +3,9 @@ package io.github.writeonly.resentment.ipu.core.impl.common
 import io.github.writeonly.resentment.fsm.api.Interpreter
 import io.github.writeonly.resentment.ipu.core.api.ComplexCore
 
-class ComplexCoreTeapot(core: ComplexCore[FString], teapot: Teapot)
-  extends ComplexCoreAppendable(core, teapot.appendable) {
+class ComplexCoreBuffered(core: ComplexCore[FString], buffered: BufferedInterpreter)
+  extends ComplexCoreAppendable(core, buffered.appendable) {
 
-  def apply(): Interpreter = teapot()
+  def apply(): Interpreter = buffered()
 
 }
