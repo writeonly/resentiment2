@@ -1,6 +1,4 @@
 package io.github.writeonly.resentment.ipu.core.impl.bf
-
-import io.github.writeonly.resentment.ipu.core.impl.fake.{ComplexCoreComparator, ComplexCoreFake}
 import org.junit.runner.RunWith
 import org.scalacheck.Gen
 import org.specs2.ScalaCheck
@@ -20,36 +18,103 @@ class ComplexCoreComparatorBFSpec extends org.specs2.mutable.Specification with 
 
   "this is a specific property" >> {
 
-    "cconst" >> prop { (s: Int, d: Int) =>
-      val comparator = new ComplexCoreComparator(new ComplexCoreBufferedBF, new ComplexCoreFake)
+    "cconst" >> prop { (v: Int, d: Int) =>
+      val comparator = new ComplexCoreComparatorBF
       comparator {
-        _.cconst(s, d)
+        _.cconst(v, d)
       }
     }.setGens(value, address)
 
-    "cconst cmv" >> prop { (s: Int, d1: Int, d2 : Int) =>
-      val comparator = new ComplexCoreComparator(new ComplexCoreBufferedBF, new ComplexCoreFake)
+    "cconst cmv" >> prop { (v: Int, d1: Int, d2 : Int) =>
+      val comparator = new ComplexCoreComparatorBF
       comparator { c =>
-        c.cconst(s, d1)
+        c.cconst(v, d1)
         c.cmv(d1, d2)
       }
     }.setGens(value, address, address)
 
-    "cconst cneg" >> prop { (s: Int, d1: Int) =>
-      val comparator = new ComplexCoreComparator(new ComplexCoreBufferedBF, new ComplexCoreFake)
+    "cconst cadd" >> prop { (v: Int, d1: Int, d2 : Int) =>
+      val comparator = new ComplexCoreComparatorBF
       comparator { c =>
-        c.cconst(s, d1)
+        c.cconst(v, d1)
+        c.cadd(d1, d2)
+      }
+    }.setGens(value, address, address)
+
+    "cconst csub" >> prop { (v: Int, d1: Int, d2 : Int) =>
+      val comparator = new ComplexCoreComparatorBF
+      comparator { c =>
+        c.cconst(v, d1)
+        c.csub(d1, d2)
+      }
+    }.setGens(value, address, address)
+
+//    "cconst cmul" >> prop { (v: Int, d1: Int, d2 : Int) =>
+//      val comparator = new ComplexCoreComparatorBF
+//      comparator { c =>
+//        c.cconst(v, d1)
+//        c.cmul(d1, d2)
+//      }
+//    }.setGens(value, address, address)
+//
+//    "cconst cdiv" >> prop { (v: Int, d1: Int, d2 : Int) =>
+//      val comparator = new ComplexCoreComparatorBF
+//      comparator { c =>
+//        c.cconst(v, d1)
+//        c.cdiv(d1, d2)
+//      }
+//    }.setGens(value, address, address)
+    
+    "cconst cneg" >> prop { (v: Int, d1: Int) =>
+      val comparator = new ComplexCoreComparatorBF
+      comparator { c =>
+        c.cconst(v, d1)
         c.cneg(d1)
       }
     }.setGens(value, address)
-
+    
 //    "cconst cnot" >> prop { (s: Int, d1: Int) =>
-//      val comparator = new ComplexCoreComparator(new ComplexCoreBufferedBF, new ComplexCoreFake)
+//      val comparator = new ComplexCoreComparatorBF
 //      comparator { c =>
 //        c.cconst(s, d1)
 //        c.cnot(d1)
 //      }
 //    }.setGens(value, address)
+
+//    "cconst ceq" >> prop { (v: Int, d1: Int, d2 : Int) =>
+//      val comparator = new ComplexCoreComparatorBF
+//      comparator { c =>
+//        c.cconst(v, d1)
+//        c.ceq(d1, d2)
+//      }
+//    }.setGens(value, address, address)
+//
+//    "cconst cne" >> prop { (v: Int, d1: Int, d2 : Int) =>
+//      val comparator = new ComplexCoreComparatorBF
+//      comparator { c =>
+//        c.cconst(v, d1)
+//        c.cne(d1, d2)
+//      }
+//    }.setGens(value, address, address)
+//
+//    "cconst cge" >> prop { (v: Int, d1: Int, d2 : Int) =>
+//      val comparator = new ComplexCoreComparatorBF
+//      comparator { c =>
+//        c.cconst(v, d1)
+//        c.cge(d1, d2)
+//      }
+//    }.setGens(value, address, address)
+//
+//    "cconst cgt" >> prop { (v: Int, d1: Int, d2 : Int) =>
+//      val comparator = new ComplexCoreComparatorBF
+//      comparator { c =>
+//        c.cconst(v, d1)
+//        c.cgt(d1, d2)
+//      }
+//    }.setGens(value, address, address)
+
+
+
 
   }
 }

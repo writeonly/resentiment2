@@ -5,9 +5,9 @@ import io.github.writeonly.resentment.ipu.core.api.ComplexCore
 
 class ComplexCoreFake extends Fake with ComplexCore[Unit] {
 
-  override def cconst(s: Int, d: Int): Unit = memory(d) = s.asInstanceOf[Byte]
-
   override def cclr(d: Int): Unit = memory(d) = 0
+
+  override def cconst(s: Int, d: Int): Unit = memory(d) = s.asInstanceOf[Byte]
 
   override def cmv(s: Int, d: Int): Unit = memory(d) = memory(s)
 

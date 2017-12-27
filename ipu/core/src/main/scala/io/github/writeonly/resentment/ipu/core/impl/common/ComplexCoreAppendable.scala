@@ -6,9 +6,9 @@ class ComplexCoreAppendable(core: ComplexCore[FString], appendable: Appendable) 
 
   def append(f: FString): Appendable = appendable.append(f())
 
-  override def cconst(s: Int, d: Int): Unit = append(core.cconst(s, d))
-
   override def cclr(d: Int): Unit = append(core.cclr(d))
+
+  override def cconst(s: Int, d: Int): Unit = append(core.cconst(s, d))
 
   override def cmv(s: Int, d: Int): Unit = append(core.cmv(s, d))
 
