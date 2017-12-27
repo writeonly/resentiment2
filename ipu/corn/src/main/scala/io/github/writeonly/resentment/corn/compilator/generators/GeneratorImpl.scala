@@ -1,6 +1,6 @@
 package io.github.writeonly.resentment.corn.compilator.generators
 
-import io.github.writeonly.resentment.core.set.CommonCore
+import io.github.writeonly.resentment.ipu.core.set.CommonCore
 import io.github.writeonly.resentment.corn.notation._
 
 class GeneratorImpl(val e: CommonCore[Unit]) extends Generator {
