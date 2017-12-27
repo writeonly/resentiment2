@@ -1,4 +1,4 @@
-package io.github.writeonly.resentiment.teapot.phases.analyzers
+package io.github.writeonly.resentment.teapot.phases.analyzers
 
 import io.github.writeonly.resentment.corn.compilator.analyzers.AnalyzerLR
 import io.github.writeonly.resentment.corn.notation._

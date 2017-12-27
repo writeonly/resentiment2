@@ -1,7 +1,7 @@
-package io.github.writeonly.resentiment.teapot.phases.generators
+package io.github.writeonly.resentment.teapot.phases.generators
 
-import io.github.writeonly.resentiment.teapot.phases.analyzers.AnalyzerLRBasic
 import io.github.writeonly.resentment.corn.notation._
+import io.github.writeonly.resentment.teapot.phases.analyzers.AnalyzerLRBasic
 
 class Calculator {
   def resolve(terminal: Command): BigDecimal = terminal match {
