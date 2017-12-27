@@ -7,12 +7,23 @@ class ComplexCoreComparator (buffered: ComplexCoreBuffered, fake: ComplexCoreFak
   def apply (f: ComplexCore[Unit] => Unit) = {
     f(buffered)
     f(fake)
-    val interpreter = buffered.apply()
+    val interpreter = buffered()
     val actual = interpreter.memory
     val expected = fake.memory
     expected.map.foreach(entry => {
-      val requirement = actual.map(entry._1)  == entry._2
-      require (requirement)
+      val key = entry._1
+      val eValue = entry._2
+//      val aValue = actual.map.get(key) match {
+//        case Some(v) => v
+//        case None => {
+//          val expectedString = expected.map.toString
+//          val actualString = actual.map.toString
+//          throw new IllegalArgumentException(expectedString + " " + actualString)
+//        }
+//      }
+      val aValue = actual(key)
+      val requirement = aValue  == eValue
+      require (requirement, "key " + key  + " eValue " + eValue  + " aValue " + aValue)
     })
   }
 }
