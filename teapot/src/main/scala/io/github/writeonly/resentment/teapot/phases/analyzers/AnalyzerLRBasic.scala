@@ -1,7 +1,7 @@
 package io.github.writeonly.resentment.teapot.phases.analyzers
 
-import io.github.writeonly.resentment.ipu.corn.notation.{BinaryOperation, Command, LoadDecinal}
 import io.github.writeonly.resentment.ipu.corn.compilator.analyzers.AnalyzerLR
+import io.github.writeonly.resentment.ipu.corn.notation.{BinaryOperation, Command, LoadDecinal}
 
 class AnalyzerLRBasic extends AnalyzerLR {
   lazy val expression: PackratParser[Command] =

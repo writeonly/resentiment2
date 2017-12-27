@@ -7,5 +7,5 @@ import io.github.writeonly.resentment.fsm.api.{FInterpreter, Interpreter}
 class Teapot(f: FInterpreter) {
   val appendable = new JavaStringBuilder
 
-  def apply() : Interpreter = f(appendable.toString.getBytes)()
+  def apply(): Interpreter = f(appendable.toString.getBytes)()
 }
