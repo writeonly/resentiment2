@@ -1,4 +1,4 @@
-package io.github.writeonly.resentment.corn.notation
+package io.github.writeonly.resentment.ipu.corn.notation
 
 object Operators {
   val var_operator = "uvar"

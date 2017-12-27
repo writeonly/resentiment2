@@ -1,7 +1,7 @@
 package io.github.writeonly.resentment.teapot.phases.analyzers
 
-import io.github.writeonly.resentment.corn.compilator.analyzers.AnalyzerLR
-import io.github.writeonly.resentment.corn.notation._
+import io.github.writeonly.resentment.ipu.corn.notation._
+import io.github.writeonly.resentment.ipu.corn.compilator.analyzers.AnalyzerLR
 
 class AnalyzerLRForth extends AnalyzerLR {
 

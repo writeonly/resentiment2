@@ -1,4 +1,4 @@
-package io.github.writeonly.resentment.corn.dsl
+package io.github.writeonly.resentment.ipu.corn.dsl
 
 import io.github.writeonly.resentment.ipu.core.api.{PopCore, TopCore}
 import io.github.writeonly.resentment.ipu.core.set.TopCoreExpression

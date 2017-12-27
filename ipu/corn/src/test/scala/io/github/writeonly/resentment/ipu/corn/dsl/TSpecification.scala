@@ -1,4 +1,4 @@
-package io.github.writeonly.resentment.corn.dsl
+package io.github.writeonly.resentment.ipu.corn.dsl
 
 import org.junit.runner.RunWith
 import org.specs2.runner.JUnitRunner

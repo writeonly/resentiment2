@@ -1,6 +1,7 @@
-package io.github.writeonly.resentment.corn.compilator.analyzers
+package io.github.writeonly.resentment.ipu.corn.compilator.analyzers
 
-import io.github.writeonly.resentment.corn.notation._
+import io.github.writeonly.resentment.ipu.corn.notation._
+import io.github.writeonly.resentment.ipu.corn.notation.Operators
 
 class AnalyzerLLInvisibleUniCorn extends AnalyzerLL {
 

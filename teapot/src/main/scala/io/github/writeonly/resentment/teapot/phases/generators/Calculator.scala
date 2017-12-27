@@ -1,6 +1,6 @@
 package io.github.writeonly.resentment.teapot.phases.generators
 
-import io.github.writeonly.resentment.corn.notation._
+import io.github.writeonly.resentment.ipu.corn.notation._
 import io.github.writeonly.resentment.teapot.phases.analyzers.AnalyzerLRBasic
 
 class Calculator {

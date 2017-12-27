@@ -1,5 +1,6 @@
+package io.github.writeonly.resentment.ipu.corn.dsl
+
 import io.github.writeonly.resentment.ipu.core.impl.fake.PopCoreFake
-import io.github.writeonly.resentment.corn.dsl.InvisibleUniCornDsl
 import io.github.writeonly.resentment.fsm.api.StreamIO
 import org.junit.runner.RunWith
 import org.specs2.runner.JUnitRunner
