@@ -62,6 +62,8 @@ class CoreBF {
 
   def cclr(d: Int): FString = cconst(0, d: Int)
 
+  def cset(d: Int): FString = cconst(1, d: Int)
+
   def ge1(d: Int): FString = rm(-2, "[<-]<[>", "<-<]>+>", r(d, "-"), cconst(0, -1))
 
   def ge2(d: Int): FString = rm(-2, "-[<-]<[>", "<-<]>+>", r(d, "-"), cconst(1, -1))
