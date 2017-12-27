@@ -39,8 +39,8 @@ class ComplexCoreFake extends Fake with ComplexCore[Unit] {
 
   override def cne(s: Int, d: Int): Unit = comx(s, d, _ != _)
 
-  override def cle(s: Int, d: Int): Unit = comx(s, d, _ <= _)
+  override def cle(s: Int, d: Int): Unit = comx(s, d, _ >= _)
 
-  override def clt(s: Int, d: Int): Unit = comx(s, d, _ < _)
+  override def clt(s: Int, d: Int): Unit = comx(s, d, _ > _)
 
 }

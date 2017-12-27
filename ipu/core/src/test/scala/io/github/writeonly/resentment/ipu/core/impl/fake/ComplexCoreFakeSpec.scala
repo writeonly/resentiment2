@@ -165,7 +165,7 @@ class ComplexCoreFakeSpec extends org.specs2.mutable.Specification
       core.cle(0, 1)
       val tape = core.memory
       tape(0) must_== 2
-      tape(1) must_== 0
+      tape(1) must_== 1
     }
 
     "cconst(2,0) cconst(2,1) cge(0,1)" >> {
@@ -185,7 +185,7 @@ class ComplexCoreFakeSpec extends org.specs2.mutable.Specification
       core.cle(0, 1)
       val tape = core.memory
       tape(0) must_== 3
-      tape(1) must_== 1
+      tape(1) must_== 0
     }
 
     "cconst(2,0) cconst(3,1) cgt(0,1)" >> {
@@ -195,7 +195,7 @@ class ComplexCoreFakeSpec extends org.specs2.mutable.Specification
       core.clt(0, 1)
       val tape = core.memory
       tape(0) must_== 2
-      tape(1) must_== 0
+      tape(1) must_== 1
     }
 
     "cconst(2,0) cconst(2,1) cgt(0,1)" >> {
@@ -215,7 +215,7 @@ class ComplexCoreFakeSpec extends org.specs2.mutable.Specification
       core.clt(0, 1)
       val tape = core.memory
       tape(0) must_== 3
-      tape(1) must_== 1
+      tape(1) must_== 0
     }
 
   }

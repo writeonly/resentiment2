@@ -23,7 +23,7 @@ class ComplexCoreComparator (buffered: ComplexCoreBuffered, fake: ComplexCoreFak
 //      }
       val aValue = actual(key)
       val requirement = aValue  == eValue
-      require (requirement, "key " + key  + " eValue " + eValue  + " aValue " + aValue)
+      require (requirement, "key " + key  + " eValue " + eValue  + " aValue " + aValue + " e " + expected.map.toString() + " a " + actual.map.toString())
     })
   }
 }
