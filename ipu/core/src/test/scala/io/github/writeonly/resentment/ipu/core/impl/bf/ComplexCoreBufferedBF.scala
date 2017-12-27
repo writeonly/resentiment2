@@ -11,6 +11,6 @@ class FInterpreterBF extends FInterpreter {
 
 class BufferedInterpreterBF extends BufferedInterpreter(new FInterpreterBF)
 
-class ComplexCoreBufferedBF extends ComplexCoreBuffered(new ComplexCoreBFString, new BufferedInterpreterBF)
+class ComplexCoreBufferedBF extends ComplexCoreBuffered(new ComplexCoreBFSafe(), new BufferedInterpreterBF)
 
 class ComplexCoreComparatorBF extends ComplexCoreComparator(new ComplexCoreBufferedBF, new ComplexCoreFake)

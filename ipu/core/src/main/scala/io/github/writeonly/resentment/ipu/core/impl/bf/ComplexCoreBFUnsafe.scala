@@ -3,7 +3,7 @@ package io.github.writeonly.resentment.ipu.core.impl.bf
 import io.github.writeonly.resentment.ipu.core.api.ComplexCore
 import io.github.writeonly.resentment.ipu.core.impl.common.FString
 
-class ComplexCoreBFString extends CoreBF with ComplexCore[FString] {
+class ComplexCoreBFUnsafe extends CoreBF with ComplexCore[FString] {
 
   def cmov(s: Int, d: Int): FString = mk(cclr(d), add2(s, d, -1), add1(-1, s))
 
