@@ -8,9 +8,13 @@ class ComplexCoreAppendable(core: ComplexCore[FString], appendable: Appendable) 
 
   override def cclr(d: Int): Unit = append(core.cclr(d))
 
+  override def cset(d: Int): Unit = append(core.cset(d))
+
   override def cconst(s: Int, d: Int): Unit = append(core.cconst(s, d))
 
   override def cmov(s: Int, d: Int): Unit = append(core.cmov(s, d))
+
+  override def cswap(d1: Int, d2: Int): Unit = append(core.cswap(d1, d2))
 
   override def cadd(s: Int, d: Int): Unit = append(core.cadd(s, d))
 
@@ -22,8 +26,6 @@ class ComplexCoreAppendable(core: ComplexCore[FString], appendable: Appendable) 
 
   override def cpow(s: Int, d: Int): Unit = append(core.cpow(s, d))
 
-  override def cswap(d1: Int, d2: Int): Unit = append(core.cswap(d1, d2))
-
   override def cneg(d: Int): Unit = append(core.cneg(d))
 
   override def cnot(d: Int): Unit = append(core.cnot(d))
@@ -32,7 +34,7 @@ class ComplexCoreAppendable(core: ComplexCore[FString], appendable: Appendable) 
 
   override def cne(s: Int, d: Int): Unit = append(core.cne(s, d))
 
-  override def cge(s: Int, d: Int): Unit = append(core.cge(s, d))
+  override def cle(s: Int, d: Int): Unit = append(core.cle(s, d))
 
-  override def cgt(s: Int, d: Int): Unit = append(core.cgt(s, d))
+  override def clt(s: Int, d: Int): Unit = append(core.clt(s, d))
 }

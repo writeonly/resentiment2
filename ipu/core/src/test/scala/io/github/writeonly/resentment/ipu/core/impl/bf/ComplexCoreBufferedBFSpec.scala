@@ -166,7 +166,7 @@ class ComplexCoreBufferedBFSpec extends org.specs2.mutable.Specification
       val core = new ComplexCoreBufferedBF
       core.cconst(2, 0)
       core.cconst(3, 1)
-      core.cge(0, 1)
+      core.cle(0, 1)
       val tape = core.apply().memory
       tape(0) must_== 2
       tape(1) must_== 0
@@ -176,7 +176,7 @@ class ComplexCoreBufferedBFSpec extends org.specs2.mutable.Specification
       val core = new ComplexCoreBufferedBF
       core.cconst(2, 0)
       core.cconst(2, 1)
-      core.cge(0, 1)
+      core.cle(0, 1)
       val tape = core.apply().memory
       tape(0) must_== 2
       tape(1) must_== 0
@@ -186,7 +186,7 @@ class ComplexCoreBufferedBFSpec extends org.specs2.mutable.Specification
       val core = new ComplexCoreBufferedBF
       core.cconst(3, 0)
       core.cconst(2, 1)
-      core.cge(0, 1)
+      core.cle(0, 1)
       val tape = core.apply().memory
       tape(0) must_== 3
       tape(1) must_== 1
@@ -196,7 +196,7 @@ class ComplexCoreBufferedBFSpec extends org.specs2.mutable.Specification
       val core = new ComplexCoreBufferedBF
       core.cconst(2, 0)
       core.cconst(3, 1)
-      core.cgt(0, 1)
+      core.clt(0, 1)
       val tape = core.apply().memory
       tape(0) must_== 2
       tape(1) must_== 0
@@ -206,7 +206,7 @@ class ComplexCoreBufferedBFSpec extends org.specs2.mutable.Specification
       val core = new ComplexCoreBufferedBF
       core.cconst(2, 0)
       core.cconst(2, 1)
-      core.cgt(0, 1)
+      core.clt(0, 1)
       val tape = core.apply().memory
       tape(0) must_== 2
       tape(1) must_== 1
@@ -216,7 +216,7 @@ class ComplexCoreBufferedBFSpec extends org.specs2.mutable.Specification
       val core = new ComplexCoreBufferedBF
       core.cconst(3, 0)
       core.cconst(2, 1)
-      core.cgt(0, 1)
+      core.clt(0, 1)
       val tape = core.apply().memory
       tape(0) must_== 3
       tape(1) must_== 1
