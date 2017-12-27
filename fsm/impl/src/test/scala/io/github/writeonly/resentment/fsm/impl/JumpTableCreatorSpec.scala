@@ -1,4 +1,4 @@
-package io.github.writeonly.resentment.fsm
+package io.github.writeonly.resentment.fsm.impl
 
 import io.github.writeonly.resentment.fsm.api.StreamIO
 import org.junit.runner.RunWith

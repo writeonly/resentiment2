@@ -1,4 +1,4 @@
-package io.github.writeonly.resentment.fsm
+package io.github.writeonly.resentment.fsm.impl
 
 import com.google.common.base.MoreObjects
 
