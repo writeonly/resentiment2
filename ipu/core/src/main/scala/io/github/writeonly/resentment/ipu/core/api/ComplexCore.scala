@@ -1,6 +1,8 @@
 package io.github.writeonly.resentment.ipu.core.api
 
 trait ComplexCore[F] {
+  def cnop(): F
+
   def cclr(d: Int): F
 
   def cset(d: Int): F

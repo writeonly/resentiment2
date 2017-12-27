@@ -5,6 +5,8 @@ import io.github.writeonly.resentment.ipu.core.api.ComplexCore
 
 class ComplexCoreFake extends Fake with ComplexCore[Unit] {
 
+  override def cnop() : Unit = {}
+
   override def cclr(d: Int): Unit = memory(d) = 0
 
   override def cset(d: Int): Unit = memory(d) = 1
@@ -40,4 +42,5 @@ class ComplexCoreFake extends Fake with ComplexCore[Unit] {
   override def cle(s: Int, d: Int): Unit = comx(s, d, _ <= _)
 
   override def clt(s: Int, d: Int): Unit = comx(s, d, _ < _)
+
 }

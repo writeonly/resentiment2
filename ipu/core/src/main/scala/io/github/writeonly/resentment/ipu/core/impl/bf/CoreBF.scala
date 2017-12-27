@@ -58,11 +58,13 @@ class CoreBF {
 
   def sub2(s: Int, d1: Int, d2: Int): FString = rw(s, "-", r(d1, "-"), r(d2, "+"))
 
-  def cconst(s: Int, d: Int): FString = rw(d, "-", id(s))
+  def cnop(): FString = FString.empty
 
   def cclr(d: Int): FString = cconst(0, d: Int)
 
   def cset(d: Int): FString = cconst(1, d: Int)
+
+  def cconst(s: Int, d: Int): FString = rw(d, "-", id(s))
 
   def ge1(d: Int): FString = rm(-2, "[<-]<[>", "<-<]>+>", r(d, "-"), cconst(0, -1))
 

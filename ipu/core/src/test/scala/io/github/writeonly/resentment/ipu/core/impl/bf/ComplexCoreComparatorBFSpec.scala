@@ -25,13 +25,13 @@ class ComplexCoreComparatorBFSpec extends org.specs2.mutable.Specification with 
       }
     }.setGens(value, address)
 
-//    "cconst cmv" >> prop { (v: Int, d1: Int, d2 : Int) =>
-//      val comparator = new ComplexCoreComparatorBF
-//      comparator { c =>
-//        c.cconst(v, d1)
-//        c.cmv(d1, d2)
-//      }
-//    }.setGens(value, address, address)
+    "cconst cmov" >> prop { (v: Int, d1: Int, d2 : Int) =>
+      val comparator = new ComplexCoreComparatorBF
+      comparator { c =>
+        c.cconst(v, d1)
+        c.cmov(d1, d2)
+      }
+    }.setGens(value, address, address)
 
     "cconst cadd" >> prop { (v: Int, d1: Int, d2 : Int) =>
       val comparator = new ComplexCoreComparatorBF

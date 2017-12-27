@@ -6,6 +6,8 @@ class ComplexCoreAppendable(core: ComplexCore[FString], appendable: Appendable) 
 
   def append(f: FString): Appendable = appendable.append(f())
 
+  override def cnop() : Unit = append(core.cnop())
+
   override def cclr(d: Int): Unit = append(core.cclr(d))
 
   override def cset(d: Int): Unit = append(core.cset(d))

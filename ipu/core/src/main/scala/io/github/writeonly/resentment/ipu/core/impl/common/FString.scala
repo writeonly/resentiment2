@@ -7,3 +7,7 @@ case class FString(f: String => String) {
 
   override def toString: String = apply()
 }
+
+object FString {
+  def empty = FString(_ => "")
+}
