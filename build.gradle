@@ -49,6 +49,7 @@ subprojects {
         testCompile "org.specs2:specs2-html_2.11:$specs2_version"
         testCompile "org.specs2:specs2-form_2.11:$specs2_version"
         testCompile "org.specs2:specs2-analysis_2.11:$specs2_version"
+        testCompile "org.specs2:specs2-scalacheck_2.11:$specs2_version"
 //        testCompile group: 'org.scalamock', name: 'scalamock-scalatest-support_2.11', version: '3.6.0'
         testCompile 'junit:junit:4.12'
     }

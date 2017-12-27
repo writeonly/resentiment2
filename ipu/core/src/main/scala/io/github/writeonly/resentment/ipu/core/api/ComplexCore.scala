@@ -1,9 +1,9 @@
 package io.github.writeonly.resentment.ipu.core.api
 
 trait ComplexCore[F] {
-  def cconst(s: Int, d: Int): F
-
   def cclr(d: Int): F
+
+  def cconst(s: Int, d: Int): F
 
   def cmv(s: Int, d: Int): F
 
