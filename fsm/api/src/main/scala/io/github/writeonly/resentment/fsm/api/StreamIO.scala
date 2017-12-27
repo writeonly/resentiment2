@@ -1,4 +1,4 @@
-package io.github.writeonly.resentment.api
+package io.github.writeonly.resentment.fsm.api
 
 import java.io.{ByteArrayInputStream, ByteArrayOutputStream, InputStream, OutputStream}
 

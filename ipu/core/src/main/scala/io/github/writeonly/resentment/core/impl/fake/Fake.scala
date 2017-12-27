@@ -1,6 +1,6 @@
 package io.github.writeonly.resentment.core.impl.fake
 
-import io.github.writeonly.resentment.api.Interpreter
+import io.github.writeonly.resentment.fsm.api.Interpreter
 
 import scala.collection.mutable
 

@@ -1,7 +1,7 @@
 package io.github.writeonly.resentment.core.impl.fake
 
-import io.github.writeonly.resentment.api.Memory
 import io.github.writeonly.resentment.core.api.ComplexCore
+import io.github.writeonly.resentment.fsm.api.Memory
 
 class ComplexCoreFake extends Fake with ComplexCore[Unit] {
 

@@ -1,4 +1,4 @@
-package io.github.writeonly.resentment.api
+package io.github.writeonly.resentment.fsm.api
 
 abstract class Interpreter {
   val memory = new Memory()

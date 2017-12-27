@@ -2,7 +2,7 @@ package io.github.writeonly.resentment.fsm
 
 import java.io.Reader
 
-import io.github.writeonly.resentment.api.{Interpreter, StreamIO}
+import io.github.writeonly.resentment.fsm.api.{Interpreter, StreamIO}
 
 class InterpreterBF(val streamIO: StreamIO, code: Array[Byte]) extends Interpreter {
 

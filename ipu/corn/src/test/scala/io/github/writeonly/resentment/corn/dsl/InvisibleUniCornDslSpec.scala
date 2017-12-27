@@ -1,6 +1,6 @@
-import io.github.writeonly.resentment.api.StreamIO
 import io.github.writeonly.resentment.core.impl.fake.PopCoreFake
 import io.github.writeonly.resentment.corn.dsl.InvisibleUniCornDsl
+import io.github.writeonly.resentment.fsm.api.StreamIO
 import org.junit.runner.RunWith
 import org.specs2.runner.JUnitRunner
 

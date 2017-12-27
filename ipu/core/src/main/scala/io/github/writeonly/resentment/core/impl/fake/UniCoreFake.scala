@@ -1,7 +1,7 @@
 package io.github.writeonly.resentment.core.impl.fake
 
-import io.github.writeonly.resentment.api.{Memory, StreamIO}
 import io.github.writeonly.resentment.core.api.UniCore
+import io.github.writeonly.resentment.fsm.api.{Memory, StreamIO}
 
 class UniCoreFake(val io: StreamIO) extends Fake with UniCore[Unit] {
 
