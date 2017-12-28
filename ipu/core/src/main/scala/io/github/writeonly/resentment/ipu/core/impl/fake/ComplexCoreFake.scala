@@ -5,7 +5,7 @@ import io.github.writeonly.resentment.ipu.core.api.ComplexCore
 
 class ComplexCoreFake extends Fake with ComplexCore[Unit] {
 
-  override def cnop() : Unit = {}
+  override def cnop(): Unit = {}
 
   override def cclr(d: Int): Unit = memory(d) = 0
 

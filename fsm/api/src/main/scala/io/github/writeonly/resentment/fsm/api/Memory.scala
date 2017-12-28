@@ -21,13 +21,18 @@ object Memory {
 }
 
 class Memory {
-  val map = new HashMap[Int, Byte]()
+  private val map = new HashMap[Int, Byte]()
 
   def apply(k: Int): Byte = map.getOrElse(k, 0)
 
-  def update(key: Int, value: Int) = map.update(key, Memory.toByte(value))
+  def update(key: Int, value: Int): Unit = map.update(key, Memory.toByte(value))
 
-  def update(key: Int, value: Boolean) = map.update(key, Memory.toByte(value))
+  def update(key: Int, value: Boolean): Unit = map.update(key, Memory.toByte(value))
 
   def s(k: Int): Byte = Memory.toByte(apply(k))
+
+  override def toString: String = map.toString()
+
+  def foreach[U](f: ((Int, Byte)) => U): Unit = map.foreach(f)
+
 }

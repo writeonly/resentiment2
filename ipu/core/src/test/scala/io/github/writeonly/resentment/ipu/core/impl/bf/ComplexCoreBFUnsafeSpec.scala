@@ -1,7 +1,5 @@
 package io.github.writeonly.resentment.ipu.core.impl.bf
 
-import io.github.writeonly.resentment.fsm.api.StreamIO
-import io.github.writeonly.resentment.fsm.impl.InterpreterBF
 import org.junit.runner.RunWith
 import org.specs2.runner.JUnitRunner
 import org.specs2.specification.AroundTimeout

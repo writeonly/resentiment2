@@ -2,10 +2,10 @@ package io.github.writeonly.resentment.ipu.core.impl.common
 
 import io.github.writeonly.resentment.ipu.core.api.ComplexCore
 
-abstract class ComplexCoreWrapper[T, R](core : ComplexCore[T]) extends ComplexCore[R] {
-  def apply(t:T): R
+abstract class ComplexCoreWrapper[T, R](core: ComplexCore[T]) extends ComplexCore[R] {
+  def apply(t: T): R
 
-  override def cnop() : R = apply(core.cnop())
+  override def cnop(): R = apply(core.cnop())
 
   override def cclr(d: Int): R = apply(core.cclr(d))
 
