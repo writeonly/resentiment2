@@ -32,12 +32,11 @@ case class JumpTableCreator(code: Array[Byte], result: mutable.HashMap[Int, Int]
     result(j) = i
   }
 
-  def toString(counter: Int): String = {
-    MoreObjects.toStringHelper(this)
-      .add("code", new String(code))
-      .add("counter", counter)
-      .add("result", result)
-      .add("stack", stack)
-      .toString
-  }
+  def toString(counter: Int): String = MoreObjects.toStringHelper(this)
+    .add("code", new String(code))
+    .add("counter", counter)
+    .add("result", result)
+    .add("stack", stack)
+    .toString
+
 }

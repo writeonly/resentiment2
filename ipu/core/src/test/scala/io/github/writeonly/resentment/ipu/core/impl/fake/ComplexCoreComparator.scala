@@ -1,12 +1,11 @@
 package io.github.writeonly.resentment.ipu.core.impl.fake
 
-import io.github.writeonly.resentment.ipu.core.api.ComplexCore
-import io.github.writeonly.resentment.ipu.core.impl.common.ComplexCoreBuffered
+import io.github.writeonly.resentment.ipu.core.impl.common.{ComplexCoreBuffered, ComplexCoreDsl}
 
 class ComplexCoreComparator(buffered: ComplexCoreBuffered, fake: ComplexCoreFake) {
-  def apply(f: ComplexCore[Unit] => Unit): Unit = {
-    f(buffered)
-    f(fake)
+  def apply(f: ComplexCoreDsl => Unit): Unit = {
+    f(new ComplexCoreDsl(buffered))
+    f(new ComplexCoreDsl(fake))
     val interpreter = buffered()
     val actual = interpreter.memory
     val expected = fake.memory

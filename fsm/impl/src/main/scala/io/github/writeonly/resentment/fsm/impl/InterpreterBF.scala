@@ -2,6 +2,7 @@ package io.github.writeonly.resentment.fsm.impl
 
 import java.io.Reader
 
+import com.google.common.base.MoreObjects
 import io.github.writeonly.resentment.fsm.api.{Interpreter, StreamIO}
 
 class InterpreterBF(val streamIO: StreamIO, code: Array[Byte]) extends Interpreter {
@@ -11,13 +12,16 @@ class InterpreterBF(val streamIO: StreamIO, code: Array[Byte]) extends Interpret
   var counter = 0
   val length = code.length
   var head = 0
+  var watchdog = 0
 
   val jumpTable = new JumpTableCreator(code)()
 
   override def apply(): this.type = {
     while (counter != length) {
+      require(watchdog < 10000000, this)
       apply(code(counter))
       counter += 1
+      watchdog += 1
     }
     this
   }
@@ -33,6 +37,12 @@ class InterpreterBF(val streamIO: StreamIO, code: Array[Byte]) extends Interpret
     case '.' => streamIO.out.write(memory(head))
     case _ =>
   }
+
+  override def toString: String = MoreObjects.toStringHelper(this)
+    .add("code", new String(code))
+    .add("counter", counter)
+    .add("head", head)
+    .toString
 
 }
 
