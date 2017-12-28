@@ -7,5 +7,4 @@ class ComplexCoreBuffered(core: ComplexCore[FString], buffered: BufferedInterpre
   extends ComplexCoreAppendable(core, buffered.appendable) {
 
   def apply(): Interpreter = buffered()
-
 }

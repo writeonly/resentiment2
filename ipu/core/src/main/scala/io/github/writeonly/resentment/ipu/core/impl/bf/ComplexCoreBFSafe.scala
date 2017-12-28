@@ -33,12 +33,12 @@ class ComplexCoreBFSafe(core:ComplexCoreBFUnsafe) extends ComplexCore[FString] {
 
   override def cnot(d: Int): FString = core.cnot(d)
   
-  override def ceq(s: Int, d: Int): FString = if (s != d) core.ceq(s, d) else core.cset(d)
+  override def ceq(s: Int, d: Int): FString = if (s != d) core.ceq(s, d) else cset(d)
 
-  override def cne(s: Int, d: Int): FString = if (s != d) core.cne(s, d) else core.cclr(d)
+  override def cne(s: Int, d: Int): FString = if (s != d) core.cne(s, d) else cclr(d)
 
-  override def cle(s: Int, d: Int): FString = if (s != d) core.cle(s,d) else core.cset(d)
+  override def cle(s: Int, d: Int): FString = if (s != d) core.cle(s,d) else cset(d)
 
-  override def clt(s: Int, d: Int): FString = if (s != d) core.clt(s,d) else core.cclr(d)
+  override def clt(s: Int, d: Int): FString = if (s != d) core.clt(s,d) else cclr(d)
 
 }
