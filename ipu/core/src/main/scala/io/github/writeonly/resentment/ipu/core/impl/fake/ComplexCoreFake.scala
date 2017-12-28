@@ -33,6 +33,8 @@ class ComplexCoreFake extends Fake with ComplexCore[Unit] {
 
   override def cneg(d: Int): Unit = memory(d) = -memory(d)
 
+  override def cng1(d: Int): Unit = memory(d) = -memory(d) + 1
+
   override def cnot(d: Int): Unit = memory(d) = !Memory.toBoolean(memory(d))
 
   override def ceq(s: Int, d: Int): Unit = comx(s, d, _ == _)

@@ -109,6 +109,30 @@ class ComplexCoreFakeSpec extends org.specs2.mutable.Specification
       tape(1) must_== -3
     }
 
+    "cconst(-2,1) cneg(1)" >> {
+      val core = new ComplexCoreFake
+      core.cconst(-2, 1)
+      core.cneg(1)
+      val tape = core.memory
+      tape(1) must_== 2
+    }
+
+    "cconst(3,1) cng1(1)" >> {
+      val core = new ComplexCoreFake
+      core.cconst(3, 1)
+      core.cng1(1)
+      val tape = core.memory
+      tape(1) must_== -2
+    }
+
+    "cconst(-2,1) cng1(1)" >> {
+      val core = new ComplexCoreFake
+      core.cconst(-2, 1)
+      core.cng1(1)
+      val tape = core.memory
+      tape(1) must_== 3
+    }
+
     "cconst(3,1) cnot(1)" >> {
       val core = new ComplexCoreFake
       core.cconst(3, 1)

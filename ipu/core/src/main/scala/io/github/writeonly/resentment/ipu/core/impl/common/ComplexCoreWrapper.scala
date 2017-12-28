@@ -29,6 +29,8 @@ abstract class ComplexCoreWrapper[T, R](core : ComplexCore[T]) extends ComplexCo
 
   override def cneg(d: Int): R = apply(core.cneg(d))
 
+  override def cng1(d: Int): R = apply(core.cng1(d))
+
   override def cnot(d: Int): R = apply(core.cnot(d))
 
   override def ceq(s: Int, d: Int): R = apply(core.ceq(s, d))

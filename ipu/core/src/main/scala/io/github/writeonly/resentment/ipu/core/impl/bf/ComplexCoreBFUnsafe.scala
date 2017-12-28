@@ -21,6 +21,8 @@ class ComplexCoreBFUnsafe extends CoreBF with ComplexCore[FString] {
 
   def cneg(d: Int): FString = mk(sub1(d, -1), add1(-1, d))
 
+  def cng1(d: Int): FString = mk(id(-1, d), cneg(d))
+
   def cnot(d: Int): FString = mk(id(-1, d), cneg(d))
 
   def ceq(s: Int, d: Int): FString = mk(add1(d, -2, "+"), sub2(s, -2, -1), add1(-1, s), sub01(-2, d))

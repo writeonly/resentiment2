@@ -72,7 +72,15 @@ class ComplexCoreComparatorBFSpec extends org.specs2.mutable.Specification with 
         c.cneg(d1)
       }
     }.setGens(value, address)
-    
+
+    "cconst cng1" >> prop { (v: Int, d1: Int) =>
+      val comparator = new ComplexCoreComparatorBF
+      comparator { c =>
+        c.cconst(v, d1)
+        c.cng1(d1)
+      }
+    }.setGens(value, address)
+
 //    "cconst cnot" >> prop { (s: Int, d1: Int) =>
 //      val comparator = new ComplexCoreComparatorBF
 //      comparator { c =>

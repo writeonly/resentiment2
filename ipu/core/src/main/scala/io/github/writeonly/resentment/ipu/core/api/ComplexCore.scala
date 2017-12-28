@@ -25,6 +25,8 @@ trait ComplexCore[F] {
 
   def cneg(d: Int): F
 
+  def cng1(d: Int): F
+  
   def cnot(d: Int): F
 
   def ceq(s: Int, d: Int): F
