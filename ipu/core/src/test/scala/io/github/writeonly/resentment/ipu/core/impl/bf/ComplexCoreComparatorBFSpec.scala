@@ -18,8 +18,8 @@ class ComplexCoreComparatorBFSpec extends org.specs2.mutable.Specification with 
   }
 
   private val value = Gen.choose(0, 256)
-  private val address = Gen.choose(0, 256)
-  private val shortAddress = Gen.choose(0, 16)
+  private val address = Gen.choose(1, 256)
+  private val shortAddress = Gen.choose(1, 4)
 
   "this is a specific property" >> {
 
@@ -155,21 +155,38 @@ class ComplexCoreComparatorBFSpec extends org.specs2.mutable.Specification with 
       }
     }.setGens(value, value, address, address)
 
-    //        "cmovi cle" >> prop { (v: Int, d1: Int, d2 : Int) =>
-    //          val comparator = new ComplexCoreComparatorBF
-    //          comparator { c =>
-    //            c.cmovi(v, d1)
-    //            c.cle(d1, d2)
-    //          }
-    //        }.setGens(value, address, address)
-    //
-    //        "cmovi clt" >> prop { (v: Int, d1: Int, d2 : Int) =>
-    //          val comparator = new ComplexCoreComparatorBF
-    //          comparator { c =>
-    //            c.cmovi(v, d1)
-    //            c.clt(d1, d2)
-    //          }
-    //        }.setGens(value, address, address)
+    "cmovi cle" >> prop { (v: Int, d1: Int, d2: Int) =>
+      val comparator = new ComplexCoreComparatorBF
+      comparator { c =>
+        c.cmovi(v, d1)
+        c.cle(d1, d2)
+      }
+    }.setGens(value, address, address)
 
+    "cmovi cmovi cle" >> prop { (v1: Int, v2: Int, d1: Int, d2: Int) =>
+      val comparator = new ComplexCoreComparatorBF
+      comparator { c =>
+        c.cmovi(v1, d1)
+        c.cmovi(v2, d2)
+        c.cle(d1, d2)
+      }
+    }.setGens(value, value, address, address)
+
+    "cmovi clt" >> prop { (v: Int, d1: Int, d2: Int) =>
+      val comparator = new ComplexCoreComparatorBF
+      comparator { c =>
+        c.cmovi(v, d1)
+        c.clt(d1, d2)
+      }
+    }.setGens(value, address, address)
+
+    "cmovi cmovi clt" >> prop { (v1: Int, v2: Int, d1: Int, d2: Int) =>
+      val comparator = new ComplexCoreComparatorBF
+      comparator { c =>
+        c.cmovi(v1, d1)
+        c.cmovi(v2, d2)
+        c.clt(d1, d2)
+      }
+    }.setGens(value, value, address, address)
   }
 }

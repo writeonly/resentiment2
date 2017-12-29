@@ -29,7 +29,7 @@ case class TestEntry(key: Int, expectedValue: Byte, actualValue: Byte, expectedM
     .add("code", code)
     .toString
 
-  def code : String = {
+  def code: String = {
     //FIXME
     val appendable = new JavaStringBuilder()
     f(new ComplexCoreDsl(new ComplexCoreAppendable(new ComplexCoreText(), appendable)))
