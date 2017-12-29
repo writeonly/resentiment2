@@ -4,6 +4,7 @@ import java.lang.{StringBuilder => JavaStringBuilder}
 
 import com.google.common.base.MoreObjects
 import io.github.writeonly.resentment.fsm.api.Memory
+import io.github.writeonly.resentment.ipu.core.impl.text.ComplexCoreText
 import io.github.writeonly.resentment.ipu.core.impl.wrapper._
 
 class ComplexCoreComparator(buffered: ComplexCoreBuffered, fake: ComplexCoreFake) {
