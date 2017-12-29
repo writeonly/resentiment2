@@ -1,6 +1,6 @@
 package io.github.writeonly.resentment.ipu.core.impl.bf
 
-import io.github.writeonly.resentment.ipu.core.impl.common.FString
+import io.github.writeonly.resentment.ipu.core.common.FString
 
 class CoreBF {
 

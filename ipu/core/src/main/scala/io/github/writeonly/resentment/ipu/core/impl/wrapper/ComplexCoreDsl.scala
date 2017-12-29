@@ -1,4 +1,4 @@
-package io.github.writeonly.resentment.ipu.core.impl.common
+package io.github.writeonly.resentment.ipu.core.impl.wrapper
 
 import io.github.writeonly.resentment.ipu.core.api.ComplexCore
 

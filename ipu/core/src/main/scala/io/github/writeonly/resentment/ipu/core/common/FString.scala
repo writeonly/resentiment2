@@ -1,4 +1,4 @@
-package io.github.writeonly.resentment.ipu.core.impl.common
+package io.github.writeonly.resentment.ipu.core.common
 
 case class FString(f: String => String) {
   def apply(s: String): String = f(s)
