@@ -5,7 +5,7 @@ import java.io.Reader
 import com.google.common.base.MoreObjects
 import io.github.writeonly.resentment.fsm.api.{Interpreter, StreamIO}
 
-class InterpreterBF(val streamIO: StreamIO, code: Array[Byte], maxWatchdog : Int = 10000000) extends Interpreter {
+class InterpreterBF(val streamIO: StreamIO, code: Array[Byte], maxWatchdog: Int = 10000000) extends Interpreter {
 
   def this(streamIO: StreamIO, code: String, maxWatchdog: Int) = this(streamIO, code.getBytes, maxWatchdog)
 
