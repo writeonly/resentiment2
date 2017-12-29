@@ -16,7 +16,5 @@ object StreamIO {
 
   def byteArray(in: String): StreamIO = byteArray(in.getBytes)
 
-  def byteArray(io: StreamIO): String = io.toString
-
   def byteArray(): StreamIO = byteArray("")
 }

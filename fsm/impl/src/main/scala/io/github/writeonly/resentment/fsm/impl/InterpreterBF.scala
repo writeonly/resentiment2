@@ -5,7 +5,9 @@ import java.io.Reader
 import com.google.common.base.MoreObjects
 import io.github.writeonly.resentment.fsm.api.{Interpreter, StreamIO}
 
-class InterpreterBF(val streamIO: StreamIO, code: Array[Byte]) extends Interpreter {
+class InterpreterBF(val streamIO: StreamIO, code: Array[Byte], maxWatchdog : Int = 10000000) extends Interpreter {
+
+  def this(streamIO: StreamIO, code: String, maxWatchdog: Int) = this(streamIO, code.getBytes, maxWatchdog)
 
   def this(streamIO: StreamIO, code: String) = this(streamIO, code.getBytes)
 
@@ -18,7 +20,7 @@ class InterpreterBF(val streamIO: StreamIO, code: Array[Byte]) extends Interpret
 
   override def apply(): this.type = {
     while (counter != length) {
-      require(watchdog < 10000000, this)
+      require(watchdog < maxWatchdog, this)
       apply(code(counter))
       counter += 1
       watchdog += 1

@@ -4,9 +4,11 @@ import scala.collection.mutable.HashMap
 
 object Memory {
   def toByte(i: Int): Byte = {
-    val j = i % 256
-    val k = if (128 <= j) j - 256
-    else if (j < -128) j + 258
+    val max = 256
+    val half = max / 2
+    val j = i % max
+    val k = if (half <= j) j - max
+    else if (j < -half) j + max
     else j
     k.asInstanceOf[Byte]
   }

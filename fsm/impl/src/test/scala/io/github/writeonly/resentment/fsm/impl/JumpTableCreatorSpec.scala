@@ -19,9 +19,8 @@ class JumpTableCreatorSpec extends org.specs2.mutable.Specification {
     "where code [][[]]" >> {
       new JumpTableCreator("[][[]]")() must_== Map(0 -> 1, 5 -> 2, 1 -> 0, 2 -> 5, 3 -> 4, 4 -> 3)
     }
-    "where code hello world" >> {
-      val helloWorld = "++++++++[>++++[>++>+++>+++>+<<<<-]>+>+>->>+[<]<-]>>.>---.+++++++..+++.>>.<-.<.+++.------.--------.>>+.>++."
-      new InterpreterBF(StreamIO.byteArray(), helloWorld)().streamIO.toString must_== "Hello World!\n"
+    "where code ][" >> {
+      new JumpTableCreator("][")() must throwA[IllegalStateException]
     }
   }
 }
