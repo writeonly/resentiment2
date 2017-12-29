@@ -13,13 +13,13 @@ class ComplexCoreBFSafe(core: ComplexCoreBFUnsafe) extends ComplexCore[FString] 
 
   override def cset(d: Int): FString = core.cset(d)
 
-  override def cconst(s: Int, d: Int): FString = core.cconst(s, d)
+  override def cmovi(s: Int, d: Int): FString = core.cmovi(s, d)
 
   override def cmov(s: Int, d: Int): FString = if (s != d) core.cmov(s, d) else cnop()
 
   override def cswap(d1: Int, d2: Int): FString = if (d1 != d2) core.cswap(d1, d2) else cnop()
 
-  override def cadd(s: Int, d: Int): FString = if (s != d) core.cadd(s, d) else core.mk(cconst(2, -3), core.cmul(-3, d))
+  override def cadd(s: Int, d: Int): FString = if (s != d) core.cadd(s, d) else core.mk(cmovi(2, -3), core.cmul(-3, d))
 
   override def csub(s: Int, d: Int): FString = if (s != d) core.csub(s, d) else cclr(d)
 

@@ -19,156 +19,157 @@ class ComplexCoreComparatorBFSpec extends org.specs2.mutable.Specification with 
 
   private val value = Gen.choose(0, 256)
   private val address = Gen.choose(0, 256)
+  private val shortAddress = Gen.choose(0, 16)
 
   "this is a specific property" >> {
 
-    "cconst" >> prop { (v: Int, d: Int) =>
+    "cmovi" >> prop { (v: Int, d: Int) =>
       val comparator = new ComplexCoreComparatorBF
       comparator {
-        _ cconst(v, d)
+        _ cmovi(v, d)
       }
     }.setGens(value, address)
 
-    "cconst cmov" >> prop { (v: Int, d1: Int, d2: Int) =>
+    "cmovi cmov" >> prop { (v: Int, d1: Int, d2: Int) =>
       val comparator = new ComplexCoreComparatorBF
       comparator { c =>
-        c.cconst(v, d1)
+        c.cmovi(v, d1)
         c.cmov(d1, d2)
       }
     }.setGens(value, address, address)
 
-    "cconst cadd" >> prop { (v: Int, d1: Int, d2: Int) =>
+    "cmovi cadd" >> prop { (v: Int, d1: Int, d2: Int) =>
       val comparator = new ComplexCoreComparatorBF
       comparator { c =>
-        c.cconst(v, d1)
+        c.cmovi(v, d1)
         c.cadd(d1, d2)
       }
     }.setGens(value, address, address)
 
-    "cconst cconst cadd" >> prop { (v1: Int, v2: Int, d1: Int, d2: Int) =>
+    "cmovi cmovi cadd" >> prop { (v1: Int, v2: Int, d1: Int, d2: Int) =>
       val comparator = new ComplexCoreComparatorBF
       comparator { c =>
-        c.cconst(v1, d1)
-        c.cconst(v2, d2)
+        c.cmovi(v1, d1)
+        c.cmovi(v2, d2)
         c.cadd(d1, d2)
       }
     }.setGens(value, value, address, address)
 
-    "cconst csub" >> prop { (v: Int, d1: Int, d2: Int) =>
+    "cmovi csub" >> prop { (v: Int, d1: Int, d2: Int) =>
       val comparator = new ComplexCoreComparatorBF
       comparator { c =>
-        c.cconst(v, d1)
+        c.cmovi(v, d1)
         c.csub(d1, d2)
       }
     }.setGens(value, address, address)
 
-    "cconst cconst csub" >> prop { (v1: Int, v2: Int, d1: Int, d2: Int) =>
+    "cmovi cmovi csub" >> prop { (v1: Int, v2: Int, d1: Int, d2: Int) =>
       val comparator = new ComplexCoreComparatorBF
       comparator { c =>
-        c.cconst(v1, d1)
-        c.cconst(v2, d2)
+        c.cmovi(v1, d1)
+        c.cmovi(v2, d2)
         c.csub(d1, d2)
       }
     }.setGens(value, value, address, address)
 
-    "cconst cmul" >> prop { (v: Int, d1: Int, d2: Int) =>
+    "cmovi cmul" >> prop { (v: Int, d1: Int, d2: Int) =>
       val comparator = new ComplexCoreComparatorBF
       comparator { c =>
-        c.cconst(v, d1)
+        c.cmovi(v, d1)
         c.cmul(d1, d2)
       }
     }.setGens(value, address, address)
 
-    //    "cconst cconst cmul" >> prop { (v1: Int, v2: Int, d1: Int, d2: Int) =>
-    //      val comparator = new ComplexCoreComparatorBF
-    //      comparator { c =>
-    //        c.cconst(v1, d1)
-    //        c.cconst(v2, d2)
-    //        c.cmul(d1, d2)
-    //      }
-    //    }.setGens(value, value, address, address)
+    "cmovi cmovi cmul" >> prop { (v1: Int, v2: Int, d1: Int, d2: Int) =>
+      val comparator = new ComplexCoreComparatorBF
+      comparator { c =>
+        c.cmovi(v1, d1)
+        c.cmovi(v2, d2)
+        c.cmul(d1, d2)
+      }
+    }.setGens(value, value, shortAddress, shortAddress)
 
-    //    "cconst cdiv" >> prop { (v: Int, d1: Int, d2 : Int) =>
+    //    "cmovi cdiv" >> prop { (v: Int, d1: Int, d2 : Int) =>
     //      val comparator = new ComplexCoreComparatorBF
     //      comparator { c =>
-    //        c.cconst(v, d1)
+    //        c.cmovi(v, d1)
     //        c.cdiv(d1, d2)
     //      }
     //    }.setGens(value, address, address)
 
-    "cconst cneg" >> prop { (v: Int, d1: Int) =>
+    "cmovi cneg" >> prop { (v: Int, d1: Int) =>
       val comparator = new ComplexCoreComparatorBF
       comparator { c =>
-        c.cconst(v, d1)
+        c.cmovi(v, d1)
         c.cneg(d1)
       }
     }.setGens(value, address)
 
-    "cconst cng1" >> prop { (v: Int, d1: Int) =>
+    "cmovi cng1" >> prop { (v: Int, d1: Int) =>
       val comparator = new ComplexCoreComparatorBF
       comparator { c =>
-        c.cconst(v, d1)
+        c.cmovi(v, d1)
         c.cng1(d1)
       }
     }.setGens(value, address)
 
-    //    "cconst cnot" >> prop { (s: Int, d1: Int) =>
+    //    "cmovi cnot" >> prop { (s: Int, d1: Int) =>
     //      val comparator = new ComplexCoreComparatorBF
     //      comparator { c =>
-    //        c.cconst(s, d1)
+    //        c.cmovi(s, d1)
     //        c.cnot(d1)
     //      }
     //    }.setGens(value, address)
 
-    "cconst ceq" >> prop { (v: Int, d1: Int, d2: Int) =>
+    "cmovi ceq" >> prop { (v: Int, d1: Int, d2: Int) =>
       val comparator = new ComplexCoreComparatorBF
       comparator { c =>
-        c.cconst(v, d1)
+        c.cmovi(v, d1)
         c.ceq(d1, d2)
       }
     }.setGens(value, address, address)
 
-    "cconst cconst ceq" >> prop { (v1: Int, v2: Int, d1: Int, d2: Int) =>
+    "cmovi cmovi ceq" >> prop { (v1: Int, v2: Int, d1: Int, d2: Int) =>
       val comparator = new ComplexCoreComparatorBF
       comparator { c =>
-        c.cconst(v1, d1)
-        c.cconst(v2, d2)
+        c.cmovi(v1, d1)
+        c.cmovi(v2, d2)
         c.ceq(d1, d2)
       }
     }.setGens(value, value, address, address)
 
-    "cconst cne" >> prop { (v: Int, d1: Int, d2: Int) =>
+    "cmovi cne" >> prop { (v: Int, d1: Int, d2: Int) =>
       val comparator = new ComplexCoreComparatorBF
       comparator { c =>
-        c.cconst(v, d1)
+        c.cmovi(v, d1)
         c.cne(d1, d2)
       }
     }.setGens(value, address, address)
 
-    "cconst cconst cne" >> prop { (v1: Int, v2: Int, d1: Int, d2: Int) =>
+    "cmovi cmovi cne" >> prop { (v1: Int, v2: Int, d1: Int, d2: Int) =>
       val comparator = new ComplexCoreComparatorBF
       comparator { c =>
-        c.cconst(v1, d1)
-        c.cconst(v2, d2)
+        c.cmovi(v1, d1)
+        c.cmovi(v2, d2)
         c.cne(d1, d2)
       }
     }.setGens(value, value, address, address)
 
-    //    "cconst cle" >> prop { (v: Int, d1: Int, d2 : Int) =>
-    //      val comparator = new ComplexCoreComparatorBF
-    //      comparator { c =>
-    //        c.cconst(v, d1)
-    //        c.cle(d1, d2)
-    //      }
-    //    }.setGens(value, address, address)
+    //        "cmovi cle" >> prop { (v: Int, d1: Int, d2 : Int) =>
+    //          val comparator = new ComplexCoreComparatorBF
+    //          comparator { c =>
+    //            c.cmovi(v, d1)
+    //            c.cle(d1, d2)
+    //          }
+    //        }.setGens(value, address, address)
     //
-    //    "cconst clt" >> prop { (v: Int, d1: Int, d2 : Int) =>
-    //      val comparator = new ComplexCoreComparatorBF
-    //      comparator { c =>
-    //        c.cconst(v, d1)
-    //        c.clt(d1, d2)
-    //      }
-    //    }.setGens(value, address, address)
+    //        "cmovi clt" >> prop { (v: Int, d1: Int, d2 : Int) =>
+    //          val comparator = new ComplexCoreComparatorBF
+    //          comparator { c =>
+    //            c.cmovi(v, d1)
+    //            c.clt(d1, d2)
+    //          }
+    //        }.setGens(value, address, address)
 
   }
 }

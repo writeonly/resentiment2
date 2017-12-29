@@ -60,21 +60,21 @@ class CoreBF {
 
   def cnop(): FString = FString.empty
 
-  def cclr(d: Int): FString = cconst(0, d: Int)
+  def cclr(d: Int): FString = cmovi(0, d: Int)
 
-  def cset(d: Int): FString = cconst(1, d: Int)
+  def cset(d: Int): FString = cmovi(1, d: Int)
 
-  def cconst(s: Int, d: Int): FString = rw(d, "-", id(s))
+  def cmovi(s: Int, d: Int): FString = rw(d, "-", id(s))
 
-  def ge1(d: Int): FString = rm(-2, "[<-]<[>", "<-<]>+>", r(d, "-"), cconst(0, -1))
+  def ge1(d: Int): FString = rm(-2, "[<-]<[>", "<-<]>+>", r(d, "-"), cmovi(0, -1))
 
-  def ge2(d: Int): FString = rm(-2, "-[<-]<[>", "<-<]>+>", r(d, "-"), cconst(1, -1))
+  def ge2(d: Int): FString = rm(-2, "-[<-]<[>", "<-<]>+>", r(d, "-"), cmovi(1, -1))
 
   def ge3(d: Int): FString = rw(-1, "-", ge2(d))
 
-  def gt1(d: Int): FString = rm(-2, "[<-]<[>", "<-<]>+>", r(d, "+"), cconst(0, -1))
+  def gt1(d: Int): FString = rm(-2, "[<-]<[>", "<-<]>+>", r(d, "+"), cmovi(0, -1))
 
-  def gt2(d: Int): FString = rm(-2, "-[<-]<[>", "<-<]>+>", r(d, "+"), cconst(1, -1))
+  def gt2(d: Int): FString = rm(-2, "-[<-]<[>", "<-<]>+>", r(d, "+"), cmovi(1, -1))
 
   def gt3(d: Int): FString = rw(-1, "-", gt2(d))
 

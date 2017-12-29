@@ -11,7 +11,7 @@ abstract class ComplexCoreWrapper[T, R](core: ComplexCore[T]) extends ComplexCor
 
   override def cset(d: Int): R = apply(core.cset(d))
 
-  override def cconst(s: Int, d: Int): R = apply(core.cconst(s, d))
+  override def cmovi(s: Int, d: Int): R = apply(core.cmovi(s, d))
 
   override def cmov(s: Int, d: Int): R = apply(core.cmov(s, d))
 
