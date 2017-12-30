@@ -27,6 +27,8 @@ class ComplexCoreText extends ComplexCore[String] {
 
   override def cmul(s: Int, d: Int): String = apply("cmul", s, d)
 
+  override def cmuli(s: Int, d: Int): String = apply("cmuli", s, d)
+
   override def cdiv(s: Int, d: Int): String = apply("cdiv", s, d)
 
   override def cpow(s: Int, d: Int): String = apply("cpow", s, d)

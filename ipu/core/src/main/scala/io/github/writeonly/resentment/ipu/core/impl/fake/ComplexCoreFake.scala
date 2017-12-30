@@ -31,6 +31,8 @@ class ComplexCoreFake extends Fake with ComplexCore[Unit] {
 
   override def cmul(s: Int, d: Int): Unit = comi(s, d, _ * _)
 
+  override def cmuli(s: Int, d: Int): Unit = memory(d) = memory(d) * s
+
   override def cdiv(s: Int, d: Int): Unit = comi(s, d, _ / _)
 
   override def cpow(s: Int, d: Int): Unit = comi(s, d, _ % _)

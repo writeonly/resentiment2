@@ -23,6 +23,8 @@ trait ComplexCore[F] {
 
   def cmul(s: Int, d: Int): F
 
+  def cmuli(s: Int, d: Int): F
+
   def cdiv(s: Int, d: Int): F
 
   def cpow(s: Int, d: Int): F

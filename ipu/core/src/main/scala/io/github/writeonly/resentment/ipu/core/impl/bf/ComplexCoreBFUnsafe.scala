@@ -15,6 +15,8 @@ class ComplexCoreBFUnsafe extends CoreBF with ComplexCore[FString] {
 
   def cmul(s: Int, d: Int): FString = mk(add1(d, -2), rw(-2, "-", add2(s, d, -1), add1(-1, s)))
 
+  def cmuli(s: Int, d: Int): FString = mk(add1(d, -1), rw(-1, "-", caddi(s, d)))
+
   def cdiv(s: Int, d: Int): FString = mk(add1(d, -1))
 
   def cpow(s: Int, d: Int): FString = mk(add1(d, -1))
