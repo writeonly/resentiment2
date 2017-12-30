@@ -15,7 +15,11 @@ trait ComplexCore[F] {
 
   def cadd(s: Int, d: Int): F
 
+  def caddi(s: Int, d: Int): F
+
   def csub(s: Int, d: Int): F
+
+  def csubi(s: Int, d: Int): F
 
   def cmul(s: Int, d: Int): F
 

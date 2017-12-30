@@ -19,7 +19,11 @@ class ComplexCoreText extends ComplexCore[String] {
 
   override def cadd(s: Int, d: Int): String = apply("cadd", s, d)
 
+  override def caddi(s: Int, d: Int): String = apply("caddi", s, d)
+
   override def csub(s: Int, d: Int): String = apply("csub", s, d)
+
+  override def csubi(s: Int, d: Int): String = apply("csubi", s, d)
 
   override def cmul(s: Int, d: Int): String = apply("cmul", s, d)
 

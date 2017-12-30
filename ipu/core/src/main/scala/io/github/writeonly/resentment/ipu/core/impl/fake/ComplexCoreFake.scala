@@ -23,7 +23,11 @@ class ComplexCoreFake extends Fake with ComplexCore[Unit] {
 
   override def cadd(s: Int, d: Int): Unit = comi(s, d, _ + _)
 
+  override def caddi(s: Int, d: Int): Unit = Memory.toBoolean(memory(d) + s)
+
   override def csub(s: Int, d: Int): Unit = comi(s, d, _ - _)
+
+  override def csubi(s: Int, d: Int): Unit = memory(d) = Memory.toBoolean(memory(d) - s)
 
   override def cmul(s: Int, d: Int): Unit = comi(s, d, _ * _)
 

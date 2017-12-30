@@ -19,7 +19,11 @@ abstract class ComplexCoreWrapper[T, R](core: ComplexCore[T]) extends ComplexCor
 
   override def cadd(s: Int, d: Int): R = apply(core.cadd(s, d))
 
+  override def caddi(s: Int, d: Int): R = apply(core.caddi(s, d))
+
   override def csub(s: Int, d: Int): R = apply(core.csub(s, d))
+
+  override def csubi(s: Int, d: Int): R = apply(core.csubi(s, d))
 
   override def cmul(s: Int, d: Int): R = apply(core.cmul(s, d))
 

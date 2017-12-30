@@ -21,7 +21,11 @@ class ComplexCoreBFSafe(core: ComplexCoreBFUnsafe) extends ComplexCore[FString] 
 
   override def cadd(s: Int, d: Int): FString = if (s != d) core.cadd(s, d) else core.mk(cmovi(2, -3), core.cmul(-3, d))
 
+  override def caddi(s: Int, d: Int): FString = core.caddi(s, d)
+
   override def csub(s: Int, d: Int): FString = if (s != d) core.csub(s, d) else cclr(d)
+
+  override def csubi(s: Int, d: Int): FString = core.csubi(s, d)
 
   override def cmul(s: Int, d: Int): FString = if (s != d) core.cmul(s, d) else core.mk(cmov(s, -3), core.cmul(-3, d))
 

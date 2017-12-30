@@ -20,9 +20,11 @@ class CoreBF {
 
   def signn(i: Int, p: String, n: String): String = sign(i, p, n) * i.abs
 
-  def sh(i: Int) = signn(i, ">", "<")
+  def sh(i: Int): String = signn(i, ">", "<")
 
-  def id(i: Int) = signn(i, "+", "-")
+  def caddi(i: Int): String = signn(i, "+", "-")
+
+  def csubi(i: Int): String = signn(i, "-", "+")
 
   def r(i: Int, s: String): FString = r(i, s, 1)
 
@@ -42,7 +44,9 @@ class CoreBF {
 
   def join(s: String*) = vm(s.mkString(""))
 
-  def id(s: Int, d: Int): FString = r(d, id(s), s.abs)
+  def caddi(s: Int, d: Int): FString = r(d, caddi(s), s.abs)
+
+  def csubi(s: Int, d: Int): FString = r(d, csubi(s), s.abs)
 
   def add1(s: Int, d1: Int, out: String): FString = rw(s, "-", out, r(d1, "+"))
 
@@ -64,7 +68,7 @@ class CoreBF {
 
   def cset(d: Int): FString = cmovi(1, d: Int)
 
-  def cmovi(s: Int, d: Int): FString = rw(d, "-", id(s))
+  def cmovi(s: Int, d: Int): FString = rw(d, "-", caddi(s))
 
   def ge1(d: Int): FString = rm(-2, "[<-]<[>", "<-<]>+>", r(d, "-"), cmovi(0, -1))
 
