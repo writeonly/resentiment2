@@ -55,6 +55,14 @@ class ComplexCoreComparatorBFSpec extends org.specs2.mutable.Specification with 
       }
     }.setGens(value, value, address, address)
 
+    "cmovi caddi" >> prop { (v1: Int, d1: Int, v2: Int) =>
+      val comparator = new ComplexCoreComparatorBF
+      comparator { c =>
+        c.cmovi(v1, d1)
+        c.caddi(v2, d1)
+      }
+    }.setGens(value, address, value)
+
     "cmovi csub" >> prop { (v: Int, d1: Int, d2: Int) =>
       val comparator = new ComplexCoreComparatorBF
       comparator { c =>
@@ -71,6 +79,14 @@ class ComplexCoreComparatorBFSpec extends org.specs2.mutable.Specification with 
         c.csub(d1, d2)
       }
     }.setGens(value, value, address, address)
+
+    "cmovi csubi" >> prop { (v1: Int, d1: Int, v2: Int) =>
+      val comparator = new ComplexCoreComparatorBF
+      comparator { c =>
+        c.cmovi(v1, d1)
+        c.csubi(v2, d1)
+      }
+    }.setGens(value, address, value)
 
     "cmovi cmul" >> prop { (v: Int, d1: Int, d2: Int) =>
       val comparator = new ComplexCoreComparatorBF

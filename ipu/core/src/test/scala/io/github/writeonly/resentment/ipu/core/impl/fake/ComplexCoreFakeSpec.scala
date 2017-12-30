@@ -42,6 +42,13 @@ class ComplexCoreFakeSpec extends org.specs2.mutable.Specification
       tape(0) must_== 2
       tape(1) must_== 5
     }
+    "cmovi(3,1) caddi(2,1)" >> {
+      val core = new ComplexCoreFake
+      core.cmovi(3, 1)
+      core.caddi(2, 1)
+      val tape = core.memory
+      tape(1) must_== 5
+    }
     "cmovi(2,0) cmovi(3,1) csub(0,1)" >> {
       val core = new ComplexCoreFake
       core.cmovi(2, 0)
@@ -73,6 +80,20 @@ class ComplexCoreFakeSpec extends org.specs2.mutable.Specification
       core.csub(0, 0)
       val tape = core.memory
       tape(0) must_== 0
+    }
+    "cmovi(3,1) csubi(2,1)" >> {
+      val core = new ComplexCoreFake
+      core.cmovi(3, 1)
+      core.csubi(2, 1)
+      val tape = core.memory
+      tape(1) must_== 1
+    }
+    "cmovi(2,1) csubi(3,1)" >> {
+      val core = new ComplexCoreFake
+      core.cmovi(2, 1)
+      core.csubi(3, 1)
+      val tape = core.memory
+      tape(1) must_== -1
     }
     "cmovi(2,0) cmovi(3,1) cmul(0,1)" >> {
       val core = new ComplexCoreFake

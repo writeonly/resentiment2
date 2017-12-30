@@ -44,9 +44,9 @@ class CoreBF {
 
   def join(s: String*) = vm(s.mkString(""))
 
-  def caddi(s: Int, d: Int): FString = r(d, caddi(s), s.abs)
+  def caddi(s: Int, d: Int): FString = r(d, caddi(s))
 
-  def csubi(s: Int, d: Int): FString = r(d, csubi(s), s.abs)
+  def csubi(s: Int, d: Int): FString = r(d, csubi(s))
 
   def add1(s: Int, d1: Int, out: String): FString = rw(s, "-", out, r(d1, "+"))
 

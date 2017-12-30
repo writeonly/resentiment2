@@ -9,4 +9,6 @@ class BufferedInterpreter(f: FInterpreter) {
   val appendable = new JavaStringBuilder
 
   def apply(): Interpreter = f(appendable.toString.getBytes)()
+
+  override def toString: String = appendable.toString
 }

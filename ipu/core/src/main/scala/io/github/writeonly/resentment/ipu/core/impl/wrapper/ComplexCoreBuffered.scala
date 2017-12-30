@@ -8,4 +8,6 @@ class ComplexCoreBuffered(core: ComplexCore[String], buffered: BufferedInterpret
   extends ComplexCoreAppendable(core, buffered.appendable) {
 
   def apply(): Interpreter = buffered()
+
+  override def toString: String = buffered.toString
 }

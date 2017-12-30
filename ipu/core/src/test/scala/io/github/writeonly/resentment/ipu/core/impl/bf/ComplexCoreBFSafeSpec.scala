@@ -54,6 +54,20 @@ class ComplexCoreBFSafeSpec extends org.specs2.mutable.Specification
       tape(0) must_== 2
       tape(1) must_== 5
     }
+    "caddi(2,1)" >> {
+      val core = new ComplexCoreBFSafe()
+      val out = core.caddi(2, 1)()
+      out must_== ">++"
+      val tape = new InterpreterBF(StreamIO.byteArray(), out)().memory
+      tape(1) must_== 2
+    }
+    "cmovi(3,1) caddi(2,1)" >> {
+      val core = new ComplexCoreBFSafe()
+      val out = core.cmovi(3, 1)() + core.caddi(2, 1)()
+      out must_== ">[-]+++++"
+      val tape = new InterpreterBF(StreamIO.byteArray(), out)().memory
+      tape(1) must_== 5
+    }
     "cmovi(2,0) cmovi(3,1) csub(0,1)" >> {
       val core = new ComplexCoreBFSafe()
       val out = core.cmovi(2, 0)() + core.cmovi(3, 1)() + core.csub(0, 1)()
@@ -79,6 +93,34 @@ class ComplexCoreBFSafeSpec extends org.specs2.mutable.Specification
       val out = core.cmovi(3, 0)() + core.csub(0, 0)()
       val tape = new InterpreterBF(StreamIO.byteArray(), out)().memory
       tape(0) must_== 0
+    }
+    "csubi(2,1)" >> {
+      val core = new ComplexCoreBFSafe()
+      val out = core.csubi(2, 1)()
+      out must_== ">--"
+      val tape = new InterpreterBF(StreamIO.byteArray(), out)().memory
+      tape(1) must_== -2
+    }
+    "cmovi(3,1) csubi(2,1)" >> {
+      val core = new ComplexCoreBFSafe()
+      val out = core.cmovi(3, 1)() + core.csubi(2, 1)()
+      out must_== ">[-]+++--"
+      val tape = new InterpreterBF(StreamIO.byteArray(), out)().memory
+      tape(1) must_== 1
+    }
+    "csubi(3,1)" >> {
+      val core = new ComplexCoreBFSafe()
+      val out = core.csubi(3, 1)()
+      out must_== ">---"
+      val tape = new InterpreterBF(StreamIO.byteArray(), out)().memory
+      tape.s(1) must_== -3
+    }
+    "cmovi(2,1) csubi(3,1)" >> {
+      val core = new ComplexCoreBFSafe()
+      val out = core.cmovi(2, 1)() + core.csubi(3, 1)()
+      out must_== ">[-]++---"
+      val tape = new InterpreterBF(StreamIO.byteArray(), out)().memory
+      tape.s(1) must_== -1
     }
     "cmovi(2,0) cmovi(3,1) cmul(0,1)" >> {
       val core = new ComplexCoreBFSafe()
