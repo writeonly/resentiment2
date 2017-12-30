@@ -105,6 +105,14 @@ class ComplexCoreComparatorBFSpec extends org.specs2.mutable.Specification with 
       }
     }.setGens(value, value, shortAddress, shortAddress)
 
+    "cmovi cmuli" >> prop { (v1: Int, d1: Int, v2: Int) =>
+      val comparator = new ComplexCoreComparatorBF
+      comparator { c =>
+        c.cmovi(v1, d1)
+        c.cmuli(v2, d1)
+      }
+    }.setGens(value, address, value)
+
     //    "cmovi cdiv" >> prop { (v: Int, d1: Int, d2 : Int) =>
     //      val comparator = new ComplexCoreComparatorBF
     //      comparator { c =>

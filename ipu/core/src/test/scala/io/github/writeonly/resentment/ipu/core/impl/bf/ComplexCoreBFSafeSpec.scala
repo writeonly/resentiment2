@@ -136,6 +136,14 @@ class ComplexCoreBFSafeSpec extends org.specs2.mutable.Specification
       tape(0) must_== 9
     }
 
+    "cmovi(2,1) cmuli(3,1)" >> {
+      val core = new ComplexCoreBFSafe()
+      val out = core.cmovi(2, 1)() + core.cmuli(3, 1)()
+      val tape = new InterpreterBF(StreamIO.byteArray(), out)().memory
+      tape(1) must_== 6
+    }
+
+
     "cmovi(3,1) cmovi(1,3) cswap(1,3)" >> {
       val core = new ComplexCoreBFSafe()
       val out = core.cmovi(3, 1)() + core.cmovi(1, 3)() + core.cswap(1, 3)()
