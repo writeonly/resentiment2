@@ -31,7 +31,7 @@ class ComplexCoreBFSafe(core: ComplexCoreBFUnsafe) extends ComplexCore[FString] 
 
   override def cmuli(s: Int, d: Int): FString = core.cmuli(s, d)
 
-  override def cdiv(s: Int, d: Int): FString = core.cdiv(s, d)
+  override def cdiv(s: Int, d: Int): FString = if (s != d) core.cdiv(s, d) else cset(d)
 
   override def cpow(s: Int, d: Int): FString = core.cpow(s, d)
 

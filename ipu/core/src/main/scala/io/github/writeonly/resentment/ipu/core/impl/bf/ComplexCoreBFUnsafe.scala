@@ -5,19 +5,19 @@ import io.github.writeonly.resentment.ipu.core.common.FString
 
 class ComplexCoreBFUnsafe extends CoreBF with ComplexCore[FString] {
 
-  def cmov(s: Int, d: Int): FString = mk(cclr(d), add2(s, d, -1), add1(-1, s))
+  def cmov(s: Int, d: Int): FString = mk(cclr(d), cadd(s, d))
 
   def cswap(d1: Int, d2: Int): FString = mk(add1(d1, -1), add1(d2, d1), add1(-1, d2))
 
-  def cadd(s: Int, d: Int): FString = mk(add2(s, d, -1), add1(-1, s))
+  def cadd(s: Int, d: Int): FString = mk(addt(s, d, -1))
 
-  def csub(s: Int, d: Int): FString = mk(sub2(s, d, -1), add1(-1, s))
+  def csub(s: Int, d: Int): FString = mk(subt(s, d, -1))
 
-  def cmul(s: Int, d: Int): FString = mk(add1(d, -2), rw(-2, "-", add2(s, d, -1), add1(-1, s)))
+  def cmul(s: Int, d: Int): FString = mk(add1(d, -2), rw(-2, "-", cadd(s, d)))
 
   def cmuli(s: Int, d: Int): FString = mk(add1(d, -1), rw(-1, "-", caddi(s, d)))
 
-  def cdiv(s: Int, d: Int): FString = mk(add1(d, -1))
+  def cdiv(s: Int, d: Int): FString = mk(add1(d, -1), rw(-1, addt(s, -2, -3), rw(-2, "-")))
 
   def cpow(s: Int, d: Int): FString = mk(add1(d, -1))
 

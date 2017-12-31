@@ -62,6 +62,10 @@ class CoreBF {
 
   def sub2(s: Int, d1: Int, d2: Int): FString = rw(s, "-", r(d1, "-"), r(d2, "+"))
 
+  def addt(s : Int, d : Int, t : Int) : FString = mk(add2(s, d, t), add1(t, s))
+
+  def subt(s : Int, d : Int, t : Int) : FString = mk(sub2(s, d, t), add1(t, s))
+
   def cnop(): FString = FString.empty
 
   def cclr(d: Int): FString = cmovi(0, d: Int)
@@ -81,5 +85,6 @@ class CoreBF {
   def gt2(d: Int): FString = rm(-2, "-[<-]<[>", "<-<]>+>", r(d, "+"), cmovi(1, -1))
 
   def gt3(d: Int): FString = rw(-1, "-", gt2(d))
+
 
 }
