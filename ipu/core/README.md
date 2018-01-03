@@ -7,6 +7,7 @@
 1. Leg - BrainFuck
 2. Leg - SubLeq
   * https://www.sccs.swarthmore.edu/users/06/adem/engin/e25/finale/
+  * http://techtinkering.com/2009/03/05/the-subleq-urisc-oisc-architecture/
 3. Leg - ETA
 4. Leg - Befunge
 5. Leg - Piet
