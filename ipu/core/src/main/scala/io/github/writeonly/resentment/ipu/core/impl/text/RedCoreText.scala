@@ -1,8 +1,8 @@
 package io.github.writeonly.resentment.ipu.core.impl.text
 
-import io.github.writeonly.resentment.ipu.core.api.ComplexCore
+import io.github.writeonly.resentment.ipu.core.api.RedCore
 
-class ComplexCoreText extends ComplexCore[String] {
+class RedCoreText extends RedCore[String] {
   def apply(name: String, seq: Int*): String = name + seq
 
   override def cnop(): String = apply("cnop")

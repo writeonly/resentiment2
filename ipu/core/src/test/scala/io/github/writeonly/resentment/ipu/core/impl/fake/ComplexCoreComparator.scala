@@ -4,13 +4,13 @@ import java.lang.{StringBuilder => JavaStringBuilder}
 
 import com.google.common.base.MoreObjects
 import io.github.writeonly.resentment.fsm.api.Memory
-import io.github.writeonly.resentment.ipu.core.impl.text.ComplexCoreText
+import io.github.writeonly.resentment.ipu.core.impl.text.RedCoreText
 import io.github.writeonly.resentment.ipu.core.impl.wrapper._
 
-class ComplexCoreComparator(buffered: ComplexCoreBuffered, fake: ComplexCoreFake) {
-  def apply(f: ComplexCoreDsl => Unit): Unit = {
-    f(new ComplexCoreDsl(buffered))
-    f(new ComplexCoreDsl(fake))
+class ComplexCoreComparator(buffered: RedCoreBuffered, fake: RedCoreFake) {
+  def apply(f: RedCoreDsl => Unit): Unit = {
+    f(new RedCoreDsl(buffered))
+    f(new RedCoreDsl(fake))
     val interpreter = buffered()
     val actualMemory = interpreter.memory
     val expectedMemory = fake.memory
@@ -20,7 +20,7 @@ class ComplexCoreComparator(buffered: ComplexCoreBuffered, fake: ComplexCoreFake
   }
 }
 
-case class TestEntry(key: Int, expectedValue: Byte, actualValue: Byte, expectedMemory: Memory, actualMemory: Memory, f: ComplexCoreDsl => Unit) {
+case class TestEntry(key: Int, expectedValue: Byte, actualValue: Byte, expectedMemory: Memory, actualMemory: Memory, f: RedCoreDsl => Unit) {
 
   override def toString: String = MoreObjects.toStringHelper(this)
     .add("key", key)
@@ -33,7 +33,7 @@ case class TestEntry(key: Int, expectedValue: Byte, actualValue: Byte, expectedM
   def code: String = {
     //FIXME
     val appendable = new JavaStringBuilder()
-    f(new ComplexCoreDsl(new ComplexCoreAppendable(new ComplexCoreText(), appendable)))
+    f(new RedCoreDsl(new RedCoreAppendable(new RedCoreText(), appendable)))
     appendable.toString
   }
 
@@ -41,6 +41,6 @@ case class TestEntry(key: Int, expectedValue: Byte, actualValue: Byte, expectedM
 }
 
 object TestEntry {
-  def apply(entry: (Int, Byte), expectedMemory: Memory, actualMemory: Memory, f: ComplexCoreDsl => Unit)
+  def apply(entry: (Int, Byte), expectedMemory: Memory, actualMemory: Memory, f: RedCoreDsl => Unit)
   = new TestEntry(entry._1, entry._2, actualMemory(entry._1), expectedMemory, actualMemory, f)
 }

@@ -8,7 +8,7 @@ import org.specs2.runner.JUnitRunner
 import org.specs2.specification.AroundTimeout
 
 @RunWith(classOf[JUnitRunner])
-class ComplexCoreComparatorBFSpec extends org.specs2.mutable.Specification with AroundTimeout with ScalaCheck {
+class RedCoreComparatorBFSpec extends org.specs2.mutable.Specification with AroundTimeout with ScalaCheck {
 
   implicit def unitAsResult: AsResult[Unit] = new AsResult[Unit] {
     def asResult(u: => Unit): Result = {

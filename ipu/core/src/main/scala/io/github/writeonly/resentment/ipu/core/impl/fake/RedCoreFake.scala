@@ -1,9 +1,9 @@
 package io.github.writeonly.resentment.ipu.core.impl.fake
 
 import io.github.writeonly.resentment.fsm.api.Memory
-import io.github.writeonly.resentment.ipu.core.api.ComplexCore
+import io.github.writeonly.resentment.ipu.core.api.RedCore
 
-class ComplexCoreFake extends Fake with ComplexCore[Unit] {
+class RedCoreFake extends Fake with RedCore[Unit] {
 
   override def cnop(): Unit = {}
 

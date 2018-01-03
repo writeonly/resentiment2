@@ -62,9 +62,9 @@ class CoreBF {
 
   def sub2(s: Int, d1: Int, d2: Int): FString = rw(s, "-", r(d1, "-"), r(d2, "+"))
 
-  def addt(s : Int, d : Int, t : Int) : FString = mk(add2(s, d, t), add1(t, s))
+  def addt(s: Int, d: Int, t: Int): FString = mk(add2(s, d, t), add1(t, s))
 
-  def subt(s : Int, d : Int, t : Int) : FString = mk(sub2(s, d, t), add1(t, s))
+  def subt(s: Int, d: Int, t: Int): FString = mk(sub2(s, d, t), add1(t, s))
 
   def cnop(): FString = FString.empty
 

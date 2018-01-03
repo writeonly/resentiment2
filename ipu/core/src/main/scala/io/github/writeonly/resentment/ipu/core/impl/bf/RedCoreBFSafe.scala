@@ -1,11 +1,11 @@
 package io.github.writeonly.resentment.ipu.core.impl.bf
 
-import io.github.writeonly.resentment.ipu.core.api.ComplexCore
+import io.github.writeonly.resentment.ipu.core.api.RedCore
 import io.github.writeonly.resentment.ipu.core.common.FString
 
-class ComplexCoreBFSafe(core: ComplexCoreBFUnsafe) extends ComplexCore[FString] {
+class RedCoreBFSafe(core: RedCoreBFUnsafe) extends RedCore[FString] {
 
-  def this() = this(new ComplexCoreBFUnsafe)
+  def this() = this(new RedCoreBFUnsafe)
 
   override def cnop(): FString = core.cnop()
 

@@ -1,9 +1,9 @@
 package io.github.writeonly.resentment.ipu.core.impl.bf
 
-import io.github.writeonly.resentment.ipu.core.api.ComplexCore
+import io.github.writeonly.resentment.ipu.core.api.RedCore
 import io.github.writeonly.resentment.ipu.core.common.FString
 
-class ComplexCoreBFUnsafe extends CoreBF with ComplexCore[FString] {
+class RedCoreBFUnsafe extends CoreBF with RedCore[FString] {
 
   def cmov(s: Int, d: Int): FString = mk(cclr(d), cadd(s, d))
 

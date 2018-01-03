@@ -1,8 +1,8 @@
 package io.github.writeonly.resentment.ipu.core.impl.wrapper
 
-import io.github.writeonly.resentment.ipu.core.api.ComplexCore
+import io.github.writeonly.resentment.ipu.core.api.RedCore
 
-abstract class ComplexCoreWrapper[T, R](core: ComplexCore[T]) extends ComplexCore[R] {
+abstract class RedCoreWrapper[T, R](core: RedCore[T]) extends RedCore[R] {
   def apply(t: T): R
 
   override def cnop(): R = apply(core.cnop())

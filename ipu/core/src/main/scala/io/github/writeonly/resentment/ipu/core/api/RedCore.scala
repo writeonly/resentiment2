@@ -1,6 +1,6 @@
 package io.github.writeonly.resentment.ipu.core.api
 
-trait ComplexCore[F] {
+trait RedCore[F] {
   def cnop(): F
 
   def cclr(d: Int): F
