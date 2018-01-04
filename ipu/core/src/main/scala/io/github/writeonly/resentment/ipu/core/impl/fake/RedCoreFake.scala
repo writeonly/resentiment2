@@ -23,15 +23,15 @@ class RedCoreFake extends Fake with RedCore[Unit] {
 
   override def cadd(s: Int, d: Int): Unit = comi(s, d, _ + _)
 
-  override def caddi(s: Int, d: Int): Unit = memory(d) = memory(d) + s
+  override def caddi(s: Int, d: Int): Unit = comii(s, d, _ + _)
 
   override def csub(s: Int, d: Int): Unit = comi(s, d, _ - _)
 
-  override def csubi(s: Int, d: Int): Unit = memory(d) = memory(d) - s
+  override def csubi(s: Int, d: Int): Unit = comii(s, d, _ - _)
 
   override def cmul(s: Int, d: Int): Unit = comi(s, d, _ * _)
 
-  override def cmuli(s: Int, d: Int): Unit = memory(d) = memory(d) * s
+  override def cmuli(s: Int, d: Int): Unit = comii(s, d, _ * _)
 
   override def cdiv(s: Int, d: Int): Unit = comi(s, d, _ / _)
 
