@@ -1,9 +1,9 @@
 # Invisible Pink Unicorn
-* MinCorn - Minimal Assembler,  
-* RedCorn - Reduced Assembler, inspired AVR Assembler https://ea.elportal.pl/asm_avr_jezyk.html
-* ConCorn - Complex Assembler, inspired ARM Asembler 
-* UniCorn - Uni argument Assembler, inspired InstructionList
-* PinkPopCorn - Hight Level language
+* Static MinCorn - Minimal Assembler,  
+* Immediate RedCorn - Reduced Assembler, inspired AVR Assembler https://ea.elportal.pl/asm_avr_jezyk.html
+* Symbolic ConCorn - Complex Assembler, inspired ARM Asembler 
+* Invisible UniCorn - Uni argument Assembler, inspired InstructionList
+* Pink PopCorn - Hight Level language, inspired Forth and Prolog (Erlang)
 * SeaCorn - implementation of C
 * dc
   * http://manpages.ubuntu.com/manpages/trusty/pl/man1/dc.1.html
@@ -18,7 +18,8 @@
 
 # To Compile from C
 * Tiny BASIC
-* Tiny Lisp
+* TinyScheme
 * FreeRTOS
 * FreeRTOS Plus
+* SQLite
 * eLua
