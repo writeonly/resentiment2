@@ -1,7 +1,8 @@
-package io.github.writeonly.resentment.ipu.core.impl.fake
+package io.github.writeonly.resentment.ipu.corn.impl.fake
 
 import io.github.writeonly.resentment.fsm.api.{Memory, StreamIO}
 import io.github.writeonly.resentment.ipu.core.api.PopCore
+import io.github.writeonly.resentment.ipu.core.impl.fake.Fake
 
 class PopCoreFake(val io: StreamIO) extends Fake[PopCoreFake] with PopCore[Unit] {
 
