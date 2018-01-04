@@ -35,6 +35,8 @@ class RedCoreFake extends Fake with RedCore[Unit] {
 
   override def rdiv(s: Int, d: Int): Unit = comi(s, d, _ / _)
 
+  override def rdivi(s: Int, d: Int): Unit = comii(s, d, _ / _)
+
   override def rpow(s: Int, d: Int): Unit = comi(s, d, _ % _)
 
   override def rneg(d: Int): Unit = memory(d) = -memory(d)

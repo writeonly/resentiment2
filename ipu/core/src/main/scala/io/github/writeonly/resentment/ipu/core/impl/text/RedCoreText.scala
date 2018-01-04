@@ -31,6 +31,8 @@ class RedCoreText extends RedCore[String] {
 
   override def rdiv(s: Int, d: Int): String = apply("cdiv", s, d)
 
+  override def rdivi(s: Int, d: Int) : String = apply("cdivi", s, d)
+
   override def rpow(s: Int, d: Int): String = apply("cpow", s, d)
 
   override def rneg(d: Int): String = apply("cneg", d)
@@ -46,4 +48,5 @@ class RedCoreText extends RedCore[String] {
   override def rle(s: Int, d: Int): String = apply("cle", s, d)
 
   override def rlt(s: Int, d: Int): String = apply("clt", s, d)
+
 }

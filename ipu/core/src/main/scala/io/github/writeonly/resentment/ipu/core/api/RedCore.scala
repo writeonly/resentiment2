@@ -27,6 +27,8 @@ trait RedCore[F] {
 
   def rdiv(s: Int, d: Int): F
 
+  def rdivi(s: Int, d: Int): F
+
   def rpow(s: Int, d: Int): F
 
   def rneg(d: Int): F
