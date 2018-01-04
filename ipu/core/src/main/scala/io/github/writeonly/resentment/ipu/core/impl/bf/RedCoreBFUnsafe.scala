@@ -43,22 +43,36 @@ class RedCoreBFUnsafe extends CoreBF with RedCore[FString] {
 //    temp1-]
 //    x+
 //  temp0]
-  override def rdiv(s: Int, d: Int): FString = mk(
-  add1(d, -1),
-  rw(-1,
-    addt(s, -2, -3),
-    rw(-2, "-",
-      r(-3, "+"),
-      r(-1, "-"),
-      rw(-1, "-", r(-3, "[-]"), r(-4, "+")),
-      rw(-4, "-", r(-1, "+")),
-      rw(-3, "-", r(-2, "-"), rw(-2, "[-]", "+", r(d, "-")))
-    ),
-    r(d, "+")
-  )
-)
 
-  override def rdivi(s: Int, d: Int) = ???
+  override def rdiv(s: Int, d: Int): FString = mk(
+    add1(d, -1),
+    rw(-1,
+      addt(s, -2, -3),
+      rw(-2, "-",
+        r(-3, "+"),
+        r(-1, "-"),
+        rw(-1, "-", r(-3, "[-]"), r(-4, "+")),
+        rw(-4, "-", r(-1, "+")),
+        rw(-3, "-", r(-2, "-"), rw(-2, "[-]", "+", r(d, "-")))
+      ),
+      r(d, "+")
+    )
+  )
+
+  override def rdivi(s: Int, d: Int) = mk(
+    add1(d, -1),
+    rw(-1,
+      raddi(s, -2),
+      rw(-2, "-",
+        r(-3, "+"),
+        r(-1, "-"),
+        rw(-1, "-", r(-3, "[-]"), r(-4, "+")),
+        rw(-4, "-", r(-1, "+")),
+        rw(-3, "-", r(-2, "-"), rw(-2, "[-]", "+", r(d, "-")))
+      ),
+      r(d, "+")
+    )
+  )
 
   override def rpow(s: Int, d: Int): FString = mk(add1(d, -1))
 
