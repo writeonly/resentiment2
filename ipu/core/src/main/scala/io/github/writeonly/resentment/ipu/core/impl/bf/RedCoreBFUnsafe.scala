@@ -23,7 +23,40 @@ class RedCoreBFUnsafe extends CoreBF with RedCore[FString] {
 
   def rmuli(s: Int, d: Int): FString = mk(add1(d, -1), rw(-1, "-", raddi(s, d)))
 
-  def rdiv(s: Int, d: Int): FString = mk(add1(d, -1), rw(-1, addt(s, -2, -3), rw(-2, "-")))
+//  temp0[-]
+//  temp1[-]
+//  temp2[-]
+//  temp3[-]
+//  x[temp0+x-]
+//  temp0[
+//    y[temp1+temp2+y-]
+//    temp2[y+temp2-]
+//    temp1[
+//      temp2+
+//      temp0-
+//      [temp2[-]temp3+temp0-]
+//      temp3[temp0+temp3-]
+//      temp2[
+//        temp1-
+//        [x-temp1[-]]+
+//      temp2-]
+//    temp1-]
+//    x+
+//  temp0]
+  def rdiv(s: Int, d: Int): FString = mk(
+  add1(d, -1),
+  rw(-1,
+    addt(s, -2, -3),
+    rw(-2, "-",
+      r(-3, "+"),
+      r(-1, "-"),
+      rw(-1, "-", r(-3, "[-]"), r(-4, "+")),
+      rw(-4, "-", r(-1, "+")),
+      rw(-3, "-", r(-2, "-"), rw(-2, "[-]", "+", r(d, "-")))
+    ),
+    r(d, "+")
+  )
+)
 
   def rpow(s: Int, d: Int): FString = mk(add1(d, -1))
 

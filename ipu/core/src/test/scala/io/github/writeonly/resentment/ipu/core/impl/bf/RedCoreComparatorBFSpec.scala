@@ -18,6 +18,7 @@ class RedCoreComparatorBFSpec extends org.specs2.mutable.Specification with Arou
   }
 
   private val value = Gen.choose(0, 256)
+  private val valueNonZero = Gen.choose(1, 255)
   private val address = Gen.choose(1, 256)
   private val shortAddress = Gen.choose(1, 4)
 
@@ -113,13 +114,22 @@ class RedCoreComparatorBFSpec extends org.specs2.mutable.Specification with Arou
       }
     }.setGens(value, address, value)
 
-    //    "cmovi cdiv" >> prop { (v: Int, d1: Int, d2 : Int) =>
-    //      val comparator = new ComplexCoreComparatorBF
-    //      comparator { c =>
-    //        c.cmovi(v, d1)
-    //        c.cdiv(d1, d2)
-    //      }
-    //    }.setGens(value, address, address)
+    "cmovi rdiv" >> prop { (v: Int, d1: Int, d2 : Int) =>
+      val comparator = new ComplexCoreComparatorBF
+      comparator { c =>
+        c.rmovi(v, d1)
+        c.rdiv(d1, d2)
+      }
+    }.setGens(valueNonZero, address, address)
+
+    "cmovi cmovi rdiv" >> prop { (v1: Int, v2: Int, d1: Int, d2: Int) =>
+      val comparator = new ComplexCoreComparatorBF
+      comparator { c =>
+        c.rmovi(v1, d1)
+        c.rmovi(v2, d2)
+        c.rdiv(d1, d2)
+      }
+    }.setGens(valueNonZero, valueNonZero, shortAddress, shortAddress)
 
     "cmovi cneg" >> prop { (v: Int, d1: Int) =>
       val comparator = new ComplexCoreComparatorBF

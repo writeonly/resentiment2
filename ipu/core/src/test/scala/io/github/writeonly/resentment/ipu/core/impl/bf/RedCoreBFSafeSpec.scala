@@ -2,6 +2,7 @@ package io.github.writeonly.resentment.ipu.core.impl.bf
 
 import io.github.writeonly.resentment.fsm.api.StreamIO
 import io.github.writeonly.resentment.fsm.impl.InterpreterBF
+import io.github.writeonly.resentment.ipu.core.impl.fake.RedCoreFake
 import org.junit.runner.RunWith
 import org.specs2.runner.JUnitRunner
 import org.specs2.specification.AroundTimeout
@@ -143,6 +144,13 @@ class RedCoreBFSafeSpec extends org.specs2.mutable.Specification
       tape(1) must_== 6
     }
 
+    "cmovi(3,1) cmovi(6, 2) cdiv(1,2)" >> {
+      val core = new RedCoreBFSafe
+      val out = core.rmovi(3, 1)() + core.rmovi(6, 2)() + core.rdiv(1, 2)()
+      val tape = new InterpreterBF(StreamIO.byteArray(), out)().memory
+      tape(1) must_== 3
+      tape(2) must_== 2
+    }
 
     "cmovi(3,1) cmovi(1,3) cswap(1,3)" >> {
       val core = new RedCoreBFSafe()
