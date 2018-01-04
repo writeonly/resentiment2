@@ -33,12 +33,12 @@ class RedCoreBFUnsafe extends CoreBF with RedCore[FString] {
 
   def rnot(d: Int): FString = mk(raddi(-1, d), rneg(d))
 
-  def req(s: Int, d: Int): FString = mk(add1(d, -2, "+"), sub2(s, -2, -1), add1(-1, s), sub01(-2, d))
+  def req(s: Int, d: Int): FString = mk(add1(d, -2, "+"), subt(s, -2, -1), sub01(-2, d))
 
-  def rne(s: Int, d: Int): FString = mk(add1(d, -2), sub2(s, -2, -1), add1(-1, s), add01(-2, d))
+  def rne(s: Int, d: Int): FString = mk(add1(d, -2), subt(s, -2, -1), add01(-2, d))
 
-  def rle(s: Int, d: Int): FString = mk(r(-3, "+"), add2(s, -1, -2), add1(-1, s), add1(d, -1, "+"), ge1(d), ge3(d))
+  def rle(s: Int, d: Int): FString = mk(r(-3, "+"), addt(s, -2, -1), add1(d, -1, "+"), ge1(d), ge3(d))
 
-  def rlt(s: Int, d: Int): FString = mk(r(-3, "+"), add2(s, -1, -2), add1(-2, s), add1(d, -2), gt1(d), gt3(d))
+  def rlt(s: Int, d: Int): FString = mk(r(-3, "+"), addt(s, -1, -2), add1(d, -2), gt1(d), gt3(d))
 
 }
