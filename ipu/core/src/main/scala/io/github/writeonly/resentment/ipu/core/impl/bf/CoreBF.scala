@@ -8,8 +8,6 @@ class CoreBF {
 
   val vm = new CodeValidatorMagic
 
-  def count(code: String, c: Char) = code.count(_ == c)
-
   def r(i: Int, s: String, n: Int): FString = FString((_) => {
     val shift = i - head
     head = i
@@ -79,6 +77,5 @@ class CoreBF {
   def gt2(d: Int): FString = rm(-2, "-[<-]<[>", "<-<]>+>", r(d, "+"), rset(-1))
 
   def gt3(d: Int): FString = rw(-1, "-", gt2(d))
-
 
 }

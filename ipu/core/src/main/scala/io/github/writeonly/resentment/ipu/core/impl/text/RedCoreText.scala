@@ -11,42 +11,42 @@ class RedCoreText extends RedCore[String] {
 
   override def rset(d: Int): String = apply("cset", d)
 
-  override def rmovi(s: Int, d: Int): String = apply("cmovi", s, d)
+  override def rmovi(s: Int, d: Int): String = apply("rmovi", s, d)
 
-  override def rmov(s: Int, d: Int): String = apply("cmov", s, d)
+  override def rmov(s: Int, d: Int): String = apply("rmov", s, d)
 
-  override def rswap(d1: Int, d2: Int): String = apply("cswap", d1, d2)
+  override def rswap(d1: Int, d2: Int): String = apply("rswap", d1, d2)
 
-  override def radd(s: Int, d: Int): String = apply("cadd", s, d)
+  override def radd(s: Int, d: Int): String = apply("radd", s, d)
 
-  override def raddi(s: Int, d: Int): String = apply("caddi", s, d)
+  override def raddi(s: Int, d: Int): String = apply("raddi", s, d)
 
-  override def rsub(s: Int, d: Int): String = apply("csub", s, d)
+  override def rsub(s: Int, d: Int): String = apply("rsub", s, d)
 
-  override def rsubi(s: Int, d: Int): String = apply("csubi", s, d)
+  override def rsubi(s: Int, d: Int): String = apply("rsubi", s, d)
 
-  override def rmul(s: Int, d: Int): String = apply("cmul", s, d)
+  override def rmul(s: Int, d: Int): String = apply("rmul", s, d)
 
-  override def rmuli(s: Int, d: Int): String = apply("cmuli", s, d)
+  override def rmuli(s: Int, d: Int): String = apply("rmuli", s, d)
 
-  override def rdiv(s: Int, d: Int): String = apply("cdiv", s, d)
+  override def rdiv(s: Int, d: Int): String = apply("rdiv", s, d)
 
-  override def rdivi(s: Int, d: Int) : String = apply("cdivi", s, d)
+  override def rdivi(s: Int, d: Int) : String = apply("rdivi", s, d)
 
-  override def rpow(s: Int, d: Int): String = apply("cpow", s, d)
+  override def rpow(s: Int, d: Int): String = apply("rpow", s, d)
 
-  override def rneg(d: Int): String = apply("cneg", d)
+  override def rneg(d: Int): String = apply("rneg", d)
 
-  override def rng1(d: Int): String = apply("cng1", d)
+  override def rng1(d: Int): String = apply("rng1", d)
 
-  override def rnot(d: Int): String = apply("not", d)
+  override def rnot(d: Int): String = apply("rnot", d)
 
-  override def req(s: Int, d: Int): String = apply("ceq", s, d)
+  override def req(s: Int, d: Int): String = apply("req", s, d)
 
-  override def rne(s: Int, d: Int): String = apply("cne", s, d)
+  override def rne(s: Int, d: Int): String = apply("rne", s, d)
 
-  override def rle(s: Int, d: Int): String = apply("cle", s, d)
+  override def rle(s: Int, d: Int): String = apply("rle", s, d)
 
-  override def rlt(s: Int, d: Int): String = apply("clt", s, d)
+  override def rlt(s: Int, d: Int): String = apply("rle", s, d)
 
 }
