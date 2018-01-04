@@ -68,15 +68,15 @@ class CoreBF {
 
   def rmovi(s: Int, d: Int): FString = rw(d, "-", raddi(s))
 
-  def ge1(d: Int): FString = rm(-2, "[<-]<[>", "<-<]>+>", r(d, "-"), rmovi(0, -1))
+  def ge1(d: Int): FString = rm(-2, "[<-]<[>", "<-<]>+>", r(d, "-"), rclr(-1))
 
-  def ge2(d: Int): FString = rm(-2, "-[<-]<[>", "<-<]>+>", r(d, "-"), rmovi(1, -1))
+  def ge2(d: Int): FString = rm(-2, "-[<-]<[>", "<-<]>+>", r(d, "-"), rset(-1))
 
   def ge3(d: Int): FString = rw(-1, "-", ge2(d))
 
-  def gt1(d: Int): FString = rm(-2, "[<-]<[>", "<-<]>+>", r(d, "+"), rmovi(0, -1))
+  def gt1(d: Int): FString = rm(-2, "[<-]<[>", "<-<]>+>", r(d, "+"), rclr(-1))
 
-  def gt2(d: Int): FString = rm(-2, "-[<-]<[>", "<-<]>+>", r(d, "+"), rmovi(1, -1))
+  def gt2(d: Int): FString = rm(-2, "-[<-]<[>", "<-<]>+>", r(d, "+"), rset(-1))
 
   def gt3(d: Int): FString = rw(-1, "-", gt2(d))
 
