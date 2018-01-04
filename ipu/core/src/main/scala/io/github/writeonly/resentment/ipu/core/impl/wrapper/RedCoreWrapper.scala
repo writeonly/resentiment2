@@ -5,45 +5,45 @@ import io.github.writeonly.resentment.ipu.core.api.RedCore
 abstract class RedCoreWrapper[T, R](core: RedCore[T]) extends RedCore[R] {
   def apply(t: T): R
 
-  override def cnop(): R = apply(core.cnop())
+  override def rnop(): R = apply(core.rnop())
 
-  override def cclr(d: Int): R = apply(core.cclr(d))
+  override def rclr(d: Int): R = apply(core.rclr(d))
 
-  override def cset(d: Int): R = apply(core.cset(d))
+  override def rset(d: Int): R = apply(core.rset(d))
 
-  override def cmovi(s: Int, d: Int): R = apply(core.cmovi(s, d))
+  override def rmovi(s: Int, d: Int): R = apply(core.rmovi(s, d))
 
-  override def cmov(s: Int, d: Int): R = apply(core.cmov(s, d))
+  override def rmov(s: Int, d: Int): R = apply(core.rmov(s, d))
 
-  override def cswap(d1: Int, d2: Int): R = apply(core.cswap(d1, d2))
+  override def rswap(d1: Int, d2: Int): R = apply(core.rswap(d1, d2))
 
-  override def cadd(s: Int, d: Int): R = apply(core.cadd(s, d))
+  override def radd(s: Int, d: Int): R = apply(core.radd(s, d))
 
-  override def caddi(s: Int, d: Int): R = apply(core.caddi(s, d))
+  override def raddi(s: Int, d: Int): R = apply(core.raddi(s, d))
 
-  override def csub(s: Int, d: Int): R = apply(core.csub(s, d))
+  override def rsub(s: Int, d: Int): R = apply(core.rsub(s, d))
 
-  override def csubi(s: Int, d: Int): R = apply(core.csubi(s, d))
+  override def rsubi(s: Int, d: Int): R = apply(core.rsubi(s, d))
 
-  override def cmul(s: Int, d: Int): R = apply(core.cmul(s, d))
+  override def rmul(s: Int, d: Int): R = apply(core.rmul(s, d))
 
-  override def cmuli(s: Int, d: Int): R = apply(core.cmuli(s, d))
+  override def rmuli(s: Int, d: Int): R = apply(core.rmuli(s, d))
 
-  override def cdiv(s: Int, d: Int): R = apply(core.cdiv(s, d))
+  override def rdiv(s: Int, d: Int): R = apply(core.rdiv(s, d))
 
-  override def cpow(s: Int, d: Int): R = apply(core.cpow(s, d))
+  override def rpow(s: Int, d: Int): R = apply(core.rpow(s, d))
 
-  override def cneg(d: Int): R = apply(core.cneg(d))
+  override def rneg(d: Int): R = apply(core.rneg(d))
 
-  override def cng1(d: Int): R = apply(core.cng1(d))
+  override def rng1(d: Int): R = apply(core.rng1(d))
 
-  override def cnot(d: Int): R = apply(core.cnot(d))
+  override def rnot(d: Int): R = apply(core.rnot(d))
 
-  override def ceq(s: Int, d: Int): R = apply(core.ceq(s, d))
+  override def req(s: Int, d: Int): R = apply(core.req(s, d))
 
-  override def cne(s: Int, d: Int): R = apply(core.cne(s, d))
+  override def rne(s: Int, d: Int): R = apply(core.rne(s, d))
 
-  override def cle(s: Int, d: Int): R = apply(core.cle(s, d))
+  override def rle(s: Int, d: Int): R = apply(core.rle(s, d))
 
-  override def clt(s: Int, d: Int): R = apply(core.clt(s, d))
+  override def rlt(s: Int, d: Int): R = apply(core.rlt(s, d))
 }

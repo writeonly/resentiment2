@@ -5,45 +5,45 @@ import io.github.writeonly.resentment.ipu.core.api.RedCore
 class RedCoreText extends RedCore[String] {
   def apply(name: String, seq: Int*): String = name + seq
 
-  override def cnop(): String = apply("cnop")
+  override def rnop(): String = apply("cnop")
 
-  override def cclr(d: Int): String = apply("cclr", d)
+  override def rclr(d: Int): String = apply("cclr", d)
 
-  override def cset(d: Int): String = apply("cset", d)
+  override def rset(d: Int): String = apply("cset", d)
 
-  override def cmovi(s: Int, d: Int): String = apply("cmovi", s, d)
+  override def rmovi(s: Int, d: Int): String = apply("cmovi", s, d)
 
-  override def cmov(s: Int, d: Int): String = apply("cmov", s, d)
+  override def rmov(s: Int, d: Int): String = apply("cmov", s, d)
 
-  override def cswap(d1: Int, d2: Int): String = apply("cswap", d1, d2)
+  override def rswap(d1: Int, d2: Int): String = apply("cswap", d1, d2)
 
-  override def cadd(s: Int, d: Int): String = apply("cadd", s, d)
+  override def radd(s: Int, d: Int): String = apply("cadd", s, d)
 
-  override def caddi(s: Int, d: Int): String = apply("caddi", s, d)
+  override def raddi(s: Int, d: Int): String = apply("caddi", s, d)
 
-  override def csub(s: Int, d: Int): String = apply("csub", s, d)
+  override def rsub(s: Int, d: Int): String = apply("csub", s, d)
 
-  override def csubi(s: Int, d: Int): String = apply("csubi", s, d)
+  override def rsubi(s: Int, d: Int): String = apply("csubi", s, d)
 
-  override def cmul(s: Int, d: Int): String = apply("cmul", s, d)
+  override def rmul(s: Int, d: Int): String = apply("cmul", s, d)
 
-  override def cmuli(s: Int, d: Int): String = apply("cmuli", s, d)
+  override def rmuli(s: Int, d: Int): String = apply("cmuli", s, d)
 
-  override def cdiv(s: Int, d: Int): String = apply("cdiv", s, d)
+  override def rdiv(s: Int, d: Int): String = apply("cdiv", s, d)
 
-  override def cpow(s: Int, d: Int): String = apply("cpow", s, d)
+  override def rpow(s: Int, d: Int): String = apply("cpow", s, d)
 
-  override def cneg(d: Int): String = apply("cneg", d)
+  override def rneg(d: Int): String = apply("cneg", d)
 
-  override def cng1(d: Int): String = apply("cng1", d)
+  override def rng1(d: Int): String = apply("cng1", d)
 
-  override def cnot(d: Int): String = apply("not", d)
+  override def rnot(d: Int): String = apply("not", d)
 
-  override def ceq(s: Int, d: Int): String = apply("ceq", s, d)
+  override def req(s: Int, d: Int): String = apply("ceq", s, d)
 
-  override def cne(s: Int, d: Int): String = apply("cne", s, d)
+  override def rne(s: Int, d: Int): String = apply("cne", s, d)
 
-  override def cle(s: Int, d: Int): String = apply("cle", s, d)
+  override def rle(s: Int, d: Int): String = apply("cle", s, d)
 
-  override def clt(s: Int, d: Int): String = apply("clt", s, d)
+  override def rlt(s: Int, d: Int): String = apply("clt", s, d)
 }

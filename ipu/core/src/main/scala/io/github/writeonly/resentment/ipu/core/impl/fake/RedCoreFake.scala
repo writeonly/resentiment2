@@ -5,50 +5,50 @@ import io.github.writeonly.resentment.ipu.core.api.RedCore
 
 class RedCoreFake extends Fake with RedCore[Unit] {
 
-  override def cnop(): Unit = {}
+  override def rnop(): Unit = {}
 
-  override def cclr(d: Int): Unit = memory(d) = 0
+  override def rclr(d: Int): Unit = memory(d) = 0
 
-  override def cset(d: Int): Unit = memory(d) = 1
+  override def rset(d: Int): Unit = memory(d) = 1
 
-  override def cmovi(s: Int, d: Int): Unit = memory(d) = s.asInstanceOf[Byte]
+  override def rmovi(s: Int, d: Int): Unit = memory(d) = s.asInstanceOf[Byte]
 
-  override def cmov(s: Int, d: Int): Unit = memory(d) = memory(s)
+  override def rmov(s: Int, d: Int): Unit = memory(d) = memory(s)
 
-  override def cswap(d1: Int, d2: Int): Unit = {
+  override def rswap(d1: Int, d2: Int): Unit = {
     val tmp = memory(d1)
     memory(d1) = memory(d2)
     memory(d2) = tmp
   }
 
-  override def cadd(s: Int, d: Int): Unit = comi(s, d, _ + _)
+  override def radd(s: Int, d: Int): Unit = comi(s, d, _ + _)
 
-  override def caddi(s: Int, d: Int): Unit = comii(s, d, _ + _)
+  override def raddi(s: Int, d: Int): Unit = comii(s, d, _ + _)
 
-  override def csub(s: Int, d: Int): Unit = comi(s, d, _ - _)
+  override def rsub(s: Int, d: Int): Unit = comi(s, d, _ - _)
 
-  override def csubi(s: Int, d: Int): Unit = comii(s, d, _ - _)
+  override def rsubi(s: Int, d: Int): Unit = comii(s, d, _ - _)
 
-  override def cmul(s: Int, d: Int): Unit = comi(s, d, _ * _)
+  override def rmul(s: Int, d: Int): Unit = comi(s, d, _ * _)
 
-  override def cmuli(s: Int, d: Int): Unit = comii(s, d, _ * _)
+  override def rmuli(s: Int, d: Int): Unit = comii(s, d, _ * _)
 
-  override def cdiv(s: Int, d: Int): Unit = comi(s, d, _ / _)
+  override def rdiv(s: Int, d: Int): Unit = comi(s, d, _ / _)
 
-  override def cpow(s: Int, d: Int): Unit = comi(s, d, _ % _)
+  override def rpow(s: Int, d: Int): Unit = comi(s, d, _ % _)
 
-  override def cneg(d: Int): Unit = memory(d) = -memory(d)
+  override def rneg(d: Int): Unit = memory(d) = -memory(d)
 
-  override def cng1(d: Int): Unit = memory(d) = -memory(d) + 1
+  override def rng1(d: Int): Unit = memory(d) = -memory(d) + 1
 
-  override def cnot(d: Int): Unit = memory(d) = !Memory.toBoolean(memory(d))
+  override def rnot(d: Int): Unit = memory(d) = !Memory.toBoolean(memory(d))
 
-  override def ceq(s: Int, d: Int): Unit = comx(s, d, _ == _)
+  override def req(s: Int, d: Int): Unit = comx(s, d, _ == _)
 
-  override def cne(s: Int, d: Int): Unit = comx(s, d, _ != _)
+  override def rne(s: Int, d: Int): Unit = comx(s, d, _ != _)
 
-  override def cle(s: Int, d: Int): Unit = comx(s, d, _ >= _)
+  override def rle(s: Int, d: Int): Unit = comx(s, d, _ >= _)
 
-  override def clt(s: Int, d: Int): Unit = comx(s, d, _ > _)
+  override def rlt(s: Int, d: Int): Unit = comx(s, d, _ > _)
 
 }
