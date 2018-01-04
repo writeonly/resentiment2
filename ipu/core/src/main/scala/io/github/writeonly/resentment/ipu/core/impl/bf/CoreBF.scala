@@ -22,9 +22,9 @@ class CoreBF {
 
   def sh(i: Int): String = signn(i, ">", "<")
 
-  def caddi(i: Int): String = signn(i, "+", "-")
+  def raddi(i: Int): String = signn(i, "+", "-")
 
-  def csubi(i: Int): String = signn(i, "-", "+")
+  def rsubi(i: Int): String = signn(i, "-", "+")
 
   def r(i: Int, s: String): FString = r(i, s, 1)
 
@@ -44,10 +44,6 @@ class CoreBF {
 
   def join(s: String*) = vm(s.mkString(""))
 
-  def caddi(s: Int, d: Int): FString = r(d, caddi(s))
-
-  def csubi(s: Int, d: Int): FString = r(d, csubi(s))
-
   def add1(s: Int, d1: Int, out: String): FString = rw(s, "-", out, r(d1, "+"))
 
   def add1(s: Int, d1: Int): FString = add1(s, d1, "")
@@ -66,23 +62,21 @@ class CoreBF {
 
   def subt(s: Int, d: Int, t: Int): FString = mk(sub2(s, d, t), add1(t, s))
 
-  def cnop(): FString = FString.empty
+  def rclr(d: Int): FString = rmovi(0, d: Int)
 
-  def cclr(d: Int): FString = cmovi(0, d: Int)
+  def rset(d: Int): FString = rmovi(1, d: Int)
 
-  def cset(d: Int): FString = cmovi(1, d: Int)
+  def rmovi(s: Int, d: Int): FString = rw(d, "-", raddi(s))
 
-  def cmovi(s: Int, d: Int): FString = rw(d, "-", caddi(s))
+  def ge1(d: Int): FString = rm(-2, "[<-]<[>", "<-<]>+>", r(d, "-"), rmovi(0, -1))
 
-  def ge1(d: Int): FString = rm(-2, "[<-]<[>", "<-<]>+>", r(d, "-"), cmovi(0, -1))
-
-  def ge2(d: Int): FString = rm(-2, "-[<-]<[>", "<-<]>+>", r(d, "-"), cmovi(1, -1))
+  def ge2(d: Int): FString = rm(-2, "-[<-]<[>", "<-<]>+>", r(d, "-"), rmovi(1, -1))
 
   def ge3(d: Int): FString = rw(-1, "-", ge2(d))
 
-  def gt1(d: Int): FString = rm(-2, "[<-]<[>", "<-<]>+>", r(d, "+"), cmovi(0, -1))
+  def gt1(d: Int): FString = rm(-2, "[<-]<[>", "<-<]>+>", r(d, "+"), rmovi(0, -1))
 
-  def gt2(d: Int): FString = rm(-2, "-[<-]<[>", "<-<]>+>", r(d, "+"), cmovi(1, -1))
+  def gt2(d: Int): FString = rm(-2, "-[<-]<[>", "<-<]>+>", r(d, "+"), rmovi(1, -1))
 
   def gt3(d: Int): FString = rw(-1, "-", gt2(d))
 
