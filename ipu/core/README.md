@@ -9,7 +9,9 @@
   * https://www.sccs.swarthmore.edu/users/06/adem/engin/e25/finale/
   * http://techtinkering.com/2009/03/05/the-subleq-urisc-oisc-architecture/
 3. Leg - ETA http://www.miketaylor.org.uk/tech/eta/doc/easman.html
-4. Leg - Befunge https://github.com/Mikescher/BefunGen
+4. Leg - Befunge 
+  * https://github.com/Mikescher/BefunGen
+  * http://www.phlamethrower.co.uk/befunge/c2b.php
 5. Leg - Piet https://www.toothycat.net/wiki/wiki.pl?MoonShadow/Piet
 
 ## API
