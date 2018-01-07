@@ -60,9 +60,9 @@ class CoreBF {
 
   def subt(s: Int, d: Int, t: Int): FString = mk(sub2(s, d, t), add1(t, s))
 
-  def rclr(d: Int): FString = rmovi(0, d: Int)
+  def rclr(d: Int): FString = rmovi(0, d)
 
-  def rset(d: Int): FString = rmovi(1, d: Int)
+  def rset(d: Int): FString = rmovi(1, d)
 
   def rmovi(s: Int, d: Int): FString = rw(d, "-", raddi(s))
 

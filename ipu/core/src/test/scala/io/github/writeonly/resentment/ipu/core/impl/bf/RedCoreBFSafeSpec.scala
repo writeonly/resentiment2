@@ -159,6 +159,23 @@ class RedCoreBFSafeSpec extends org.specs2.mutable.Specification
       tape(2) must_== 2
     }
 
+    "rmovi(2,0) rmovi(3,1) rpow(0,1)" >> {
+      val core = new RedCoreBFSafe()
+      val out = core.rmovi(2, 0)() + core.rmovi(3, 1)() + core.rpow(0, 1)()
+      val tape = new InterpreterBF(StreamIO.byteArray(), out)().memory
+      tape(0) must_== 2
+      tape(1) must_== 9
+    }
+
+    "rmovi(3,0) rmovi(2,1) rpow(0,1)" >> {
+      val core = new RedCoreBFSafe()
+      val out = core.rmovi(3, 0)() + core.rmovi(2, 1)() + core.rpow(0, 1)()
+      val tape = new InterpreterBF(StreamIO.byteArray(), out)().memory
+      tape(0) must_== 3
+      tape(1) must_== 8
+    }
+
+
     "rmovi(3,1) rmovi(1,3) rswap(1,3)" >> {
       val core = new RedCoreBFSafe()
       val out = core.rmovi(3, 1)() + core.rmovi(1, 3)() + core.rswap(1, 3)()
