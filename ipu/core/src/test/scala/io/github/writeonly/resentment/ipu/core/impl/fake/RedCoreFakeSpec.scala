@@ -1,5 +1,8 @@
 package io.github.writeonly.resentment.ipu.core.impl.fake
 
+import io.github.writeonly.resentment.fsm.api.StreamIO
+import io.github.writeonly.resentment.fsm.impl.InterpreterBF
+import io.github.writeonly.resentment.ipu.core.impl.bf.RedCoreBFSafe
 import org.junit.runner.RunWith
 import org.specs2.runner.JUnitRunner
 import org.specs2.specification.AroundTimeout
@@ -120,6 +123,26 @@ class RedCoreFakeSpec extends org.specs2.mutable.Specification
       val memory = core.memory
       memory(1) must_== 3
       memory(2) must_== 2
+    }
+
+    "rmovi(2,0) rmovi(3,1) rpow(0,1)" >> {
+      val core = new RedCoreFake()
+      core.rmovi(2, 0)
+      core.rmovi(3, 1)
+      core.rpow(0, 1)
+      val memory = core.memory
+      memory(0) must_== 2
+      memory(1) must_== 9
+    }
+
+    "rmovi(3,0) rmovi(2,1) rpow(0,1)" >> {
+      val core = new RedCoreFake()
+      core.rmovi(3, 0)
+      core.rmovi(2, 1)
+      core.rpow(0, 1)
+      val memory = core.memory
+      memory(0) must_== 3
+      memory(1) must_== 8
     }
 
     "rmovi(3,1) rmovi(1,3) rswap(1,3)" >> {

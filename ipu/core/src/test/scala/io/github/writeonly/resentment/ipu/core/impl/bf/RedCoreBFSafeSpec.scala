@@ -174,7 +174,6 @@ class RedCoreBFSafeSpec extends org.specs2.mutable.Specification
       memory(1) must_== 8
     }
 
-
     "rmovi(3,1) rmovi(1,3) rswap(1,3)" >> {
       val core = new RedCoreBFSafe()
       val out = core.rmovi(3, 1)() + core.rmovi(1, 3)() + core.rswap(1, 3)()
