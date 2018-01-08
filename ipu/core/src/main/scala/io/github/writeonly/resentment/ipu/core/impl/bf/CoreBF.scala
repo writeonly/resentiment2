@@ -30,13 +30,21 @@ class CoreBF {
 
   def h(i: Int): FString = h(i, "")
 
-  def jm(s: String*) = vm(s.mkString(""))
+  def jm(s: String*) = jm0(s)
 
-  def js(s: Seq[String]):String = vs(s.mkString(""))
+  private def jm0(s: Seq[String]) = vm.mkString(s)
 
-  def rm(w: Int, pre: String, suf: String, seq: FString*): FString = FString((sep) => jm(h(w, pre)(sep), mkm(seq: _*)(sep), h(w, suf)(sep)))
+  private def js0(s: Seq[String]):String = vs.mkString(s)
 
-  def rw(w: Int, in: String, out: String, n: Int, seq: FString*): FString = FString((sep) => jm(h(w)(sep), "[", mkm(seq: _*)(sep), h(w, in)(sep), "]", out * n))
+  def mkm(others: FString*): FString = mkm0(others)
+
+  private def mkm0(others: Seq[FString]): FString = vm.mkFString(others)
+
+  private def mks0(others: Seq[FString]): FString = vs.mkFString(others)
+
+  def rm(w: Int, pre: String, suf: String, seq: FString*): FString = FString((sep) => jm(h(w, pre)(sep), mkm0(seq)(sep), h(w, suf)(sep)))
+
+  def rw(w: Int, in: String, out: String, n: Int, seq: FString*): FString = FString((sep) => jm(h(w)(sep), "[", mkm0(seq)(sep), h(w, in)(sep), "]", out * n))
 
   def rw(w: Int, in: String, out: String, seq: FString*): FString = rw(w, in, out, 1, seq: _*)
 
@@ -44,13 +52,9 @@ class CoreBF {
 
   def hm(w: Int, seq: FString*): FString = hm(w, "", seq: _*)
 
-  def hs(w: Int, in: String, seq: FString*): FString = FString((sep) => jm(h(w)(sep), "[", mkm(seq: _*)(sep), h(w, in)(sep), "]"))
+  def hs(w: Int, in: String, seq: FString*): FString = FString((sep) => jm(h(w)(sep), "[", mkm0(seq)(sep), h(w, in)(sep), "]"))
 
   def hs(w: Int, seq: FString*): FString = hs(w, "", seq: _*)
-
-  def mkm(others: FString*): FString = FString((it) => others.map(f => f(it)).mkString(""))
-
-  def mks(others: FString*): FString = FString((it) => js(others.map(f => f(it))))
 
   def add1(s: Int, d1: Int, out: String): FString = rw(s, "-", out, h(d1, "+"))
 

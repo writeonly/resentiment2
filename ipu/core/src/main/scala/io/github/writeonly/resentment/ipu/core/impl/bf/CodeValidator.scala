@@ -1,5 +1,7 @@
 package io.github.writeonly.resentment.ipu.core.impl.bf
 
+import io.github.writeonly.resentment.ipu.core.common.FString
+
 trait CodeValidator extends Function[String, String] {
   override def apply(code: String) = {
     require(valid(code), code)
@@ -11,6 +13,10 @@ trait CodeValidator extends Function[String, String] {
   def count(code: String, c: Char) = code.count(_ == c)
 
   def pair(code: String, l: Char, r: Char) = count(code, l) == count(code, r)
+
+  def mkString(s: Seq[String]) = apply(s.mkString(""))
+
+  def mkFString(others: Seq[FString]): FString = FString((it) => mkString(others.map(f => f(it))))
 
 }
 
