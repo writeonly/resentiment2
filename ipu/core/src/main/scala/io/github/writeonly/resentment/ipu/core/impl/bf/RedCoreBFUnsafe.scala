@@ -19,9 +19,9 @@ class RedCoreBFUnsafe extends CoreBF with RedCore[FString] {
 
   override def rsubi(s: Int, d: Int): FString = h(d, rsubi(s))
 
-  override def rmul(s: Int, d: Int): FString = mkm(add1(d, -2), hm(-2, "-", radd(s, d)))
+  override def rmul(s: Int, d: Int): FString = mkm(add1(d, -2), hs(-2, "-", radd(s, d)))
 
-  override def rmuli(s: Int, d: Int): FString = mkm(add1(d, -1), hm(-1, "-", raddi(s, d)))
+  override def rmuli(s: Int, d: Int): FString = mkm(add1(d, -1), hs(-1, "-", raddi(s, d)))
 
   //  temp0[-]
   //  temp1[-]
@@ -46,14 +46,14 @@ class RedCoreBFUnsafe extends CoreBF with RedCore[FString] {
 
   override def rdiv(s: Int, d: Int): FString = mkm(
     add1(d, -1),
-    hm(-1,
+    hs(-1,
       addt(s, -2, -3),
-      hm(-2, "-",
+      hs(-2, "-",
         h(-3, "+"),
         h(-1, "-"),
-        hm(-1, "-", h(-3, "[-]"), h(-4, "+")),
-        hm(-4, "-", h(-1, "+")),
-        hm(-3, "-", h(-2, "-"), rw(-2, "[-]", "+", h(d, "-")))
+        hs(-1, "-", h(-3, "[-]"), h(-4, "+")),
+        hs(-4, "-", h(-1, "+")),
+        hs(-3, "-", h(-2, "-"), rw(-2, "[-]", "+", h(d, "-")))
       ),
       h(d, "+")
     )
@@ -61,14 +61,14 @@ class RedCoreBFUnsafe extends CoreBF with RedCore[FString] {
 
   override def rdivi(s: Int, d: Int) = mkm(
     add1(d, -1),
-    hm(-1,
+    hs(-1,
       raddi(s, -2),
-      hm(-2, "-",
+      hs(-2, "-",
         h(-3, "+"),
         h(-1, "-"),
-        hm(-1, "-", h(-3, "[-]"), h(-4, "+")),
-        hm(-4, "-", h(-1, "+")),
-        hm(-3, "-", h(-2, "-"), rw(-2, "[-]", "+", h(d, "-")))
+        hs(-1, "-", h(-3, "[-]"), h(-4, "+")),
+        hs(-4, "-", h(-1, "+")),
+        hs(-3, "-", h(-2, "-"), rw(-2, "[-]", "+", h(d, "-")))
       ),
       h(d, "+")
     )
@@ -90,11 +90,11 @@ class RedCoreBFUnsafe extends CoreBF with RedCore[FString] {
   def rpowc(s: Int, d: Int): FString = mkm(
     add1(d, -1),
     raddi(1, d),
-    hm(s, "-",
+    hs(s, "-",
       rclr(-2),
       rclr(-3),
       add1(d, -3),
-      hm(-3, "-", addt(-1, d, -2))
+      hs(-3, "-", addt(-1, d, -2))
     )
   )
 
