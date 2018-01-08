@@ -100,7 +100,7 @@ class RedCoreBFUnsafe extends CoreBF with RedCore[FString] {
 
   override def rpow(s: Int, d: Int): FString = mk(rmov(s, -4), rpowc(s, d), add1(-4, s))
 
-  override def rpowi(s: Int, d: Int): FString = mk(add1(s, -4), rpowc(s, d))
+  override def rpowi(s: Int, d: Int): FString = mk(raddi(s, -4), rpowc(-4, d))
 
   override def rneg(d: Int): FString = mk(sub1(d, -1), add1(-1, d))
 
