@@ -46,9 +46,9 @@ class CoreBF {
 
   def rw(w: Int, in: String, out: String, n: Int, seq: FString*): FString = FString((sep) => jm(h(w)(sep), "[", mkm0(seq)(sep), h(w, in)(sep), "]", out * n))
 
-  def rw(w: Int, in: String, out: String, seq: FString*): FString = rw(w, in, out, 1, seq: _*)
+  def hm(w: Int, in: String, out: String, seq: FString*): FString = rw(w, in, out, 1, seq: _*)
 
-  def hm(w: Int, in: String, seq: FString*): FString = rw(w, in, "", seq: _*)
+  def hm(w: Int, in: String, seq: FString*): FString = hm(w, in, "", seq: _*)
 
   def hm(w: Int, seq: FString*): FString = hm(w, "", seq: _*)
 
@@ -56,7 +56,7 @@ class CoreBF {
 
   def hs(w: Int, seq: FString*): FString = hs(w, "", seq: _*)
 
-  def add1(s: Int, d1: Int, out: String): FString = rw(s, "-", out, h(d1, "+"))
+  def add1(s: Int, d1: Int, out: String): FString = mkm(hs(s, "-", h(d1, "+")), h(s, out))
 
   def add1(s: Int, d1: Int): FString = hs(s, "-", h(d1, "+"))
 
@@ -78,7 +78,9 @@ class CoreBF {
 
   def rset(d: Int): FString = rmovi(1, d)
 
-  def rmovi(s: Int, d: Int): FString = rw(d, "-", raddi(s))
+  def raddi(s: Int, d: Int): FString = h(d, raddi(s))
+
+  def rmovi(s: Int, d: Int): FString = mkm(hs(d, "-"), raddi(s, d))
 
   def ge1(d: Int): FString = rm(-2, "[<-]<[>", "<-<]>+>", h(d, "-"), rclr(-1))
 
