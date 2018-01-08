@@ -145,6 +145,22 @@ class RedCoreFakeSpec extends org.specs2.mutable.Specification
       memory(1) must_== 8
     }
 
+    "rmovi(3,1) rpow(2,1)" >> {
+      val core = new RedCoreFake()
+      core.rmovi(3, 1)
+      core.rpowi(2, 1)
+      val memory = core.memory
+      memory(1) must_== 9
+    }
+
+    "rmovi(2,1) rpow(3,1)" >> {
+      val core = new RedCoreFake()
+      core.rmovi(2, 1)
+      core.rpowi(3, 1)
+      val memory = core.memory
+      memory(1) must_== 8
+    }
+
     "rmovi(3,1) rmovi(1,3) rswap(1,3)" >> {
       val core = new RedCoreFake
       core.rmovi(3, 1)
