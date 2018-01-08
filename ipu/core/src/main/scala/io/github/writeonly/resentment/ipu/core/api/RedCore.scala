@@ -31,6 +31,8 @@ trait RedCore[F] {
 
   def rpow(s: Int, d: Int): F
 
+  def rpowi(s: Int, d: Int): F
+
   def rneg(d: Int): F
 
   def rng1(d: Int): F
