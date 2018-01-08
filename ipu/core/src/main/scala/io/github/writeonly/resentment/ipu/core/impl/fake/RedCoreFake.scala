@@ -3,6 +3,8 @@ package io.github.writeonly.resentment.ipu.core.impl.fake
 import io.github.writeonly.resentment.fsm.api.Memory
 import io.github.writeonly.resentment.ipu.core.api.RedCore
 
+import scala.util.{Failure, Success, Try}
+
 class RedCoreFake extends Fake with RedCore[Unit] {
 
   override def rnop(): Unit = {}
@@ -37,7 +39,12 @@ class RedCoreFake extends Fake with RedCore[Unit] {
 
   override def rdivi(s: Int, d: Int): Unit = comii(s, d, _ / _)
 
-  override def rpow(s: Int, d: Int): Unit = comi(s, d, _ % _)
+  override def rpow(s: Int, d: Int): Unit = comi(s, d, pow)
+
+  def pow(x:Byte, y:Byte): Int = Try(BigInt(x).pow(y).intValue()) match {
+    case Success(v) => v
+    case Failure(e) => throw new IllegalArgumentException("x -> " + x + ", y -> " + y, e )
+  }
 
   override def rneg(d: Int): Unit = memory(d) = -memory(d)
 

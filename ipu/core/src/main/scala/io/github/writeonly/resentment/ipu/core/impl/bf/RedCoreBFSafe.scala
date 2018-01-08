@@ -35,7 +35,7 @@ class RedCoreBFSafe(core: RedCoreBFUnsafe) extends RedCore[FString] {
 
   override def rdivi(s: Int, d: Int): FString = core.rdivi(s, d)
 
-  override def rpow(s: Int, d: Int): FString = core.rpow(s, d)
+  override def rpow(s: Int, d: Int): FString = if (s != d) core.rpow(s, d) else core.mk(rmov(s, -5), core.rpowc(s, d), core.add1(-5, s))
 
   override def rneg(d: Int): FString = core.rneg(d)
 

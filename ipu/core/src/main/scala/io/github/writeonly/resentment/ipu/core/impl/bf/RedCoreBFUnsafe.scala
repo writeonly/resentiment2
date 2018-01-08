@@ -23,26 +23,26 @@ class RedCoreBFUnsafe extends CoreBF with RedCore[FString] {
 
   override def rmuli(s: Int, d: Int): FString = mk(add1(d, -1), rw(-1, "-", raddi(s, d)))
 
-//  temp0[-]
-//  temp1[-]
-//  temp2[-]
-//  temp3[-]
-//  x[temp0+x-]
-//  temp0[
-//    y[temp1+temp2+y-]
-//    temp2[y+temp2-]
-//    temp1[
-//      temp2+
-//      temp0-
-//      [temp2[-]temp3+temp0-]
-//      temp3[temp0+temp3-]
-//      temp2[
-//        temp1-
-//        [x-temp1[-]]+
-//      temp2-]
-//    temp1-]
-//    x+
-//  temp0]
+  //  temp0[-]
+  //  temp1[-]
+  //  temp2[-]
+  //  temp3[-]
+  //  x[temp0+x-]
+  //  temp0[
+  //    y[temp1+temp2+y-]
+  //    temp2[y+temp2-]
+  //    temp1[
+  //      temp2+
+  //      temp0-
+  //      [temp2[-]temp3+temp0-]
+  //      temp3[temp0+temp3-]
+  //      temp2[
+  //        temp1-
+  //        [x-temp1[-]]+
+  //      temp2-]
+  //    temp1-]
+  //    x+
+  //  temp0]
 
   override def rdiv(s: Int, d: Int): FString = mk(
     add1(d, -1),
@@ -74,18 +74,18 @@ class RedCoreBFUnsafe extends CoreBF with RedCore[FString] {
     )
   )
 
-//  temp0[-]
-//  x[temp0+x-]
-//  x+
-//  y[
-//    temp1[-]
-//    temp2[-]
-//    x[temp2+x-]
-//    temp2[
-//      temp0[x+temp1+temp0-]
-//      temp1[temp0+temp1-]
-//    temp2-]
-//  y-]
+  //  temp0[-]
+  //  x[temp0+x-]
+  //  x+
+  //  y[
+  //    temp1[-]
+  //    temp2[-]
+  //    x[temp2+x-]
+  //    temp2[
+  //      temp0[x+temp1+temp0-]
+  //      temp1[temp0+temp1-]
+  //    temp2-]
+  //  y-]
 
   def rpowc(s: Int, d: Int): FString = mk(
     add1(d, -1),
@@ -98,7 +98,7 @@ class RedCoreBFUnsafe extends CoreBF with RedCore[FString] {
     )
   )
 
-  override def rpow(s: Int, d: Int): FString = mk(rmov(s, -4),rpowc(s, d), add1(-4, s))
+  override def rpow(s: Int, d: Int): FString = mk(rmov(s, -4), rpowc(s, d), add1(-4, s))
 
   override def rneg(d: Int): FString = mk(sub1(d, -1), add1(-1, d))
 
