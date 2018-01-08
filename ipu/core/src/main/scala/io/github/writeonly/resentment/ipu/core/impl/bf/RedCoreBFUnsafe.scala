@@ -7,21 +7,21 @@ class RedCoreBFUnsafe extends CoreBF with RedCore[FString] {
 
   override def rnop(): FString = FString.empty
 
-  override def rmov(s: Int, d: Int): FString = mk(rclr(d), radd(s, d))
+  override def rmov(s: Int, d: Int): FString = mkm(rclr(d), radd(s, d))
 
-  override def rswap(d1: Int, d2: Int): FString = mk(add1(d1, -1), add1(d2, d1), add1(-1, d2))
+  override def rswap(d1: Int, d2: Int): FString = mkm(add1(d1, -1), add1(d2, d1), add1(-1, d2))
 
-  override def radd(s: Int, d: Int): FString = mk(addt(s, d, -1))
+  override def radd(s: Int, d: Int): FString = mkm(addt(s, d, -1))
 
-  override def raddi(s: Int, d: Int): FString = r(d, raddi(s))
+  override def raddi(s: Int, d: Int): FString = h(d, raddi(s))
 
-  override def rsub(s: Int, d: Int): FString = mk(subt(s, d, -1))
+  override def rsub(s: Int, d: Int): FString = mkm(subt(s, d, -1))
 
-  override def rsubi(s: Int, d: Int): FString = r(d, rsubi(s))
+  override def rsubi(s: Int, d: Int): FString = h(d, rsubi(s))
 
-  override def rmul(s: Int, d: Int): FString = mk(add1(d, -2), rw(-2, "-", radd(s, d)))
+  override def rmul(s: Int, d: Int): FString = mkm(add1(d, -2), hm(-2, "-", radd(s, d)))
 
-  override def rmuli(s: Int, d: Int): FString = mk(add1(d, -1), rw(-1, "-", raddi(s, d)))
+  override def rmuli(s: Int, d: Int): FString = mkm(add1(d, -1), hm(-1, "-", raddi(s, d)))
 
   //  temp0[-]
   //  temp1[-]
@@ -44,33 +44,33 @@ class RedCoreBFUnsafe extends CoreBF with RedCore[FString] {
   //    x+
   //  temp0]
 
-  override def rdiv(s: Int, d: Int): FString = mk(
+  override def rdiv(s: Int, d: Int): FString = mkm(
     add1(d, -1),
-    rw(-1,
+    hm(-1,
       addt(s, -2, -3),
-      rw(-2, "-",
-        r(-3, "+"),
-        r(-1, "-"),
-        rw(-1, "-", r(-3, "[-]"), r(-4, "+")),
-        rw(-4, "-", r(-1, "+")),
-        rw(-3, "-", r(-2, "-"), rw(-2, "[-]", "+", r(d, "-")))
+      hm(-2, "-",
+        h(-3, "+"),
+        h(-1, "-"),
+        hm(-1, "-", h(-3, "[-]"), h(-4, "+")),
+        hm(-4, "-", h(-1, "+")),
+        hm(-3, "-", h(-2, "-"), rw(-2, "[-]", "+", h(d, "-")))
       ),
-      r(d, "+")
+      h(d, "+")
     )
   )
 
-  override def rdivi(s: Int, d: Int) = mk(
+  override def rdivi(s: Int, d: Int) = mkm(
     add1(d, -1),
-    rw(-1,
+    hm(-1,
       raddi(s, -2),
-      rw(-2, "-",
-        r(-3, "+"),
-        r(-1, "-"),
-        rw(-1, "-", r(-3, "[-]"), r(-4, "+")),
-        rw(-4, "-", r(-1, "+")),
-        rw(-3, "-", r(-2, "-"), rw(-2, "[-]", "+", r(d, "-")))
+      hm(-2, "-",
+        h(-3, "+"),
+        h(-1, "-"),
+        hm(-1, "-", h(-3, "[-]"), h(-4, "+")),
+        hm(-4, "-", h(-1, "+")),
+        hm(-3, "-", h(-2, "-"), rw(-2, "[-]", "+", h(d, "-")))
       ),
-      r(d, "+")
+      h(d, "+")
     )
   )
 
@@ -87,33 +87,33 @@ class RedCoreBFUnsafe extends CoreBF with RedCore[FString] {
   //    temp2-]
   //  y-]
 
-  def rpowc(s: Int, d: Int): FString = mk(
+  def rpowc(s: Int, d: Int): FString = mkm(
     add1(d, -1),
     raddi(1, d),
-    rw(s, "-",
+    hm(s, "-",
       rclr(-2),
       rclr(-3),
       add1(d, -3),
-      rw(-3, "-", addt(-1, d, -2))
+      hm(-3, "-", addt(-1, d, -2))
     )
   )
 
-  override def rpow(s: Int, d: Int): FString = mk(rmov(s, -4), rpowc(s, d), add1(-4, s))
+  override def rpow(s: Int, d: Int): FString = mkm(rmov(s, -4), rpowc(s, d), add1(-4, s))
 
-  override def rpowi(s: Int, d: Int): FString = mk(raddi(s, -4), rpowc(-4, d))
+  override def rpowi(s: Int, d: Int): FString = mkm(raddi(s, -4), rpowc(-4, d))
 
-  override def rneg(d: Int): FString = mk(sub1(d, -1), add1(-1, d))
+  override def rneg(d: Int): FString = mkm(sub1(d, -1), add1(-1, d))
 
-  override def rng1(d: Int): FString = mk(raddi(-1, d), rneg(d))
+  override def rng1(d: Int): FString = mkm(raddi(-1, d), rneg(d))
 
-  override def rnot(d: Int): FString = mk(raddi(-1, d), rneg(d))
+  override def rnot(d: Int): FString = mkm(raddi(-1, d), rneg(d))
 
-  override def req(s: Int, d: Int): FString = mk(add1(d, -2, "+"), subt(s, -2, -1), sub01(-2, d))
+  override def req(s: Int, d: Int): FString = mkm(add1(d, -2, "+"), subt(s, -2, -1), sub01(-2, d))
 
-  override def rne(s: Int, d: Int): FString = mk(add1(d, -2), subt(s, -2, -1), add01(-2, d))
+  override def rne(s: Int, d: Int): FString = mkm(add1(d, -2), subt(s, -2, -1), add01(-2, d))
 
-  override def rle(s: Int, d: Int): FString = mk(r(-3, "+"), addt(s, -2, -1), add1(d, -1, "+"), ge1(d), ge3(d))
+  override def rle(s: Int, d: Int): FString = mkm(h(-3, "+"), addt(s, -2, -1), add1(d, -1, "+"), ge1(d), ge3(d))
 
-  override def rlt(s: Int, d: Int): FString = mk(r(-3, "+"), addt(s, -1, -2), add1(d, -2), gt1(d), gt3(d))
+  override def rlt(s: Int, d: Int): FString = mkm(h(-3, "+"), addt(s, -1, -2), add1(d, -2), gt1(d), gt3(d))
 
 }
