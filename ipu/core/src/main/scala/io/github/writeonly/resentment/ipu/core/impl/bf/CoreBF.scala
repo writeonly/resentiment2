@@ -52,7 +52,7 @@ class CoreBF {
 
   def hm(w: Int, seq: FString*): FString = hm(w, "", seq: _*)
 
-  def hs(w: Int, in: String, seq: FString*): FString = FString((sep) => jm(h(w)(sep), "[", mkm0(seq)(sep), h(w, in)(sep), "]"))
+  def hs(w: Int, in: String, seq: FString*): FString = FString((sep) => jm(h(w)(sep), "[", mks0(seq :+ h(w, in))(sep), "]"))
 
   def hs(w: Int, seq: FString*): FString = hs(w, "", seq: _*)
 
