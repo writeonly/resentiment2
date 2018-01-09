@@ -14,9 +14,11 @@ trait CodeValidator extends Function[String, String] {
 
   def pair(code: String, l: Char, r: Char) = count(code, l) == count(code, r)
 
-  def mkString(s: Seq[String]) = apply(s.mkString(""))
+  def mk(s: Seq[String]) = apply(s.mkString(""))
 
-  def mkFString(others: Seq[FString]): FString = FString((it) => mkString(others.map(f => f(it))))
+  def mkf(others: Seq[FString]): FString = FString((it) => mk(others.map(f => f(it))))
+
+  def mkfe(others: Seq[FString], end:FString): FString = mkf(others :+ end)
 
 }
 

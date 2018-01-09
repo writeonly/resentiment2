@@ -30,29 +30,17 @@ class CoreBF {
 
   def h(i: Int): FString = h(i, "")
 
-  def jm(s: String*) = jm0(s)
+  def jm(s: String*) = vm.mk(s)
 
-  private def jm0(s: Seq[String]) = vm.mkString(s)
+  def mkm(others: FString*): FString = vm.mkf(others)
 
-  private def js0(s: Seq[String]):String = vs.mkString(s)
+  def rm(w: Int, pre: String, suf: String, seq: FString*): FString = FString((sep) => jm(h(w, pre)(sep), vm.mkf(seq)(sep), h(w, suf)(sep)))
 
-  def mkm(others: FString*): FString = mkm0(others)
-
-  private def mkm0(others: Seq[FString]): FString = vm.mkFString(others)
-
-  private def mks0(others: Seq[FString]): FString = vs.mkFString(others)
-
-  def rm(w: Int, pre: String, suf: String, seq: FString*): FString = FString((sep) => jm(h(w, pre)(sep), mkm0(seq)(sep), h(w, suf)(sep)))
-
-  def rw(w: Int, in: String, out: String, n: Int, seq: FString*): FString = FString((sep) => jm(h(w)(sep), "[", mkm0(seq)(sep), h(w, in)(sep), "]", out * n))
-
-  def hm(w: Int, in: String, out: String, seq: FString*): FString = rw(w, in, out, 1, seq: _*)
-
-  def hm(w: Int, in: String, seq: FString*): FString = hm(w, in, "", seq: _*)
+  def hm(w: Int, in: String, seq: FString*): FString = FString((sep) => jm(h(w)(sep), "[", vm.mkf(seq :+ h(w, in))(sep), "]"))
 
   def hm(w: Int, seq: FString*): FString = hm(w, "", seq: _*)
 
-  def hs(w: Int, in: String, seq: FString*): FString = FString((sep) => jm(h(w)(sep), "[", mks0(seq :+ h(w, in))(sep), "]"))
+  def hs(w: Int, in: String, seq: FString*): FString = FString((sep) => jm(h(w)(sep), "[", vs.mkf(seq :+ h(w, in))(sep), "]"))
 
   def hs(w: Int, seq: FString*): FString = hs(w, "", seq: _*)
 
