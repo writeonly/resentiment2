@@ -3,6 +3,7 @@ package io.github.writeonly.resentment.ipu.core.impl.text
 import io.github.writeonly.resentment.ipu.core.api.RedCore
 
 class RedCoreText extends RedCore[String] {
+
   override def rnop(): String = apply("cnop")
 
   override def rclr(d: Int): String = apply("cclr", d)
@@ -25,8 +26,6 @@ class RedCoreText extends RedCore[String] {
 
   override def rmul(s: Int, d: Int): String = apply("rmul", s, d)
 
-  def apply(name: String, seq: Int*): String = name + "(" + seq.mkString(",") + ") "
-
   override def rmuli(s: Int, d: Int): String = apply("rmuli", s, d)
 
   override def rdiv(s: Int, d: Int): String = apply("rdiv", s, d)
@@ -42,6 +41,8 @@ class RedCoreText extends RedCore[String] {
   override def rng1(d: Int): String = apply("rng1", d)
 
   override def rnot(d: Int): String = apply("rnot", d)
+
+  override def rtau(d: Int): String = apply("rtau", d)
 
   override def req(s: Int, d: Int): String = apply("req", s, d)
 
@@ -59,4 +60,11 @@ class RedCoreText extends RedCore[String] {
 
   override def rlti(s: Int, d: Int): String = apply("rlei", s, d)
 
+  override def rmovc(s: Int, d: Int): String = apply("rmovc", s, d)
+
+  def apply(name: String, seq: Int*): String = name + "(" + seq.mkString(",") + ") "
+
+  override def raddc(s: Int, d: Int): String = apply("raddc", s, d)
+
+  override def rsubc(s: Int, d: Int): String = apply("rsubc", s, d)
 }

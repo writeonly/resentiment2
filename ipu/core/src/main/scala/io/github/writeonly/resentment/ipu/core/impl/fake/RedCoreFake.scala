@@ -17,6 +17,11 @@ class RedCoreFake extends Fake with RedCore[Unit] {
 
   override def rmov(s: Int, d: Int): Unit = memory(d) = memory(s)
 
+  override def rmovc(s: Int, d: Int): Unit = {
+    memory(d) = memory(s)
+    memory(s) = 0
+  }
+
   override def rswap(d1: Int, d2: Int): Unit = {
     val tmp = memory(d1)
     memory(d1) = memory(d2)
@@ -25,9 +30,13 @@ class RedCoreFake extends Fake with RedCore[Unit] {
 
   override def radd(s: Int, d: Int): Unit = comi(s, d, _ + _)
 
+  override def raddc(s: Int, d: Int): Unit = comic(s, d, _ + _)
+
   override def raddi(s: Int, d: Int): Unit = comii(s, d, _ + _)
 
   override def rsub(s: Int, d: Int): Unit = comi(s, d, _ - _)
+
+  override def rsubc(s: Int, d: Int): Unit = comic(s, d, _ - _)
 
   override def rsubi(s: Int, d: Int): Unit = comii(s, d, _ - _)
 
@@ -43,18 +52,20 @@ class RedCoreFake extends Fake with RedCore[Unit] {
 
   def pow(x: Byte, y: Byte): Int = pow(x, y.asInstanceOf[Int])
 
-  override def rpowi(s: Int, d: Int): Unit = comii(s, d, pow)
-
   def pow(x: Byte, y: Int): Int = Try(BigInt(x).pow(y).intValue()) match {
     case Success(v) => v
     case Failure(e) => throw new IllegalArgumentException("x -> " + x + ", y -> " + y, e)
   }
+
+  override def rpowi(s: Int, d: Int): Unit = comii(s, d, pow)
 
   override def rneg(d: Int): Unit = memory(d) = -memory(d)
 
   override def rng1(d: Int): Unit = memory(d) = -memory(d) + 1
 
   override def rnot(d: Int): Unit = memory(d) = !Memory.toBoolean(memory(d))
+
+  override def rtau(d: Int): Unit = memory(d) = !Memory.toBoolean(memory(d))
 
   override def req(s: Int, d: Int): Unit = comx(s, d, _ == _)
 
@@ -71,5 +82,6 @@ class RedCoreFake extends Fake with RedCore[Unit] {
   override def rlt(s: Int, d: Int): Unit = comx(s, d, _ > _)
 
   override def rlti(s: Int, d: Int): Unit = comix(s, d, _ > _)
+
 
 }

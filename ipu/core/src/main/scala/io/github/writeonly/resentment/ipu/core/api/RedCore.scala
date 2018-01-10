@@ -7,9 +7,11 @@ trait RedCore[F] {
 
   def rset(d: Int): F
 
+  def rmov(s: Int, d: Int): F
+
   def rmovi(s: Int, d: Int): F
 
-  def rmov(s: Int, d: Int): F
+  def rmovc(s: Int, d: Int): F
 
   def rswap(d1: Int, d2: Int): F
 
@@ -17,9 +19,13 @@ trait RedCore[F] {
 
   def raddi(s: Int, d: Int): F
 
+  def raddc(s: Int, d: Int): F
+
   def rsub(s: Int, d: Int): F
 
   def rsubi(s: Int, d: Int): F
+
+  def rsubc(s: Int, d: Int): F
 
   def rmul(s: Int, d: Int): F
 
@@ -38,6 +44,8 @@ trait RedCore[F] {
   def rng1(d: Int): F
 
   def rnot(d: Int): F
+
+  def rtau(d: Int): F
 
   def req(s: Int, d: Int): F
 

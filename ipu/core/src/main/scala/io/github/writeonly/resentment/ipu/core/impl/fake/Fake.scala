@@ -14,6 +14,16 @@ class Fake[T <: Fake[_]] extends Interpreter {
 
   def comx(s: Int, d: Int, f: (Byte, Byte) => Boolean): Unit = memory(d) = f(memory(d), memory(s))
 
+  def comic(s: Int, d: Int, f: (Byte, Byte) => Int): Unit = {
+    memory(d) = f(memory(d), memory(s))
+    memory(s) = 0
+  }
+
+  def comxc(s: Int, d: Int, f: (Byte, Byte) => Boolean): Unit = {
+    memory(d) = f(memory(d), memory(s))
+    memory(s) = 0
+  }
+
   def comii(s: Int, d: Int, f: (Byte, Int) => Int): Unit = memory(d) = f(memory(d), s)
 
   def comix(s: Int, d: Int, f: (Byte, Int) => Boolean): Unit = memory(d) = f(memory(d), s)

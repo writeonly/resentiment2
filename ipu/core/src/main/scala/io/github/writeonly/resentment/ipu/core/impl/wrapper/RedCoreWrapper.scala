@@ -43,6 +43,8 @@ abstract class RedCoreWrapper[T, R](core: RedCore[T]) extends RedCore[R] {
 
   override def rnot(d: Int): R = apply(core.rnot(d))
 
+  override def rtau(d: Int): R = apply(core.rtau(d))
+
   override def req(s: Int, d: Int): R = apply(core.req(s, d))
 
   override def reqi(s: Int, d: Int): R = apply(core.reqi(s, d))
@@ -58,4 +60,11 @@ abstract class RedCoreWrapper[T, R](core: RedCore[T]) extends RedCore[R] {
   override def rlt(s: Int, d: Int): R = apply(core.rlt(s, d))
 
   override def rlti(s: Int, d: Int): R = apply(core.rlti(s, d))
+
+  override def rmovc(s: Int, d: Int): R = apply(core.rmovc(s, d))
+
+  override def raddc(s: Int, d: Int): R = apply(core.raddc(s, d))
+
+  override def rsubc(s: Int, d: Int): R = apply(core.rsubc(s, d))
+
 }

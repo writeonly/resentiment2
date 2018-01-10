@@ -28,7 +28,6 @@ class CoreBF {
 
   def h(i: Int): FString = h(i, "")
 
-
   def jm(s: String*) = vm.mk(s)
 
   def jmhs(h: String, s: String) = jm(h, "[", s, "]")
