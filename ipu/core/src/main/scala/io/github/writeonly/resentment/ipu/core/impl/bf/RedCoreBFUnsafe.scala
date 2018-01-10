@@ -13,10 +13,7 @@ class RedCoreBFUnsafe extends CoreBF with RedCore[FString] {
 
   override def radd(s: Int, d: Int): FString = mkm(addt(s, d, -1))
 
-
   override def rsub(s: Int, d: Int): FString = mkm(subt(s, d, -1))
-
-  override def rsubi(s: Int, d: Int): FString = h(d, rsubi(s))
 
   override def rmul(s: Int, d: Int): FString = mkm(raddc(d, -2), hs(-2, "-", radd(s, d)))
 

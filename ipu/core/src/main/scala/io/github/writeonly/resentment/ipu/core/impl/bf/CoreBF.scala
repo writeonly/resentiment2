@@ -46,17 +46,17 @@ class CoreBF {
 
   def hs(w: Int, seq: FString*): FString = hs(w, "", seq: _*)
 
-  def raddc(s: Int, d1: Int): FString = hs(s, "-", h(d1, "+"))
+  def raddc(s: Int, d1: Int): FString = hs(s, "-", raddi(1, d1))
 
-  def add01(s: Int, d1: Int): FString = hs(s, "[-]", h(d1, "+"))
+  def add01(s: Int, d1: Int): FString = hs(s, "[-]", raddi(1, d1))
 
-  def rsubc(s: Int, d1: Int): FString = hs(s, "-", h(d1, "-"))
+  def rsubc(s: Int, d1: Int): FString = hs(s, "-", rsubi(1, d1))
 
-  def sub01(s: Int, d1: Int): FString = hs(s, "[-]", h(d1, "-"))
+  def sub01(s: Int, d1: Int): FString = hs(s, "[-]", rsubi(1, d1))
 
-  def add2(s: Int, d1: Int, d2: Int): FString = hs(s, "-", h(d1, "+"), h(d2, "+"))
+  def add2(s: Int, d1: Int, d2: Int): FString = hs(s, "-", raddi(1, d1), raddi(1, d2))
 
-  def sub2(s: Int, d1: Int, d2: Int): FString = hs(s, "-", h(d1, "-"), h(d2, "+"))
+  def sub2(s: Int, d1: Int, d2: Int): FString = hs(s, "-", rsubi(1, d1), raddi(1, d2))
 
   def addt(s: Int, d: Int, t: Int): FString = mkm(add2(s, d, t), raddc(t, s))
 
@@ -67,6 +67,8 @@ class CoreBF {
   def rset(d: Int): FString = rmovi(1, d)
 
   def raddi(s: Int, d: Int): FString = h(d, raddi(s))
+
+  def rsubi(s: Int, d: Int): FString = h(d, rsubi(s))
 
   def rmovi(s: Int, d: Int): FString = mkm(hs(d, "-"), raddi(s, d))
 
