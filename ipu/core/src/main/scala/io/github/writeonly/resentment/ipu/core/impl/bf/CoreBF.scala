@@ -44,8 +44,6 @@ class CoreBF {
 
   def hs(w: Int, seq: FString*): FString = hs(w, "", seq: _*)
 
-  def add1(s: Int, d1: Int, out: String): FString = mkm(hs(s, "-", h(d1, "+")), h(s, out))
-
   def raddc(s: Int, d1: Int): FString = hs(s, "-", h(d1, "+"))
 
   def add01(s: Int, d1: Int): FString = hs(s, "[-]", h(d1, "+"))
