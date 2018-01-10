@@ -207,7 +207,7 @@ class RedCoreBFSafeSpec extends org.specs2.mutable.Specification
       val core = new RedCoreBFSafe()
       val out = core.rmovi(3, 1)() + core.rnot(1)()
       val memory = new InterpreterBF(StreamIO.byteArray(), out)().memory
-      memory.s(1) must_== -2
+      memory.s(1) must_== 0
     }
 
     "rmovi(2,0) rmovi(3,1) req(0,1)" >> {

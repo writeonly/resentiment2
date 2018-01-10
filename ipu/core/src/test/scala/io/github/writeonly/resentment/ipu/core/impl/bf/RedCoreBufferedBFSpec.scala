@@ -190,7 +190,7 @@ class RedCoreBufferedBFSpec extends org.specs2.mutable.Specification
       core.rnot(1)
       val interpreter = core.apply()
       val memory = interpreter.memory
-      memory(1) must_== -2
+      memory(1) must_== 0
     }
 
     "rmovi(2,0) rmovi(3,1) req(0,1)" >> {
