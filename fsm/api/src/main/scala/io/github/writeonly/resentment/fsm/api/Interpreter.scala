@@ -1,7 +1,5 @@
 package io.github.writeonly.resentment.fsm.api
 
-abstract class Interpreter {
-  val memory = new Memory()
-
+abstract class Interpreter extends HasMemory {
   def apply(): this.type
 }
