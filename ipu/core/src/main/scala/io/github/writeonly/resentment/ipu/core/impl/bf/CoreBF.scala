@@ -4,11 +4,9 @@ import io.github.writeonly.resentment.ipu.core.common.FString
 
 class CoreBF {
 
-  var head = 0
-
   val vm = new CodeValidatorMagic
-
   val vs = new CodeValidatorStrict
+  var head = 0
 
   def h(i: Int, s: String, n: Int): FString = FString((_) => {
     val shift = i - head
@@ -30,9 +28,10 @@ class CoreBF {
 
   def h(i: Int): FString = h(i, "")
 
+
   def jm(s: String*) = vm.mk(s)
 
-  def jmhs(h:String, s:String) = jm(h, "[", s, "]")
+  def jmhs(h: String, s: String) = jm(h, "[", s, "]")
 
   def mkm(others: FString*): FString = vm.mkf(others)
 
@@ -46,17 +45,25 @@ class CoreBF {
 
   def hs(w: Int, seq: FString*): FString = hs(w, "", seq: _*)
 
-  def raddc(s: Int, d1: Int): FString = hs(s, "-", raddi(1, d1))
+  def raddi(s: Int, d: Int): FString = h(d, raddi(s))
 
-  def add01(s: Int, d1: Int): FString = hs(s, "[-]", raddi(1, d1))
+  def rsubi(s: Int, d: Int): FString = h(d, rsubi(s))
 
-  def rsubc(s: Int, d1: Int): FString = hs(s, "-", rsubi(1, d1))
+  def rinc(d: Int): FString = raddi(1, d)
 
-  def sub01(s: Int, d1: Int): FString = hs(s, "[-]", rsubi(1, d1))
+  def rdec(d: Int): FString = rsubi(1, d)
 
-  def add2(s: Int, d1: Int, d2: Int): FString = hs(s, "-", raddi(1, d1), raddi(1, d2))
+  def raddc(s: Int, d1: Int): FString = hs(s, "-", rinc(d1))
 
-  def sub2(s: Int, d1: Int, d2: Int): FString = hs(s, "-", rsubi(1, d1), raddi(1, d2))
+  def add01(s: Int, d1: Int): FString = hs(s, "[-]", rinc(d1))
+
+  def rsubc(s: Int, d1: Int): FString = hs(s, "-", rdec(d1))
+
+  def sub01(s: Int, d1: Int): FString = hs(s, "[-]", rdec(d1))
+
+  def add2(s: Int, d1: Int, d2: Int): FString = hs(s, "-", rinc(d1), rinc(d2))
+
+  def sub2(s: Int, d1: Int, d2: Int): FString = hs(s, "-", rdec(d1), rinc(d2))
 
   def addt(s: Int, d: Int, t: Int): FString = mkm(add2(s, d, t), raddc(t, s))
 
@@ -65,10 +72,6 @@ class CoreBF {
   def rclr(d: Int): FString = rmovi(0, d)
 
   def rset(d: Int): FString = rmovi(1, d)
-
-  def raddi(s: Int, d: Int): FString = h(d, raddi(s))
-
-  def rsubi(s: Int, d: Int): FString = h(d, rsubi(s))
 
   def rmovi(s: Int, d: Int): FString = mkm(hs(d, "-"), raddi(s, d))
 

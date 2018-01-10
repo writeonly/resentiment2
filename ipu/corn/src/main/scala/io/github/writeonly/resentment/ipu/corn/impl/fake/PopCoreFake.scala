@@ -6,31 +6,14 @@ import io.github.writeonly.resentment.ipu.core.impl.fake.Fake
 
 class PopCoreFake(val io: StreamIO) extends Fake[PopCoreFake] with PopCore[Unit] {
 
-  def popi(f: (Byte, Byte) => Int): Unit = {
-    memory(topPointer - 1) = f(memory(topPointer - 1), top).asInstanceOf[Byte]
-    pop
-  }
-
-  def popb(f: (Byte, Byte) => Boolean): Unit = {
-    memory(topPointer - 1) = f(memory(topPointer - 1), top)
-    pop
-  }
-
-  def pop = {
-    memory(topPointer) = 0
-    topPointer -= 1
-  }
-
-  def top: Byte = memory(topPointer)
-
-  def top(l: (Byte) => Int): Unit = memory(topPointer) = l(top).asInstanceOf[Byte]
-
   override def uvar(o: Symbol) = {
     symbols.put(o, basePointer)
     basePointer += 1
     ppush
     //    ust(o)
   }
+
+  override def ppush: Unit = topPointer += 1
 
   override def ust(o: Symbol): Unit = memory(symbols(o)) = top
 
@@ -46,8 +29,6 @@ class PopCoreFake(val io: StreamIO) extends Fake[PopCoreFake] with PopCore[Unit]
 
   override def pout() = io.out.write(top)
 
-  override def ppush: Unit = topPointer += 1
-
   override def ppop() = ???
 
   override def padd: Unit = popi((t1, t0) => t1 + t0)
@@ -56,9 +37,16 @@ class PopCoreFake(val io: StreamIO) extends Fake[PopCoreFake] with PopCore[Unit]
 
   override def pneg: Unit = top(t0 => -t0)
 
+  def top(l: (Byte) => Int): Unit = memory(topPointer) = l(top).asInstanceOf[Byte]
+
   override def png1: Unit = ???
 
   override def pmul: Unit = popi((t1, t0) => t1 * t0)
+
+  def popi(f: (Byte, Byte) => Int): Unit = {
+    memory(topPointer - 1) = f(memory(topPointer - 1), top).asInstanceOf[Byte]
+    pop
+  }
 
   override def pdiv: Unit = popi((t1, t0) => t1 / t0)
 
@@ -73,6 +61,18 @@ class PopCoreFake(val io: StreamIO) extends Fake[PopCoreFake] with PopCore[Unit]
   override def peq: Unit = popb((t1, t0) => (t1 == t0))
 
   override def pne: Unit = popb((t1, t0) => (t1 != t0))
+
+  def popb(f: (Byte, Byte) => Boolean): Unit = {
+    memory(topPointer - 1) = f(memory(topPointer - 1), top)
+    pop
+  }
+
+  def pop = {
+    memory(topPointer) = 0
+    topPointer -= 1
+  }
+
+  def top: Byte = memory(topPointer)
 
   override def plt: Unit = popb((t1, t0) => (t1 < t0))
 

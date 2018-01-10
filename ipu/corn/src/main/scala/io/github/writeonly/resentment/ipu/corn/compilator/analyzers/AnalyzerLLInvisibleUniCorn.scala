@@ -16,8 +16,6 @@ class AnalyzerLLInvisibleUniCorn extends AnalyzerLL {
   def block_operation: Parser[BlockOperation] =
     var_operation | store_operation | load_var_operation | load_str_operation | load_char_operation | load_int_operation | unary_operation | binary_operation
 
-  def label: Parser[Symbol] = symbol
-
   def var_operation: Parser[Var] = Operators.var_operator ~> symbol ^^ {
     Var(null, _)
   }
@@ -50,10 +48,19 @@ class AnalyzerLLInvisibleUniCorn extends AnalyzerLL {
     a => BinaryOperation(a._1._1._1, null, a._1._2)
   }
 
-
   def block_instruction_list: Parser[BlockOperation] = block_operation
 
   def jump_operation: Parser[JumpOperation] = jump_operator ~ label ^^ { a => JumpOperation(a._1, a._2) }
+
+  def label: Parser[Symbol] = symbol
+
+  //  def char :Parser[Char] = "'" ~> """\w""" ~"'" ^^ { _._1.charAt(0)}
+  //  def char :Parser[Char] = "'" ~> """[a-zA-Z]""".r ~"'" ^^ { _._1.charAt(0)}
+  def symbol: Parser[Symbol] = "'" ~> ident ^^ {
+    Symbol(_)
+  }
+
+  def jump_operator: Parser[String] = "(JMPCN)|(JMPC)|(JMP)".r
 
   def unary_operator: Parser[String] = Operators.unary_operator.r ^^ { a => a }
 
@@ -63,13 +70,9 @@ class AnalyzerLLInvisibleUniCorn extends AnalyzerLL {
 
   def binary_operator_bit: Parser[String] = Operators.binary_operator_bit.r ^^ { a => a }
 
-
   def call_operator: Parser[String] = "(CALCN)|(CALC)|(CAL)".r
 
   def return_operator: Parser[String] = "(RETCN)|(RETC)|(RET)".r
-
-  def jump_operator: Parser[String] = "(JMPCN)|(JMPC)|(JMP)".r
-
 
   def bigDecimal: Parser[BigDecimal] = decimalNumber ^^ {
     BigDecimal(_)
@@ -81,12 +84,6 @@ class AnalyzerLLInvisibleUniCorn extends AnalyzerLL {
 
   def char: Parser[Char] = "'" ~> "\\w".r ~ "'" ^^ {
     _._1.charAt(0)
-  }
-
-  //  def char :Parser[Char] = "'" ~> """\w""" ~"'" ^^ { _._1.charAt(0)}
-  //  def char :Parser[Char] = "'" ~> """[a-zA-Z]""".r ~"'" ^^ { _._1.charAt(0)}
-  def symbol: Parser[Symbol] = "'" ~> ident ^^ {
-    Symbol(_)
   }
 
 

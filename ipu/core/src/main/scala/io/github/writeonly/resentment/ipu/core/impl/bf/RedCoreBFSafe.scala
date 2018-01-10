@@ -7,19 +7,13 @@ class RedCoreBFSafe(core: RedCoreBFUnsafe) extends RedCore[FString] {
 
   def this() = this(new RedCoreBFUnsafe)
 
-  override def rnop(): FString = core.rnop()
-
-  override def rclr(d: Int): FString = core.rclr(d)
-
-  override def rset(d: Int): FString = core.rset(d)
-
-  override def rmovi(s: Int, d: Int): FString = core.rmovi(s, d)
-
-  override def rmov(s: Int, d: Int): FString = if (s != d) core.rmov(s, d) else rnop()
-
   override def rswap(d1: Int, d2: Int): FString = if (d1 != d2) core.rswap(d1, d2) else rnop()
 
+  override def rnop(): FString = core.rnop()
+
   override def radd(s: Int, d: Int): FString = if (s != d) core.radd(s, d) else core.mkm(rmovi(2, -3), core.rmul(-3, d))
+
+  override def rmovi(s: Int, d: Int): FString = core.rmovi(s, d)
 
   override def raddi(s: Int, d: Int): FString = core.raddi(s, d)
 
@@ -37,6 +31,8 @@ class RedCoreBFSafe(core: RedCoreBFUnsafe) extends RedCore[FString] {
 
   override def rpow(s: Int, d: Int): FString = if (s != d) core.rpow(s, d) else core.mkm(rmov(s, -5), core.rpowc(s, d), core.raddc(-5, s))
 
+  override def rmov(s: Int, d: Int): FString = if (s != d) core.rmov(s, d) else rnop()
+
   override def rpowi(s: Int, d: Int): FString = core.rpowi(s, d)
 
   override def rneg(d: Int): FString = core.rneg(d)
@@ -47,7 +43,11 @@ class RedCoreBFSafe(core: RedCoreBFUnsafe) extends RedCore[FString] {
 
   override def req(s: Int, d: Int): FString = if (s != d) core.req(s, d) else rset(d)
 
+  override def rset(d: Int): FString = core.rset(d)
+
   override def rne(s: Int, d: Int): FString = if (s != d) core.rne(s, d) else rclr(d)
+
+  override def rclr(d: Int): FString = core.rclr(d)
 
   override def rle(s: Int, d: Int): FString = if (s != d) core.rle(s, d) else rset(d)
 

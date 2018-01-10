@@ -7,16 +7,15 @@ import io.github.writeonly.resentment.fsm.api.{Interpreter, StreamIO}
 
 class InterpreterBF(val streamIO: StreamIO, code: Array[Byte], maxWatchdog: Int = 10000000) extends Interpreter {
 
-  def this(streamIO: StreamIO, code: String, maxWatchdog: Int) = this(streamIO, code.getBytes, maxWatchdog)
-
-  def this(streamIO: StreamIO, code: String) = this(streamIO, code.getBytes)
-
-  var counter = 0
   val length = code.length
+  val jumpTable = new JumpTableCreator(code)()
+  var counter = 0
   var head = 0
   var watchdog = 0
 
-  val jumpTable = new JumpTableCreator(code)()
+  def this(streamIO: StreamIO, code: String, maxWatchdog: Int) = this(streamIO, code.getBytes, maxWatchdog)
+
+  def this(streamIO: StreamIO, code: String) = this(streamIO, code.getBytes)
 
   override def apply(): this.type = {
     while (counter != length) {

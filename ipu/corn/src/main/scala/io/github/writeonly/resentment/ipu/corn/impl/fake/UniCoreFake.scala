@@ -6,8 +6,6 @@ import io.github.writeonly.resentment.ipu.core.impl.fake.Fake
 
 class UniCoreFake(val io: StreamIO) extends Fake with UniCore[Unit] {
 
-  private def set(o: Boolean) = accumulator = Memory.toInt(o)
-
   override def uvar(o: Symbol) = ust(o)
 
   override def ust(o: Symbol): Unit = symbols(o) = accumulator
@@ -55,6 +53,8 @@ class UniCoreFake(val io: StreamIO) extends Fake with UniCore[Unit] {
   override def ueq(o: Symbol): Unit = ueq(pointer(o))
 
   override def ueq(o: Int): Unit = set(accumulator == o)
+
+  private def set(o: Boolean) = accumulator = Memory.toInt(o)
 
   override def une(o: Symbol): Unit = une(pointer(o))
 

@@ -3,8 +3,6 @@ package io.github.writeonly.resentment.ipu.core.impl.text
 import io.github.writeonly.resentment.ipu.core.api.RedCore
 
 class RedCoreText extends RedCore[String] {
-  def apply(name: String, seq: Int*): String = name + "(" +seq.mkString(",") + ") "
-
   override def rnop(): String = apply("cnop")
 
   override def rclr(d: Int): String = apply("cclr", d)
@@ -26,6 +24,8 @@ class RedCoreText extends RedCore[String] {
   override def rsubi(s: Int, d: Int): String = apply("rsubi", s, d)
 
   override def rmul(s: Int, d: Int): String = apply("rmul", s, d)
+
+  def apply(name: String, seq: Int*): String = name + "(" + seq.mkString(",") + ") "
 
   override def rmuli(s: Int, d: Int): String = apply("rmuli", s, d)
 

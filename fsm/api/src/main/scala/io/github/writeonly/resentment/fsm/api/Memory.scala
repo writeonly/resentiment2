@@ -25,13 +25,13 @@ object Memory {
 class Memory {
   private val map = new HashMap[Int, Byte]()
 
-  def apply(k: Int): Byte = map.getOrElse(k, 0)
-
   def update(key: Int, value: Int): Unit = map.update(key, Memory.toByte(value))
 
   def update(key: Int, value: Boolean): Unit = map.update(key, Memory.toByte(value))
 
   def s(k: Int): Byte = Memory.toByte(apply(k))
+
+  def apply(k: Int): Byte = map.getOrElse(k, 0)
 
   override def toString: String = map.toString()
 
