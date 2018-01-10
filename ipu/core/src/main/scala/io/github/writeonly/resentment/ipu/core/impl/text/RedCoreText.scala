@@ -45,10 +45,18 @@ class RedCoreText extends RedCore[String] {
 
   override def req(s: Int, d: Int): String = apply("req", s, d)
 
+  override def reqi(s: Int, d: Int): String = apply("reqi", s, d)
+
   override def rne(s: Int, d: Int): String = apply("rne", s, d)
+
+  override def rnei(s: Int, d: Int): String = apply("rnei", s, d)
 
   override def rle(s: Int, d: Int): String = apply("rle", s, d)
 
+  override def rlei(s: Int, d: Int): String = apply("rlei", s, d)
+
   override def rlt(s: Int, d: Int): String = apply("rle", s, d)
+
+  override def rlti(s: Int, d: Int): String = apply("rlei", s, d)
 
 }

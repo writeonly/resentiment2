@@ -41,9 +41,17 @@ trait RedCore[F] {
 
   def req(s: Int, d: Int): F
 
+  def reqi(s: Int, d: Int): F
+
   def rne(s: Int, d: Int): F
+
+  def rnei(s: Int, d: Int): F
 
   def rle(s: Int, d: Int): F
 
+  def rlei(s: Int, d: Int): F
+
   def rlt(s: Int, d: Int): F
+
+  def rlti(s: Int, d: Int): F
 }

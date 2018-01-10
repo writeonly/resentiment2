@@ -43,14 +43,22 @@ class RedCoreBFSafe(core: RedCoreBFUnsafe) extends RedCore[FString] {
 
   override def req(s: Int, d: Int): FString = if (s != d) core.req(s, d) else rset(d)
 
+  override def rclr(d: Int): FString = core.rclr(d)
+
   override def rset(d: Int): FString = core.rset(d)
 
   override def rne(s: Int, d: Int): FString = if (s != d) core.rne(s, d) else rclr(d)
 
-  override def rclr(d: Int): FString = core.rclr(d)
+  override def reqi(s: Int, d: Int): FString = core.reqi(s, d)
+
+  override def rnei(s: Int, d: Int): FString = core.rnei(s, d)
 
   override def rle(s: Int, d: Int): FString = if (s != d) core.rle(s, d) else rset(d)
 
+  override def rlei(s: Int, d: Int): FString = core.rlei(s, d)
+
   override def rlt(s: Int, d: Int): FString = if (s != d) core.rlt(s, d) else rclr(d)
+
+  override def rlti(s: Int, d: Int): FString = core.rlti(s, d)
 
 }
