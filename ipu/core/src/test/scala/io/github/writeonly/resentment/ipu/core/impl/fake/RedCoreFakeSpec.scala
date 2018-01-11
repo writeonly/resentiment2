@@ -272,7 +272,7 @@ class RedCoreFakeSpec extends org.specs2.mutable.Specification
     }
 
 
-    "rmovi(2,0) rmovi(3,1) cge(0,1)" >> {
+    "rmovi(2,0) rmovi(3,1) rle(0,1)" >> {
       val core = new RedCoreFake
       core.rmovi(2, 0)
       core.rmovi(3, 1)
@@ -282,7 +282,7 @@ class RedCoreFakeSpec extends org.specs2.mutable.Specification
       memory(1) must_== 1
     }
 
-    "rmovi(2,0) rmovi(2,1) cge(0,1)" >> {
+    "rmovi(2,0) rmovi(2,1) rle(0,1)" >> {
       val core = new RedCoreFake
       core.rmovi(2, 0)
       core.rmovi(2, 1)
@@ -292,7 +292,7 @@ class RedCoreFakeSpec extends org.specs2.mutable.Specification
       memory(1) must_== 1
     }
 
-    "rmovi(3,0) rmovi(2,1) cge(0,1)" >> {
+    "rmovi(3,0) rmovi(2,1) rle(0,1)" >> {
       val core = new RedCoreFake
       core.rmovi(3, 0)
       core.rmovi(2, 1)
@@ -302,7 +302,7 @@ class RedCoreFakeSpec extends org.specs2.mutable.Specification
       memory(1) must_== 0
     }
 
-    "rmovi(2,0) rmovi(3,1) cgt(0,1)" >> {
+    "rmovi(2,0) rmovi(3,1) rlt(0,1)" >> {
       val core = new RedCoreFake
       core.rmovi(2, 0)
       core.rmovi(3, 1)
@@ -312,7 +312,7 @@ class RedCoreFakeSpec extends org.specs2.mutable.Specification
       memory(1) must_== 1
     }
 
-    "rmovi(2,0) rmovi(2,1) cgt(0,1)" >> {
+    "rmovi(2,0) rmovi(2,1) rlt(0,1)" >> {
       val core = new RedCoreFake
       core.rmovi(2, 0)
       core.rmovi(2, 1)
@@ -322,7 +322,7 @@ class RedCoreFakeSpec extends org.specs2.mutable.Specification
       memory(1) must_== 0
     }
 
-    "rmovi(3,0) rmovi(2,1) cgt(0,1)" >> {
+    "rmovi(3,0) rmovi(2,1) rlt(0,1)" >> {
       val core = new RedCoreFake
       core.rmovi(3, 0)
       core.rmovi(2, 1)

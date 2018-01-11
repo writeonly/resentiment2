@@ -121,9 +121,13 @@ class RedCoreBFUnsafe extends CoreBF with RedCore[FString] {
 
   override def rle(s: Int, d: Int): FString = mkm(rinc(-3), addt(s, -2, -1), raddc(d, -1), rinc(d), ge1(d), ge3(d))
 
+  override def rlec(s: Int, d: Int): FString = mkm(rinc(-3), raddc(s, -2), raddc(d, -1), rinc(d), ge1(d), ge3(d))
+
   override def rlei(s: Int, d: Int): FString = mkm(rinc(-3), addt(s, -2, -1), raddc(d, -1), rinc(d), ge1(d), ge3(d))
 
   override def rlt(s: Int, d: Int): FString = mkm(rinc(-3), addt(s, -1, -2), raddc(d, -2), gt1(d), gt3(d))
+
+  override def rltc(s: Int, d: Int): FString = mkm(rinc(-3), raddc(s, -1), raddc(d, -2), gt1(d), gt3(d))
 
   override def rlti(s: Int, d: Int): FString = mkm(rinc(-3), addt(s, -1, -2), raddc(d, -2), gt1(d), gt3(d))
 

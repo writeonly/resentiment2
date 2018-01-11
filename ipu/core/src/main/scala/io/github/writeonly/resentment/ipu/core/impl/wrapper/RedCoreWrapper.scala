@@ -59,9 +59,13 @@ abstract class RedCoreWrapper[T, R](core: RedCore[T]) extends RedCore[R] {
 
   override def rle(s: Int, d: Int): R = apply(core.rle(s, d))
 
+  override def rlec(s: Int, d: Int): R = apply(core.rlec(s, d))
+
   override def rlei(s: Int, d: Int): R = apply(core.rlei(s, d))
 
   override def rlt(s: Int, d: Int): R = apply(core.rlt(s, d))
+
+  override def rltc(s: Int, d: Int): R = apply(core.rltc(s, d))
 
   override def rlti(s: Int, d: Int): R = apply(core.rlti(s, d))
 

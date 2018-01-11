@@ -61,9 +61,13 @@ trait RedCore[F] {
 
   def rle(s: Int, d: Int): F
 
+  def rlec(s: Int, d: Int): F
+
   def rlei(s: Int, d: Int): F
 
   def rlt(s: Int, d: Int): F
+
+  def rltc(s: Int, d: Int): F
 
   def rlti(s: Int, d: Int): F
 }
