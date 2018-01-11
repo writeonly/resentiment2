@@ -1,6 +1,6 @@
 package io.github.writeonly.resentment.ipu.core.impl.fake
 
-import io.github.writeonly.resentment.fsm.api.{HasMemory, Interpreter}
+import io.github.writeonly.resentment.fsm.api.HasMemory
 
 import scala.collection.mutable
 
@@ -28,10 +28,9 @@ class Fake[T <: Fake[_]] extends HasMemory {
 
   def comix(s: Int, d: Int, f: (Byte, Int) => Boolean): Unit = memory(d) = f(memory(d), s)
 
+  def value(symbol: Symbol) = memory(pointer(symbol))
 
   def pointer(symbol: Symbol) = symbols(symbol)
-
-  def value(symbol: Symbol) = memory(pointer(symbol))
 
   def apply(f: T => Unit): T = {
     f(asInstanceOf[T])
