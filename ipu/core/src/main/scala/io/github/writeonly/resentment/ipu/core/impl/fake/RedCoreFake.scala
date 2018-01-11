@@ -52,12 +52,12 @@ class RedCoreFake extends Fake with RedCore[Unit] {
 
   def pow(x: Byte, y: Byte): Int = pow(x, y.asInstanceOf[Int])
 
+  override def rpowi(s: Int, d: Int): Unit = comii(s, d, pow)
+
   def pow(x: Byte, y: Int): Int = Try(BigInt(x).pow(y).intValue()) match {
     case Success(v) => v
     case Failure(e) => throw new IllegalArgumentException("x -> " + x + ", y -> " + y, e)
   }
-
-  override def rpowi(s: Int, d: Int): Unit = comii(s, d, pow)
 
   override def rneg(d: Int): Unit = memory(d) = -memory(d)
 

@@ -14,13 +14,17 @@ class CoreBF {
 
   def rmovi(s: Int, d: Int): FString = mkm(hs(d, "-"), raddi(s, d))
 
+  def raddc(s: Int, d1: Int): FString = hs(s, "-", rinc(d1))
+
   def raddi(s: Int, d: Int): FString = h(d, raddi(s))
 
-  def raddc(s: Int, d1: Int): FString = hs(s, "-", rinc(d1))
+  def rinc(d: Int): FString = raddi(1, d)
+
+  def rsubc(s: Int, d1: Int): FString = hs(s, "-", rdec(d1))
 
   def rsubi(s: Int, d: Int): FString = h(d, rsubi(s))
 
-  def rsubc(s: Int, d1: Int): FString = hs(s, "-", rdec(d1))
+  def rdec(d: Int): FString = rsubi(1, d)
 
   def mkm(others: FString*): FString = vm.mkf(others)
 
@@ -47,10 +51,6 @@ class CoreBF {
   protected def hs(w: Int, in: String, seq: FString*): FString = FString((sep) => jmhs(h(w)(sep), vs.mkfe(seq, h(w, in))(sep)))
 
   protected def hs(w: Int, seq: FString*): FString = hs(w, "", seq: _*)
-
-  protected def rinc(d: Int): FString = raddi(1, d)
-
-  protected def rdec(d: Int): FString = rsubi(1, d)
 
   protected def add01(s: Int, d1: Int): FString = hs(s, "[-]", rinc(d1))
 

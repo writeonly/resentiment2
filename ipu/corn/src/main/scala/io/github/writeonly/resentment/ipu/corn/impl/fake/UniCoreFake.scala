@@ -62,6 +62,8 @@ class UniCoreFake(val io: StreamIO) extends Fake with UniCore[Unit] {
 
   override def ult(o: Int): Unit = set(accumulator < o)
 
+  private def set(o: Boolean) = accumulator = Memory.toInt(o)
+
   override def ugt(o: Symbol): Unit = ugt(pointer(o))
 
   override def ugt(o: Int): Unit = set(accumulator > o)
@@ -77,8 +79,6 @@ class UniCoreFake(val io: StreamIO) extends Fake with UniCore[Unit] {
   override def pneg(): Unit = accumulator = -accumulator
 
   override def pnot(): Unit = set(!Memory.toBoolean(accumulator))
-
-  private def set(o: Boolean) = accumulator = Memory.toInt(o)
 
   override def png1() = ???
 
