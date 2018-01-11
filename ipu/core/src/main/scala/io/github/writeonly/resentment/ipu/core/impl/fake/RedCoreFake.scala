@@ -65,7 +65,7 @@ class RedCoreFake extends Fake with RedCore[Unit] {
 
   override def rnot(d: Int): Unit = memory(d) = !Memory.toBoolean(memory(d))
 
-  override def rtau(d: Int): Unit = memory(d) = !Memory.toBoolean(memory(d))
+  override def rtau(d: Int): Unit = memory(d) = Memory.toBoolean(memory(d))
 
   override def req(s: Int, d: Int): Unit = comx(s, d, _ == _)
 

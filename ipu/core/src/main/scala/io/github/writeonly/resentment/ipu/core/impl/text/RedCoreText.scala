@@ -18,13 +18,13 @@ class RedCoreText extends RedCore[String] {
 
   override def radd(s: Int, d: Int): String = apply("radd", s, d)
 
-  def apply(name: String, seq: Int*): String = name + "(" + seq.mkString(",") + ") "
-
   override def raddi(s: Int, d: Int): String = apply("raddi", s, d)
 
   override def rsub(s: Int, d: Int): String = apply("rsub", s, d)
 
   override def rsubi(s: Int, d: Int): String = apply("rsubi", s, d)
+
+  def apply(name: String, seq: Int*): String = name + "(" + seq.mkString(",") + ") "
 
   override def rmul(s: Int, d: Int): String = apply("rmul", s, d)
 
