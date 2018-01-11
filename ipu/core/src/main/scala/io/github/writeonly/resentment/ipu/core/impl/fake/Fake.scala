@@ -26,7 +26,7 @@ class Fake[T <: Fake[_]] extends HasMemory {
 
   def comii(s: Int, d: Int, f: (Byte, Int) => Int): Unit = memory(d) = f(memory(d), s)
 
-  def comix(s: Int, d: Int, f: (Byte, Int) => Boolean): Unit = memory(d) = f(memory(d), s)
+  def comxi(s: Int, d: Int, f: (Byte, Int) => Boolean): Unit = memory(d) = f(memory(d), s)
 
   def value(symbol: Symbol) = memory(pointer(symbol))
 

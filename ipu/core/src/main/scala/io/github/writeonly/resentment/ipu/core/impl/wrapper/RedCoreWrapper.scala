@@ -47,9 +47,13 @@ abstract class RedCoreWrapper[T, R](core: RedCore[T]) extends RedCore[R] {
 
   override def req(s: Int, d: Int): R = apply(core.req(s, d))
 
+  override def reqc(s: Int, d: Int): R = apply(core.reqc(s, d))
+
   override def reqi(s: Int, d: Int): R = apply(core.reqi(s, d))
 
   override def rne(s: Int, d: Int): R = apply(core.rne(s, d))
+
+  override def rnec(s: Int, d: Int): R = apply(core.rnec(s, d))
 
   override def rnei(s: Int, d: Int): R = apply(core.rnei(s, d))
 

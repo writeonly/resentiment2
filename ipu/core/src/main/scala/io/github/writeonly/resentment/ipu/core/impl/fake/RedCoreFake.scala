@@ -69,19 +69,23 @@ class RedCoreFake extends Fake with RedCore[Unit] {
 
   override def req(s: Int, d: Int): Unit = comx(s, d, _ == _)
 
-  override def reqi(s: Int, d: Int): Unit = comix(s, d, _ == _)
+  override def reqc(s: Int, d: Int): Unit = comxc(s, d, _ == _)
+
+  override def reqi(s: Int, d: Int): Unit = comxi(s, d, _ == _)
 
   override def rne(s: Int, d: Int): Unit = comx(s, d, _ != _)
 
-  override def rnei(s: Int, d: Int): Unit = comix(s, d, _ != _)
+  override def rnec(s: Int, d: Int): Unit = comxc(s, d, _ != _)
+
+  override def rnei(s: Int, d: Int): Unit = comxi(s, d, _ != _)
 
   override def rle(s: Int, d: Int): Unit = comx(s, d, _ >= _)
 
-  override def rlei(s: Int, d: Int): Unit = comix(s, d, _ >= _)
+  override def rlei(s: Int, d: Int): Unit = comxi(s, d, _ >= _)
 
   override def rlt(s: Int, d: Int): Unit = comx(s, d, _ > _)
 
-  override def rlti(s: Int, d: Int): Unit = comix(s, d, _ > _)
+  override def rlti(s: Int, d: Int): Unit = comxi(s, d, _ > _)
 
 
 }
