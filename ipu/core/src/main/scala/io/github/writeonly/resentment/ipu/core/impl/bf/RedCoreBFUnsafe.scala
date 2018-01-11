@@ -17,21 +17,6 @@ class RedCoreBFUnsafe extends CoreBF with RedCore[FString] {
 
   override def rmuli(s: Int, d: Int): FString = mkm(raddc(d, -1), hs(-1, "-", raddi(s, d)))
 
-  override def rdiv(s: Int, d: Int): FString = mkm(
-    raddc(d, -1),
-    hs(-1,
-      addt(s, -2, -3),
-      hs(-2, "-",
-        h(-3, "+"),
-        h(-1, "-"),
-        hs(-1, "-", h(-3, "[-]"), h(-4, "+")),
-        hs(-4, "-", h(-1, "+")),
-        hs(-3, "-", h(-2, "-"), hm(-2, "[-]", h(d, "-")), h(-2, "+"))
-      ),
-      h(d, "+")
-    )
-  )
-
   //  temp0[-]
   //  temp1[-]
   //  temp2[-]
@@ -52,17 +37,31 @@ class RedCoreBFUnsafe extends CoreBF with RedCore[FString] {
   //    temp1-]
   //    x+
   //  temp0]
+  override def rdiv(s: Int, d: Int): FString = mkm(
+    raddc(d, -1),
+    hs(-1,
+      addt(s, -2, -3),
+      hs(-2, "-",
+        rinc(-3),
+        rdec(-1),
+        hs(-1, "-", rclr(-3), rinc(-4)),
+        hs(-4, "-", rinc(-1)),
+        hs(-3, "-", rdec(-2), hm(-2, "[-]", rdec(d)), rinc(-2))
+      ),
+      h(d, "+")
+    )
+  )
 
   override def rdivi(s: Int, d: Int) = mkm(
     raddc(d, -1),
     hs(-1,
       raddi(s, -2),
       hs(-2, "-",
-        h(-3, "+"),
-        h(-1, "-"),
-        hs(-1, "-", h(-3, "[-]"), h(-4, "+")),
-        hs(-4, "-", h(-1, "+")),
-        hs(-3, "-", h(-2, "-"), hm(-2, "[-]", h(d, "-")), h(-2, "+"))
+        rinc(-3),
+        rdec(-1),
+        hs(-1, "-", rclr(-3), rinc(-4)),
+        hs(-4, "-", rinc(-1)),
+        hs(-3, "-", rdec(-2), hm(-2, "[-]", rdec(d)), rinc(-2))
       ),
       h(d, "+")
     )
@@ -91,7 +90,7 @@ class RedCoreBFUnsafe extends CoreBF with RedCore[FString] {
 
   def rpowc(s: Int, d: Int): FString = mkm(
     raddc(d, -1),
-    raddi(1, d),
+    rinc(d),
     hs(s, "-",
       rclr(-2),
       rclr(-3),
@@ -104,11 +103,11 @@ class RedCoreBFUnsafe extends CoreBF with RedCore[FString] {
 
   override def rneg(d: Int): FString = mkm(rsubc(d, -1), raddc(-1, d))
 
-  override def rnot(d: Int): FString = mkm(add01(d, -1), raddi(1, d), rsubc(-1, d))
+  override def rnot(d: Int): FString = mkm(add01(d, -1), rinc(d), rsubc(-1, d))
 
   override def rtau(d: Int): FString = mkm(add01(d, -1), raddc(-1, d))
 
-  override def req(s: Int, d: Int): FString = mkm(raddc(d, -2), raddi(1, d), subt(s, -2, -1), sub01(-2, d))
+  override def req(s: Int, d: Int): FString = mkm(raddc(d, -2), rinc(d), subt(s, -2, -1), sub01(-2, d))
 
   override def reqi(s: Int, d: Int): FString = mkm(raddc(d, -1), rsubi(s, -1), sub01(-1, d))
 
@@ -116,12 +115,12 @@ class RedCoreBFUnsafe extends CoreBF with RedCore[FString] {
 
   override def rnei(s: Int, d: Int): FString = mkm(raddc(d, -1), rsubi(s, -1), add01(-1, d))
 
-  override def rle(s: Int, d: Int): FString = mkm(h(-3, "+"), addt(s, -2, -1), raddc(d, -1), raddi(1, d), ge1(d), ge3(d))
+  override def rle(s: Int, d: Int): FString = mkm(rinc(-3), addt(s, -2, -1), raddc(d, -1), rinc(d), ge1(d), ge3(d))
 
-  override def rlei(s: Int, d: Int): FString = mkm(h(-3, "+"), addt(s, -2, -1), raddc(d, -1), raddi(1, d), ge1(d), ge3(d))
+  override def rlei(s: Int, d: Int): FString = mkm(rinc(-3), addt(s, -2, -1), raddc(d, -1), rinc(d), ge1(d), ge3(d))
 
-  override def rlt(s: Int, d: Int): FString = mkm(h(-3, "+"), addt(s, -1, -2), raddc(d, -2), gt1(d), gt3(d))
+  override def rlt(s: Int, d: Int): FString = mkm(rinc(-3), addt(s, -1, -2), raddc(d, -2), gt1(d), gt3(d))
 
-  override def rlti(s: Int, d: Int): FString = mkm(h(-3, "+"), addt(s, -1, -2), raddc(d, -2), gt1(d), gt3(d))
+  override def rlti(s: Int, d: Int): FString = mkm(rinc(-3), addt(s, -1, -2), raddc(d, -2), gt1(d), gt3(d))
 
 }

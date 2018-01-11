@@ -22,27 +22,23 @@ class CoreBF {
 
   def rsubc(s: Int, d1: Int): FString = hs(s, "-", rdec(d1))
 
-  protected def sign(i: Int, p: String, n: String): String = if (0 <= i) p else n
+  def mkm(others: FString*): FString = vm.mkf(others)
 
-  protected def signn(i: Int, p: String, n: String): String = sign(i, p, n) * i.abs
+  def ge1(d: Int): FString = rm(-2, "[<-]<[>", "<-<]>+>", rdec(d), rclr(-1))
 
-  protected def sh(i: Int): String = signn(i, ">", "<")
+  def ge2(d: Int): FString = rm(-2, "-[<-]<[>", "<-<]>+>", rdec(d), rset(-1))
 
-  protected def raddi(i: Int): String = signn(i, "+", "-")
+  def ge3(d: Int): FString = hm(-1, "-", ge2(d))
 
-  protected def rsubi(i: Int): String = signn(i, "-", "+")
+  def gt1(d: Int): FString = rm(-2, "[<-]<[>", "<-<]>+>", rinc(d), rclr(-1))
+
+  def gt2(d: Int): FString = rm(-2, "-[<-]<[>", "<-<]>+>", rinc(d), rset(-1))
+
+  def gt3(d: Int): FString = hm(-1, "-", gt2(d))
 
   protected def h(i: Int, s: String): FString = h(i, s, 1)
 
   protected def h(i: Int): FString = h(i, "")
-
-  protected def jm(s: String*) = vm.mk(s)
-
-  protected def jmhs(h: String, s: String) = jm(h, "[", s, "]")
-
-  protected def mkm(others: FString*): FString = vm.mkf(others)
-
-  protected def rm(w: Int, pre: String, suf: String, seq: FString*): FString = FString((sep) => jm(h(w, pre)(sep), vm.mkf(seq)(sep), h(w, suf)(sep)))
 
   protected def hm(w: Int, in: String, seq: FString*): FString = FString((sep) => jmhs(h(w)(sep), vm.mkfe(seq, h(w, in))(sep)))
 
@@ -68,23 +64,26 @@ class CoreBF {
 
   protected def subt(s: Int, d: Int, t: Int): FString = mkm(sub2(s, d, t), raddc(t, s))
 
-  protected def ge1(d: Int): FString = rm(-2, "[<-]<[>", "<-<]>+>", h(d, "-"), rclr(-1))
+  private def sign(i: Int, p: String, n: String): String = if (0 <= i) p else n
 
-  protected def ge2(d: Int): FString = rm(-2, "-[<-]<[>", "<-<]>+>", h(d, "-"), rset(-1))
+  private def signn(i: Int, p: String, n: String): String = sign(i, p, n) * i.abs
 
-  protected def ge3(d: Int): FString = hm(-1, "-", ge2(d))
+  private def sh(i: Int): String = signn(i, ">", "<")
 
-  protected def gt1(d: Int): FString = rm(-2, "[<-]<[>", "<-<]>+>", h(d, "+"), rclr(-1))
+  private def raddi(i: Int): String = signn(i, "+", "-")
 
-  protected def gt2(d: Int): FString = rm(-2, "-[<-]<[>", "<-<]>+>", h(d, "+"), rset(-1))
+  private def rsubi(i: Int): String = signn(i, "-", "+")
 
-  protected def gt3(d: Int): FString = hm(-1, "-", gt2(d))
+  private def jm(s: String*) = vm.mk(s)
+
+  private def jmhs(h: String, s: String) = jm(h, "[", s, "]")
+
+  private def rm(w: Int, pre: String, suf: String, seq: FString*): FString = FString((sep) => jm(h(w, pre)(sep), vm.mkf(seq)(sep), h(w, suf)(sep)))
 
   private def h(i: Int, s: String, n: Int): FString = FString((_) => {
     val shift = i - head
     head = i
     sh(shift) + s * n
   })
-
 
 }
