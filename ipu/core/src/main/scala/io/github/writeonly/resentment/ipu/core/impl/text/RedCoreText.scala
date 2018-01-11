@@ -34,9 +34,9 @@ class RedCoreText extends RedCore[String] {
 
   override def rpow(s: Int, d: Int): String = apply("rpow", s, d)
 
-  def apply(name: String, seq: Int*): String = name + "(" + seq.mkString(",") + ") "
-
   override def rpowi(s: Int, d: Int): String = apply("rpowi", s, d)
+
+  def apply(name: String, seq: Int*): String = name + "(" + seq.mkString(",") + ") "
 
   override def rneg(d: Int): String = apply("rneg", d)
 

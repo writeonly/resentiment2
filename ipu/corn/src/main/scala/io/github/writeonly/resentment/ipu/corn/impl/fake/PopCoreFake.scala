@@ -19,9 +19,9 @@ class PopCoreFake(val io: StreamIO) extends Fake[PopCoreFake] with PopCore[Unit]
 
   override def uld(o: Symbol): Unit = uld(memory(symbols(o)))
 
-  override def uld(o: Int) = memory(topPointer) = o.toByte
-
   override def uld(o: Char) = uld(o.toInt)
+
+  override def uld(o: Int) = memory(topPointer) = o.toByte
 
   override def uld(o: String) = uld(o.toInt)
 
