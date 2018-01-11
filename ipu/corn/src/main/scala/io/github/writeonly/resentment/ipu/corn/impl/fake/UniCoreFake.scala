@@ -46,8 +46,6 @@ class UniCoreFake(val io: StreamIO) extends Fake with UniCore[Unit] {
 
   override def uand(o: Int): Unit = set(Memory.toBoolean(accumulator) & Memory.toBoolean(o))
 
-  private def set(o: Boolean) = accumulator = Memory.toInt(o)
-
   override def uor(o: Symbol): Unit = uor(pointer(o))
 
   override def uor(o: Int): Unit = set(Memory.toBoolean(accumulator) | Memory.toBoolean(o))
@@ -67,6 +65,8 @@ class UniCoreFake(val io: StreamIO) extends Fake with UniCore[Unit] {
   override def ugt(o: Symbol): Unit = ugt(pointer(o))
 
   override def ugt(o: Int): Unit = set(accumulator > o)
+
+  private def set(o: Boolean) = accumulator = Memory.toInt(o)
 
   override def ule(o: Symbol): Unit = ule(pointer(o))
 

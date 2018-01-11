@@ -106,7 +106,7 @@ class RedCoreBFUnsafe extends CoreBF with RedCore[FString] {
 
   override def rnot(d: Int): FString = mkm(add01(d, -1), raddi(1, d), rsubc(-1, d))
 
-  override def rtau(d: Int): FString = mkm(sub01(d, -1), rsubi(1, d), rsubc(-1, d))
+  override def rtau(d: Int): FString = mkm(add01(d, -1), raddc(-1, d))
 
   override def req(s: Int, d: Int): FString = mkm(raddc(d, -2), raddi(1, d), subt(s, -2, -1), sub01(-2, d))
 
