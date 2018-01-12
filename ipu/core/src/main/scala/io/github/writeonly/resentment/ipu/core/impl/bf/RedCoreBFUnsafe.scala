@@ -59,7 +59,7 @@ class RedCoreBFUnsafe extends CoreBF with RedCore[FString] {
   )
 
   override def rdivc(s: Int, d: Int): FString = mkm(rdiv(s,d), rclr(s))
-  
+
   override def rdivi(s: Int, d: Int) = mkm(
     raddc(d, -1),
     hs(-1,

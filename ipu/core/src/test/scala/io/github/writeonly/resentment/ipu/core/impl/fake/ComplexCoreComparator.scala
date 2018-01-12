@@ -13,9 +13,15 @@ import scala.util.{Failure, Success, Try}
 class ComplexCoreComparator(buffered: RedCoreBuffered, fake: RedCoreFake) {
   def apply(f: RedCoreDsl => Unit): Unit = {
     f(new RedCoreDsl(buffered))
-    f(new RedCoreDsl(fake))
+
     val message = new RedCoreBuffered(new RedCoreText(), new BufferedInterpreter(null))
     f(new RedCoreDsl(message))
+
+    Try(f(new RedCoreDsl(fake))) match {
+      case Success(v) => v
+      case Failure(e) => throw new IllegalStateException(message.toString, e)
+    }
+    
     val interpreter = Try(buffered()) match {
       case Success(v) => v
       case Failure(e) => throw new IllegalStateException(message.toString, e)
