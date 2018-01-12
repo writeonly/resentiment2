@@ -42,9 +42,13 @@ class RedCoreFake extends Fake with RedCore[Unit] {
 
   override def rmul(s: Int, d: Int): Unit = comi(s, d, _ * _)
 
+  override def rmulc(s: Int, d: Int): Unit = comic(s, d, _ * _)
+
   override def rmuli(s: Int, d: Int): Unit = comii(s, d, _ * _)
 
   override def rdiv(s: Int, d: Int): Unit = comi(s, d, _ / _)
+
+  override def rdivc(s: Int, d: Int): Unit = comic(s, d, _ / _)
 
   override def rdivi(s: Int, d: Int): Unit = comii(s, d, _ / _)
 

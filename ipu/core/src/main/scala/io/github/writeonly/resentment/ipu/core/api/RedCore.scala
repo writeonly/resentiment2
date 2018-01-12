@@ -29,9 +29,13 @@ trait RedCore[F] {
 
   def rmul(s: Int, d: Int): F
 
+  def rmulc(s: Int, d: Int): F
+
   def rmuli(s: Int, d: Int): F
 
   def rdiv(s: Int, d: Int): F
+
+  def rdivc(s: Int, d: Int): F
 
   def rdivi(s: Int, d: Int): F
 

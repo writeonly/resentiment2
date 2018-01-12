@@ -26,9 +26,13 @@ class RedCoreText extends RedCore[String] {
 
   override def rmul(s: Int, d: Int): String = apply("rmul", s, d)
 
+  override def rmulc(s: Int, d: Int): String = apply("rmulc", s, d)
+
   override def rmuli(s: Int, d: Int): String = apply("rmuli", s, d)
 
   override def rdiv(s: Int, d: Int): String = apply("rdiv", s, d)
+
+  override def rdivc(s: Int, d: Int): String = apply("rdivc", s, d)
 
   override def rdivi(s: Int, d: Int): String = apply("rdivi", s, d)
 
