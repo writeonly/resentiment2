@@ -21,9 +21,9 @@ class PopCoreFake(val io: StreamIO) extends Fake[PopCoreFake] with PopCore[Unit]
 
   override def uld(o: Char) = uld(o.toInt)
 
-  override def uld(o: String) = uld(o.toInt)
-
   override def uld(o: Int) = memory(topPointer) = o.toByte
+
+  override def uld(o: String) = uld(o.toInt)
 
   override def pin() = ???
 
@@ -45,19 +45,12 @@ class PopCoreFake(val io: StreamIO) extends Fake[PopCoreFake] with PopCore[Unit]
 
   override def pdiv: Unit = popi((t1, t0) => t1 / t0)
 
+  override def pmod: Unit = popi((t1, t0) => t1 % t0)
+
   def popi(f: (Byte, Byte) => Int): Unit = {
     memory(topPointer - 1) = f(memory(topPointer - 1), top).asInstanceOf[Byte]
     pop
   }
-
-  def pop = {
-    memory(topPointer) = 0
-    topPointer -= 1
-  }
-
-  def top: Byte = memory(topPointer)
-
-  override def pmod: Unit = popi((t1, t0) => t1 % t0)
 
   override def pand: Unit = popb((t1, t0) => Memory.toBoolean(t1 & t0))
 
@@ -69,12 +62,19 @@ class PopCoreFake(val io: StreamIO) extends Fake[PopCoreFake] with PopCore[Unit]
 
   override def pne: Unit = popb((t1, t0) => (t1 != t0))
 
-  override def plt: Unit = popb((t1, t0) => (t1 < t0))
-
   def popb(f: (Byte, Byte) => Boolean): Unit = {
     memory(topPointer - 1) = f(memory(topPointer - 1), top)
     pop
   }
+
+  def pop = {
+    memory(topPointer) = 0
+    topPointer -= 1
+  }
+
+  def top: Byte = memory(topPointer)
+
+  override def plt: Unit = popb((t1, t0) => (t1 < t0))
 
   override def ple: Unit = popb((t1, t0) => (t1 <= t0))
 

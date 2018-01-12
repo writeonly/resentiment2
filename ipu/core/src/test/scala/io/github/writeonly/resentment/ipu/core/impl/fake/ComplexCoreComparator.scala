@@ -21,7 +21,7 @@ class ComplexCoreComparator(buffered: RedCoreBuffered, fake: RedCoreFake) {
       case Success(v) => v
       case Failure(e) => throw new IllegalStateException(message.toString, e)
     }
-    
+
     val interpreter = Try(buffered()) match {
       case Success(v) => v
       case Failure(e) => throw new IllegalStateException(message.toString, e)
