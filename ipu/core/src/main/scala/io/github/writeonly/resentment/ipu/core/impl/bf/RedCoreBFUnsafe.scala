@@ -90,8 +90,6 @@ class RedCoreBFUnsafe extends CoreBF with RedCore[FString] {
   //    temp2-]
   //  y-]
 
-  override def rpowi(s: Int, d: Int): FString = mkm(raddi(s, -4), rpowc(-4, d))
-
   def rpowc(s: Int, d: Int): FString = mkm(
     raddc(d, -1),
     rinc(d),
@@ -102,6 +100,14 @@ class RedCoreBFUnsafe extends CoreBF with RedCore[FString] {
       hs(-3, "-", addt(-1, d, -2))
     )
   )
+
+  override def rpowi(s: Int, d: Int): FString = mkm(raddi(s, -4), rpowc(-4, d))
+
+  override def rmod(s: Int, d: Int): FString = ???
+
+  override def rmodc(s: Int, d: Int): FString = ???
+
+  override def rmodi(s: Int, d: Int): FString = ???
 
   override def rng1(d: Int): FString = mkm(rdec(d), rneg(d))
 

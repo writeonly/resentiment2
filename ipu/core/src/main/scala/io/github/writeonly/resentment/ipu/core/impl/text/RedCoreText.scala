@@ -36,6 +36,12 @@ class RedCoreText extends RedCore[String] {
 
   override def rdivi(s: Int, d: Int): String = apply("rdivi", s, d)
 
+  override def rmod(s: Int, d: Int): String = apply("rmod", s, d)
+
+  override def rmodc(s: Int, d: Int): String = apply("rmodc", s, d)
+
+  override def rmodi(s: Int, d: Int): String = apply("rmodi", s, d)
+
   override def rpow(s: Int, d: Int): String = apply("rpow", s, d)
 
   override def rpowi(s: Int, d: Int): String = apply("rpowi", s, d)
@@ -47,6 +53,8 @@ class RedCoreText extends RedCore[String] {
   override def rnot(d: Int): String = apply("rnot", d)
 
   override def rtau(d: Int): String = apply("rtau", d)
+
+  def apply(name: String, seq: Int*): String = name + "(" + seq.mkString(",") + ") "
 
   override def req(s: Int, d: Int): String = apply("req", s, d)
 
@@ -77,6 +85,4 @@ class RedCoreText extends RedCore[String] {
   override def raddc(s: Int, d: Int): String = apply("raddc", s, d)
 
   override def rsubc(s: Int, d: Int): String = apply("rsubc", s, d)
-
-  def apply(name: String, seq: Int*): String = name + "(" + seq.mkString(",") + ") "
 }

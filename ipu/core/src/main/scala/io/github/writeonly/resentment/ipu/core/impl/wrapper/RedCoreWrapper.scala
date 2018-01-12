@@ -37,6 +37,12 @@ abstract class RedCoreWrapper[T, R](core: RedCore[T]) extends RedCore[R] {
 
   override def rdivi(s: Int, d: Int): R = apply(core.rdivi(s, d))
 
+  override def rmod(s: Int, d: Int): R = apply(core.rdiv(s, d))
+
+  override def rmodc(s: Int, d: Int): R = apply(core.rmodc(s, d))
+
+  override def rmodi(s: Int, d: Int): R = apply(core.rmodi(s, d))
+
   override def rpow(s: Int, d: Int): R = apply(core.rpow(s, d))
 
   override def rpowi(s: Int, d: Int): R = apply(core.rpowi(s, d))

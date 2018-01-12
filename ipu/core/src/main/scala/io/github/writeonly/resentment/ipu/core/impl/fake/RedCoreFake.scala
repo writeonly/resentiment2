@@ -52,6 +52,12 @@ class RedCoreFake extends Fake with RedCore[Unit] {
 
   override def rdivi(s: Int, d: Int): Unit = comii(s, d, _ / _)
 
+  override def rmod(s: Int, d: Int): Unit = comi(s, d, _ % _)
+
+  override def rmodc(s: Int, d: Int): Unit = comic(s, d, _ % _)
+
+  override def rmodi(s: Int, d: Int): Unit = comii(s, d, _ % _)
+
   override def rpow(s: Int, d: Int): Unit = comi(s, d, pow)
 
   def pow(x: Byte, y: Byte): Int = pow(x, y.asInstanceOf[Int])

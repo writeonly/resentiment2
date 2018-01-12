@@ -39,6 +39,12 @@ trait RedCore[F] {
 
   def rdivi(s: Int, d: Int): F
 
+  def rmod(s: Int, d: Int): F
+
+  def rmodc(s: Int, d: Int): F
+
+  def rmodi(s: Int, d: Int): F
+
   def rpow(s: Int, d: Int): F
 
   def rpowi(s: Int, d: Int): F
