@@ -50,11 +50,11 @@ class RedCoreText extends RedCore[String] {
 
   override def reqi(s: Int, d: Int): String = apply("reqi", s, d)
 
+  def apply(name: String, seq: Int*): String = name + "(" + seq.mkString(",") + ") "
+
   override def rne(s: Int, d: Int): String = apply("rne", s, d)
 
   override def rnec(s: Int, d: Int): String = apply("rnec", s, d)
-
-  def apply(name: String, seq: Int*): String = name + "(" + seq.mkString(",") + ") "
 
   override def rnei(s: Int, d: Int): String = apply("rnei", s, d)
 
