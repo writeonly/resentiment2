@@ -293,7 +293,16 @@ class RedCoreComparatorBFSpec extends org.specs2.mutable.Specification with Arou
       }
     }.setGens(value, value, address, address)
 
-    "rmovi rle" >> prop { (v: Int, d1: Int, d2: Int) =>
+    "rmovi rmovi rlec" >> prop { (v1: Int, v2: Int, d1: Int, d2: Int) =>
+      val comparator = new ComplexCoreComparatorBF
+      comparator { c =>
+        c.rmovi(v1, d1)
+        c.rmovi(v2, d2)
+        c.rlec(d1, d2)
+      }
+    }.setGens(value, value, address, address)
+
+    "rmovi rlt" >> prop { (v: Int, d1: Int, d2: Int) =>
       val comparator = new ComplexCoreComparatorBF
       comparator { c =>
         c.rmovi(v, d1)
@@ -301,7 +310,7 @@ class RedCoreComparatorBFSpec extends org.specs2.mutable.Specification with Arou
       }
     }.setGens(value, address, address)
 
-    "rmovi rmovi rle" >> prop { (v1: Int, v2: Int, d1: Int, d2: Int) =>
+    "rmovi rmovi rlt" >> prop { (v1: Int, v2: Int, d1: Int, d2: Int) =>
       val comparator = new ComplexCoreComparatorBF
       comparator { c =>
         c.rmovi(v1, d1)
@@ -310,4 +319,12 @@ class RedCoreComparatorBFSpec extends org.specs2.mutable.Specification with Arou
       }
     }.setGens(value, value, address, address)
   }
+  "rmovi rmovi rlc" >> prop { (v1: Int, v2: Int, d1: Int, d2: Int) =>
+    val comparator = new ComplexCoreComparatorBF
+    comparator { c =>
+      c.rmovi(v1, d1)
+      c.rmovi(v2, d2)
+      c.rltc(d1, d2)
+    }
+  }.setGens(value, value, address, address)
 }
