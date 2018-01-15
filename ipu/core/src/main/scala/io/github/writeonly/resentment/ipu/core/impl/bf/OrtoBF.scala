@@ -25,6 +25,13 @@ class OrtoBF extends MetaBF {
     override def im(s: Int, d: Int): FString = mkm(rclr(d), add.im(s, d))
   }
 
+  lazy val mul = new Orto {
+    override def tmp(s: Int, d: Int, t: Int*): FString = dir(s, d)
+    override def dir(s: Int, d: Int): FString = mkm(add.cl(d, -2), hs(-2, "-", add.dir(s, d)))
+    override def cl(s: Int, d: Int): FString = mkm(dir(s, d), rclr(s))
+    override def im(s: Int, d: Int): FString = mkm(add.cl(d, -1), hs(-1, "-", add.im(s, d)))
+  }
+
   def rclr(d: Int): FString = hs(d, "-")
 
   def rset(d: Int): FString = mov.one(d)

@@ -27,11 +27,11 @@ class RedOrtoBFUnsafe extends OrtoBF with RedCore[FString] {
 
   override def rsubi(s: Int, d: Int): FString = sub.im(s, d)
 
-  override def rmulc(s: Int, d: Int): FString = mkm(rmul(s, d), rclr(s))
+  override def rmulc(s: Int, d: Int): FString = mul.cl(s, d)
 
-  override def rmul(s: Int, d: Int): FString = mkm(raddc(d, -2), hs(-2, "-", radd(s, d)))
+  override def rmul(s: Int, d: Int): FString = mul.dir(s, d)
 
-  override def rmuli(s: Int, d: Int): FString = mkm(raddc(d, -1), hs(-1, "-", raddi(s, d)))
+  override def rmuli(s: Int, d: Int): FString = mul.im(s, d)
 
   override def rdivc(s: Int, d: Int): FString = mkm(rdiv(s, d), rclr(s))
 
