@@ -9,7 +9,11 @@ class RedOrtoBFUnsafe extends OrtoBF with RedCore[FString] {
 
   override def rswap(d1: Int, d2: Int): FString = mkm(raddc(d1, -1), raddc(d2, d1), raddc(-1, d2))
 
-  override def rmovc(s: Int, d: Int): FString = mkm(rclr(d), raddc(s, d))
+  override def rmov(s: Int, d: Int): FString = mov.dir(s, d)
+
+  override def rmovc(s: Int, d: Int): FString = mov.cl(s, d)
+
+  override def rmovi(s: Int, d: Int): FString = mov.im(s, d)
 
   override def radd(s: Int, d: Int): FString = add.dir(s, d)
 
@@ -82,8 +86,6 @@ class RedOrtoBFUnsafe extends OrtoBF with RedCore[FString] {
   )
 
   override def rpow(s: Int, d: Int): FString = mkm(rmov(s, -4), rpowc(s, d), raddc(-4, s))
-
-  override def rmov(s: Int, d: Int): FString = mkm(rclr(d), radd(s, d))
 
   //  temp0[-]
   //  x[temp0+x-]

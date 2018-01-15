@@ -4,29 +4,34 @@ import io.github.writeonly.resentment.ipu.core.common.FString
 
 class OrtoBF extends MetaBF {
 
-  lazy val add = new Orto {
-    def tmp(s:Int, d:Int, t:Int*):FString = mkm(add2(s, d, t(0)), cl(t(0), s))
-    def dir(s:Int, d:Int):FString = tmp(s, d, -1)
-    def cl(s:Int, d:Int):FString = hs(s, "-", rinc(d))
-    def im(s:Int, d:Int):FString = h(d, raddi(s))
+  lazy val add = new Orto1 {
+    override def tmp(s:Int, d:Int, t:Int*):FString = mkm(add2(s, d, t(0)), cl(t(0), s))
+    override def dir(s:Int, d:Int):FString = tmp(s, d, -1)
+    override def cl(s:Int, d:Int):FString = hs(s, "-", rinc(d))
+    override def im(s:Int, d:Int):FString = h(d, raddi(s))
   }
 
-  lazy val sub = new Orto {
-    def tmp(s:Int, d:Int, t:Int*):FString = mkm(sub2(s, d, t(0)), add.cl(t(0), s))
-    def dir(s:Int, d:Int):FString = tmp(s, d, -1)
-    def cl(s:Int, d:Int):FString = hs(s, "-", rdec(d))
-    def im(s:Int, d:Int):FString = h(d, rsubi(s))
+  lazy val sub = new Orto1 {
+    override def tmp(s:Int, d:Int, t:Int*):FString = mkm(sub2(s, d, t(0)), add.cl(t(0), s))
+    override def dir(s:Int, d:Int):FString = tmp(s, d, -1)
+    override def cl(s:Int, d:Int):FString = hs(s, "-", rdec(d))
+    override def im(s:Int, d:Int):FString = h(d, rsubi(s))
   }
-  
+
+  lazy val mov = new Orto1 {
+    override def tmp(s: Int, d: Int, t: Int*): FString = mkm(rclr(d), add.tmp(s, d, t :_* ))
+    override def dir(s: Int, d: Int): FString = mkm(rclr(d), add.dir(s, d))
+    override def cl(s: Int, d: Int): FString = mkm(rclr(d), add.cl(s, d))
+    override def im(s: Int, d: Int): FString = mkm(rclr(d), add.im(s, d))
+  }
+
   def rclr(d: Int): FString = hs(d, "-")
 
-  def rset(d: Int): FString = rmovi(1, d)
+  def rset(d: Int): FString = mov.one(d)
 
-  def rmovi(s: Int, d: Int): FString = mkm(rclr(d), add.im(s, d))
+  def rinc(d: Int): FString = add.one(d)
 
-  def rinc(d: Int): FString = add.im(1, d)
-
-  def rdec(d: Int): FString = sub.im(1, d)
+  def rdec(d: Int): FString = sub.one(d)
 
   def ge1(d: Int): FString = rm(-2, "[<-]<[>", "<-<]>+>", rdec(d), rclr(-1))
 
