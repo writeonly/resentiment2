@@ -3,9 +3,9 @@ package io.github.writeonly.resentment.ipu.core.impl.bf
 import io.github.writeonly.resentment.ipu.core.api.RedCore
 import io.github.writeonly.resentment.ipu.core.common.FString
 
-class RedCoreBFSafe(core: RedCoreBFUnsafe) extends RedCore[FString] {
+class RedCoreBFSafe(core: RedOrtoBFUnsafe) extends RedCore[FString] {
 
-  def this() = this(new RedCoreBFUnsafe)
+  def this() = this(new RedOrtoBFUnsafe)
 
   override def rswap(d1: Int, d2: Int): FString = if (d1 != d2) core.rswap(d1, d2) else rnop()
 

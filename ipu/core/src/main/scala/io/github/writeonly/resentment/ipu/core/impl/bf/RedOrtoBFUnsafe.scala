@@ -3,7 +3,7 @@ package io.github.writeonly.resentment.ipu.core.impl.bf
 import io.github.writeonly.resentment.ipu.core.api.RedCore
 import io.github.writeonly.resentment.ipu.core.common.FString
 
-class RedCoreBFUnsafe extends CoreBF with RedCore[FString] {
+class RedOrtoBFUnsafe extends OrtoBF with RedCore[FString] {
 
   override def rnop(): FString = FString.empty
 
