@@ -4,6 +4,11 @@ import io.github.writeonly.resentment.ipu.core.common.FString
 
 class OrtoBF extends MetaBF {
 
+  trait OrtoCl extends Orto {
+    override def tmp(s: Int, d: Int, t: Int*): FString = dir(s, d)
+    override def cl(s: Int, d: Int): FString = mkm(dir(s, d), rclr(s))
+  }
+
   lazy val add = new Orto1 {
     override def tmp(s:Int, d:Int, t:Int*):FString = mkm(add2(s, d, t(0)), cl(t(0), s))
     override def dir(s:Int, d:Int):FString = tmp(s, d, -1)
@@ -25,11 +30,60 @@ class OrtoBF extends MetaBF {
     override def im(s: Int, d: Int): FString = mkm(rclr(d), add.im(s, d))
   }
 
-  lazy val mul = new Orto {
-    override def tmp(s: Int, d: Int, t: Int*): FString = dir(s, d)
+  lazy val mul = new OrtoCl {
     override def dir(s: Int, d: Int): FString = mkm(add.cl(d, -2), hs(-2, "-", add.dir(s, d)))
-    override def cl(s: Int, d: Int): FString = mkm(dir(s, d), rclr(s))
     override def im(s: Int, d: Int): FString = mkm(add.cl(d, -1), hs(-1, "-", add.im(s, d)))
+  }
+
+  //  temp0[-]
+  //  temp1[-]
+  //  temp2[-]
+  //  temp3[-]
+  //  x[temp0+x-]
+  //  temp0[
+  //    y[temp1+temp2+y-]
+  //    temp2[y+temp2-]
+  //    temp1[
+  //      temp2+
+  //      temp0-
+  //      [temp2[-]temp3+temp0-]
+  //      temp3[temp0+temp3-]
+  //      temp2[
+  //        temp1-
+  //        [x-temp1[-]]+
+  //      temp2-]
+  //    temp1-]
+  //    x+
+  //  temp0]
+  lazy val div = new OrtoCl {
+    override def dir(s: Int, d: Int): FString = mkm(
+      add.cl(d, -1),
+      hs(-1,
+        add.tmp(s, -2, -3),
+        hs(-2, "-",
+          rinc(-3),
+          rdec(-1),
+          hs(-1, "-", rclr(-3), rinc(-4)),
+          hs(-4, "-", rinc(-1)),
+          hs(-3, "-", rdec(-2), hm(-2, "[-]", rdec(d)), rinc(-2))
+        ),
+        h(d, "+")
+      )
+    )
+    override def im(s: Int, d: Int): FString = mkm(
+      add.cl(d, -1),
+      hs(-1,
+        add.im(s, -2),
+        hs(-2, "-",
+          rinc(-3),
+          rdec(-1),
+          hs(-1, "-", rclr(-3), rinc(-4)),
+          hs(-4, "-", rinc(-1)),
+          hs(-3, "-", rdec(-2), hm(-2, "[-]", rdec(d)), rinc(-2))
+        ),
+        h(d, "+")
+      )
+    )
   }
 
   def rclr(d: Int): FString = hs(d, "-")

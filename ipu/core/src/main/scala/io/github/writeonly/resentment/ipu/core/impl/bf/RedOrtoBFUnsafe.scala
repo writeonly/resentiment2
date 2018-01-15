@@ -35,55 +35,10 @@ class RedOrtoBFUnsafe extends OrtoBF with RedCore[FString] {
 
   override def rdivc(s: Int, d: Int): FString = mkm(rdiv(s, d), rclr(s))
 
-  //  temp0[-]
-  //  temp1[-]
-  //  temp2[-]
-  //  temp3[-]
-  //  x[temp0+x-]
-  //  temp0[
-  //    y[temp1+temp2+y-]
-  //    temp2[y+temp2-]
-  //    temp1[
-  //      temp2+
-  //      temp0-
-  //      [temp2[-]temp3+temp0-]
-  //      temp3[temp0+temp3-]
-  //      temp2[
-  //        temp1-
-  //        [x-temp1[-]]+
-  //      temp2-]
-  //    temp1-]
-  //    x+
-  //  temp0]
-  override def rdiv(s: Int, d: Int): FString = mkm(
-    raddc(d, -1),
-    hs(-1,
-      addt(s, -2, -3),
-      hs(-2, "-",
-        rinc(-3),
-        rdec(-1),
-        hs(-1, "-", rclr(-3), rinc(-4)),
-        hs(-4, "-", rinc(-1)),
-        hs(-3, "-", rdec(-2), hm(-2, "[-]", rdec(d)), rinc(-2))
-      ),
-      h(d, "+")
-    )
-  )
 
-  override def rdivi(s: Int, d: Int) = mkm(
-    raddc(d, -1),
-    hs(-1,
-      raddi(s, -2),
-      hs(-2, "-",
-        rinc(-3),
-        rdec(-1),
-        hs(-1, "-", rclr(-3), rinc(-4)),
-        hs(-4, "-", rinc(-1)),
-        hs(-3, "-", rdec(-2), hm(-2, "[-]", rdec(d)), rinc(-2))
-      ),
-      h(d, "+")
-    )
-  )
+  override def rdiv(s: Int, d: Int): FString = div.dir(s, d)
+
+  override def rdivi(s: Int, d: Int) = div.im(s, d)
 
   override def rpow(s: Int, d: Int): FString = mkm(rmov(s, -4), rpowc(s, d), raddc(-4, s))
 
