@@ -33,12 +33,11 @@ class RedOrtoBFUnsafe extends OrtoBF with RedCore[FString] {
 
   override def rmuli(s: Int, d: Int): FString = mul.im(s, d)
 
-  override def rdivc(s: Int, d: Int): FString = mkm(rdiv(s, d), rclr(s))
-
-
   override def rdiv(s: Int, d: Int): FString = div.dir(s, d)
 
-  override def rdivi(s: Int, d: Int) = div.im(s, d)
+  override def rdivc(s: Int, d: Int): FString = div.cl(s, d)
+
+  override def rdivi(s: Int, d: Int): FString = div.im(s, d)
 
   override def rpow(s: Int, d: Int): FString = mkm(rmov(s, -4), rpowc(s, d), raddc(-4, s))
 
@@ -68,11 +67,11 @@ class RedOrtoBFUnsafe extends OrtoBF with RedCore[FString] {
 
   override def rpowi(s: Int, d: Int): FString = mkm(raddi(s, -4), rpowc(-4, d))
 
-  override def rmod(s: Int, d: Int): FString = ???
+  override def rmod(s: Int, d: Int): FString = mod.dir(s, d)
 
-  override def rmodc(s: Int, d: Int): FString = ???
+  override def rmodc(s: Int, d: Int): FString = mod.cl(s, d)
 
-  override def rmodi(s: Int, d: Int): FString = ???
+  override def rmodi(s: Int, d: Int): FString = mod.im(s, d)
 
   override def rng1(d: Int): FString = mkm(rdec(d), rneg(d))
 

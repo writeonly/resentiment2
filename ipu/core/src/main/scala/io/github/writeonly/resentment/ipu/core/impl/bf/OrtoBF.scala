@@ -86,6 +86,11 @@ class OrtoBF extends MetaBF {
     )
   }
 
+  lazy val mod = new OrtoCl {
+    override def dir(s: Int, d: Int): FString = ???
+    override def im(s: Int, d: Int): FString = ???
+  }
+
   def rclr(d: Int): FString = hs(d, "-")
 
   def rset(d: Int): FString = mov.one(d)
