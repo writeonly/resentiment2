@@ -39,33 +39,11 @@ class RedOrtoBFUnsafe extends OrtoBF with RedCore[FString] {
 
   override def rdivi(s: Int, d: Int): FString = div.im(s, d)
 
-  override def rpow(s: Int, d: Int): FString = mkm(rmov(s, -4), rpowc(s, d), raddc(-4, s))
+  override def rpow(s: Int, d: Int): FString = pow.dir(s, d)
 
-  //  temp0[-]
-  //  x[temp0+x-]
-  //  x+
-  //  y[
-  //    temp1[-]
-  //    temp2[-]
-  //    x[temp2+x-]
-  //    temp2[
-  //      temp0[x+temp1+temp0-]
-  //      temp1[temp0+temp1-]
-  //    temp2-]
-  //  y-]
+  override def rpowc(s: Int, d: Int): FString = pow.cl(s, d)
 
-  def rpowc(s: Int, d: Int): FString = mkm(
-    raddc(d, -1),
-    rinc(d),
-    hs(s, "-",
-      rclr(-2),
-      rclr(-3),
-      raddc(d, -3),
-      hs(-3, "-", addt(-1, d, -2))
-    )
-  )
-
-  override def rpowi(s: Int, d: Int): FString = mkm(raddi(s, -4), rpowc(-4, d))
+  override def rpowi(s: Int, d: Int): FString = pow.im(s, d)
 
   override def rmod(s: Int, d: Int): FString = mod.dir(s, d)
 

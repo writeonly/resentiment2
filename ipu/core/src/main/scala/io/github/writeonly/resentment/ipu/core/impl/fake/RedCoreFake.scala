@@ -67,6 +67,8 @@ class RedCoreFake extends Fake with RedCore[Unit] {
     case Failure(e) => throw new IllegalArgumentException("x -> " + x + ", y -> " + y, e)
   }
 
+  override def rpowc(s: Int, d: Int): Unit = comic(s, d, pow)
+
   override def rpowi(s: Int, d: Int): Unit = comii(s, d, pow)
 
   override def rneg(d: Int): Unit = memory(d) = -memory(d)
