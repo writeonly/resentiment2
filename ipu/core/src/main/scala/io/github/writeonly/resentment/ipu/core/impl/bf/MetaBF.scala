@@ -3,6 +3,8 @@ package io.github.writeonly.resentment.ipu.core.impl.bf
 import io.github.writeonly.resentment.ipu.core.common.FString
 
 class MetaBF {
+  protected val inc = "+"
+  protected val dec = "-"
   protected val clr = "[-]"
 
   private val vm = new CodeValidatorMagic
@@ -31,9 +33,9 @@ class MetaBF {
 
   protected def hs(w: Int, seq: FString*): FString = hs(w, "", seq: _*)
 
-  protected def raddi(i: Int): String = signn(i, "+", "-")
+  protected def raddi(i: Int): String = signn(i, inc, dec)
 
-  protected def rsubi(i: Int): String = signn(i, "-", "+")
+  protected def rsubi(i: Int): String = signn(i, dec, inc)
 
   private def sign(i: Int, p: String, n: String): String = if (0 <= i) p else n
 
