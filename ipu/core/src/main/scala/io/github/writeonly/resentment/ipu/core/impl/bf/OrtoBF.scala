@@ -162,9 +162,9 @@ class OrtoBF extends MetaBF {
 
   def gt3(d: Int): FString = hm(-1, dec, gt2(d))
 
-  protected def add01(s: Int, d1: Int): FString = hs(s, clr, rinc(d1))
+  def add01(s: Int, d1: Int): FString = hs(s, clr, rinc(d1))
 
-  protected def sub01(s: Int, d1: Int): FString = hs(s, clr, rdec(d1))
+  def sub01(s: Int, d1: Int): FString = hs(s, clr, rdec(d1))
 
   protected def add2(s: Int, d1: Int, d2: Int): FString = hs(s, dec, rinc(d1), rinc(d2))
 

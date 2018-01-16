@@ -9,9 +9,9 @@ trait CodeValidator extends Function[String, String] {
 
   def count(code: String, c: Char) = code.count(_ == c)
 
-  def mkfe(others: Seq[FString], end: FString): FString = mkf(others :+ end)
+  def mkfe(seq: Seq[FString], end: FString): FString = mkf(seq :+ end)
 
-  def mkf(others: Seq[FString]): FString = FString((it) => mk(others.map(f => f(it))))
+  def mkf(seq: Seq[FString]): FString = FString((it) => mk(seq.map(f => f(it))))
 
   def mk(s: Seq[String]) = apply(s.mkString(""))
 

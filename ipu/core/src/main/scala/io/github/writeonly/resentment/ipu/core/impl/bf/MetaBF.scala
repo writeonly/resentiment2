@@ -11,7 +11,7 @@ class MetaBF {
   private val vs = new CodeValidatorStrict
   private var head = 0
 
-  def mkm(others: FString*): FString = vm.mkf(others)
+  def mkm(seq: FString*): FString = vm.mkf(seq)
 
   protected def rm(w: Int, pre: String, suf: String, seq: FString*): FString = FString((sep) => jm(h(w, pre)(sep), vm.mkf(seq)(sep), h(w, suf)(sep)))
 
