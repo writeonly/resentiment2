@@ -82,4 +82,10 @@ trait RedCore[F] {
   def rltc(s: Int, d: Int): F
 
   def rlti(s: Int, d: Int): F
+
+  def rand(s: Int, d: Int): F
+
+  def randc(s: Int, d: Int): F
+
+  def randi(s: Int, d: Int): F
 }

@@ -88,4 +88,10 @@ abstract class RedCoreWrapper[T, R](core: RedCore[T]) extends RedCore[R] {
 
   override def rsubc(s: Int, d: Int): R = apply(core.rsubc(s, d))
 
+  override def rand(s: Int, d: Int): R = apply(core.rand(s, d))
+
+  override def randc(s: Int, d: Int): R = apply(core.randc(s, d))
+
+  override def randi(s: Int, d: Int): R = apply(core.randi(s, d))
+
 }

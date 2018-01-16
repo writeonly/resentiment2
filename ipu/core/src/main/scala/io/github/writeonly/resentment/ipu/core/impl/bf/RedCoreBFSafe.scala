@@ -89,4 +89,10 @@ class RedCoreBFSafe(core: RedCoreBFUnsafe) extends RedCore[FString] {
 
   override def rlti(s: Int, d: Int): FString = core.rlti(s, d)
 
+  override def rand(s: Int, d: Int): FString = if (s != d) core.rand(s, d) else rset(d)
+
+  override def randc(s: Int, d: Int): FString = if (s != d) core.randc(s, d) else rclr(d)
+
+  override def randi(s: Int, d: Int): FString = core.randi(s, d)
+
 }

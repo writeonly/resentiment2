@@ -90,4 +90,9 @@ class RedCoreBFUnsafe(core : OrtoBF) extends RedCore[FString] {
   override def rltc(s: Int, d: Int): FString = core.llt.cl(s, d)
 
   override def rlti(s: Int, d: Int): FString = core.llt.im(s, d)
-}
+
+  override def rand(s: Int, d: Int): FString = core.land.dir(s, d)
+
+  override def randc(s: Int, d: Int): FString = core.land.cl(s, d)
+
+  override def randi(s: Int, d: Int): FString = core.land.im(s, d)}
