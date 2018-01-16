@@ -125,6 +125,7 @@ class RedCoreBufferedBFSpec extends org.specs2.mutable.Specification
       val memory = core.apply().memory
       memory(1) must_== -1
     }
+
     "rmovi(2,0) rmovi(3,1) rmul(0,1)" >> {
       val core = new RedCoreBufferedBF
       core.rmovi(2, 0)
