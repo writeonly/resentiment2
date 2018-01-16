@@ -136,6 +136,12 @@ class OrtoBF extends MetaBF {
     override def im(s: Int, d: Int): FString = mkm(rinc(-3), add.tmp(s, -2, -1), add.cl(d, -1), rinc(d), ge1(d), ge3(d))
   }
 
+  lazy val llt = new OrtoTmp {
+    override def dir(s: Int, d: Int): FString = mkm(rinc(-3), addt(s, -1, -2), add.cl(d, -2), gt1(d), gt3(d))
+    override def cl(s: Int, d: Int): FString = mkm(rinc(-3), add.cl(s, -1), add.cl(d, -2), gt1(d), gt3(d))
+    override def im(s: Int, d: Int): FString = mkm(rinc(-3), addt(s, -1, -2), add.cl(d, -2), gt1(d), gt3(d))
+  }
+
   def rclr(d: Int): FString = hs(d, "-")
 
   def rset(d: Int): FString = mov.one(d)
