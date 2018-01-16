@@ -65,11 +65,11 @@ class RedOrtoBFUnsafe extends OrtoBF with RedCore[FString] {
 
   override def reqi(s: Int, d: Int): FString = leq.im(s, d)
 
-  override def rne(s: Int, d: Int): FString = mkm(raddc(d, -2), subt(s, -2, -1), add01(-2, d))
+  override def rne(s: Int, d: Int): FString = lne.dir(s, d)
 
-  override def rnec(s: Int, d: Int): FString = mkm(raddc(d, -2), rsubc(s, -2), add01(-2, d))
+  override def rnec(s: Int, d: Int): FString = lne.cl(s, d)
 
-  override def rnei(s: Int, d: Int): FString = mkm(raddc(d, -1), rsubi(s, -1), add01(-1, d))
+  override def rnei(s: Int, d: Int): FString = lne.im(s, d)
 
   override def rle(s: Int, d: Int): FString = mkm(rinc(-3), addt(s, -2, -1), raddc(d, -1), rinc(d), ge1(d), ge3(d))
 
