@@ -93,4 +93,10 @@ class RedCoreText extends RedCore[String] {
   override def randc(s: Int, d: Int): String = apply("randc", s, d)
 
   override def randi(s: Int, d: Int): String = apply("randi", s, d)
+
+  override def ror(s: Int, d: Int): String = apply("ror", s, d)
+
+  override def rorc(s: Int, d: Int): String = apply("rorc", s, d)
+
+  override def rori(s: Int, d: Int): String = apply("rori", s, d)
 }

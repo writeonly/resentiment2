@@ -108,4 +108,10 @@ class RedCoreFake extends Fake with RedCore[Unit] {
   override def randc(s: Int, d: Int): Unit = comxxc(s, d, _ && _)
 
   override def randi(s: Int, d: Int): Unit = comxxi(s, d, _ && _)
+
+  override def ror(s: Int, d: Int): Unit = comxx(s, d, _ || _)
+
+  override def rorc(s: Int, d: Int): Unit = comxxc(s, d, _ || _)
+
+  override def rori(s: Int, d: Int): Unit = comxxi(s, d, _ || _)
 }
