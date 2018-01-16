@@ -3,11 +3,11 @@ package io.github.writeonly.resentment.ipu.core.impl.bf
 import io.github.writeonly.resentment.ipu.core.api.RedCore
 import io.github.writeonly.resentment.ipu.core.common.FString
 
-class RedCoreBFUnsafe(core : OrtoBF) extends RedCore[FString] {
+class RedCoreBFUnsafe(core: OrtoBF) extends RedCore[FString] {
 
   def this() = this(new OrtoBF)
 
-  def mkm(seq : FString*) = core.mkm(seq:_*)
+  def mkm(seq: FString*) = core.mkm(seq: _*)
 
   override def rnop(): FString = FString.empty
 

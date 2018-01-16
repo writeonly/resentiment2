@@ -1,4 +1,5 @@
 package io.github.writeonly.resentment.ipu.core.impl.bf
+
 import io.github.writeonly.resentment.ipu.core.common.FString
 
 trait OrtoTmp extends Orto {
