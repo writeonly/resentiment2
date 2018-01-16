@@ -354,6 +354,9 @@ class RedCoreComparatorBFSpec extends org.specs2.mutable.Specification with Arou
       }
     }.setGens(value, value, address)
 
+  }
+
+  "rlt" >> {
     "rmovi rlt" >> prop { (v: Int, d1: Int, d2: Int) =>
       val comparator = new ComplexCoreComparatorBF
       comparator { c =>
@@ -370,22 +373,49 @@ class RedCoreComparatorBFSpec extends org.specs2.mutable.Specification with Arou
         c.rlt(d1, d2)
       }
     }.setGens(value, value, address, address)
+
+    "rmovi rmovi rltc" >> prop { (v1: Int, v2: Int, d1: Int, d2: Int) =>
+      val comparator = new ComplexCoreComparatorBF
+      comparator { c =>
+        c.rmovi(v1, d1)
+        c.rmovi(v2, d2)
+        c.rltc(d1, d2)
+      }
+    }.setGens(value, value, address, address)
+
+    "rmovi rlti" >> prop { (v1: Int, v2: Int, d1: Int) =>
+      val comparator = new ComplexCoreComparatorBF
+      comparator { c =>
+        c.rmovi(v1, d1)
+        c.rlti(v2, d1)
+      }
+    }.setGens(value, value, address)
   }
+  "rand" >> {
+    "rmovi rmovi rand" >> prop { (v1: Int, v2: Int, d1: Int, d2: Int) =>
+      val comparator = new ComplexCoreComparatorBF
+      comparator { c =>
+        c.rmovi(v1, d1)
+        c.rmovi(v2, d2)
+        c.rand(d1, d2)
+      }
+    }.setGens(value, value, address, address)
 
-  "rmovi rmovi rltc" >> prop { (v1: Int, v2: Int, d1: Int, d2: Int) =>
-    val comparator = new ComplexCoreComparatorBF
-    comparator { c =>
-      c.rmovi(v1, d1)
-      c.rmovi(v2, d2)
-      c.rltc(d1, d2)
-    }
-  }.setGens(value, value, address, address)
+    "rmovi rmovi randc" >> prop { (v1: Int, v2: Int, d1: Int, d2: Int) =>
+      val comparator = new ComplexCoreComparatorBF
+      comparator { c =>
+        c.rmovi(v1, d1)
+        c.rmovi(v2, d2)
+        c.randc(d1, d2)
+      }
+    }.setGens(value, value, address, address)
 
-  "rmovi rlti" >> prop { (v1: Int, v2: Int, d1: Int) =>
-    val comparator = new ComplexCoreComparatorBF
-    comparator { c =>
-      c.rmovi(v1, d1)
-      c.rlti(v2, d1)
-    }
-  }.setGens(value, value, address)
+    "rmovi randi" >> prop { (v1: Int, v2: Int, d1: Int) =>
+      val comparator = new ComplexCoreComparatorBF
+      comparator { c =>
+        c.rmovi(v1, d1)
+        c.randi(v2, d1)
+      }
+    }.setGens(value, value, address)
+  }
 }
