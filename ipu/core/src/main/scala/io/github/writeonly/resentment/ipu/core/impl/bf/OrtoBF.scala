@@ -86,9 +86,13 @@ class OrtoBF extends MetaBF {
     )
   }
 
-  lazy val mod = new OrtoCl {
-    override def dir(s: Int, d: Int): FString = ???
-    override def im(s: Int, d: Int): FString = ???
+//[>->+<[>]>[<+>-]<<[<]>-]
+  lazy val mod = new OrtoTmp {
+    private def mod1(d: Int): FString = h(d, "[<-<+>[<]<[>+<-]>>[>]<-]")
+    private def mod2(d :Int): FString = mkm(mov.cl(d, -3), mod1(-2), add.cl(-4, d), rclr(-3))
+    override def dir(s: Int, d: Int): FString = mkm(add.dir(s, -2), mod2(d))
+    override def cl(s: Int, d: Int): FString = mkm(add.cl(s, -2), mod2(d))
+    override def im(s: Int, d: Int): FString = mkm(add.im(s, -2), mod2(d))
   }
 
   //  temp0[-]
