@@ -142,7 +142,7 @@ class OrtoBF extends MetaBF {
     override def im(s: Int, d: Int): FString = mkm(rinc(-3), add.tmp(s, -1, -2), add.cl(d, -2), gt1(d), gt3(d))
   }
 
-  def rclr(d: Int): FString = hs(d, "-")
+  def rclr(d: Int): FString = h(d, clr)
 
   def rset(d: Int): FString = mov.one(d)
 
@@ -162,9 +162,9 @@ class OrtoBF extends MetaBF {
 
   def gt3(d: Int): FString = hm(-1, "-", gt2(d))
 
-  protected def add01(s: Int, d1: Int): FString = hs(s, "[-]", rinc(d1))
+  protected def add01(s: Int, d1: Int): FString = hs(s, clr, rinc(d1))
 
-  protected def sub01(s: Int, d1: Int): FString = hs(s, "[-]", rdec(d1))
+  protected def sub01(s: Int, d1: Int): FString = hs(s, clr, rdec(d1))
 
   protected def add2(s: Int, d1: Int, d2: Int): FString = hs(s, "-", rinc(d1), rinc(d2))
 

@@ -3,6 +3,8 @@ package io.github.writeonly.resentment.ipu.core.impl.bf
 import io.github.writeonly.resentment.ipu.core.common.FString
 
 class MetaBF {
+  protected val clr = "[-]"
+
   private val vm = new CodeValidatorMagic
   private val vs = new CodeValidatorStrict
   private var head = 0
