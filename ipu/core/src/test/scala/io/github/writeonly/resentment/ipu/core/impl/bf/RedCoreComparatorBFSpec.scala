@@ -418,4 +418,31 @@ class RedCoreComparatorBFSpec extends org.specs2.mutable.Specification with Arou
       }
     }.setGens(value, value, address)
   }
+  "ror" >> {
+    "rmovi rmovi ror" >> prop { (v1: Int, v2: Int, d1: Int, d2: Int) =>
+      val comparator = new ComplexCoreComparatorBF
+      comparator { c =>
+        c.rmovi(v1, d1)
+        c.rmovi(v2, d2)
+        c.ror(d1, d2)
+      }
+    }.setGens(value, value, address, address)
+
+    "rmovi rmovi rorc" >> prop { (v1: Int, v2: Int, d1: Int, d2: Int) =>
+      val comparator = new ComplexCoreComparatorBF
+      comparator { c =>
+        c.rmovi(v1, d1)
+        c.rmovi(v2, d2)
+        c.rorc(d1, d2)
+      }
+    }.setGens(value, value, address, address)
+
+    "rmovi rori" >> prop { (v1: Int, v2: Int, d1: Int) =>
+      val comparator = new ComplexCoreComparatorBF
+      comparator { c =>
+        c.rmovi(v1, d1)
+        c.rori(v2, d1)
+      }
+    }.setGens(value, value, address)
+  }
 }
