@@ -10,6 +10,13 @@ class RedCoreBufferedBFSpec extends org.specs2.mutable.Specification
   "this is my specification" >> {
 
     "swap" >> {
+      "rmovi(3,1) rswap(1,1)" >> {
+        val core = new RedCoreBufferedBF
+        core.rmovi(3, 1)
+        core.rswap(1, 1)
+        val memory = core.apply().memory
+        memory(1) must_== 3
+      }
       "rmovi(3,1) rmovi(1,3) rswap(1,3)" >> {
         val core = new RedCoreBufferedBF
         core.rmovi(3, 1)
@@ -38,6 +45,13 @@ class RedCoreBufferedBFSpec extends org.specs2.mutable.Specification
         core.rmovi(-2, 1)
         val memory = core.apply().memory
         memory(1) must_== -2
+      }
+      "rmovi(3,1) rmovc(1,1)" >> {
+        val core = new RedCoreBufferedBF
+        core.rmovi(1, 3)
+        core.rmovc(1, 1)
+        val memory = core.apply().memory
+        memory(1) must_== 0
       }
       "rmovi(2,1) rmov(1,2)" >> {
         val core = new RedCoreBufferedBF
@@ -204,6 +218,13 @@ class RedCoreBufferedBFSpec extends org.specs2.mutable.Specification
       }
     }
     "eq" >> {
+      "rmovi(3,1) req(1,1)" >> {
+        val core = new RedCoreBufferedBF
+        core.rmovi(3, 1)
+        core.req(1, 1)
+        val memory = core.apply().memory
+        memory(1) must_== 1
+      }
       "rmovi(2,0) rmovi(3,1) req(0,1)" >> {
         val core = new RedCoreBufferedBF
         core.rmovi(2, 0)
@@ -242,6 +263,13 @@ class RedCoreBufferedBFSpec extends org.specs2.mutable.Specification
         core.rne(0, 1)
         val memory = core.apply().memory
         memory(0) must_== 2
+        memory(1) must_== 0
+      }
+      "rmovi(2,1) rnec(1,1)" >> {
+        val core = new RedCoreBufferedBF
+        core.rmovi(2, 1)
+        core.rnec(1, 1)
+        val memory = core.apply().memory
         memory(1) must_== 0
       }
     }
