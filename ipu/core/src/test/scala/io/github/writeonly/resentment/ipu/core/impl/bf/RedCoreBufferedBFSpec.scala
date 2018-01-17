@@ -173,6 +173,22 @@ class RedCoreBufferedBFSpec extends org.specs2.mutable.Specification
         memory(0) must_== 9
       }
     }
+    "pow" >> {
+//      "rmovi(2,1) pow(1,1)" >> {
+//        val core = new RedCoreBufferedBF
+//        core.rmovi(2, 1)
+//        core.rpow(1, 1)
+//        val memory = core.apply().memory
+//        memory(1) must_== 4
+//      }
+      "rmovi(2,1) rpowc(1,1)" >> {
+        val core = new RedCoreBufferedBF
+        core.rmovi(2, 1)
+        core.rmulc(1, 1)
+        val memory = core.apply().memory
+        memory(1) must_== 0
+      }
+    }
     "neg" >> {
       "rmovi(3,1) rneg(1)" >> {
         val core = new RedCoreBufferedBF
@@ -274,6 +290,13 @@ class RedCoreBufferedBFSpec extends org.specs2.mutable.Specification
       }
     }
     "le" >> {
+      "rmovi(3,1) rle(1,1)" >> {
+        val core = new RedCoreBufferedBF
+        core.rmovi(3, 1)
+        core.rle(1, 1)
+        val memory = core.apply().memory
+        memory(1) must_== 1
+      }
       "rmovi(2,0) rmovi(3,1) rle(0,1)" >> {
         val core = new RedCoreBufferedBF
         core.rmovi(2, 0)
@@ -305,6 +328,13 @@ class RedCoreBufferedBFSpec extends org.specs2.mutable.Specification
       }
     }
     "lt" >> {
+      "rmovi(3,1) rlt(1,1)" >> {
+        val core = new RedCoreBufferedBF
+        core.rmovi(3, 1)
+        core.rlt(1, 1)
+        val memory = core.apply().memory
+        memory(1) must_== 0
+      }
       "rmovi(2,0) rmovi(3,1) rlt(0,1)" >> {
         val core = new RedCoreBufferedBF
         core.rmovi(2, 0)
