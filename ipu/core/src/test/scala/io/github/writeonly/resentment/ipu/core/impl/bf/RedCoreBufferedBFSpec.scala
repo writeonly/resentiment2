@@ -72,6 +72,13 @@ class RedCoreBufferedBFSpec extends org.specs2.mutable.Specification
       }
     }
     "add" >> {
+      "rmovi(3,1) radd(1,1)" >> {
+        val core = new RedCoreBufferedBF
+        core.rmovi(3, 1)
+        core.radd(1, 1)
+        val memory = core.apply().memory
+        memory(1) must_== 6
+      }
       "rmovi(2,0) rmovi(3,1) radd(0,1)" >> {
         val core = new RedCoreBufferedBF
         core.rmovi(2, 0)
@@ -80,6 +87,13 @@ class RedCoreBufferedBFSpec extends org.specs2.mutable.Specification
         val memory = core.apply().memory
         memory(0) must_== 2
         memory(1) must_== 5
+      }
+      "rmovi(3,1) raddc(1,1)" >> {
+        val core = new RedCoreBufferedBF
+        core.rmovi(3, 1)
+        core.raddc(1, 1)
+        val memory = core.apply().memory
+        memory(1) must_== 0
       }
       "raddi(2,1)" >> {
         val core = new RedCoreBufferedBF
@@ -127,6 +141,13 @@ class RedCoreBufferedBFSpec extends org.specs2.mutable.Specification
         core.rsub(0, 0)
         val memory = core.apply().memory
         memory(0) must_== 0
+      }
+      "rmovi(3,1) rsubc(1,1)" >> {
+        val core = new RedCoreBufferedBF
+        core.rmovi(3, 1)
+        core.rsub(1, 1)
+        val memory = core.apply().memory
+        memory(1) must_== 0
       }
       "rsubi(2,1)" >> {
         val core = new RedCoreBufferedBF
@@ -184,7 +205,7 @@ class RedCoreBufferedBFSpec extends org.specs2.mutable.Specification
       "rmovi(2,1) rpowc(1,1)" >> {
         val core = new RedCoreBufferedBF
         core.rmovi(2, 1)
-        core.rmulc(1, 1)
+        core.rpowc(1, 1)
         val memory = core.apply().memory
         memory(1) must_== 0
       }
@@ -363,6 +384,31 @@ class RedCoreBufferedBFSpec extends org.specs2.mutable.Specification
         val memory = core.apply().memory
         memory(0) must_== 3
         memory(1) must_== 1
+      }
+    }
+    "and" >> {
+      "rmovi(3,1) rand(1,1)" >> {
+        val core = new RedCoreBufferedBF
+        core.rmovi(3, 1)
+        core.rand(1, 1)
+        val memory = core.apply().memory
+        memory(1) must_== 1
+      }
+    }
+    "or" >> {
+      "rmovi(3,1) ror(1,1)" >> {
+        val core = new RedCoreBufferedBF
+        core.rmovi(3, 1)
+        core.ror(1, 1)
+        val memory = core.apply().memory
+        memory(1) must_== 1
+      }
+      "rmovi(3,1) rorc(1,1)" >> {
+        val core = new RedCoreBufferedBF
+        core.rmovi(3, 1)
+        core.rorc(1, 1)
+        val memory = core.apply().memory
+        memory(1) must_== 0
       }
     }
   }
