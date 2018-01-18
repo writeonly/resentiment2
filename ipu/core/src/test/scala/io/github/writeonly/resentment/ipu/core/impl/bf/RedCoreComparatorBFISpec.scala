@@ -11,10 +11,10 @@ import org.specs2.specification.AroundTimeout
 class RedCoreComparatorBFISpec extends RedCoreComparatorBFSpec {
 
   "rmov" >> {
-    "rmovi" >> prop { (v: Int, d: Int) =>
+    "rmovi rnop" >> prop { (v: Int, d: Int) =>
       val comparator = new ComplexCoreComparatorBF
       comparator {
-        _ rmovi (v, d)
+        _ rmovi (v, d) rnop ()
       }
     }.setGens(value, address)
 
@@ -194,20 +194,21 @@ class RedCoreComparatorBFISpec extends RedCoreComparatorBFSpec {
       }
     }.setGens(shortValuePos, shortValuePos, shortAddress)
   }
-  "rmovi rneg" >> prop { (v: Int, d1: Int) =>
-    val comparator = new ComplexCoreComparatorBF
-    comparator { c =>
-      c.rmovi(v, d1)
-      c.rneg(d1)
-    }
-  }.setGens(value, address)
+  "neg" >> {
+    "rmovi rneg" >> prop { (v: Int, d1: Int) =>
+      val comparator = new ComplexCoreComparatorBF
+      comparator { c =>
+        c.rmovi(v, d1)
+        c.rneg(d1)
+      }
+    }.setGens(value, address)
 
-  "rmovi rng1" >> prop { (v: Int, d1: Int) =>
-    val comparator = new ComplexCoreComparatorBF
-    comparator { c =>
-      c.rmovi(v, d1)
-      c.rng1(d1)
-    }
-  }.setGens(value, address)
-
+    "rmovi rng1" >> prop { (v: Int, d1: Int) =>
+      val comparator = new ComplexCoreComparatorBF
+      comparator { c =>
+        c.rmovi(v, d1)
+        c.rng1(d1)
+      }
+    }.setGens(value, address)
+  }
 }
