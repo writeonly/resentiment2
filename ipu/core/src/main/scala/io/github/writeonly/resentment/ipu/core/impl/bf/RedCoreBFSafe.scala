@@ -110,17 +110,25 @@ class RedCoreBFSafe(core: RedCoreBFUnsafe) extends RedCore[FString] {
 
   override def rtau(d: Int): FString = core.rtau(d)
 
-  override def req(r: (Int, Int)): FString =
-    if (r._1 != r._2) core.req(r) else rset(r._2)
+  override def req(r: (Int, Int)): FString = r match {
+    case _ if ne(r) => core.req(r)
+    case _ if eq(r) => rset(r._2)
+  }
 
-  override def reqc(r: (Int, Int)): FString =
-    if (r._1 != r._2) core.reqc(r) else rclr(r._2)
+  override def reqc(r: (Int, Int)): FString = r match {
+    case _ if ne(r) => core.reqc(r)
+    case _ if eq(r) => rclr(r._2)
+  }
 
-  override def rne(r: (Int, Int)): FString =
-    if (r._1 != r._2) core.rne(r) else rclr(r._2)
+  override def rne(r: (Int, Int)): FString = r match {
+    case _ if ne(r) => core.rne(r)
+    case _ if eq(r) => rclr(r._2)
+  }
 
-  override def rnec(r: (Int, Int)): FString =
-    if (r._1 != r._2) core.rnec(r) else rclr(r._2)
+  override def rnec(r: (Int, Int)): FString = r match {
+    case _ if ne(r) => core.rnec(r)
+    case _ if eq(r) => rclr(r._2)
+  }
 
   override def rclr(d: Int): FString = core.rclr(d)
 
@@ -128,35 +136,51 @@ class RedCoreBFSafe(core: RedCoreBFUnsafe) extends RedCore[FString] {
 
   override def rnei(r: (Int, Int)): FString = core.rnei(r)
 
-  override def rle(r: (Int, Int)): FString =
-    if (r._1 != r._2) core.rle(r) else rset(r._2)
+  override def rle(r: (Int, Int)): FString = r match {
+    case _ if ne(r) => core.rle(r)
+    case _ if eq(r) => rset(r._2)
+  }
 
-  override def rlec(r: (Int, Int)): FString =
-    if (r._1 != r._2) core.rlec(r) else rclr(r._2)
+  override def rlec(r: (Int, Int)): FString = r match {
+    case _ if ne(r) => core.rlec(r)
+    case _ if eq(r) => rclr(r._2)
+  }
 
   override def rlei(r: (Int, Int)): FString = core.rlei(r)
 
-  override def rlt(r: (Int, Int)): FString =
-    if (r._1 != r._2) core.rlt(r) else rclr(r._2)
+  override def rlt(r: (Int, Int)): FString = r match {
+    case _ if ne(r) => core.rlt(r)
+    case _ if eq(r) => rclr(r._2)
+  }
 
-  override def rltc(r: (Int, Int)): FString =
-    if (r._1 != r._2) core.rltc(r) else rclr(r._2)
+  override def rltc(r: (Int, Int)): FString = r match {
+    case _ if ne(r) => core.rltc(r)
+    case _ if eq(r) => rclr(r._2)
+  }
 
   override def rlti(r: (Int, Int)): FString = core.rlti(r)
 
-  override def rand(r: (Int, Int)): FString =
-    if (r._1 != r._2) core.rand(r) else rset(r._2)
+  override def rand(r: (Int, Int)): FString = r match {
+    case _ if ne(r) => core.rand(r)
+    case _ if eq(r) => rset(r._2)
+  }
 
-  override def randc(r: (Int, Int)): FString =
-    if (r._1 != r._2) core.randc(r) else rclr(r._2)
+  override def randc(r: (Int, Int)): FString = r match {
+    case _ if ne(r) => core.randc(r)
+    case _ if eq(r) => rclr(r._2)
+  }
 
   override def randi(r: (Int, Int)): FString = core.randi(r)
 
-  override def ror(r: (Int, Int)): FString =
-    if (r._1 != r._2) core.ror(r) else rset(r._2)
+  override def ror(r: (Int, Int)): FString = r match {
+    case _ if ne(r) => core.ror(r)
+    case _ if eq(r) => rset(r._2)
+  }
 
-  override def rorc(r: (Int, Int)): FString =
-    if (r._1 != r._2) core.rorc(r) else rclr(r._2)
+  override def rorc(r: (Int, Int)): FString = r match {
+    case _ if ne(r) => core.rorc(r)
+    case _ if eq(r) => rclr(r._2)
+  }
 
   override def rori(r: (Int, Int)): FString = core.rori(r)
 
