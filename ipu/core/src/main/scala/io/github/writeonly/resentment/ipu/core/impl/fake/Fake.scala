@@ -11,38 +11,38 @@ class Fake[T <: Fake[_]] extends HasMemory {
   var topPointer = 0
   var basePointer = 0
 
-  def comi(s: Int, d: Int, f: (Byte, Byte) => Int): Unit =
-    memory(d) = f(memory(d), memory(s))
+  def comi(r: (Int, Int), f: (Byte, Byte) => Int): Unit =
+    memory(r._2) = f(memory(r._2), memory(r._1))
 
-  def comx(s: Int, d: Int, f: (Byte, Byte) => Boolean): Unit =
-    memory(d) = f(memory(d), memory(s))
+  def comx(r: (Int, Int), f: (Byte, Byte) => Boolean): Unit =
+    memory(r._2) = f(memory(r._2), memory(r._1))
 
-  def comxx(s: Int, d: Int, f: (Boolean, Boolean) => Boolean): Unit =
-    memory(d) = f(toBoolean(memory(d)), toBoolean(memory(s)))
+  def comxx(r: (Int, Int), f: (Boolean, Boolean) => Boolean): Unit =
+    memory(r._2) = f(toBoolean(memory(r._2)), toBoolean(memory(r._1)))
 
-  def comic(s: Int, d: Int, f: (Byte, Byte) => Int): Unit = {
-    comi(s, d, f)
-    memory(s) = 0
+  def comic(r: (Int, Int), f: (Byte, Byte) => Int): Unit = {
+    comi(r, f)
+    memory(r._1) = 0
   }
 
-  def comxc(s: Int, d: Int, f: (Byte, Byte) => Boolean): Unit = {
-    comx(s, d, f)
-    memory(s) = 0
+  def comxc(r: (Int, Int), f: (Byte, Byte) => Boolean): Unit = {
+    comx(r, f)
+    memory(r._1) = 0
   }
 
-  def comxxc(s: Int, d: Int, f: (Boolean, Boolean) => Boolean): Unit = {
-    comxx(s, d, f)
-    memory(s) = 0
+  def comxxc(r: (Int, Int), f: (Boolean, Boolean) => Boolean): Unit = {
+    comxx(r, f)
+    memory(r._1) = 0
   }
 
-  def comii(s: Int, d: Int, f: (Byte, Int) => Int): Unit =
-    memory(d) = f(memory(d), s)
+  def comii(r: (Int, Int), f: (Byte, Int) => Int): Unit =
+    memory(r._2) = f(memory(r._2), r._1)
 
-  def comxi(s: Int, d: Int, f: (Byte, Int) => Boolean): Unit =
-    memory(d) = f(memory(d), s)
+  def comxi(r: (Int, Int), f: (Byte, Int) => Boolean): Unit =
+    memory(r._2) = f(memory(r._2), r._1)
 
-  def comxxi(s: Int, d: Int, f: (Boolean, Boolean) => Boolean): Unit =
-    memory(d) = f(toBoolean(memory(d)), toBoolean(s))
+  def comxxi(r: (Int, Int), f: (Boolean, Boolean) => Boolean): Unit =
+    memory(r._2) = f(toBoolean(memory(r._2)), toBoolean(r._1))
 
   def value(symbol: Symbol) = memory(pointer(symbol))
 

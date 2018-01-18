@@ -10,43 +10,43 @@ class RedCoreText extends RedCore[String] {
 
   override def rset(d: Int): String = apply("cset", d)
 
-  override def rmovi(s: Int, d: Int): String = apply("rmovi", s, d)
+  override def rmovi(r: (Int, Int)): String = apply("rmovi", r)
 
-  override def rmov(s: Int, d: Int): String = apply("rmov", s, d)
+  override def rmov(r: (Int, Int)): String = apply("rmov", r)
 
   override def rswap(d1: Int, d2: Int): String = apply("rswap", d1, d2)
 
-  override def radd(s: Int, d: Int): String = apply("radd", s, d)
+  override def radd(r: (Int, Int)): String = apply("radd", r)
 
-  override def raddi(s: Int, d: Int): String = apply("raddi", s, d)
+  override def raddi(r: (Int, Int)): String = apply("raddi", r)
 
-  override def rsub(s: Int, d: Int): String = apply("rsub", s, d)
+  override def rsub(r: (Int, Int)): String = apply("rsub", r)
 
-  override def rsubi(s: Int, d: Int): String = apply("rsubi", s, d)
+  override def rsubi(r: (Int, Int)): String = apply("rsubi", r)
 
-  override def rmul(s: Int, d: Int): String = apply("rmul", s, d)
+  override def rmul(r: (Int, Int)): String = apply("rmul", r)
 
-  override def rmulc(s: Int, d: Int): String = apply("rmulc", s, d)
+  override def rmulc(r: (Int, Int)): String = apply("rmulc", r)
 
-  override def rmuli(s: Int, d: Int): String = apply("rmuli", s, d)
+  override def rmuli(r: (Int, Int)): String = apply("rmuli", r)
 
-  override def rdiv(s: Int, d: Int): String = apply("rdiv", s, d)
+  override def rdiv(r: (Int, Int)): String = apply("rdiv", r)
 
-  override def rdivc(s: Int, d: Int): String = apply("rdivc", s, d)
+  override def rdivc(r: (Int, Int)): String = apply("rdivc", r)
 
-  override def rdivi(s: Int, d: Int): String = apply("rdivi", s, d)
+  override def rdivi(r: (Int, Int)): String = apply("rdivi", r)
 
-  override def rmod(s: Int, d: Int): String = apply("rmod", s, d)
+  override def rmod(r: (Int, Int)): String = apply("rmod", r)
 
-  override def rmodc(s: Int, d: Int): String = apply("rmodc", s, d)
+  override def rmodc(r: (Int, Int)): String = apply("rmodc", r)
 
-  override def rmodi(s: Int, d: Int): String = apply("rmodi", s, d)
+  override def rmodi(r: (Int, Int)): String = apply("rmodi", r)
 
-  override def rpow(s: Int, d: Int): String = apply("rpow", s, d)
+  override def rpow(r: (Int, Int)): String = apply("rpow", r)
 
-  override def rpowc(s: Int, d: Int): String = apply("rpowc", s, d)
+  override def rpowc(r: (Int, Int)): String = apply("rpowc", r)
 
-  override def rpowi(s: Int, d: Int): String = apply("rpowi", s, d)
+  override def rpowi(r: (Int, Int)): String = apply("rpowi", r)
 
   override def rneg(d: Int): String = apply("rneg", d)
 
@@ -59,45 +59,47 @@ class RedCoreText extends RedCore[String] {
   def apply(name: String, seq: Int*): String =
     name + "(" + seq.mkString(",") + ") "
 
-  override def req(s: Int, d: Int): String = apply("req", s, d)
+  def apply(name: String, r: (Int, Int)): String = apply(name, r._1, r._2)
 
-  override def reqc(s: Int, d: Int): String = apply("reqc", s, d)
+  override def req(r: (Int, Int)): String = apply("req", r)
 
-  override def reqi(s: Int, d: Int): String = apply("reqi", s, d)
+  override def reqc(r: (Int, Int)): String = apply("reqc", r)
 
-  override def rne(s: Int, d: Int): String = apply("rne", s, d)
+  override def reqi(r: (Int, Int)): String = apply("reqi", r)
 
-  override def rnec(s: Int, d: Int): String = apply("rnec", s, d)
+  override def rne(r: (Int, Int)): String = apply("rne", r)
 
-  override def rnei(s: Int, d: Int): String = apply("rnei", s, d)
+  override def rnec(r: (Int, Int)): String = apply("rnec", r)
 
-  override def rle(s: Int, d: Int): String = apply("rle", s, d)
+  override def rnei(r: (Int, Int)): String = apply("rnei", r)
 
-  override def rlec(s: Int, d: Int): String = apply("rlec", s, d)
+  override def rle(r: (Int, Int)): String = apply("rle", r)
 
-  override def rlei(s: Int, d: Int): String = apply("rlei", s, d)
+  override def rlec(r: (Int, Int)): String = apply("rlec", r)
 
-  override def rlt(s: Int, d: Int): String = apply("rlt", s, d)
+  override def rlei(r: (Int, Int)): String = apply("rlei", r)
 
-  override def rltc(s: Int, d: Int): String = apply("rltc", s, d)
+  override def rlt(r: (Int, Int)): String = apply("rlt", r)
 
-  override def rlti(s: Int, d: Int): String = apply("rlti", s, d)
+  override def rltc(r: (Int, Int)): String = apply("rltc", r)
 
-  override def rmovc(s: Int, d: Int): String = apply("rmovc", s, d)
+  override def rlti(r: (Int, Int)): String = apply("rlti", r)
 
-  override def raddc(s: Int, d: Int): String = apply("raddc", s, d)
+  override def rmovc(r: (Int, Int)): String = apply("rmovc", r)
 
-  override def rsubc(s: Int, d: Int): String = apply("rsubc", s, d)
+  override def raddc(r: (Int, Int)): String = apply("raddc", r)
 
-  override def rand(s: Int, d: Int): String = apply("rand", s, d)
+  override def rsubc(r: (Int, Int)): String = apply("rsubc", r)
 
-  override def randc(s: Int, d: Int): String = apply("randc", s, d)
+  override def rand(r: (Int, Int)): String = apply("rand", r)
 
-  override def randi(s: Int, d: Int): String = apply("randi", s, d)
+  override def randc(r: (Int, Int)): String = apply("randc", r)
 
-  override def ror(s: Int, d: Int): String = apply("ror", s, d)
+  override def randi(r: (Int, Int)): String = apply("randi", r)
 
-  override def rorc(s: Int, d: Int): String = apply("rorc", s, d)
+  override def ror(r: (Int, Int)): String = apply("ror", r)
 
-  override def rori(s: Int, d: Int): String = apply("rori", s, d)
+  override def rorc(r: (Int, Int)): String = apply("rorc", r)
+
+  override def rori(r: (Int, Int)): String = apply("rori", r)
 }

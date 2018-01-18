@@ -13,13 +13,14 @@ class RedCoreFake extends Fake with RedCore[Unit] {
 
   override def rset(d: Int): Unit = memory(d) = 1
 
-  override def rmovi(s: Int, d: Int): Unit = memory(d) = s.asInstanceOf[Byte]
+  override def rmovi(r: (Int, Int)): Unit =
+    memory(r._2) = r._1.asInstanceOf[Byte]
 
-  override def rmov(s: Int, d: Int): Unit = memory(d) = memory(s)
+  override def rmov(r: (Int, Int)): Unit = memory(r._2) = memory(r._1)
 
-  override def rmovc(s: Int, d: Int): Unit = {
-    memory(d) = memory(s)
-    memory(s) = 0
+  override def rmovc(r: (Int, Int)): Unit = {
+    memory(r._2) = memory(r._1)
+    memory(r._1) = 0
   }
 
   override def rswap(d1: Int, d2: Int): Unit = {
@@ -28,37 +29,37 @@ class RedCoreFake extends Fake with RedCore[Unit] {
     memory(d2) = v1
   }
 
-  override def radd(s: Int, d: Int): Unit = comi(s, d, _ + _)
+  override def radd(r: (Int, Int)): Unit = comi(r, _ + _)
 
-  override def raddc(s: Int, d: Int): Unit = comic(s, d, _ + _)
+  override def raddc(r: (Int, Int)): Unit = comic(r, _ + _)
 
-  override def raddi(s: Int, d: Int): Unit = comii(s, d, _ + _)
+  override def raddi(r: (Int, Int)): Unit = comii(r, _ + _)
 
-  override def rsub(s: Int, d: Int): Unit = comi(s, d, _ - _)
+  override def rsub(r: (Int, Int)): Unit = comi(r, _ - _)
 
-  override def rsubc(s: Int, d: Int): Unit = comic(s, d, _ - _)
+  override def rsubc(r: (Int, Int)): Unit = comic(r, _ - _)
 
-  override def rsubi(s: Int, d: Int): Unit = comii(s, d, _ - _)
+  override def rsubi(r: (Int, Int)): Unit = comii(r, _ - _)
 
-  override def rmul(s: Int, d: Int): Unit = comi(s, d, _ * _)
+  override def rmul(r: (Int, Int)): Unit = comi(r, _ * _)
 
-  override def rmulc(s: Int, d: Int): Unit = comic(s, d, _ * _)
+  override def rmulc(r: (Int, Int)): Unit = comic(r, _ * _)
 
-  override def rmuli(s: Int, d: Int): Unit = comii(s, d, _ * _)
+  override def rmuli(r: (Int, Int)): Unit = comii(r, _ * _)
 
-  override def rdiv(s: Int, d: Int): Unit = comi(s, d, _ / _)
+  override def rdiv(r: (Int, Int)): Unit = comi(r, _ / _)
 
-  override def rdivc(s: Int, d: Int): Unit = comic(s, d, _ / _)
+  override def rdivc(r: (Int, Int)): Unit = comic(r, _ / _)
 
-  override def rdivi(s: Int, d: Int): Unit = comii(s, d, _ / _)
+  override def rdivi(r: (Int, Int)): Unit = comii(r, _ / _)
 
-  override def rmod(s: Int, d: Int): Unit = comi(s, d, _ % _)
+  override def rmod(r: (Int, Int)): Unit = comi(r, _ % _)
 
-  override def rmodc(s: Int, d: Int): Unit = comic(s, d, _ % _)
+  override def rmodc(r: (Int, Int)): Unit = comic(r, _ % _)
 
-  override def rmodi(s: Int, d: Int): Unit = comii(s, d, _ % _)
+  override def rmodi(r: (Int, Int)): Unit = comii(r, _ % _)
 
-  override def rpow(s: Int, d: Int): Unit = comi(s, d, pow)
+  override def rpow(r: (Int, Int)): Unit = comi(r, pow)
 
   def pow(x: Byte, y: Byte): Int = pow(x, y.asInstanceOf[Int])
 
@@ -68,9 +69,9 @@ class RedCoreFake extends Fake with RedCore[Unit] {
       throw new IllegalArgumentException("x -> " + x + ", y -> " + y, e)
   }
 
-  override def rpowc(s: Int, d: Int): Unit = comic(s, d, pow)
+  override def rpowc(r: (Int, Int)): Unit = comic(r, pow)
 
-  override def rpowi(s: Int, d: Int): Unit = comii(s, d, pow)
+  override def rpowi(r: (Int, Int)): Unit = comii(r, pow)
 
   override def rneg(d: Int): Unit = memory(d) = -memory(d)
 
@@ -80,39 +81,39 @@ class RedCoreFake extends Fake with RedCore[Unit] {
 
   override def rtau(d: Int): Unit = memory(d) = Memory.toBoolean(memory(d))
 
-  override def req(s: Int, d: Int): Unit = comx(s, d, _ == _)
+  override def req(r: (Int, Int)): Unit = comx(r, _ == _)
 
-  override def reqc(s: Int, d: Int): Unit = comxc(s, d, _ == _)
+  override def reqc(r: (Int, Int)): Unit = comxc(r, _ == _)
 
-  override def reqi(s: Int, d: Int): Unit = comxi(s, d, _ == _)
+  override def reqi(r: (Int, Int)): Unit = comxi(r, _ == _)
 
-  override def rne(s: Int, d: Int): Unit = comx(s, d, _ != _)
+  override def rne(r: (Int, Int)): Unit = comx(r, _ != _)
 
-  override def rnec(s: Int, d: Int): Unit = comxc(s, d, _ != _)
+  override def rnec(r: (Int, Int)): Unit = comxc(r, _ != _)
 
-  override def rnei(s: Int, d: Int): Unit = comxi(s, d, _ != _)
+  override def rnei(r: (Int, Int)): Unit = comxi(r, _ != _)
 
-  override def rle(s: Int, d: Int): Unit = comx(s, d, _ >= _)
+  override def rle(r: (Int, Int)): Unit = comx(r, _ >= _)
 
-  override def rlec(s: Int, d: Int): Unit = comxc(s, d, _ >= _)
+  override def rlec(r: (Int, Int)): Unit = comxc(r, _ >= _)
 
-  override def rlei(s: Int, d: Int): Unit = comxi(s, d, _ >= _)
+  override def rlei(r: (Int, Int)): Unit = comxi(r, _ >= _)
 
-  override def rlt(s: Int, d: Int): Unit = comx(s, d, _ > _)
+  override def rlt(r: (Int, Int)): Unit = comx(r, _ > _)
 
-  override def rltc(s: Int, d: Int): Unit = comxc(s, d, _ > _)
+  override def rltc(r: (Int, Int)): Unit = comxc(r, _ > _)
 
-  override def rlti(s: Int, d: Int): Unit = comxi(s, d, _ > _)
+  override def rlti(r: (Int, Int)): Unit = comxi(r, _ > _)
 
-  override def rand(s: Int, d: Int): Unit = comxx(s, d, _ && _)
+  override def rand(r: (Int, Int)): Unit = comxx(r, _ && _)
 
-  override def randc(s: Int, d: Int): Unit = comxxc(s, d, _ && _)
+  override def randc(r: (Int, Int)): Unit = comxxc(r, _ && _)
 
-  override def randi(s: Int, d: Int): Unit = comxxi(s, d, _ && _)
+  override def randi(r: (Int, Int)): Unit = comxxi(r, _ && _)
 
-  override def ror(s: Int, d: Int): Unit = comxx(s, d, _ || _)
+  override def ror(r: (Int, Int)): Unit = comxx(r, _ || _)
 
-  override def rorc(s: Int, d: Int): Unit = comxxc(s, d, _ || _)
+  override def rorc(r: (Int, Int)): Unit = comxxc(r, _ || _)
 
-  override def rori(s: Int, d: Int): Unit = comxxi(s, d, _ || _)
+  override def rori(r: (Int, Int)): Unit = comxxi(r, _ || _)
 }

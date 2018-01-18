@@ -11,43 +11,43 @@ abstract class RedCoreWrapper[T, R](core: RedCore[T]) extends RedCore[R] {
 
   override def rset(d: Int): R = apply(core.rset(d))
 
-  override def rmovi(s: Int, d: Int): R = apply(core.rmovi(s, d))
+  override def rmovi(r: (Int, Int)): R = apply(core.rmovi(r))
 
-  override def rmov(s: Int, d: Int): R = apply(core.rmov(s, d))
+  override def rmov(r: (Int, Int)): R = apply(core.rmov(r))
 
   override def rswap(d1: Int, d2: Int): R = apply(core.rswap(d1, d2))
 
-  override def radd(s: Int, d: Int): R = apply(core.radd(s, d))
+  override def radd(r: (Int, Int)): R = apply(core.radd(r))
 
-  override def raddi(s: Int, d: Int): R = apply(core.raddi(s, d))
+  override def raddi(r: (Int, Int)): R = apply(core.raddi(r))
 
-  override def rsub(s: Int, d: Int): R = apply(core.rsub(s, d))
+  override def rsub(r: (Int, Int)): R = apply(core.rsub(r))
 
-  override def rsubi(s: Int, d: Int): R = apply(core.rsubi(s, d))
+  override def rsubi(r: (Int, Int)): R = apply(core.rsubi(r))
 
-  override def rmul(s: Int, d: Int): R = apply(core.rmul(s, d))
+  override def rmul(r: (Int, Int)): R = apply(core.rmul(r))
 
-  override def rmulc(s: Int, d: Int): R = apply(core.rmulc(s, d))
+  override def rmulc(r: (Int, Int)): R = apply(core.rmulc(r))
 
-  override def rmuli(s: Int, d: Int): R = apply(core.rmuli(s, d))
+  override def rmuli(r: (Int, Int)): R = apply(core.rmuli(r))
 
-  override def rdiv(s: Int, d: Int): R = apply(core.rdiv(s, d))
+  override def rdiv(r: (Int, Int)): R = apply(core.rdiv(r))
 
-  override def rdivc(s: Int, d: Int): R = apply(core.rdivc(s, d))
+  override def rdivc(r: (Int, Int)): R = apply(core.rdivc(r))
 
-  override def rdivi(s: Int, d: Int): R = apply(core.rdivi(s, d))
+  override def rdivi(r: (Int, Int)): R = apply(core.rdivi(r))
 
-  override def rmod(s: Int, d: Int): R = apply(core.rmod(s, d))
+  override def rmod(r: (Int, Int)): R = apply(core.rmod(r))
 
-  override def rmodc(s: Int, d: Int): R = apply(core.rmodc(s, d))
+  override def rmodc(r: (Int, Int)): R = apply(core.rmodc(r))
 
-  override def rmodi(s: Int, d: Int): R = apply(core.rmodi(s, d))
+  override def rmodi(r: (Int, Int)): R = apply(core.rmodi(r))
 
-  override def rpow(s: Int, d: Int): R = apply(core.rpow(s, d))
+  override def rpow(r: (Int, Int)): R = apply(core.rpow(r))
 
-  override def rpowc(s: Int, d: Int): R = apply(core.rpowc(s, d))
+  override def rpowc(r: (Int, Int)): R = apply(core.rpowc(r))
 
-  override def rpowi(s: Int, d: Int): R = apply(core.rpowi(s, d))
+  override def rpowi(r: (Int, Int)): R = apply(core.rpowi(r))
 
   override def rneg(d: Int): R = apply(core.rneg(d))
 
@@ -57,46 +57,46 @@ abstract class RedCoreWrapper[T, R](core: RedCore[T]) extends RedCore[R] {
 
   override def rtau(d: Int): R = apply(core.rtau(d))
 
-  override def req(s: Int, d: Int): R = apply(core.req(s, d))
+  override def req(r: (Int, Int)): R = apply(core.req(r))
 
-  override def reqc(s: Int, d: Int): R = apply(core.reqc(s, d))
+  override def reqc(r: (Int, Int)): R = apply(core.reqc(r))
 
-  override def reqi(s: Int, d: Int): R = apply(core.reqi(s, d))
+  override def reqi(r: (Int, Int)): R = apply(core.reqi(r))
 
-  override def rne(s: Int, d: Int): R = apply(core.rne(s, d))
+  override def rne(r: (Int, Int)): R = apply(core.rne(r))
 
-  override def rnec(s: Int, d: Int): R = apply(core.rnec(s, d))
+  override def rnec(r: (Int, Int)): R = apply(core.rnec(r))
 
-  override def rnei(s: Int, d: Int): R = apply(core.rnei(s, d))
+  override def rnei(r: (Int, Int)): R = apply(core.rnei(r))
 
-  override def rle(s: Int, d: Int): R = apply(core.rle(s, d))
+  override def rle(r: (Int, Int)): R = apply(core.rle(r))
 
-  override def rlec(s: Int, d: Int): R = apply(core.rlec(s, d))
+  override def rlec(r: (Int, Int)): R = apply(core.rlec(r))
 
-  override def rlei(s: Int, d: Int): R = apply(core.rlei(s, d))
+  override def rlei(r: (Int, Int)): R = apply(core.rlei(r))
 
-  override def rlt(s: Int, d: Int): R = apply(core.rlt(s, d))
+  override def rlt(r: (Int, Int)): R = apply(core.rlt(r))
 
-  override def rltc(s: Int, d: Int): R = apply(core.rltc(s, d))
+  override def rltc(r: (Int, Int)): R = apply(core.rltc(r))
 
-  override def rlti(s: Int, d: Int): R = apply(core.rlti(s, d))
+  override def rlti(r: (Int, Int)): R = apply(core.rlti(r))
 
-  override def rmovc(s: Int, d: Int): R = apply(core.rmovc(s, d))
+  override def rmovc(r: (Int, Int)): R = apply(core.rmovc(r))
 
-  override def raddc(s: Int, d: Int): R = apply(core.raddc(s, d))
+  override def raddc(r: (Int, Int)): R = apply(core.raddc(r))
 
-  override def rsubc(s: Int, d: Int): R = apply(core.rsubc(s, d))
+  override def rsubc(r: (Int, Int)): R = apply(core.rsubc(r))
 
-  override def rand(s: Int, d: Int): R = apply(core.rand(s, d))
+  override def rand(r: (Int, Int)): R = apply(core.rand(r))
 
-  override def randc(s: Int, d: Int): R = apply(core.randc(s, d))
+  override def randc(r: (Int, Int)): R = apply(core.randc(r))
 
-  override def randi(s: Int, d: Int): R = apply(core.randi(s, d))
+  override def randi(r: (Int, Int)): R = apply(core.randi(r))
 
-  override def ror(s: Int, d: Int): R = apply(core.ror(s, d))
+  override def ror(r: (Int, Int)): R = apply(core.ror(r))
 
-  override def rorc(s: Int, d: Int): R = apply(core.rorc(s, d))
+  override def rorc(r: (Int, Int)): R = apply(core.rorc(r))
 
-  override def rori(s: Int, d: Int): R = apply(core.rori(s, d))
+  override def rori(r: (Int, Int)): R = apply(core.rori(r))
 
 }

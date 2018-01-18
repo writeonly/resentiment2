@@ -7,49 +7,49 @@ trait RedCore[F] {
 
   def rset(d: Int): F
 
-  def rmov(s: Int, d: Int): F
+  def rmov(r: (Int, Int)): F
 
-  def rmovc(s: Int, d: Int): F
+  def rmovc(r: (Int, Int)): F
 
-  def rmovi(s: Int, d: Int): F
+  def rmovi(r: (Int, Int)): F
 
   def rswap(d1: Int, d2: Int): F
 
-  def radd(s: Int, d: Int): F
+  def radd(r: (Int, Int)): F
 
-  def raddc(s: Int, d: Int): F
+  def raddc(r: (Int, Int)): F
 
-  def raddi(s: Int, d: Int): F
+  def raddi(r: (Int, Int)): F
 
-  def rsub(s: Int, d: Int): F
+  def rsub(r: (Int, Int)): F
 
-  def rsubc(s: Int, d: Int): F
+  def rsubc(r: (Int, Int)): F
 
-  def rsubi(s: Int, d: Int): F
+  def rsubi(r: (Int, Int)): F
 
-  def rmul(s: Int, d: Int): F
+  def rmul(r: (Int, Int)): F
 
-  def rmulc(s: Int, d: Int): F
+  def rmulc(r: (Int, Int)): F
 
-  def rmuli(s: Int, d: Int): F
+  def rmuli(r: (Int, Int)): F
 
-  def rdiv(s: Int, d: Int): F
+  def rdiv(r: (Int, Int)): F
 
-  def rdivc(s: Int, d: Int): F
+  def rdivc(r: (Int, Int)): F
 
-  def rdivi(s: Int, d: Int): F
+  def rdivi(r: (Int, Int)): F
 
-  def rmod(s: Int, d: Int): F
+  def rmod(r: (Int, Int)): F
 
-  def rmodc(s: Int, d: Int): F
+  def rmodc(r: (Int, Int)): F
 
-  def rmodi(s: Int, d: Int): F
+  def rmodi(r: (Int, Int)): F
 
-  def rpow(s: Int, d: Int): F
+  def rpow(r: (Int, Int)): F
 
-  def rpowc(s: Int, d: Int): F
+  def rpowc(r: (Int, Int)): F
 
-  def rpowi(s: Int, d: Int): F
+  def rpowi(r: (Int, Int)): F
 
   def rneg(d: Int): F
 
@@ -59,39 +59,39 @@ trait RedCore[F] {
 
   def rtau(d: Int): F
 
-  def req(s: Int, d: Int): F
+  def req(r: (Int, Int)): F
 
-  def reqc(s: Int, d: Int): F
+  def reqc(r: (Int, Int)): F
 
-  def reqi(s: Int, d: Int): F
+  def reqi(r: (Int, Int)): F
 
-  def rne(s: Int, d: Int): F
+  def rne(r: (Int, Int)): F
 
-  def rnec(s: Int, d: Int): F
+  def rnec(r: (Int, Int)): F
 
-  def rnei(s: Int, d: Int): F
+  def rnei(r: (Int, Int)): F
 
-  def rle(s: Int, d: Int): F
+  def rle(r: (Int, Int)): F
 
-  def rlec(s: Int, d: Int): F
+  def rlec(r: (Int, Int)): F
 
-  def rlei(s: Int, d: Int): F
+  def rlei(r: (Int, Int)): F
 
-  def rlt(s: Int, d: Int): F
+  def rlt(r: (Int, Int)): F
 
-  def rltc(s: Int, d: Int): F
+  def rltc(r: (Int, Int)): F
 
-  def rlti(s: Int, d: Int): F
+  def rlti(r: (Int, Int)): F
 
-  def rand(s: Int, d: Int): F
+  def rand(r: (Int, Int)): F
 
-  def randc(s: Int, d: Int): F
+  def randc(r: (Int, Int)): F
 
-  def randi(s: Int, d: Int): F
+  def randi(r: (Int, Int)): F
 
-  def ror(s: Int, d: Int): F
+  def ror(r: (Int, Int)): F
 
-  def rorc(s: Int, d: Int): F
+  def rorc(r: (Int, Int)): F
 
-  def rori(s: Int, d: Int): F
+  def rori(r: (Int, Int)): F
 }

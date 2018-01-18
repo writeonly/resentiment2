@@ -7,35 +7,35 @@ import org.specs2.runner.JUnitRunner
 class RedCoreComparatorBFXSpec extends RedCoreComparatorBFSpec {
 
   "bool" >> {
-    "rmovi rnot" >> prop { (s: Int, d: Int) =>
+    "rmovi rnot" >> prop { (v1: Int, d1: Int) =>
       val comparator = new ComplexCoreComparatorBF
       comparator { c =>
-        c.rmovi(s, d)
-        c.rnot(d)
+        c.rmovi(v1, d1)
+        c.rnot(d1)
       }
     }.setGens(value, address)
 
-    "rmovi rtau" >> prop { (s: Int, d: Int) =>
+    "rmovi rtau" >> prop { (v1: Int, d1: Int) =>
       val comparator = new ComplexCoreComparatorBF
       comparator { c =>
-        c.rmovi(s, d)
-        c.rtau(d)
+        c.rmovi(v1, d1)
+        c.rtau(d1)
       }
     }.setGens(value, address)
 
-    "rmovi rclr" >> prop { (s: Int, d: Int) =>
+    "rmovi rclr" >> prop { (v1: Int, d1: Int) =>
       val comparator = new ComplexCoreComparatorBF
       comparator { c =>
-        c.rmovi(s, d)
-        c.rclr(d)
+        c.rmovi(v1, d1)
+        c.rclr(d1)
       }
     }.setGens(value, address)
 
-    "rmovi rset" >> prop { (s: Int, d: Int) =>
+    "rmovi rset" >> prop { (v1: Int, d1: Int) =>
       val comparator = new ComplexCoreComparatorBF
       comparator { c =>
-        c.rmovi(s, d)
-        c.rset(d)
+        c.rmovi(v1, d1)
+        c.rset(d1)
       }
     }.setGens(value, address)
   }

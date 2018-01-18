@@ -5,50 +5,50 @@ import io.github.writeonly.resentment.ipu.core.common.FString
 class OrtoBF extends MetaBF {
 
   trait OrtoCl extends Orto {
-    override def tmp(s: Int, d: Int, t: Int*): FString = dir(s, d)
+    override def tmp(r: (Int, Int), t: Int*): FString = dir(r)
 
-    override def cl(s: Int, d: Int): FString = mkm(dir(s, d), rclr(s))
+    override def cl(r: (Int, Int)): FString = mkm(dir(r), rclr(r._1))
   }
 
   lazy val add = new Orto1 {
-    override def tmp(s: Int, d: Int, t: Int*): FString =
-      mkm(add2(s, d, t(0)), cl(t(0), s))
+    override def tmp(r: (Int, Int), t: Int*): FString =
+      mkm(add2(r, t(0)), cl(t(0), r._1))
 
-    override def dir(s: Int, d: Int): FString = tmp(s, d, -1)
+    override def dir(r: (Int, Int)): FString = tmp(r, -1)
 
-    override def cl(s: Int, d: Int): FString = hs(s, dec, rinc(d))
+    override def cl(r: (Int, Int)): FString = hs(r._1, dec, rinc(r._2))
 
-    override def im(s: Int, d: Int): FString = h(d, raddi(s))
+    override def im(r: (Int, Int)): FString = h(r._2, raddi(r._1))
   }
 
   lazy val sub = new Orto1 {
-    override def tmp(s: Int, d: Int, t: Int*): FString =
-      mkm(sub2(s, d, t(0)), add.cl(t(0), s))
+    override def tmp(r: (Int, Int), t: Int*): FString =
+      mkm(sub2(r, t(0)), add.cl(t(0), r._1))
 
-    override def dir(s: Int, d: Int): FString = tmp(s, d, -1)
+    override def dir(r: (Int, Int)): FString = tmp(r, -1)
 
-    override def cl(s: Int, d: Int): FString = hs(s, dec, rdec(d))
+    override def cl(r: (Int, Int)): FString = hs(r._1, dec, rdec(r._2))
 
-    override def im(s: Int, d: Int): FString = h(d, rsubi(s))
+    override def im(r: (Int, Int)): FString = h(r._2, rsubi(r._1))
   }
 
   lazy val mov = new Orto1 {
-    override def tmp(s: Int, d: Int, t: Int*): FString =
-      mkm(rclr(d), add.tmp(s, d, t: _*))
+    override def tmp(r: (Int, Int), t: Int*): FString =
+      mkm(rclr(r._2), add.tmp(r, t: _*))
 
-    override def dir(s: Int, d: Int): FString = mkm(rclr(d), add.dir(s, d))
+    override def dir(r: (Int, Int)): FString = mkm(rclr(r._2), add.dir(r))
 
-    override def cl(s: Int, d: Int): FString = mkm(rclr(d), add.cl(s, d))
+    override def cl(r: (Int, Int)): FString = mkm(rclr(r._2), add.cl(r))
 
-    override def im(s: Int, d: Int): FString = mkm(rclr(d), add.im(s, d))
+    override def im(r: (Int, Int)): FString = mkm(rclr(r._2), add.im(r))
   }
 
   lazy val mul = new OrtoCl {
-    override def dir(s: Int, d: Int): FString =
-      mkm(add.cl(d, -2), hs(-2, dec, add.dir(s, d)))
+    override def dir(r: (Int, Int)): FString =
+      mkm(add.cl(r._2, -2), hs(-2, dec, add.dir(r)))
 
-    override def im(s: Int, d: Int): FString =
-      mkm(add.cl(d, -1), hs(-1, dec, add.im(s, d)))
+    override def im(r: (Int, Int)): FString =
+      mkm(add.cl(r._2, -1), hs(-1, dec, add.im(r)))
   }
 
   //  temp0[-]
@@ -72,35 +72,35 @@ class OrtoBF extends MetaBF {
   //    x+
   //  temp0]
   lazy val div = new OrtoCl {
-    override def dir(s: Int, d: Int): FString = mkm(
-      add.cl(d, -1),
+    override def dir(r: (Int, Int)): FString = mkm(
+      add.cl(r._2, -1),
       hs(
         -1,
-        add.tmp(s, -2, -3),
+        add.tmp((r._1, -2), -3),
         hs(-2,
            dec,
            rinc(-3),
            rdec(-1),
            hs(-1, dec, rclr(-3), rinc(-4)),
            hs(-4, dec, rinc(-1)),
-           hs(-3, dec, rdec(-2), hm(-2, clr, rdec(d)), rinc(-2))),
-        h(d, inc)
+           hs(-3, dec, rdec(-2), hm(-2, clr, rdec(r._2)), rinc(-2))),
+        h(r._2, inc)
       )
     )
 
-    override def im(s: Int, d: Int): FString = mkm(
-      add.cl(d, -1),
+    override def im(r: (Int, Int)): FString = mkm(
+      add.cl(r._2, -1),
       hs(
         -1,
-        add.im(s, -2),
+        add.im(r._1, -2),
         hs(-2,
            dec,
            rinc(-3),
            rdec(-1),
            hs(-1, dec, rclr(-3), rinc(-4)),
            hs(-4, dec, rinc(-1)),
-           hs(-3, dec, rdec(-2), hm(-2, clr, rdec(d)), rinc(-2))),
-        h(d, inc)
+           hs(-3, dec, rdec(-2), hm(-2, clr, rdec(r._2)), rinc(-2))),
+        h(r._2, inc)
       )
     )
   }
@@ -112,11 +112,12 @@ class OrtoBF extends MetaBF {
     private def mod2(d: Int): FString =
       mkm(mov.cl(d, -3), mod1(-2), add.cl(-4, d), rclr(-3))
 
-    override def dir(s: Int, d: Int): FString = mkm(add.dir(s, -2), mod2(d))
+    override def dir(r: (Int, Int)): FString =
+      mkm(add.dir(r._1, -2), mod2(r._2))
 
-    override def cl(s: Int, d: Int): FString = mkm(add.cl(s, -2), mod2(d))
+    override def cl(r: (Int, Int)): FString = mkm(add.cl(r._1, -2), mod2(r._2))
 
-    override def im(s: Int, d: Int): FString = mkm(add.im(s, -2), mod2(d))
+    override def im(r: (Int, Int)): FString = mkm(add.im(r._1, -2), mod2(r._2))
   }
 
   //  temp0[-]
@@ -132,43 +133,47 @@ class OrtoBF extends MetaBF {
   //    temp2-]
   //  y-]
   lazy val pow = new OrtoCl {
-    override def dir(s: Int, d: Int): FString =
-      mkm(mov.dir(s, -4), cl(s, d), add.cl(-4, s))
+    override def dir(r: (Int, Int)): FString =
+      mkm(mov.dir(r._1, -4), cl(r), add.cl(-4, r._1))
 
-    override def cl(s: Int, d: Int): FString = mkm(
-      add.cl(d, -1),
-      rinc(d),
-      hs(s,
+    override def cl(r: (Int, Int)): FString = mkm(
+      add.cl(r._2, -1),
+      rinc(r._2),
+      hs(r._1,
          dec,
          rclr(-2),
          rclr(-3),
-         add.cl(d, -3),
-         hs(-3, dec, add.tmp(-1, d, -2)))
+         add.cl(r._2, -3),
+         hs(-3, dec, add.tmp((-1, r._2), -2)))
     )
 
-    override def im(s: Int, d: Int): FString = mkm(add.im(s, -4), cl(-4, d))
+    override def im(r: (Int, Int)): FString =
+      mkm(add.im(r._1, -4), cl(-4, r._2))
   }
 
   lazy val leq = new OrtoTmp {
-    override def dir(s: Int, d: Int): FString =
-      mkm(add.cl(d, -2), rinc(d), sub.tmp(s, -2, -1), sub01(-2, d))
+    override def dir(r: (Int, Int)): FString =
+      mkm(add.cl(r._2, -2),
+          rinc(r._2),
+          sub.tmp((r._1, -2), -1),
+          sub01(-2, r._2))
 
-    override def cl(s: Int, d: Int): FString =
-      mkm(add.cl(d, -2), rinc(d), sub.cl(s, -2), sub01(-2, d))
+    override def cl(r: (Int, Int)): FString =
+      mkm(add.cl(r._2, -2), rinc(r._2), sub.cl(r._1, -2), sub01(-2, r._2))
 
-    override def im(s: Int, d: Int): FString =
-      mkm(add.cl(d, -1), sub.im(s, -1), sub01(-1, d))
+    override def im(r: (Int, Int)): FString =
+      mkm(add.cl(r._2, -1), sub.im(r._1, -1), sub01(-1, r._2))
   }
 
   lazy val lne = new OrtoTmp {
-    override def dir(s: Int, d: Int): FString =
-      mkm(add.cl(d, -2), sub.tmp(s, -2, -1), add01(-2, d))
+    override def dir(r: (Int, Int)): FString =
+      mkm(add.cl(r._2, -2), sub.tmp((r._1, -2), -1), add01(-2, r._2))
 
-    override def cl(s: Int, d: Int): FString =
-      mkm(add.cl(d, -2), sub.cl(s, -2), add01(-2, d))
+    override def cl(r: (Int, Int)): FString =
+      mkm(add.cl(r._2, -2), sub.cl(r._1, -2), add01(-2, r._2))
 
-    override def im(s: Int, d: Int): FString =
-      mkm(add.cl(d, -1), sub.im(s, -1), add01(-1, d))
+    override def im(r: (Int, Int)): FString =
+      mkm(add.cl(r._2, -1), sub.im(r._1, -1), add01(-1, r._2))
   }
 
   lazy val lle = new OrtoTmp {
@@ -179,14 +184,29 @@ class OrtoBF extends MetaBF {
 
     def ge3(d: Int): FString = hm(-1, dec, ge2(d))
 
-    override def dir(s: Int, d: Int): FString =
-      mkm(rinc(-3), add.tmp(s, -2, -1), add.cl(d, -1), rinc(d), ge1(d), ge3(d))
+    override def dir(r: (Int, Int)): FString =
+      mkm(rinc(-3),
+          add.tmp((r._1, -2), -1),
+          add.cl(r._2, -1),
+          rinc(r._2),
+          ge1(r._2),
+          ge3(r._2))
 
-    override def cl(s: Int, d: Int): FString =
-      mkm(rinc(-3), add.cl(s, -2), add.cl(d, -1), rinc(d), ge1(d), ge3(d))
+    override def cl(r: (Int, Int)): FString =
+      mkm(rinc(-3),
+          add.cl(r._1, -2),
+          add.cl(r._2, -1),
+          rinc(r._2),
+          ge1(r._2),
+          ge3(r._2))
 
-    override def im(s: Int, d: Int): FString =
-      mkm(rinc(-3), add.tmp(s, -2, -1), add.cl(d, -1), rinc(d), ge1(d), ge3(d))
+    override def im(r: (Int, Int)): FString =
+      mkm(rinc(-3),
+          add.tmp((r._1, -2), -1),
+          add.cl(r._2, -1),
+          rinc(r._2),
+          ge1(r._2),
+          ge3(r._2))
   }
 
   lazy val llt = new OrtoTmp {
@@ -197,14 +217,22 @@ class OrtoBF extends MetaBF {
 
     def gt3(d: Int): FString = hm(-1, dec, gt2(d))
 
-    override def dir(s: Int, d: Int): FString =
-      mkm(rinc(-3), add.tmp(s, -1, -2), add.cl(d, -2), gt1(d), gt3(d))
+    override def dir(r: (Int, Int)): FString =
+      mkm(rinc(-3),
+          add.tmp((r._1, -1), -2),
+          add.cl(r._2, -2),
+          gt1(r._2),
+          gt3(r._2))
 
-    override def cl(s: Int, d: Int): FString =
-      mkm(rinc(-3), add.cl(s, -1), add.cl(d, -2), gt1(d), gt3(d))
+    override def cl(r: (Int, Int)): FString =
+      mkm(rinc(-3), add.cl(r._1, -1), add.cl(r._2, -2), gt1(r._2), gt3(r._2))
 
-    override def im(s: Int, d: Int): FString =
-      mkm(rinc(-3), add.tmp(s, -1, -2), add.cl(d, -2), gt1(d), gt3(d))
+    override def im(r: (Int, Int)): FString =
+      mkm(rinc(-3),
+          add.tmp((r._1, -1), -2),
+          add.cl(r._2, -2),
+          gt1(r._2),
+          gt3(r._2))
   }
 
   //  temp0[-]
@@ -217,13 +245,14 @@ class OrtoBF extends MetaBF {
   //    temp1[x+temp1[-]]
   //  ]
   lazy val land = new OrtoTmp {
-    override def dir(s: Int, d: Int): FString =
-      mkm(add.cl(d, -2), hs(-2, rclr(-2), add.dir(s, -2), add01(-2, d)))
+    override def dir(r: (Int, Int)): FString =
+      mkm(add.cl(r._2, -2),
+          hs(-2, rclr(-2), add.dir(r._1, -2), add01(-2, r._2)))
 
-    override def cl(s: Int, d: Int): FString = mkm(dir(s, d), rclr(s))
+    override def cl(r: (Int, Int)): FString = mkm(dir(r), rclr(r._1))
 
-    override def im(s: Int, d: Int): FString =
-      mkm(add.im(s, -3), dir(-3, d), rclr(-3))
+    override def im(r: (Int, Int)): FString =
+      mkm(add.im(r._1, -3), dir(-3, r._2), rclr(-3))
   }
 
   //  temp0[-]
@@ -238,14 +267,14 @@ class OrtoBF extends MetaBF {
 
     private def lor1(d: Int): FString = hs(-2, clr, mov.im(1, d))
 
-    override def dir(s: Int, d: Int): FString =
-      mkm(tau(d), add.dir(s, -2), lor1(d))
+    override def dir(r: (Int, Int)): FString =
+      mkm(tau(r._2), add.dir(r._1, -2), lor1(r._2))
 
-    override def cl(s: Int, d: Int): FString =
-      mkm(tau(d), add.cl(s, -2), lor1(d))
+    override def cl(r: (Int, Int)): FString =
+      mkm(tau(r._2), add.cl(r._1, -2), lor1(r._2))
 
-    override def im(s: Int, d: Int): FString =
-      mkm(tau(d), add.im(s, -2), lor1(d))
+    override def im(r: (Int, Int)): FString =
+      mkm(tau(r._2), add.im(r._1, -2), lor1(r._2))
   }
 
   def rclr(d: Int): FString = h(d, clr)
@@ -256,14 +285,14 @@ class OrtoBF extends MetaBF {
 
   def rdec(d: Int): FString = sub.one(d)
 
-  def add01(s: Int, d1: Int): FString = hs(s, clr, rinc(d1))
+  def add01(r: (Int, Int)): FString = hs(r._1, clr, rinc(r._2))
 
-  def sub01(s: Int, d1: Int): FString = hs(s, clr, rdec(d1))
+  def sub01(r: (Int, Int)): FString = hs(r._1, clr, rdec(r._2))
 
-  protected def add2(s: Int, d1: Int, d2: Int): FString =
-    hs(s, dec, rinc(d1), rinc(d2))
+  protected def add2(r: (Int, Int), d2: Int): FString =
+    hs(r._1, dec, rinc(r._2), rinc(d2))
 
-  protected def sub2(s: Int, d1: Int, d2: Int): FString =
-    hs(s, dec, rdec(d1), rinc(d2))
+  protected def sub2(r: (Int, Int), d2: Int): FString =
+    hs(r._1, dec, rdec(r._2), rinc(d2))
 
 }
