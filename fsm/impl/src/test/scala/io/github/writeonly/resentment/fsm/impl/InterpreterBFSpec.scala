@@ -8,11 +8,13 @@ import org.specs2.runner.JUnitRunner
 class InterpreterBFSpec extends org.specs2.mutable.Specification {
   "this is my specification" >> {
     "where code hello world" >> {
-      val helloWorld = "++++++++[>++++[>++>+++>+++>+<<<<-]>+>+>->>+[<]<-]>>.>---.+++++++..+++.>>.<-.<.+++.------.--------.>>+.>++."
+      val helloWorld =
+        "++++++++[>++++[>++>+++>+++>+<<<<-]>+>+>->>+[<]<-]>>.>---.+++++++..+++.>>.<-.<.+++.------.--------.>>+.>++."
       new InterpreterBF(StreamIO.byteArray(), helloWorld)().streamIO.toString must_== "Hello World!\n"
     }
     "where watchdog intervened" >> {
-      new InterpreterBF(StreamIO.byteArray(), "+[]", 10)() must throwA[IllegalArgumentException]
+      new InterpreterBF(StreamIO.byteArray(), "+[]", 10)() must throwA[
+        IllegalArgumentException]
     }
   }
 }

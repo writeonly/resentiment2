@@ -1,6 +1,11 @@
 package io.github.writeonly.resentment.fsm.api
 
-import java.io.{ByteArrayInputStream, ByteArrayOutputStream, InputStream, OutputStream}
+import java.io.{
+  ByteArrayInputStream,
+  ByteArrayOutputStream,
+  InputStream,
+  OutputStream
+}
 
 case class StreamIO(in: InputStream, out: OutputStream) {
   def apply(f: StreamIO => Unit): StreamIO = {
@@ -8,7 +13,8 @@ case class StreamIO(in: InputStream, out: OutputStream) {
     this
   }
 
-  override def toString: String = out.asInstanceOf[ByteArrayOutputStream].toString
+  override def toString: String =
+    out.asInstanceOf[ByteArrayOutputStream].toString
 }
 
 object StreamIO {
@@ -16,5 +22,6 @@ object StreamIO {
 
   def byteArray(in: String): StreamIO = byteArray(in.getBytes)
 
-  def byteArray(in: Array[Byte]): StreamIO = StreamIO(new ByteArrayInputStream(in), new ByteArrayOutputStream())
+  def byteArray(in: Array[Byte]): StreamIO =
+    StreamIO(new ByteArrayInputStream(in), new ByteArrayOutputStream())
 }

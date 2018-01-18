@@ -4,7 +4,9 @@ import io.github.writeonly.resentment.fsm.api.{Memory, StreamIO}
 import io.github.writeonly.resentment.ipu.core.api.PopCore
 import io.github.writeonly.resentment.ipu.core.impl.fake.Fake
 
-class PopCoreFake(val io: StreamIO) extends Fake[PopCoreFake] with PopCore[Unit] {
+class PopCoreFake(val io: StreamIO)
+    extends Fake[PopCoreFake]
+    with PopCore[Unit] {
 
   override def uvar(o: Symbol) = {
     symbols.put(o, basePointer)
@@ -37,7 +39,8 @@ class PopCoreFake(val io: StreamIO) extends Fake[PopCoreFake] with PopCore[Unit]
 
   override def pneg: Unit = top(t0 => -t0)
 
-  def top(l: (Byte) => Int): Unit = memory(topPointer) = l(top).asInstanceOf[Byte]
+  def top(l: (Byte) => Int): Unit =
+    memory(topPointer) = l(top).asInstanceOf[Byte]
 
   override def png1: Unit = ???
 

@@ -18,10 +18,10 @@ class GeneratorImpl(val e: CommonCore[Unit]) extends Generator {
       if (left != null) partial(left)
       if (right != null) partial(right)
     }
-    case Var(_, symbol) => e.uvar(symbol)
-    case Store(_, symbol) => e.ust(symbol)
-    case LoadVar(c) => e.uld(c)
-    case LoadChar(c) => e.uld(c)
+    case Var(_, symbol)            => e.uvar(symbol)
+    case Store(_, symbol)          => e.ust(symbol)
+    case LoadVar(c)                => e.uld(c)
+    case LoadChar(c)               => e.uld(c)
     case UnaryOperation("pout", _) => e.pout()
     case UnaryOperation("pnot", _) => e.pout()
     case UnaryOperation("pneg", _) => e.pout()
@@ -31,6 +31,5 @@ class GeneratorImpl(val e: CommonCore[Unit]) extends Generator {
     //    case BinaryOperation("DIV", x1, x2) => (apply(x1) / apply(x2))
     //    case BinaryOperation("MOD", x1, x2) => (apply(x1) / apply(x2))
   }
-
 
 }

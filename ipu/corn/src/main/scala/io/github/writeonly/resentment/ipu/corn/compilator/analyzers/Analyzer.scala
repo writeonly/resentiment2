@@ -11,7 +11,6 @@ trait Analyzer extends Parsers {
     case Success(r, n) => r
     //    case NoSuccess(msg, n) => throw new IllegalArgumentException(msg + "|" + n)
     case f: Failure => throw new IllegalArgumentException(f.toString())
-    case e: Error => throw new IllegalArgumentException(e.toString())
+    case e: Error   => throw new IllegalArgumentException(e.toString())
   }
 }
-

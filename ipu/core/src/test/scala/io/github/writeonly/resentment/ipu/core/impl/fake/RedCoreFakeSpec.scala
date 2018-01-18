@@ -5,8 +5,9 @@ import org.specs2.runner.JUnitRunner
 import org.specs2.specification.AroundTimeout
 
 @RunWith(classOf[JUnitRunner])
-class RedCoreFakeSpec extends org.specs2.mutable.Specification
-  with AroundTimeout {
+class RedCoreFakeSpec
+    extends org.specs2.mutable.Specification
+    with AroundTimeout {
   "this is my specification" >> {
 
     "rmovi(3,1) rmovi(1,3) rswap(1,3)" >> {

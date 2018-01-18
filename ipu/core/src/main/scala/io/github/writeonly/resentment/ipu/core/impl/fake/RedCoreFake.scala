@@ -64,7 +64,8 @@ class RedCoreFake extends Fake with RedCore[Unit] {
 
   def pow(x: Byte, y: Int): Int = Try(BigInt(x).pow(y).intValue()) match {
     case Success(v) => v
-    case Failure(e) => throw new IllegalArgumentException("x -> " + x + ", y -> " + y, e)
+    case Failure(e) =>
+      throw new IllegalArgumentException("x -> " + x + ", y -> " + y, e)
   }
 
   override def rpowc(s: Int, d: Int): Unit = comic(s, d, pow)

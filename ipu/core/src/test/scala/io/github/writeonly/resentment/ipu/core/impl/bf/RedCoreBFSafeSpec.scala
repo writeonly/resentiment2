@@ -7,8 +7,9 @@ import org.specs2.runner.JUnitRunner
 import org.specs2.specification.AroundTimeout
 
 @RunWith(classOf[JUnitRunner])
-class RedCoreBFSafeSpec extends org.specs2.mutable.Specification
-  with AroundTimeout {
+class RedCoreBFSafeSpec
+    extends org.specs2.mutable.Specification
+    with AroundTimeout {
   "this is my specification" >> {
 
     "rlear 0" >> {

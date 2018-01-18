@@ -5,8 +5,9 @@ import org.specs2.runner.JUnitRunner
 import org.specs2.specification.AroundTimeout
 
 @RunWith(classOf[JUnitRunner])
-class RedCoreBufferedBFSpec extends org.specs2.mutable.Specification
-  with AroundTimeout {
+class RedCoreBufferedBFSpec
+    extends org.specs2.mutable.Specification
+    with AroundTimeout {
   "this is my specification" >> {
 
     "swap" >> {

@@ -3,7 +3,8 @@ package io.github.writeonly.resentment.ipu.corn.dsl
 import io.github.writeonly.resentment.ipu.core.api.{PopCore, TopCore}
 import io.github.writeonly.resentment.ipu.core.set.TopCoreExpression
 
-class InvisibleUniCornDsl(core: PopCore[Unit]) extends TopCore[InvisibleUniCornDsl] {
+class InvisibleUniCornDsl(core: PopCore[Unit])
+    extends TopCore[InvisibleUniCornDsl] {
   override def uvar(o: Symbol) = {
     core.uvar(o);
     this

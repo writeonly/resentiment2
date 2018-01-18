@@ -56,7 +56,8 @@ class RedCoreText extends RedCore[String] {
 
   override def rtau(d: Int): String = apply("rtau", d)
 
-  def apply(name: String, seq: Int*): String = name + "(" + seq.mkString(",") + ") "
+  def apply(name: String, seq: Int*): String =
+    name + "(" + seq.mkString(",") + ") "
 
   override def req(s: Int, d: Int): String = apply("req", s, d)
 

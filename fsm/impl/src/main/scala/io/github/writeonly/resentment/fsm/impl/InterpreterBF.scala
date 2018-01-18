@@ -5,7 +5,10 @@ import java.io.Reader
 import com.google.common.base.MoreObjects
 import io.github.writeonly.resentment.fsm.api.{Interpreter, StreamIO}
 
-class InterpreterBF(val streamIO: StreamIO, code: Array[Byte], maxWatchdog: Int = 10000000) extends Interpreter {
+class InterpreterBF(val streamIO: StreamIO,
+                    code: Array[Byte],
+                    maxWatchdog: Int = 10000000)
+    extends Interpreter {
 
   val length = code.length
   val jumpTable = new JumpTableCreator(code)()
@@ -13,7 +16,8 @@ class InterpreterBF(val streamIO: StreamIO, code: Array[Byte], maxWatchdog: Int 
   var head = 0
   var watchdog = 0
 
-  def this(streamIO: StreamIO, code: String, maxWatchdog: Int) = this(streamIO, code.getBytes, maxWatchdog)
+  def this(streamIO: StreamIO, code: String, maxWatchdog: Int) =
+    this(streamIO, code.getBytes, maxWatchdog)
 
   def this(streamIO: StreamIO, code: String) = this(streamIO, code.getBytes)
 
@@ -36,19 +40,22 @@ class InterpreterBF(val streamIO: StreamIO, code: Array[Byte], maxWatchdog: Int 
     case ']' => counter = jumpTable(counter) - 1
     case ',' => memory(head) = streamIO.in.read()
     case '.' => streamIO.out.write(memory(head))
-    case _ =>
+    case _   =>
   }
 
-  override def toString: String = MoreObjects.toStringHelper(this)
-    .add("code", new String(code))
-    .add("counter", counter)
-    .add("head", head)
-    .toString
+  override def toString: String =
+    MoreObjects
+      .toStringHelper(this)
+      .add("code", new String(code))
+      .add("counter", counter)
+      .add("head", head)
+      .toString
 
 }
 
 object InterpreterBF {
-  def apply(streamIO: StreamIO, code: String): Unit = new InterpreterBF(streamIO, code)
+  def apply(streamIO: StreamIO, code: String): Unit =
+    new InterpreterBF(streamIO, code)
 
   def apply(reader: Reader): Unit = {
 

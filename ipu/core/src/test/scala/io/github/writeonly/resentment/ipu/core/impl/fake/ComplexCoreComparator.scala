@@ -14,7 +14,8 @@ class ComplexCoreComparator(buffered: RedCoreBuffered, fake: RedCoreFake) {
   def apply(f: RedCoreDsl => Unit): Unit = {
     f(new RedCoreDsl(buffered))
 
-    val message = new RedCoreBuffered(new RedCoreText(), new BufferedInterpreter(null))
+    val message =
+      new RedCoreBuffered(new RedCoreText(), new BufferedInterpreter(null))
     f(new RedCoreDsl(message))
 
     Try(f(new RedCoreDsl(fake))) match {
@@ -35,15 +36,22 @@ class ComplexCoreComparator(buffered: RedCoreBuffered, fake: RedCoreFake) {
   }
 }
 
-case class TestEntry(key: Int, expectedValue: Byte, actualValue: Byte, expectedMemory: Memory, actualMemory: Memory, f: RedCoreDsl => Unit) {
+case class TestEntry(key: Int,
+                     expectedValue: Byte,
+                     actualValue: Byte,
+                     expectedMemory: Memory,
+                     actualMemory: Memory,
+                     f: RedCoreDsl => Unit) {
 
-  override def toString: String = MoreObjects.toStringHelper(this)
-    .add("key", key)
-    .add("expectedValue", expectedValue)
-    .add("actualValue", actualValue)
-    .add("expectedMemory", expectedMemory)
-    .add("code", code)
-    .toString
+  override def toString: String =
+    MoreObjects
+      .toStringHelper(this)
+      .add("key", key)
+      .add("expectedValue", expectedValue)
+      .add("actualValue", actualValue)
+      .add("expectedMemory", expectedMemory)
+      .add("code", code)
+      .toString
 
   def code: String = {
     //FIXME
@@ -56,6 +64,14 @@ case class TestEntry(key: Int, expectedValue: Byte, actualValue: Byte, expectedM
 }
 
 object TestEntry {
-  def apply(entry: (Int, Byte), expectedMemory: Memory, actualMemory: Memory, f: RedCoreDsl => Unit)
-  = new TestEntry(entry._1, entry._2, actualMemory(entry._1), expectedMemory, actualMemory, f)
+  def apply(entry: (Int, Byte),
+            expectedMemory: Memory,
+            actualMemory: Memory,
+            f: RedCoreDsl => Unit) =
+    new TestEntry(entry._1,
+                  entry._2,
+                  actualMemory(entry._1),
+                  expectedMemory,
+                  actualMemory,
+                  f)
 }

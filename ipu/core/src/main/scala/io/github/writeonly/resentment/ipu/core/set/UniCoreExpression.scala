@@ -37,7 +37,6 @@ trait UniCoreExpression[C] {
 
   def uor(o: Int): C
 
-
   def ult(o: Symbol): C
 
   def ult(o: Int): C

@@ -44,11 +44,13 @@ class UniCoreFake(val io: StreamIO) extends Fake with UniCore[Unit] {
 
   override def uand(o: Symbol): Unit = uand(pointer(o))
 
-  override def uand(o: Int): Unit = set(Memory.toBoolean(accumulator) & Memory.toBoolean(o))
+  override def uand(o: Int): Unit =
+    set(Memory.toBoolean(accumulator) & Memory.toBoolean(o))
 
   override def uor(o: Symbol): Unit = uor(pointer(o))
 
-  override def uor(o: Int): Unit = set(Memory.toBoolean(accumulator) | Memory.toBoolean(o))
+  override def uor(o: Int): Unit =
+    set(Memory.toBoolean(accumulator) | Memory.toBoolean(o))
 
   override def ueq(o: Symbol): Unit = ueq(pointer(o))
 

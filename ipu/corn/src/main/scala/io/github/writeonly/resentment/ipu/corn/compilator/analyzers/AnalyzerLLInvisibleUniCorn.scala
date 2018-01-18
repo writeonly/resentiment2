@@ -4,13 +4,16 @@ import io.github.writeonly.resentment.ipu.corn.notation.{Operators, _}
 
 class AnalyzerLLInvisibleUniCorn extends AnalyzerLL {
 
-  override def parse(text: String): ParseResult[Command] = parseAll(instruction_list, text)
+  override def parse(text: String): ParseResult[Command] =
+    parseAll(instruction_list, text)
 
-  def instruction_list: Parser[PairInstruction] = (
-    instruction ~ instruction_list ^^ { p => PairInstruction(p._1, p._2) }
+  def instruction_list: Parser[PairInstruction] =
+    (instruction ~ instruction_list ^^ { p =>
+      PairInstruction(p._1, p._2)
+    }
       | instruction ^^ {
-      PairInstruction(_, null)
-    })
+        PairInstruction(_, null)
+      })
 
   def instruction: Parser[Command] = block_operation //| jump_operation
   def block_operation: Parser[BlockOperation] =
@@ -24,33 +27,40 @@ class AnalyzerLLInvisibleUniCorn extends AnalyzerLL {
     Store(null, _)
   }
 
-  def load_var_operation: Parser[LoadVar] = Operators.load_var_operator ~> symbol ^^ {
-    LoadVar(_)
-  }
+  def load_var_operation: Parser[LoadVar] =
+    Operators.load_var_operator ~> symbol ^^ {
+      LoadVar(_)
+    }
 
-  def load_str_operation: Parser[LoadStr] = Operators.load_str_operator ~> stringLiteral ^^ {
-    LoadStr(_)
-  }
+  def load_str_operation: Parser[LoadStr] =
+    Operators.load_str_operator ~> stringLiteral ^^ {
+      LoadStr(_)
+    }
 
-  def load_char_operation: Parser[LoadChar] = Operators.load_char_operator ~> char ^^ {
-    LoadChar(_)
-  }
+  def load_char_operation: Parser[LoadChar] =
+    Operators.load_char_operator ~> char ^^ {
+      LoadChar(_)
+    }
 
-  def load_int_operation: Parser[LoadInt] = Operators.load_int_operator ~> bigInt ^^ {
-    LoadInt(_)
-  }
+  def load_int_operation: Parser[LoadInt] =
+    Operators.load_int_operator ~> bigInt ^^ {
+      LoadInt(_)
+    }
 
   def unary_operation: Parser[UnaryOperation] = unary_operator ^^ {
     UnaryOperation(_, null)
   }
 
-  def binary_operation: Parser[BinaryOperation] = binary_operator ~ '(' ~ block_instruction_list ~ ')' ^^ {
-    a => BinaryOperation(a._1._1._1, null, a._1._2)
-  }
+  def binary_operation: Parser[BinaryOperation] =
+    binary_operator ~ '(' ~ block_instruction_list ~ ')' ^^ { a =>
+      BinaryOperation(a._1._1._1, null, a._1._2)
+    }
 
   def block_instruction_list: Parser[BlockOperation] = block_operation
 
-  def jump_operation: Parser[JumpOperation] = jump_operator ~ label ^^ { a => JumpOperation(a._1, a._2) }
+  def jump_operation: Parser[JumpOperation] = jump_operator ~ label ^^ { a =>
+    JumpOperation(a._1, a._2)
+  }
 
   def label: Parser[Symbol] = symbol
 
@@ -62,13 +72,22 @@ class AnalyzerLLInvisibleUniCorn extends AnalyzerLL {
 
   def jump_operator: Parser[String] = "(JMPCN)|(JMPC)|(JMP)".r
 
-  def unary_operator: Parser[String] = Operators.unary_operator.r ^^ { a => a }
+  def unary_operator: Parser[String] = Operators.unary_operator.r ^^ { a =>
+    a
+  }
 
-  def binary_operator: Parser[String] = binary_operator_byte | binary_operator_bit
+  def binary_operator: Parser[String] =
+    binary_operator_byte | binary_operator_bit
 
-  def binary_operator_byte: Parser[String] = Operators.binary_operator_byte.r ^^ { a => a }
+  def binary_operator_byte: Parser[String] =
+    Operators.binary_operator_byte.r ^^ { a =>
+      a
+    }
 
-  def binary_operator_bit: Parser[String] = Operators.binary_operator_bit.r ^^ { a => a }
+  def binary_operator_bit: Parser[String] = Operators.binary_operator_bit.r ^^ {
+    a =>
+      a
+  }
 
   def call_operator: Parser[String] = "(CALCN)|(CALC)|(CAL)".r
 
@@ -85,6 +104,5 @@ class AnalyzerLLInvisibleUniCorn extends AnalyzerLL {
   def char: Parser[Char] = "'" ~> "\\w".r ~ "'" ^^ {
     _._1.charAt(0)
   }
-
 
 }

@@ -1,5 +1,3 @@
 package io.github.writeonly.resentment.ipu.core.set
 
-trait PopCoreVariable[C] {
-
-}
+trait PopCoreVariable[C] {}

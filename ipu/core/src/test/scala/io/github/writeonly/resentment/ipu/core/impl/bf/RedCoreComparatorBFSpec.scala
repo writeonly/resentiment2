@@ -5,7 +5,10 @@ import org.specs2.ScalaCheck
 import org.specs2.execute._
 import org.specs2.specification.AroundTimeout
 
-abstract class RedCoreComparatorBFSpec extends org.specs2.mutable.Specification with AroundTimeout with ScalaCheck {
+abstract class RedCoreComparatorBFSpec
+    extends org.specs2.mutable.Specification
+    with AroundTimeout
+    with ScalaCheck {
 
   implicit def unitAsResult: AsResult[Unit] = new AsResult[Unit] {
     def asResult(u: => Unit): Result = {

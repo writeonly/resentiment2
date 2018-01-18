@@ -13,7 +13,6 @@ class Calculator {
     case BinaryOperation("/", x1, x2) => (resolve(x1) / resolve(x2))
   }
 
-
   def parse(text: String) = new AnalyzerLRBasic().apply(text)
 
   def evaluate(text: String): BigDecimal = resolve(parse(text))

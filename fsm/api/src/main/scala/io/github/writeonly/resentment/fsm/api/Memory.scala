@@ -7,9 +7,10 @@ object Memory {
     val max = 256
     val half = max / 2
     val j = i % max
-    val k = if (half <= j) j - max
-    else if (j < -half) j + max
-    else j
+    val k =
+      if (half <= j) j - max
+      else if (j < -half) j + max
+      else j
     k.asInstanceOf[Byte]
   }
 
@@ -27,7 +28,8 @@ class Memory {
 
   def update(key: Int, value: Int): Unit = map.update(key, Memory.toByte(value))
 
-  def update(key: Int, value: Boolean): Unit = map.update(key, Memory.toByte(value))
+  def update(key: Int, value: Boolean): Unit =
+    map.update(key, Memory.toByte(value))
 
   def s(k: Int): Byte = Memory.toByte(apply(k))
 

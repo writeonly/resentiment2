@@ -11,11 +11,14 @@ class Fake[T <: Fake[_]] extends HasMemory {
   var topPointer = 0
   var basePointer = 0
 
-  def comi(s: Int, d: Int, f: (Byte, Byte) => Int): Unit = memory(d) = f(memory(d), memory(s))
+  def comi(s: Int, d: Int, f: (Byte, Byte) => Int): Unit =
+    memory(d) = f(memory(d), memory(s))
 
-  def comx(s: Int, d: Int, f: (Byte, Byte) => Boolean): Unit = memory(d) = f(memory(d), memory(s))
+  def comx(s: Int, d: Int, f: (Byte, Byte) => Boolean): Unit =
+    memory(d) = f(memory(d), memory(s))
 
-  def comxx(s: Int, d: Int, f: (Boolean, Boolean) => Boolean): Unit = memory(d) = f(toBoolean(memory(d)), toBoolean(memory(s)))
+  def comxx(s: Int, d: Int, f: (Boolean, Boolean) => Boolean): Unit =
+    memory(d) = f(toBoolean(memory(d)), toBoolean(memory(s)))
 
   def comic(s: Int, d: Int, f: (Byte, Byte) => Int): Unit = {
     comi(s, d, f)
@@ -32,11 +35,14 @@ class Fake[T <: Fake[_]] extends HasMemory {
     memory(s) = 0
   }
 
-  def comii(s: Int, d: Int, f: (Byte, Int) => Int): Unit = memory(d) = f(memory(d), s)
+  def comii(s: Int, d: Int, f: (Byte, Int) => Int): Unit =
+    memory(d) = f(memory(d), s)
 
-  def comxi(s: Int, d: Int, f: (Byte, Int) => Boolean): Unit = memory(d) = f(memory(d), s)
+  def comxi(s: Int, d: Int, f: (Byte, Int) => Boolean): Unit =
+    memory(d) = f(memory(d), s)
 
-  def comxxi(s: Int, d: Int, f: (Boolean, Boolean) => Boolean): Unit = memory(d) = f(toBoolean(memory(d)), toBoolean(s))
+  def comxxi(s: Int, d: Int, f: (Boolean, Boolean) => Boolean): Unit =
+    memory(d) = f(toBoolean(memory(d)), toBoolean(s))
 
   def value(symbol: Symbol) = memory(pointer(symbol))
 

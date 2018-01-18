@@ -5,8 +5,11 @@ import com.google.common.base.MoreObjects
 import scala.collection.mutable
 import scala.util.{Failure, Success, Try}
 
-case class JumpTableCreator(code: Array[Byte], result: mutable.HashMap[Int, Int], stack: mutable.Stack[Int]) {
-  def this(code: Array[Byte]) = this(code, new mutable.HashMap[Int, Int](), new mutable.Stack[Int]())
+case class JumpTableCreator(code: Array[Byte],
+                            result: mutable.HashMap[Int, Int],
+                            stack: mutable.Stack[Int]) {
+  def this(code: Array[Byte]) =
+    this(code, new mutable.HashMap[Int, Int](), new mutable.Stack[Int]())
 
   def this(code: String) = this(code.getBytes)
 
@@ -23,7 +26,7 @@ case class JumpTableCreator(code: Array[Byte], result: mutable.HashMap[Int, Int]
   private def apply(i: Int, x: Byte) = x match {
     case '[' => stack.push(i)
     case ']' => pop(i)
-    case _ =>
+    case _   =>
   }
 
   private def pop(i: Int): Unit = {
@@ -32,11 +35,13 @@ case class JumpTableCreator(code: Array[Byte], result: mutable.HashMap[Int, Int]
     result(j) = i
   }
 
-  def toString(counter: Int): String = MoreObjects.toStringHelper(this)
-    .add("code", new String(code))
-    .add("counter", counter)
-    .add("result", result)
-    .add("stack", stack)
-    .toString
+  def toString(counter: Int): String =
+    MoreObjects
+      .toStringHelper(this)
+      .add("code", new String(code))
+      .add("counter", counter)
+      .add("result", result)
+      .add("stack", stack)
+      .toString
 
 }

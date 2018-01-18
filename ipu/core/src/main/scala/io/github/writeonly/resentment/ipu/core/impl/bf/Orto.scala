@@ -11,7 +11,3 @@ trait Orto {
 
   def im(s: Int, d: Int): FString
 }
-
-
-
-

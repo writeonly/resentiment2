@@ -10,6 +10,7 @@ object Operators {
 
   val unary_operator = "(pin)|(pout)|(pnot)|(pneg)|(png1)"
   val binary_operator_byte = "(ADD)|(SUB)|(MUL)|(DIV)|(MOD)"
-  val binary_operator_bit = "(AND)|(OR)|(XOR)|(XAND)|(EQ)|(NE)|(LE)|(LT)|(GE)|(GT)|"
+  val binary_operator_bit =
+    "(AND)|(OR)|(XOR)|(XAND)|(EQ)|(NE)|(LE)|(LT)|(GE)|(GT)|"
 
 }

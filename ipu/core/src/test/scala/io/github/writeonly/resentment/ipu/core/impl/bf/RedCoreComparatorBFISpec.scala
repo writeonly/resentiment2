@@ -14,7 +14,7 @@ class RedCoreComparatorBFISpec extends RedCoreComparatorBFSpec {
     "rmovi" >> prop { (v: Int, d: Int) =>
       val comparator = new ComplexCoreComparatorBF
       comparator {
-        _ rmovi(v, d)
+        _ rmovi (v, d)
       }
     }.setGens(value, address)
 
