@@ -6,31 +6,41 @@ import org.specs2.runner.JUnitRunner
 @RunWith(classOf[JUnitRunner])
 class RedCoreComparatorBFXSpec extends RedCoreComparatorBFSpec {
 
-  "rmovi rnot" >> prop { (s: Int, d1: Int) =>
-    val comparator = new ComplexCoreComparatorBF
-    comparator { c =>
-      c.rmovi(s, d1)
-      c.rnot(d1)
-    }
-  }.setGens(value, address)
-
-  "rmovi rtau" >> prop { (s: Int, d1: Int) =>
-    val comparator = new ComplexCoreComparatorBF
-    comparator { c =>
-      c.rmovi(s, d1)
-      c.rtau(d1)
-    }
-  }.setGens(value, address)
-
-  "eq" >> {
-    "rmovi req" >> prop { (v: Int, d1: Int, d2: Int) =>
+  "bool" >> {
+    "rmovi rnot" >> prop { (s: Int, d: Int) =>
       val comparator = new ComplexCoreComparatorBF
       comparator { c =>
-        c.rmovi(v, d1)
-        c.req(d1, d2)
+        c.rmovi(s, d)
+        c.rnot(d)
       }
-    }.setGens(value, address, address)
+    }.setGens(value, address)
 
+    "rmovi rtau" >> prop { (s: Int, d: Int) =>
+      val comparator = new ComplexCoreComparatorBF
+      comparator { c =>
+        c.rmovi(s, d)
+        c.rtau(d)
+      }
+    }.setGens(value, address)
+
+    "rmovi rclr" >> prop { (s: Int, d: Int) =>
+      val comparator = new ComplexCoreComparatorBF
+      comparator { c =>
+        c.rmovi(s, d)
+        c.rclr(d)
+      }
+    }.setGens(value, address)
+
+    "rmovi rset" >> prop { (s: Int, d: Int) =>
+      val comparator = new ComplexCoreComparatorBF
+      comparator { c =>
+        c.rmovi(s, d)
+        c.rset(d)
+      }
+    }.setGens(value, address)
+  }
+
+  "eq" >> {
     "rmovi rmovi req" >> prop { (v1: Int, v2: Int, d1: Int, d2: Int) =>
       val comparator = new ComplexCoreComparatorBF
       comparator { c =>
@@ -58,14 +68,6 @@ class RedCoreComparatorBFXSpec extends RedCoreComparatorBFSpec {
     }.setGens(value, value, address)
   }
   "ne" >> {
-    "rmovi rne" >> prop { (v: Int, d1: Int, d2: Int) =>
-      val comparator = new ComplexCoreComparatorBF
-      comparator { c =>
-        c.rmovi(v, d1)
-        c.rne(d1, d2)
-      }
-    }.setGens(value, address, address)
-
     "rmovi rmovi rne" >> prop { (v1: Int, v2: Int, d1: Int, d2: Int) =>
       val comparator = new ComplexCoreComparatorBF
       comparator { c =>
@@ -93,14 +95,6 @@ class RedCoreComparatorBFXSpec extends RedCoreComparatorBFSpec {
     }.setGens(value, value, address)
   }
   "le" >> {
-    "rmovi rle" >> prop { (v: Int, d1: Int, d2: Int) =>
-      val comparator = new ComplexCoreComparatorBF
-      comparator { c =>
-        c.rmovi(v, d1)
-        c.rle(d1, d2)
-      }
-    }.setGens(value, address, address)
-
     "rmovi rmovi rle" >> prop { (v1: Int, v2: Int, d1: Int, d2: Int) =>
       val comparator = new ComplexCoreComparatorBF
       comparator { c =>
@@ -128,14 +122,6 @@ class RedCoreComparatorBFXSpec extends RedCoreComparatorBFSpec {
     }.setGens(value, value, address)
   }
   "lt" >> {
-    "rmovi rlt" >> prop { (v: Int, d1: Int, d2: Int) =>
-      val comparator = new ComplexCoreComparatorBF
-      comparator { c =>
-        c.rmovi(v, d1)
-        c.rlt(d1, d2)
-      }
-    }.setGens(value, address, address)
-
     "rmovi rmovi rlt" >> prop { (v1: Int, v2: Int, d1: Int, d2: Int) =>
       val comparator = new ComplexCoreComparatorBF
       comparator { c =>

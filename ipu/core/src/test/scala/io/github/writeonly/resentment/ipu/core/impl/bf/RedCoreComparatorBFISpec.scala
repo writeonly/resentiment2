@@ -35,14 +35,6 @@ class RedCoreComparatorBFISpec extends RedCoreComparatorBFSpec {
     }.setGens(value, address, address)
   }
   "add" >> {
-    "rmovi radd" >> prop { (v: Int, d1: Int, d2: Int) =>
-      val comparator = new ComplexCoreComparatorBF
-      comparator { c =>
-        c.rmovi(v, d1)
-        c.radd(d1, d2)
-      }
-    }.setGens(value, address, address)
-
     "rmovi rmovi radd" >> prop { (v1: Int, v2: Int, d1: Int, d2: Int) =>
       val comparator = new ComplexCoreComparatorBF
       comparator { c =>
@@ -70,14 +62,6 @@ class RedCoreComparatorBFISpec extends RedCoreComparatorBFSpec {
     }.setGens(value, address, value)
   }
   "sub" >> {
-    "rmovi rsub" >> prop { (v: Int, d1: Int, d2: Int) =>
-      val comparator = new ComplexCoreComparatorBF
-      comparator { c =>
-        c.rmovi(v, d1)
-        c.rsub(d1, d2)
-      }
-    }.setGens(value, address, address)
-
     "rmovi rmovi rsub" >> prop { (v1: Int, v2: Int, d1: Int, d2: Int) =>
       val comparator = new ComplexCoreComparatorBF
       comparator { c =>
@@ -105,14 +89,6 @@ class RedCoreComparatorBFISpec extends RedCoreComparatorBFSpec {
     }.setGens(value, address, value)
   }
   "mul" >> {
-    "rmovi rmul" >> prop { (v: Int, d1: Int, d2: Int) =>
-      val comparator = new ComplexCoreComparatorBF
-      comparator { c =>
-        c.rmovi(v, d1)
-        c.rmul(d1, d2)
-      }
-    }.setGens(value, shortAddress, shortAddress)
-
     "rmovi rmovi rmul" >> prop { (v1: Int, v2: Int, d1: Int, d2: Int) =>
       val comparator = new ComplexCoreComparatorBF
       comparator { c =>
@@ -140,14 +116,6 @@ class RedCoreComparatorBFISpec extends RedCoreComparatorBFSpec {
     }.setGens(value, address, value)
   }
   "div" >> {
-    "rmovi rdiv" >> prop { (v: Int, d1: Int, d2: Int) =>
-      val comparator = new ComplexCoreComparatorBF
-      comparator { c =>
-        c.rmovi(v, d1)
-        c.rdiv(d1, d2)
-      }
-    }.setGens(valueNonZero, address, address)
-
     "rmovi rmovi rdiv" >> prop { (v1: Int, v2: Int, d1: Int, d2: Int) =>
       val comparator = new ComplexCoreComparatorBF
       comparator { c =>
