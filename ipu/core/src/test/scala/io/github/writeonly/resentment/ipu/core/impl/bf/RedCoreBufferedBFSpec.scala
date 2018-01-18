@@ -394,6 +394,13 @@ class RedCoreBufferedBFSpec extends org.specs2.mutable.Specification
         val memory = core.apply().memory
         memory(1) must_== 1
       }
+      "rmovi(3,1) randc(1,1)" >> {
+        val core = new RedCoreBufferedBF
+        core.rmovi(3, 1)
+        core.randc(1, 1)
+        val memory = core.apply().memory
+        memory(1) must_== 0
+      }
     }
     "or" >> {
       "rmovi(3,1) ror(1,1)" >> {
