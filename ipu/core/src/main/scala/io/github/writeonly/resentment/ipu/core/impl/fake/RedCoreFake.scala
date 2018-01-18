@@ -23,10 +23,10 @@ class RedCoreFake extends Fake with RedCore[Unit] {
     memory(r._1) = 0
   }
 
-  override def rswap(d1: Int, d2: Int): Unit = {
-    val (v1, v2) = (memory(d1), memory(d2))
-    memory(d1) = v2
-    memory(d2) = v1
+  override def rswap(r: (Int, Int)): Unit = {
+    val (v1, v2) = (memory(r._1), memory(r._2))
+    memory(r._1) = v2
+    memory(r._2) = v1
   }
 
   override def radd(r: (Int, Int)): Unit = comi(r, _ + _)

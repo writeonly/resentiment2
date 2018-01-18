@@ -11,8 +11,10 @@ class RedCoreBFSafe(core: RedCoreBFUnsafe) extends RedCore[FString] {
 
   def eq(r: (Int, Int)): Boolean = r._1 == r._2
 
-  override def rswap(d1: Int, d2: Int): FString =
-    if (d1 != d2) core.rswap(d1, d2) else rnop()
+  override def rswap(r: (Int, Int)): FString = r match {
+    case _ if ne(r) => core.rswap(r)
+    case _ if eq(r) => rnop
+  }
 
   override def rmovc(r: (Int, Int)): FString = r match {
     case _ if ne(r) => core.rmovc(r)

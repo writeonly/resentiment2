@@ -14,7 +14,7 @@ class RedCoreText extends RedCore[String] {
 
   override def rmov(r: (Int, Int)): String = apply("rmov", r)
 
-  override def rswap(d1: Int, d2: Int): String = apply("rswap", d1, d2)
+  override def rswap(r: (Int, Int)): String = apply("rswap", r)
 
   override def radd(r: (Int, Int)): String = apply("radd", r)
 

@@ -13,7 +13,7 @@ trait RedCore[F] {
 
   def rmovi(r: (Int, Int)): F
 
-  def rswap(d1: Int, d2: Int): F
+  def rswap(r: (Int, Int)): F
 
   def radd(r: (Int, Int)): F
 

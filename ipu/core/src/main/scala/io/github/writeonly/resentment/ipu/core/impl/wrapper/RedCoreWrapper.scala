@@ -15,7 +15,7 @@ abstract class RedCoreWrapper[T, R](core: RedCore[T]) extends RedCore[R] {
 
   override def rmov(r: (Int, Int)): R = apply(core.rmov(r))
 
-  override def rswap(d1: Int, d2: Int): R = apply(core.rswap(d1, d2))
+  override def rswap(r: (Int, Int)): R = apply(core.rswap(r))
 
   override def radd(r: (Int, Int)): R = apply(core.radd(r))
 

@@ -15,8 +15,8 @@ class RedCoreBFUnsafe(core: OrtoBF) extends RedCore[FString] {
 
   override def rset(d: Int): FString = core.rset(d)
 
-  override def rswap(d1: Int, d2: Int): FString =
-    core.mkm(raddc(d1, -1), raddc(d2, d1), raddc(-1, d2))
+  override def rswap(r: (Int, Int)): FString =
+    core.mkm(raddc(r._1, -1), raddc(r._2, r._1), raddc(-1, r._2))
 
   override def rmov(r: (Int, Int)): FString = core.mov.dir(r)
 
