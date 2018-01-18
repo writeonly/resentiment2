@@ -196,13 +196,13 @@ class RedCoreBufferedBFSpec
       }
     }
     "pow" >> {
-//      "rmovi(2,1) pow(1,1)" >> {
-//        val core = new RedCoreBufferedBF
-//        core.rmovi(2, 1)
-//        core.rpow(1, 1)
-//        val memory = core.apply().memory
-//        memory(1) must_== 4
-//      }
+      "rmovi(2,1) pow(1,1)" >> {
+        val core = new RedCoreBufferedBF
+        core.rmovi(2, 1)
+        core.rpow(1, 1)
+        val memory = core.apply().memory
+        memory(1) must_== 4
+      }
       "rmovi(2,1) rpowc(1,1)" >> {
         val core = new RedCoreBufferedBF
         core.rmovi(2, 1)

@@ -201,14 +201,31 @@ class RedCoreComparatorBFISpec extends RedCoreComparatorBFSpec {
       }
     }.setGens(value, address, valueNonZero)
   }
-  //    "rmovi rmovi rpow" >> prop { (v1: Int, v2: Int, d1: Int, d2: Int) =>
-  //      val comparator = new ComplexCoreComparatorBF
-  //      comparator { c =>
-  //        c.rmovi(v1, d1)
-  //        c.rmovi(v2, d2)
-  //        c.rpow(d1, d2)
-  //      }
-  //    }.setGens(shortValuePos, shortValuePos, shortAddress, shortAddress)
+  "pow" >> {
+    "rmovi rmovi rpow" >> prop { (v1: Int, v2: Int, d1: Int, d2: Int) =>
+      val comparator = new ComplexCoreComparatorBF
+      comparator { c =>
+        c.rmovi(v1, d1)
+        c.rmovi(v2, d2)
+        c.rpow(d1, d2)
+      }
+    }.setGens(shortValuePos, shortValuePos, shortAddress, shortAddress)
+    "rmovi rmovi rpowc" >> prop { (v1: Int, v2: Int, d1: Int, d2: Int) =>
+      val comparator = new ComplexCoreComparatorBF
+      comparator { c =>
+        c.rmovi(v1, d1)
+        c.rmovi(v2, d2)
+        c.rpowc(d1, d2)
+      }
+    }.setGens(shortValuePos, shortValuePos, shortAddress, shortAddress)
+    "rmovi rpowi" >> prop { (v1: Int, v2: Int, d1: Int) =>
+      val comparator = new ComplexCoreComparatorBF
+      comparator { c =>
+        c.rmovi(v1, d1)
+        c.rpowi(v2, d1)
+      }
+    }.setGens(shortValuePos, shortValuePos, shortAddress)
+  }
   "rmovi rneg" >> prop { (v: Int, d1: Int) =>
     val comparator = new ComplexCoreComparatorBF
     comparator { c =>
