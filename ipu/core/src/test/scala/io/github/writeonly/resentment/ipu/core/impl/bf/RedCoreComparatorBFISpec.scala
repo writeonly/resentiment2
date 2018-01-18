@@ -10,14 +10,33 @@ import org.specs2.specification.AroundTimeout
 @RunWith(classOf[JUnitRunner])
 class RedCoreComparatorBFISpec extends RedCoreComparatorBFSpec {
 
-  "rmov" >> {
-    "rmovi rnop" >> prop { (v: Int, d: Int) =>
+  "swap" >> {
+    "rmovi rnop" >> prop { (v1: Int, d1: Int) =>
       val comparator = new ComplexCoreComparatorBF
       comparator {
-        _ rmovi (v, d) rnop ()
+        _ rmovi (v1, d1) rnop ()
       }
     }.setGens(value, address)
 
+    "rmovi rswap" >> prop { (v1: Int, d1: Int) =>
+      val comparator = new ComplexCoreComparatorBF
+      comparator { c =>
+        c.rmovi(v1, d1)
+        c.rswap(d1, d1)
+      }
+    }.setGens(value, address)
+
+    "rmovi rmovi rswap" >> prop { (v1: Int, v2: Int, d1: Int, d2: Int) =>
+      val comparator = new ComplexCoreComparatorBF
+      comparator { c =>
+        c.rmovi(v1, d1)
+        c.rmovi(v2, d2)
+        c.rswap(d1, d2)
+      }
+    }.setGens(value, value, address, address)
+  }
+
+  "rmov" >> {
     "rmovi rmov" >> prop { (v: Int, d1: Int, d2: Int) =>
       val comparator = new ComplexCoreComparatorBF
       comparator { c =>
