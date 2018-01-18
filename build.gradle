@@ -11,10 +11,12 @@ buildscript {
 //        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
         classpath 'org.junit.platform:junit-platform-gradle-plugin:1.0.0'
 //        classpath "gradle.plugin.com.github.maiflai:gradle-scalatest:0.16"
+        classpath "com.diffplug.spotless:spotless-plugin-gradle:3.8.0"
     }
 }
 
 apply plugin: "jacoco"
+apply plugin: "com.diffplug.gradle.spotless"
 
 version = '1.0'
 
@@ -24,6 +26,7 @@ subprojects {
     apply plugin: 'scala'
     apply plugin: 'maven'
     apply plugin: 'jacoco'
+    apply plugin: "com.diffplug.gradle.spotless"
 
     sourceCompatibility = 1.8
     targetCompatibility = 1.8
@@ -38,6 +41,14 @@ subprojects {
         mavenCentral()
         maven {
             url "https://oss.sonatype.org/content/repositories/releases"
+        }
+    }
+
+    spotless {
+        scala {
+            scalafmt()
+            // optional: you can specify a specific version or config file
+//            scalafmt('0.5.1').configFile('scalafmt.conf')
         }
     }
 
