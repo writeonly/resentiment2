@@ -3,9 +3,9 @@ package io.github.writeonly.resentment.ipu.core.impl.bf
 import io.github.writeonly.resentment.ipu.core.api.RedCore
 import io.github.writeonly.resentment.ipu.core.common.FString
 
-class RedCoreBFSafe(core: RedCoreBFUnsafe) extends RedCore[FString] {
+class RedCoreBFMatch(core: RedCoreBFImpl) extends RedCore[FString] {
 
-  def this() = this(new RedCoreBFUnsafe())
+  def this() = this(new RedCoreBFImpl())
 
   def ne(r: (Int, Int)): Boolean = r._1 != r._2
 

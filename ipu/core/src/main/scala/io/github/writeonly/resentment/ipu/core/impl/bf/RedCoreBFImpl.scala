@@ -3,7 +3,7 @@ package io.github.writeonly.resentment.ipu.core.impl.bf
 import io.github.writeonly.resentment.ipu.core.api.RedCore
 import io.github.writeonly.resentment.ipu.core.common.FString
 
-class RedCoreBFUnsafe(core: OrtoBF) extends RedCore[FString] {
+class RedCoreBFImpl(core: OrtoBF) extends RedCore[FString] {
 
   def this() = this(new OrtoBF)
 

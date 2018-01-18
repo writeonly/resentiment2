@@ -19,7 +19,7 @@ class FInterpreterBF extends FInterpreter {
 
 class BufferedInterpreterBF extends BufferedInterpreter(new FInterpreterBF)
 
-class RedCoreToStringBF extends RedCoreToString(new RedCoreBFSafe())
+class RedCoreToStringBF extends RedCoreToString(new RedCoreBFMatch())
 
 class RedCoreBufferedBF
     extends RedCoreBuffered(new RedCoreToStringBF(), new BufferedInterpreterBF)
