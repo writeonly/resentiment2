@@ -1,4 +1,4 @@
-rootProject.name = 'resentment'
+rootProject.name = 'resentiment'
 
 include 'fsm:api'
 include 'fsm:impl'
