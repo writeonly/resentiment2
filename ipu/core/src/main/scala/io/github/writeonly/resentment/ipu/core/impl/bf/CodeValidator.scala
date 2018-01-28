@@ -11,7 +11,7 @@ trait CodeValidator extends Function[String, String] {
 
   def mkfe(seq: Seq[FString], end: FString): FString = mkf(seq :+ end)
 
-  def mkf(seq: Seq[FString]): FString = FString((it) => mk(seq.map(f => f(it))))
+  def mkf(seq: Seq[FString]): FString = FString(it => mk(seq.map(f => f(it))))
 
   def mk(s: Seq[String]) = apply(s.mkString(""))
 

@@ -18,9 +18,10 @@ case class StreamIO(in: InputStream, out: OutputStream) {
 }
 
 object StreamIO {
+  import io.github.writeonly.resentment.fsm.api.PipeOps.toPipe
   def byteArray(): StreamIO = byteArray("")
 
-  def byteArray(in: String): StreamIO = byteArray(in.getBytes)
+  def byteArray(in: String): StreamIO = in.getBytes |> byteArray
 
   def byteArray(in: Array[Byte]): StreamIO =
     StreamIO(new ByteArrayInputStream(in), new ByteArrayOutputStream())

@@ -56,7 +56,10 @@ case class TestEntry(key: Int,
   def code: String = {
     //FIXME
     val appendable = new JavaStringBuilder()
-    f(new RedCoreDsl(new RedCoreAppendable(new RedCoreText(), appendable)))
+    import io.github.writeonly.resentment.fsm.api.PipeOps.toPipe
+    val x = new RedCoreText() |> (new RedCoreAppendable(_, appendable)) |> (new RedCoreDsl(
+      _))
+    f(x)
     appendable.toString
   }
 
